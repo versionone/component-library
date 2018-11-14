@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "@versionone/style-container",
+  "description": "Fela based utilities.",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "main:src": "./src/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "fela": "^6.2.2",
+    "fela-bindings": "^3.0.2",
+    "fela-utils": "^8.1.2",
+    "lodash.mergewith": "^4.6.1",
+    "prop-types": "^15.6.2",
+    "react-fela": "^8.0.2",
+    "tiny-invariant": "^1.0.3"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2"
+  }
+}

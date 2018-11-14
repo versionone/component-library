@@ -1,0 +1,74 @@
+---
+name: SpacedGroup
+route: /components/SpacedGroup
+menu: Components
+---
+
+import { Playground, PropsTable, ThemeDefinitionTable } from '@versionone/docz';
+import { SpacedGroup } from './src';
+
+# SpacedGroup
+
+SpacedGroups are great when you have variable width elements you want to uniformly space and wrap to the next line.
+
+## Horizontal spacing
+
+<Playground>
+    <SpacedGroup>
+      <div>some content</div>
+      <div>some more content</div>
+      <div>additional content</div>
+      <div>even more, additional content</div>
+    </SpacedGroup>
+
+    <SpacedGroup>
+      <div>some content</div>
+      <div>some more content</div>
+      <div>additional content</div>
+      <div>even more, additional content</div>
+    </SpacedGroup>
+
+</Playground>
+
+## Vertical spacing
+
+Spacing can apply to any elements.
+The desire to have equal spacing among hetergeneous elements
+highlights why individual components should not "own" the spacing outside themselves (margin).
+
+<Playground>
+  <SpacedGroup direction="vertical" xs={24}>
+    <SpacedGroup direction="vertical">
+      <div>some content</div>
+      <div>some more content</div>
+      <div>additional content</div>
+      <div>even more, additional content</div>
+    </SpacedGroup>
+
+    <SpacedGroup direction="vertical">
+       <div>some content</div>
+      <div>some more content</div>
+      <div>additional content</div>
+      <div>even more, additional content</div>
+    </SpacedGroup>
+
+  </SpacedGroup>
+</Playground>
+
+## Changing Screen Size
+
+<Playground>
+  <SpacedGroup xs={0} sm={8} md={24}>
+    <div>Standard</div>
+    <div>Primary</div>
+    <div>Disabled</div>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={SpacedGroup} />
+
+## Theme API
+
+<ThemeDefinitionTable of={SpacedGroup} />

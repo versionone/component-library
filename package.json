@@ -1,0 +1,61 @@
+{
+  "private": true,
+  "name": "@versionone/component-library",
+  "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
+  "version": "0.0.0-development",
+  "collaborators": [
+    "Andrew Smith <andrew@andrew.codes>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "start": "docz dev",
+    "test": "start-test start http-get://localhost:3000 cy:run",
+    "lint": "yarn lint:eslint",
+    "build": "lerna run build",
+    "build:website": "docz build",
+    "test:ci": "start-server-and-test start http-get://localhost:3000 cy:run:ci",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run:ci": "cypress run",
+    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
+  },
+  "engines": {
+    "node": "^8.6.0 || ^10.0.0",
+    "yarn": "^1.12.3"
+  },
+  "workspaces": [
+    "build/*",
+    "components/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "@versionone/babel-plugin-react-docgen": "^0.0.0-development",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-transform-react-fela-display-name": "^1.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.20",
+    "cypress": "^3.1.1",
+    "docz": "^0.12.9",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-cypress": "^2.1.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "lerna": "^3.4.3",
+    "prettier": "^1.15.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "start-server-and-test": "^1.7.9",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.1"
+  }
+}

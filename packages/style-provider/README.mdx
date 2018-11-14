@@ -1,0 +1,36 @@
+---
+name: StyleProvider
+menu: Other Packages
+route: /packages/style-provider
+---
+
+import { PropsTable } from '@versionone/docz';
+import { StyleProvider } from './src';
+
+# StyleProvider
+
+The style provider component powers the styling mechanism behind `StyleContainer`'s `createComponent`. It is required to be a parent in any component tree that needs to leverage `createComponent`.
+
+## Example
+
+```jsx
+import React from 'react';
+import StyleProvider from '@versionone/style-provder';
+
+const StyledDiv = createComponent(
+  props => ({
+    background: props.background,
+  }),
+  'div',
+);
+
+export default props => (
+  <StyleProvider>
+    <StyledDiv background={props.background} />
+  </StyleProvider>
+);
+```
+
+## API
+
+<PropsTable of={StyleProvider} />

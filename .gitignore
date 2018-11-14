@@ -1,0 +1,11 @@
+node_modules
+*.log
+*.log.*
+.idea
+.DS_Store
+.vscode
+cypress/screenshots
+cypress/videos
+
+.docz
+**/dist

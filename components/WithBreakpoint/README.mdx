@@ -1,0 +1,34 @@
+---
+name: WithBreakpoint
+route: /components/WithBreakpoint
+menu: Components
+---
+
+import { Playground, PropsTable } from '@versionone/docz';
+import { WithBreakpoint } from './src';
+
+# WithBreakpoint
+
+Provides the inner component with the breakpoint based on the Viewport width. Use in conjunction with `isWidthUp` function (proxied to [Material-UI](https://material-ui.com/)'s implementation); also found in this package.
+
+## Breakpoints
+
+| Breakpoint | Use Case         |
+| :--------- | :--------------- |
+| **xs**     | Phone            |
+| **sm**     | Tablet portrait  |
+| **md**     | Tablet landscape |
+| **lg**     | Desktop          |
+| **xl**     | Large Desktop    |
+
+## Example
+
+> Resize the browser window to see the value update.
+
+<Playground>
+  <WithBreakpoint>{width => <div>{width}</div>}</WithBreakpoint>
+</Playground>
+
+## API
+
+<PropsTable of={WithBreakpoint} />
