@@ -6,7 +6,7 @@
   "license": "MIT",
   "main:src": "./src/index.js",
   "dependencies": {
-    "@versionone/style-container": "^0.0.0-development",
+    "@versionone/components": "^0.0.0-development",
     "codemirror": "^5.41.0",
     "prop-types": "^15.6.2",
     "react-docgen": "^2.21.0",

@@ -5,7 +5,7 @@ route: /packages/style-provider
 ---
 
 import { PropsTable } from '@versionone/docz';
-import { StyleProvider } from './src';
+import { StyleProvider } from './';
 
 # StyleProvider
 
@@ -15,7 +15,7 @@ The style provider component powers the styling mechanism behind `StyleContainer
 
 ```jsx
 import React from 'react';
-import StyleProvider from '@versionone/style-provder';
+import { StyleProvider } from '@versionone/components/StyleProvider';
 
 const StyledDiv = createComponent(
   props => ({

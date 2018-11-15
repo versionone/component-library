@@ -5,13 +5,9 @@ import React, {
   isValidElement,
   cloneElement,
 } from 'react';
-import {
-  mergeThemes,
-  ThemeProvider,
-  WithTheme,
-} from '@versionone/style-container';
 import { Provider as FelaProvider } from 'react-fela';
 import createRenderer from './createRenderer';
+import { mergeThemes, ThemeProvider, WithTheme } from '../StyleContainer';
 
 let singletonRenderer;
 const getRenderer = ({ dev, renderer }) => {

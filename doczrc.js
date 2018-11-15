@@ -1,3 +1,4 @@
+const path = require('path');
 const pkg = require('./package.json');
 
 export default {
@@ -16,12 +17,21 @@ export default {
       menu: ['StyleProvider', 'StyleContainer'],
     },
   ],
-  wrapper: '@versionone/style-provider/src/StyleProvider.js',
+  wrapper: '@versionone/components/StyleProvider/StyleProvider.js',
   modifyBundlerConfig: config => ({
     ...config,
     resolve: {
       ...config.resolve,
       mainFields: ['main:src', 'main'],
+      alias: {
+        ...config.resolve.alias,
+        '@versionone/components': path.join(
+          __dirname,
+          'packages',
+          'components',
+          'src',
+        ),
+      },
     },
   }),
   modifyBabelRc: config => ({

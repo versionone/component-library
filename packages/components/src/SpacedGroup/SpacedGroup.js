@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { WithBreakpoint, isWidthUp } from '@versionone/with-breakpoint';
-import { createComponent, styleUtils } from '@versionone/style-container';
-import { StyleProvider } from '@versionone/style-provider';
+import { createComponent, styleUtils } from '../StyleContainer';
+import { StyleProvider } from '../StyleProvider';
+import { WithBreakpoint, isWidthUp } from '../WithBreakpoint';
 
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';

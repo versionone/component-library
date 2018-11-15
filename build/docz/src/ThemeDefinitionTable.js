@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { applyStaticStyles } from '@versionone/style-container';
+import { applyStaticStyles } from '@versionone/components/StyleContainer';
 import { PropsTable as Table } from 'docz';
 
 const PropsTable = ({ of }) => (

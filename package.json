@@ -13,6 +13,8 @@
     "test": "start-test start http-get://localhost:3000 cy:run",
     "lint": "yarn lint:eslint",
     "build": "lerna run build",
+    "build:package": "echo $PACKAGE && babel packages/$PACKAGE/src --out-dir packages/$PACKAGE/dist --config-file ./.babelrc",
+    "build:components": "babel packages/components/src --out-dir packages/components --config-file ./.babelrc",
     "build:website": "docz build",
     "test:ci": "start-server-and-test start http-get://localhost:3000 cy:run:ci",
     "cy:run": "cypress run",
@@ -26,10 +28,10 @@
   },
   "workspaces": [
     "build/*",
-    "components/*",
     "packages/*"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.5",

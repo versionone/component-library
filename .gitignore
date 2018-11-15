@@ -9,3 +9,8 @@ cypress/videos
 
 .docz
 **/dist
+
+/packages/components/*
+!/packages/components/package.json
+!/packages/components/src
+
