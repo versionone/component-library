@@ -35,6 +35,10 @@ const SpacedGroup = props => (
 const spacingUnits = [0, 8, 16, 24, 32, 40];
 SpacedGroup.propTypes = {
   /**
+   * @deprecated do not use this fake prop
+   */
+  fake: PropTypes.string,
+  /**
    * Set components to equally space.
    */
   children: PropTypes.node,
@@ -69,8 +73,10 @@ SpacedGroup.defaultProps = {
 };
 SpacedGroup.themeDefinition = {
   color: PropTypes.string.isRequired,
+  test: PropTypes.oneOf([1, 2, 4]),
 };
 SpacedGroup.defaultThemeValues = {
   color: 'blue',
+  test: 2,
 };
 export default SpacedGroup;

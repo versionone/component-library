@@ -1534,6 +1534,11 @@
     hoist-non-react-statics "^2.5.5"
     prop-types "^15.6.1"
 
+"@mdx-js/tag@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/tag/-/tag-0.16.0.tgz#a676132203a484b575c8837cd24dea5e02e91beb"
+  integrity sha512-Myz+KO7IlbWE+ZLcVvqxEGQMbQMOBrblb/j20r1+FOrftHdzDM4f1BFBlmc8ZVjjz07emJWYP0P8o13/1BNZbw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -9388,6 +9393,11 @@ react-dev-utils@^6.1.0:
     sockjs-client "1.1.5"
     strip-ansi "4.0.0"
     text-table "0.2.0"
+
+react-docgen-deprecation-handler@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-docgen-deprecation-handler/-/react-docgen-deprecation-handler-1.0.1.tgz#136d7a5a136850a9f0b6bbf9203bbf55cc2ff8b1"
+  integrity sha512-bqtisCGRh+v4NGBx6M8bbdy0HGxGINXA0MBxQOM1jvuK9oLVfcAQqk+esC5otVzgPL7sGL+2iFNmRgwE7hIURQ==
 
 react-docgen-typescript-loader@^3.0.0-rc.0:
   version "3.0.0"

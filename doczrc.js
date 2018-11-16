@@ -41,7 +41,10 @@ export default {
       [
         '@versionone/babel-plugin-react-docgen',
         {
-          additionalHandlers: ['@versionone/theme-definition-handler'],
+          additionalHandlers: [
+            '@versionone/theme-definition-handler',
+            'react-docgen-deprecation-handler',
+          ],
         },
       ],
     ]),
