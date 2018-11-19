@@ -1,0 +1,138 @@
+---
+name: Contributing Documentation
+menu: Getting Started
+---
+
+# Contributing Documentation
+
+## Where are Doc Site Pages Located?
+
+Pages are files with the `.mdx` extension and can be located anywhere in this repo. Although doc pages are technically allowed anywhere in the repo, we follow the convention non-component documentation pages are **located in the `./docs` directory**.
+
+## Anatomy of an MDX File
+
+### Frontmatter
+
+Each `.mdx` file contains **YAML frontmatter** at the **top of the file**. This is used for **metadata about the documentation page**. The frontmatter specifies the page's menu text (name), the URL route (route), and which menu group the page belongs in (menu).
+
+```
+---
+name: My New Page
+route: /custom/url/my-new-page
+menu: About
+---
+```
+
+### Content
+
+Documentation pages' content are written in [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) with the additional ability to render React components.
+
+### Using React Components
+
+Components, and other JavaScript modules, can be imported into an `.mdx` file. This is typically done immediately after the frontmatter and must contain an empty newline before and after the block of imports. From there, the React component may be used within the markdown contents of the file.
+
+```mdx
+---
+name: TextField
+route: /components/TextField
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from '@versionone/docz';
+import TextField from './src';
+
+# TextField heading
+
+Here is an example TextField:
+
+<TextField />
+```
+
+## Documenting Components
+
+Every component package (each directory under `./components`) should contain at least a `README.mdx` file in the directory's root. This file should contain the documetnation for any publicly exposed modules for that package. This should **include** a short **paragraph explaining the purpose** of the package's component(s), **examples**, and an documentation on each **component's APIs**.
+
+### Component Use Cases
+
+Components exposed from each package should contain documenatation on the component's primary use cases. This is done via interactive "play grounds." These contain editable example code, along with a live preview. This may be done by using the `Playground` component from the `@versioneone/docz` package.
+
+```js
+import { Playground } from '@versionone/docz'
+import TextField from './src'
+
+<Playground>
+  <TextField fullWidth />
+  <TextField disabled />
+</Playground>
+```
+
+Optionally, a `Playground` can accept a function as its children. This provides a way to programitically setup the example:
+
+```js
+<Playground>
+  {() => {
+    const options = ['option 1', 'option 2'];
+    return <Select options={options} />;
+  }}
+</Playground>
+```
+
+### Documenting Component APIs
+
+Each component package `README.mdx` file should have a heading at the bottom of the document dedicated to the component's APIs. If multiple components are exported from the package, then each component should have a dedicated section within the API heading.
+
+Documenting a component's API consists of a table of its props and a table with its theme information. **API information** should **live in component source code**. This is accompolished via propTypes (with comment descriptions), defaultProps, and themeDefinition propTypes.
+
+#### Component's API Example
+
+```js
+const MyComponent = ({ children }) => <span>Hello {children}!</span>;
+
+MyComponent.propTypes = {
+  /** PropType description. */
+  children: PropTypes.node,
+};
+MyComponent.defaultProps = {
+  children: 'World',
+};
+MyComponent.themeDefinition = {
+  /** Background coloir of the component. */
+  color: PropTypes.string,
+};
+```
+
+With the **API information documented in the component's source code**, we can display this information with the `PropsTable` and `ThemeDefinitionTable` components exported from `@versionone/docz`.
+
+```mdx
+## API
+
+<PropsTable of={TextField} />
+
+## Theme API
+
+<ThemeDefinitionTable of={TextField} />
+```
+
+#### API for Mutliple Exports in package
+
+```mdx
+## API
+
+### Button
+
+<PropsTable of={Button} />
+
+### IconButton
+
+<PropsTable of={IconButton} />
+
+## Theme API
+
+### Button
+
+<ThemeDefinitionTable of={Button} />
+
+### IconButton
+
+<ThemeDefinitionTable of={IconButton} />
+```
