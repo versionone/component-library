@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.4.0",
+    "@versionone/style-container": "^0.0.0-development",
     "@versionone/style-provider": "^0.0.0-development",
     "@versionone/with-breakpoint": "^0.0.0-development"
   }

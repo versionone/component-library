@@ -72,34 +72,33 @@ const PropsTable = ({ of, components }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {propDefinitions.map(([key, value]) => (
-            <Tr key={key} deprecated={value.deprecated}>
-              <Td>{key}</Td>
-              <Td>{getPropType(value, Tooltip)}</Td>
-              <Td>{value.required ? 'true' : 'false'}</Td>
-              <Td>
-                {value.defaultValue ? (
-                  value.defaultValue.value === "''" ? (
-                    <em>[Empty String]</em>
+          {propDefinitions.map(([key, value]) => {
+            let defaultValue = '[No Default]';
+            if (value.defaultValue) {
+              if (value.defaultValue.value === "''") {
+                defaultValue = '[Empty String]';
+              } else {
+                defaultValue = value.defaultValue.value.replace(/('|")/g, '');
+              }
+            }
+            return (
+              <Tr key={key} deprecated={value.deprecated}>
+                <Td>{key}</Td>
+                <Td>{getPropType(value, Tooltip)}</Td>
+                <Td>{value.required ? 'true' : 'false'}</Td>
+                <Td>{defaultValue}</Td>
+                <Td>
+                  {value.deprecated ? (
+                    <span>
+                      <Strong>@deprecated</Strong> {value.description}
+                    </span>
                   ) : (
-                    value.defaultValue &&
-                    value.defaultValue.value.replace(/\'/g, '')
-                  )
-                ) : (
-                  '[No Default]'
-                )}
-              </Td>
-              <Td>
-                {value.deprecated ? (
-                  <span>
-                    <Strong>@deprecated</Strong> {value.description}
-                  </span>
-                ) : (
-                  <span>{value.description}</span>
-                )}
-              </Td>
-            </Tr>
-          ))}
+                    <span>{value.description}</span>
+                  )}
+                </Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </Table>
     </div>
