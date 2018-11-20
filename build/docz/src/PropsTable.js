@@ -45,6 +45,9 @@ const Strong = createComponent(
 );
 
 const PropsTable = ({ of, components }) => {
+  if (!of.__docgenInfo || !of.__docgenInfo.props) {
+    return null;
+  }
   const Table = components.table || 'table';
   const Thead = components.thead || 'thead';
   const Tbody = components.tbody || 'tbody';
@@ -92,7 +95,7 @@ const PropsTable = ({ of, components }) => {
                     <Strong>@deprecated</Strong> {value.description}
                   </span>
                 ) : (
-                  <span>value.description</span>
+                  <span>{value.description}</span>
                 )}
               </Td>
             </Tr>
