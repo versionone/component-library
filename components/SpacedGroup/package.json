@@ -9,7 +9,13 @@
   "license": "MIT",
   "main": "dist/index.js",
   "main:src": "src/index.js",
-  "scripts": {},
+  "files": [
+    "dist",
+    "README.mdx"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "engines": {
     "node": "^8.6.0 || ^10.0.0",
     "yarn": "^1.12.3"
