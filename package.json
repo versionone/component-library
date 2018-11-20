@@ -3,9 +3,6 @@
   "name": "@versionone/component-library",
   "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
   "version": "0.0.0-development",
-  "collaborators": [
-    "Andrew Smith <andrew@andrew.codes>"
-  ],
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
