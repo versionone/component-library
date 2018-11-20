@@ -15,7 +15,13 @@ export default {
       ],
     },
     {
-      name: 'Components',
+      name: 'Layout',
+    },
+    {
+      name: 'Data Entry',
+    },
+    {
+      name: 'Data Display',
     },
     {
       name: 'Other Packages',
