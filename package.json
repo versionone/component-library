@@ -13,7 +13,6 @@
     "test": "start-test start http-get://localhost:3000 cy:run",
     "lint": "yarn lint:eslint",
     "build": "lerna run build",
-    "build:package": "babel ./components/$PKG/src --out-dir ./components/$PKG/dist",
     "build:website": "docz build",
     "test:ci": "start-server-and-test start http-get://localhost:3000 cy:run:ci",
     "cy:run": "cypress run",
