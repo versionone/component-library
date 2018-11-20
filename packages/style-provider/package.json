@@ -7,9 +7,12 @@
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
   "files": [
-    "dist"
+    "dist",
+    "README.mdx"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "dependencies": {
     "@versionone/style-container": "^0.0.0-development",
     "fela": "^6.2.3",

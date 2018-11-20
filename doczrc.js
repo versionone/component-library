@@ -6,7 +6,13 @@ export default {
   menu: [
     {
       name: 'Getting Started',
-      menu: ['Start Here'],
+      menu: [
+        'Start Here',
+        'Contributing Content',
+        'Creating New Components',
+        'Implementing Components',
+        'Documenting Components',
+      ],
     },
     {
       name: 'Components',

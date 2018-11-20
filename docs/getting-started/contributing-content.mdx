@@ -1,0 +1,45 @@
+---
+name: Contributing Content
+menu: Getting Started
+route: /getting-started/contributing-content
+---
+
+# Contributing Content
+
+- pages are [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) files with the `.mdx` extension ([read more about MDX](https://mdxjs.com/))
+- non-techncial guides should live in `./docs` directory
+- component/package documentation should be a `README.mdx` file in each package directory
+- see [Getting Started](/) for IDE extenions providing MDX support
+
+> directory structure has **no impact** on the menu groupings
+
+## Anatomy of an MDX File
+
+### Frontmatter
+
+Every `.mdx` file contains **YAML frontmatter** at the **top of the file**. This is used for metadata about the documentation page. The frontmatter specifies the **menu group**, **menu item text**, and **optional URL route**.
+
+```mdx
+---
+name: My New Page
+route: /custom/url/my-new-page
+menu: About
+---
+```
+
+### Using React Components
+
+Components, and other JavaScript modules, can be imported into an `.mdx` file. All import statements should appear as a block immediately after the frontmatter; containing an empty newline before and after the block.
+
+```mdx
+---
+name: TextField
+route: /components/TextField
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from '@versionone/docz';
+import TextField from './src';
+
+<TextField />
+```

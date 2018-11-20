@@ -1,0 +1,74 @@
+---
+name: Creating New Components
+menu: Getting Started
+route: /getting-started/creating-new-components
+---
+
+# Creating New Components
+
+- every component is package
+- all packages are **versioned together**
+- every component package has a dedicated directory under `./components`
+- every component package has a correct `package.json` (see the below section, [Package File](#package-file), for more details)
+- source code belongs in a `src` directory
+
+> after creating a brand **new component package**, don't forget to run **`yarn bootstrap`**
+
+## Package File
+
+A valid `package.json` is required in the root of each package. To be valid, the package file must contain:
+
+- package name with scoped to `@versionone`
+- a `main` and `main:src` value
+- a `files` value: all relevant files to be published; typically `["dist", "README.mdx"]`
+- a build NPM script; typically `babel src --out-dir dist`
+
+> `main:src` indicates how to locally resolve a package; the source code. `main` indicates package resolution once installed in LifeCycle and Continuum.
+
+### Example Package.json
+
+```json
+{
+  "private": false,
+  "name": "@versionone/textfield",
+  "description": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
+  "files": ["dist", "README.mdx"],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
+  "engines": {
+    "node": "^8.6.0 || ^10.0.0",
+    "yarn": "^1.12.3"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1"
+  },
+  "devDependencies": {
+    "@versionone/docz": "^0.0.0-development"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.4.0"
+  }
+}
+```
+
+## Dependencies
+
+Use yarn workspaces and [lerna](https://lernajs.io) to manage internal package dependencies.
+
+- use `yarn lerna add --scope @versionone/pkg-name dependency-pkg-name` to install dependencies into a specific component package
+- also applies to internal packages; `yarn lerna add --scope @versionone/textfield @versionone/docz`
+- use `yarn add -W --dev dependency-pkg-name` to install a dev dependency
+
+## Default vs Named Exports
+
+Component packages should always export the main component as the default export. Other named exports are also allowed to be publicly exposed; just be sure to document them, too.
+
+## Further Reading
+
+- [Implementing Components](/getting-started/implementing-components)

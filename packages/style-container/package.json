@@ -7,9 +7,12 @@
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
   "files": [
-    "dist"
+    "dist",
+    "README.mdx"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "dependencies": {
     "fela": "^6.2.2",
     "fela-bindings": "^3.0.2",

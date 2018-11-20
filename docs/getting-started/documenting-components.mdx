@@ -1,0 +1,77 @@
+---
+name: Documenting Components
+menu: Getting Started
+route: /getting-started/documenting-components
+---
+
+# Documenting Components
+
+- Every package contains a `README.mdx` in package directory's root
+- contains a short paragraph/written explanation of the component
+- examples
+- component's API
+- component's Theme API
+
+## Examples via `PlayGround`
+
+Component examples can be created via the `Playground` component from `@versionone/docz`. Examples should exercise as many edge cases as possible. This enables comphrensive E2E testing of various aspects of a component in a single page/location.
+
+> Every package `README.mdx` should contain examples exercising **all major edge cases** of a component.
+
+```js
+import { Playground } from '@versionone/docz'
+import TextField from './src'
+
+<Playground>
+  <TextField fullWidth />
+  <TextField disabled />
+</Playground>
+```
+
+Optionally, a `Playground` can accept a function as its children. This provides a way to programitically setup the example:
+
+```js
+<Playground>
+  {() => {
+    const options = ['option 1', 'option 2'];
+    return <Select options={options} />;
+  }}
+</Playground>
+```
+
+## Documenting the API
+
+Documenting a component's API consists of a **table of its props** and a table with its **theme definition**. This is accompolished via propTypes (with comment descriptions), defaultProps, and themeDefinition propTypes.
+
+> all content driving the API documentation are pulled from the component's source file
+
+### Component API Example
+
+```js
+const TextField = ({ value }) => <input type="text" value={value} />;
+
+MyComponent.propTypes = {
+  /** Current value. */
+  value: PropTypes.node,
+};
+MyComponent.defaultProps = {
+  color: 'blue',
+  value: 'World',
+};
+MyComponent.themeDefinition = {
+  /** Background color of the component. */
+  background: PropTypes.string,
+};
+```
+
+With the **API information documented in the component's source code**, we can display this information with the `PropsTable` and `ThemeDefinitionTable` components exported from `@versionone/docz`.
+
+```mdx
+## API
+
+<PropsTable of={TextField} />
+
+## Theme API
+
+<ThemeDefinitionTable of={TextField} />
+```
