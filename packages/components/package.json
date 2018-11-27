@@ -3,10 +3,6 @@
   "name": "@versionone/components",
   "description": "",
   "version": "0.0.0-development",
-  "collaborators": [
-    "Andrew Smith <andrew@andrew.codes>",
-    "Walker Smith <wsmith@collab.net>"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "cd ../ && yarn build:components"
