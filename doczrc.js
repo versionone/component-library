@@ -17,7 +17,6 @@ export default {
       menu: ['StyleProvider', 'StyleContainer'],
     },
   ],
-  wrapper: '@versionone/components/StyleProvider/StyleProvider.js',
   modifyBundlerConfig: config => ({
     ...config,
     resolve: {
