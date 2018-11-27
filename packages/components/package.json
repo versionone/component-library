@@ -5,7 +5,7 @@
   "version": "0.0.0-development",
   "license": "MIT",
   "scripts": {
-    "build": "cd ../ && yarn build:components"
+    "build": "babel src --out-dir ./"
   },
   "engines": {
     "node": "^8.6.0 || ^10.0.0",
