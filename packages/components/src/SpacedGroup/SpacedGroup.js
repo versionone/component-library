@@ -39,7 +39,7 @@ SpacedGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Set the direction elements should be rendered.
+   * @deprecated Set the direction elements should be rendered.
    */
   direction: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /**

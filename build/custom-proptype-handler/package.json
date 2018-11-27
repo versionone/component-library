@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@versionone/custom-proptype-handler",
+  "version": "0.0.0",
+  "description": "Custom proptype handler for react docgen.",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "dependencies": {
+    "react-docgen": "^2.21.0",
+    "recast": "^0.15.5"
+  }
+}

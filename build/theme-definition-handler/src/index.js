@@ -1,4 +1,6 @@
-const themeDefinitionHandler = require('./themeDefinitionHandler');
-const defaultThemeValuesHandler = require('./defaultThemeValuesHandler');
+const createCustomPropTypeHandler = require('@versionone/custom-proptype-handler');
 
-module.exports = [themeDefinitionHandler, defaultThemeValuesHandler];
+module.exports = createCustomPropTypeHandler(
+  'themeDefinition',
+  'defaultThemeValues',
+);

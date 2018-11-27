@@ -47,10 +47,10 @@ function getStatelessPropsPath(componentDefinition) {
   return resolveToValue.default(componentDefinition).get('params', 0);
 }
 
-function getDefaultPropsPath(componentDefinition) {
+function getDefaultPropsPath(propName, componentDefinition) {
   let defaultThemeValues = getMemberValuePath.default(
     componentDefinition,
-    'defaultThemeValues',
+    propName,
   );
   if (!defaultThemeValues) {
     return null;
@@ -98,29 +98,34 @@ function getDefaultValuesFromProps(properties, documentation, isStateless) {
     });
 }
 
-module.exports = function defaultThemeValuesHandler(
-  documentation,
-  componentDefinition,
-) {
-  let statelessProps = null;
-  const defaultPropsPath = getDefaultPropsPath(componentDefinition);
-  if (isStatelessComponent.default(componentDefinition)) {
-    statelessProps = getStatelessPropsPath(componentDefinition);
-  }
+module.exports = function deafultValueHandler(propName) {
+  return function defaultThemeValuesHandler(
+    documentation,
+    componentDefinition,
+  ) {
+    let statelessProps = null;
+    const defaultPropsPath = getDefaultPropsPath(propName, componentDefinition);
+    if (isStatelessComponent.default(componentDefinition)) {
+      statelessProps = getStatelessPropsPath(componentDefinition);
+    }
 
-  // Do both statelessProps and defaultProps if both are available so defaultProps can override
-  if (statelessProps && types.ObjectPattern.check(statelessProps.node)) {
-    getDefaultValuesFromProps(
-      statelessProps.get('properties'),
-      documentation,
-      true,
-    );
-  }
-  if (defaultPropsPath && types.ObjectExpression.check(defaultPropsPath.node)) {
-    getDefaultValuesFromProps(
-      defaultPropsPath.get('properties'),
-      documentation,
-      false,
-    );
-  }
+    // Do both statelessProps and defaultProps if both are available so defaultProps can override
+    if (statelessProps && types.ObjectPattern.check(statelessProps.node)) {
+      getDefaultValuesFromProps(
+        statelessProps.get('properties'),
+        documentation,
+        true,
+      );
+    }
+    if (
+      defaultPropsPath &&
+      types.ObjectExpression.check(defaultPropsPath.node)
+    ) {
+      getDefaultValuesFromProps(
+        defaultPropsPath.get('properties'),
+        documentation,
+        false,
+      );
+    }
+  };
 };

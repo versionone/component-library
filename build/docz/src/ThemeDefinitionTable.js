@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { StyleProvider } from '@versionone/components/StyleProvider';
 import { applyStaticStyles } from '@versionone/components/StyleContainer';
 import { PropsTable as Table } from 'docz';
 
@@ -27,9 +28,15 @@ PropsTable.defaultProps = {
     props: {},
   },
 };
-export default applyStaticStyles(
+const ThemeDefinitionTable = applyStaticStyles(
   {
     display: 'none',
   },
   '[data-component="ThemeDefinitionTable"] thead th:nth-of-type(3), [data-component="ThemeDefinitionTable"] tbody td:nth-of-type(3)',
 )(PropsTable);
+
+export default props => (
+  <StyleProvider>
+    <ThemeDefinitionTable {...props} />
+  </StyleProvider>
+);

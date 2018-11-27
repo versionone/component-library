@@ -6,7 +6,9 @@
   "license": "MIT",
   "main:src": "./src/index.js",
   "dependencies": {
+    "@mdx-js/tag": "^0.16.1",
     "@versionone/components": "^0.0.0-development",
+    "capitalize": "^2.0.0",
     "codemirror": "^5.41.0",
     "prop-types": "^15.6.2",
     "react-docgen": "^2.21.0",

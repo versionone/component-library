@@ -63,15 +63,17 @@ function amendPropTypes(getDescriptor, path) {
 }
 
 function getThemeDefinitionDescriptor(propName) {
-  let propDescriptor = this._data.get('themeDefinition')[propName];
-  if (!propDescriptor) {
-    propDescriptor = {};
-    this._data.get('themeDefinition')[propName] = propDescriptor;
-  }
-  return propDescriptor;
+  return function getDescriptor(property) {
+    let propDescriptor = this._data.get(propName)[property];
+    if (!propDescriptor) {
+      propDescriptor = {};
+      this._data.get(propName)[property] = propDescriptor;
+    }
+    return propDescriptor;
+  };
 }
 function getPropTypeHandler(propName) {
-  return (documentation, path) => {
+  return function customPropTypeHandler(documentation, path) {
     let propTypesPath = getMemberValuePath.default(path, propName);
     if (!propTypesPath) {
       return;
@@ -80,12 +82,12 @@ function getPropTypeHandler(propName) {
     if (!propTypesPath) {
       return;
     }
-    documentation.set('themeDefinition', {});
+    documentation.set(propName, {});
     amendPropTypes(
-      getThemeDefinitionDescriptor.bind(documentation),
+      getThemeDefinitionDescriptor(propName).bind(documentation),
       propTypesPath,
     );
   };
 }
 
-module.exports = getPropTypeHandler('themeDefinition');
+module.exports = getPropTypeHandler;
