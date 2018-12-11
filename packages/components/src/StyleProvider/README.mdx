@@ -4,8 +4,9 @@ menu: Other Packages
 route: /packages/style-provider
 ---
 
-import { PropsTable } from '@versionone/docz';
-import { StyleProvider } from './';
+import { Playground, PropsTable } from '@versionone/docz';
+import StyleProvider from './';
+import { createComponent } from '../StyleContainer';
 
 # StyleProvider
 
@@ -13,23 +14,24 @@ The style provider component powers the styling mechanism behind `StyleContainer
 
 ## Example
 
-```jsx
-import React from 'react';
-import { StyleProvider } from '@versionone/components/StyleProvider';
+<Playground>
+  {() => {
+    const StyledDiv = createComponent(
+      props => ({
+        background: props.background,
+      }),
+      'div',
+    );
 
-const StyledDiv = createComponent(
-  props => ({
-    background: props.background,
-  }),
-  'div',
-);
+    return (
+      <StyleProvider>
+        <StyledDiv background="cyan">I am cyan</StyledDiv>
+      </StyleProvider>
+    );
 
-export default props => (
-  <StyleProvider>
-    <StyledDiv background={props.background} />
-  </StyleProvider>
-);
-```
+}}
+
+</Playground>
 
 ## API
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import StyleProvider from '../StyleProvider';
 import { createComponent, styleUtils } from '../StyleContainer';
-import { StyleProvider } from '../StyleProvider';
 import { WithBreakpoint, isWidthUp } from '../WithBreakpoint';
 
 const HORIZONTAL = 'horizontal';
@@ -68,6 +68,7 @@ SpacedGroup.defaultProps = {
   xs: 8,
 };
 SpacedGroup.themeDefinition = {
+  /** example only */
   color: PropTypes.string.isRequired,
 };
 SpacedGroup.defaultThemeValues = {

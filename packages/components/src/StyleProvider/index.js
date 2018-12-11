@@ -1,2 +1,4 @@
-export { default as StyleProvider } from './StyleProvider';
+import StyleProvider from './StyleProvider';
+
+export default StyleProvider;
 export { default as createRenderer } from './createRenderer';

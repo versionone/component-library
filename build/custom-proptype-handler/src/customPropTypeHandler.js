@@ -62,7 +62,7 @@ function amendPropTypes(getDescriptor, path) {
   });
 }
 
-function getThemeDefinitionDescriptor(propName) {
+function getPropDescriptor(propName) {
   return function getDescriptor(property) {
     let propDescriptor = this._data.get(propName)[property];
     if (!propDescriptor) {
@@ -84,7 +84,7 @@ function getPropTypeHandler(propName) {
     }
     documentation.set(propName, {});
     amendPropTypes(
-      getThemeDefinitionDescriptor(propName).bind(documentation),
+      getPropDescriptor(propName).bind(documentation),
       propTypesPath,
     );
   };

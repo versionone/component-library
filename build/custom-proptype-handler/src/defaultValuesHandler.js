@@ -48,33 +48,35 @@ function getStatelessPropsPath(componentDefinition) {
 }
 
 function getDefaultPropsPath(propName, componentDefinition) {
-  let defaultThemeValues = getMemberValuePath.default(
-    componentDefinition,
-    propName,
-  );
-  if (!defaultThemeValues) {
+  let defaultValues = getMemberValuePath.default(componentDefinition, propName);
+  if (!defaultValues) {
     return null;
   }
 
-  defaultThemeValues = resolveToValue.default(defaultThemeValues);
-  if (!defaultThemeValues) {
+  defaultValues = resolveToValue.default(defaultValues);
+  if (!defaultValues) {
     return null;
   }
 
-  if (types.FunctionExpression.check(defaultThemeValues.node)) {
+  if (types.FunctionExpression.check(defaultValues.node)) {
     // Find the value that is returned from the function and process it if it is
     // an object literal.
     const returnValue = resolveFunctionDefinitionToReturnValue.default(
-      defaultThemeValues,
+      defaultValues,
     );
     if (returnValue && types.ObjectExpression.check(returnValue.node)) {
-      defaultThemeValues = returnValue;
+      defaultValues = returnValue;
     }
   }
-  return defaultThemeValues;
+  return defaultValues;
 }
 
-function getDefaultValuesFromProps(properties, documentation, isStateless) {
+function getDefaultValuesFromProps(
+  propName,
+  properties,
+  documentation,
+  isStateless,
+) {
   properties
     .filter(propertyPath => types.Property.check(propertyPath.node))
     // Don't evaluate property if component is functional and the node is not an AssignmentPattern
@@ -84,7 +86,7 @@ function getDefaultValuesFromProps(properties, documentation, isStateless) {
         types.AssignmentPattern.check(propertyPath.get('value').node),
     )
     .forEach(propertyPath => {
-      const propDescriptor = documentation._data.get('themeDefinition')[
+      const propDescriptor = documentation._data.get(propName)[
         getPropertyName.default(propertyPath)
       ];
       const defaultValue = getDefaultValue(
@@ -99,10 +101,7 @@ function getDefaultValuesFromProps(properties, documentation, isStateless) {
 }
 
 module.exports = function deafultValueHandler(propName) {
-  return function defaultThemeValuesHandler(
-    documentation,
-    componentDefinition,
-  ) {
+  return function defaultValuesHandler(documentation, componentDefinition) {
     let statelessProps = null;
     const defaultPropsPath = getDefaultPropsPath(propName, componentDefinition);
     if (isStatelessComponent.default(componentDefinition)) {
@@ -112,6 +111,7 @@ module.exports = function deafultValueHandler(propName) {
     // Do both statelessProps and defaultProps if both are available so defaultProps can override
     if (statelessProps && types.ObjectPattern.check(statelessProps.node)) {
       getDefaultValuesFromProps(
+        propName,
         statelessProps.get('properties'),
         documentation,
         true,
@@ -122,6 +122,7 @@ module.exports = function deafultValueHandler(propName) {
       types.ObjectExpression.check(defaultPropsPath.node)
     ) {
       getDefaultValuesFromProps(
+        propName,
         defaultPropsPath.get('properties'),
         documentation,
         false,

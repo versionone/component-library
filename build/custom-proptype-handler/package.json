@@ -7,6 +7,6 @@
   "main": "./src/index.js",
   "dependencies": {
     "react-docgen": "^2.21.0",
-    "recast": "^0.15.5"
+    "recast": "^0.16.1"
   }
 }

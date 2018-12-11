@@ -14,6 +14,7 @@ import {
   styleUtils,
   WithTheme,
 } from './';
+import StyleProvider from '../StyleProvider';
 
 # StyleContainer Package
 
@@ -43,10 +44,12 @@ This is the how you will create styled components. The benefits of using this is
     const Heading = createComponent(styleRule, 'h3');
 
     return (
-      <Fragment>
-        <Heading color="rgb(173, 216, 230)">Blue heading</Heading>
-        <Heading color="rgb(144, 238, 144)">Green heading</Heading>
-      </Fragment>
+      <StyleProvider>
+        <Fragment>
+          <Heading color="rgb(173, 216, 230)">Blue heading</Heading>
+          <Heading color="rgb(144, 238, 144)">Green heading</Heading>
+        </Fragment>
+      </StyleProvider>
     );
 
 }}
@@ -67,11 +70,13 @@ This is the how you will create styled components. The benefits of using this is
     const ClickableHeading = createComponent(styleRule, 'h3', ['onClick']);
 
     return (
-      <Fragment>
-        <h2>Check console for logged click events</h2>
-        <Heading color="lightblue" onClick={console.log}>This header does not pass through onClick prop</Heading>
-        <ClickableHeading color="lightblue" onClick={console.log}>This header **does pass through** onClick prop</ClickableHeading>
-      </Fragment>
+      <StyleProvider>
+        <Fragment>
+          <h2>Check console for logged click events</h2>
+          <Heading color="lightblue" onClick={console.log}>This header does not pass through onClick prop</Heading>
+          <ClickableHeading color="lightblue" onClick={console.log}>This header **does pass through** onClick prop</ClickableHeading>
+        </Fragment>
+      </StyleProvider>
     );
 
 }}
@@ -93,10 +98,12 @@ A [caveat](http://fela.js.org/docs/introduction/Caveats.html) with using Fela is
     const Heading = createComponent(styleRule, 'h3');
 
     return (
-      <Fragment>
-        <Heading color="lightblue">This has a custom padding and no margins</Heading>
-        <Heading hasMargins color="lightblue">This has a custom padding and has margins</Heading>
-      </Fragment>
+      <StyleProvider>
+        <Fragment>
+          <Heading color="lightblue">This has a custom padding and no margins</Heading>
+          <Heading hasMargins color="lightblue">This has a custom padding and has margins</Heading>
+        </Fragment>
+      </StyleProvider>
     );
 
 }}
@@ -127,13 +134,15 @@ Inject a theme to be merged into the current context's theme for a sub-tree of c
     const Heading = createComponent(styleRule, 'h3');
 
     return (
-      <ThemeProvider theme={blueTheme}>
-        <Heading>I use the blueTheme</Heading>
-        <ThemeProvider theme={greenTheme}>
-          <Heading>I use the greenTheme</Heading>
+      <StyleProvider>
+        <ThemeProvider theme={blueTheme}>
+          <Heading>I use the blueTheme</Heading>
+          <ThemeProvider theme={greenTheme}>
+            <Heading>I use the greenTheme</Heading>
+          </ThemeProvider>
         </ThemeProvider>
-      </ThemeProvider>)
-      ;
+      </StyleProvider>
+    );
 
 }}
 
@@ -157,11 +166,13 @@ Provides internals of a component access to the the theme outside of the `create
     const ThemedHeading = createComponent(styleRule, 'h3');
 
     return (
-      <ThemeProvider theme={theme}>
-        <WithTheme>
-          {theme => <ThemedHeading theme={theme}>I am themed to have a darkgreen background</ThemedHeading>}
-        </WithTheme>
-      </ThemeProvider>
+      <StyleProvider>
+        <ThemeProvider theme={theme}>
+          <WithTheme>
+            {theme => <ThemedHeading theme={theme}>I am themed to have a darkgreen background</ThemedHeading>}
+          </WithTheme>
+        </ThemeProvider>
+      </StyleProvider>
     );
 
 }}
@@ -197,7 +208,11 @@ Enables providing global styles to be injected into the page.
 
     const ThemedHeading = applyStaticStyles(globalStyles, 'p')(createComponent(() => ({}), 'h3'));
 
-    return <ThemedHeading>I have global styles</ThemedHeading>
+    return (
+      <StyleProvider>
+        <ThemedHeading>I have global styles</ThemedHeading>
+      </StyleProvider>
+    );
 
 }}
 

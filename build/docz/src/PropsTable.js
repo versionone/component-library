@@ -1,7 +1,7 @@
 import capitalize from 'capitalize';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleProvider } from '@versionone/components/StyleProvider';
+import StyleProvider from '@versionone/components/StyleProvider';
 import { createComponent } from '@versionone/components/StyleContainer';
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider';
 import humanize from './humanize';

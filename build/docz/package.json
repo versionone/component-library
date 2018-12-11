@@ -6,16 +6,16 @@
   "license": "MIT",
   "main:src": "./src/index.js",
   "dependencies": {
-    "@mdx-js/tag": "^0.16.1",
+    "@mdx-js/tag": "^0.16.6",
     "@versionone/components": "^0.0.0-development",
     "capitalize": "^2.0.0",
-    "codemirror": "^5.41.0",
+    "codemirror": "^5.42.0",
     "prop-types": "^15.6.2",
     "react-docgen": "^2.21.0",
-    "recast": "^0.16.0"
+    "recast": "^0.16.1"
   },
   "peerDependencies": {
-    "docz": "^0.12.3",
+    "docz": "^0.12.15",
     "react": "^16.6.1"
   }
 }
