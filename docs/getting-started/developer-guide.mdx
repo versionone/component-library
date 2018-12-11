@@ -1,0 +1,75 @@
+---
+name: Developer Guide
+menu: Getting Started
+route: /getting-started/developer-guide
+---
+
+# Developer Guide
+
+## Mono-repo
+
+This project is setup as a [mono-repo](https://danluu.com/monorepo/) and leverages [lerna](https://lernajs.io) to manage the multiple NPM packages. All packages are configured to be versioned together; meaning regardless of whether an individual package has changed, they all will be published with the same version. Package directories are defined in both `./lerna.json` and in the root `package.json`:
+
+```js
+// lerna.json
+{
+  "packages": [...]
+}
+
+// root package.json
+{
+  "workspaces": [...]
+}
+```
+
+## Packages Overview
+
+All packages contain their own `package.json` that defines their dependencies. Only non-dev dependencies are in a package's `package.json`, while dev dependencies is located in the root `package.json` (see [managing dependecies](#managing-dependencies) for more information).
+
+### Component Package
+
+Located in `./packages/components`, this package is the relevant package and will contain vast majority of your development work. It contains all components that will be used by consumers; VersionOne and Continuum.
+
+### Build Packages
+
+Located in the `./build` directory, these packages are not compiled via babel and therefore they are [commonjs modules](https://nodejs.org/docs/latest/api/modules.html). These are used for the build of other packages/the [docs site](#documentation-site).
+
+## Managing Dependencies
+
+This project uses yarn and [lerna](https://lernajs.io) to manage NPM package dependencies.
+
+> **remember**: this is a mono-repo and there are multiple packages in this repo; therefore you will need to specify which package the new dependency will be installed
+
+- use `yarn lerna add --scope @versionone/components dependency-pkg-name` to install dependencies into the components package
+- use `yarn add -W --dev dependency-pkg-name` to install a dev dependency
+
+### Additional Details on Yarn and Lerna
+
+Which package to install a new NPM package into is specified with the `--scope` CLI parameter. Most of the time, this scope will be `@versionone/components`, but in the case that a new NPM package is required for another package in the repo, we can specify the `--scope` to something else. Examples below:
+
+- use `yarn lerna add --scope @versionone/pkg-name dependency-pkg-name` to install dependencies into a specific package
+- also applies to internal packages; `yarn lerna add --scope @versionone/pkg-name @versionone/other-pkg-name`
+
+## Developer Build Tasks
+
+- `yarn start` - locally run docs site: [http://localhost:3000](http://localhost:3000)
+- `yarn test` - run all tests from CLI
+- `yarn lint` - lint source files
+- `yarn verify` - run both `test`and `lint` concurrently (quickly verify changes before issuing PR)
+
+## Debugging Tests Locally
+
+[Cypress](http://cypress.io) is used for our end-to-end tests. All Cypress tests live in the `./cypress/integration` directory.
+
+1. Server must be running locally via `yarn start`
+2. In a separate console; `yarn cypress open` will open the cypress window
+3. Selectively run test files from cypress window
+
+## Documentation site
+
+The docs site is built with [docz](https://www.docz.site/) and its configuration may be found in `./doczrc.js`.
+
+## Further Reading
+
+- [Implement Components](/getting-started/implement-components)
+- [Document Components](/getting-started/document-components)

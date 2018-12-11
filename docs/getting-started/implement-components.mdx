@@ -1,0 +1,108 @@
+---
+name: Implement Components
+menu: Getting Started
+route: /getting-started/implement-components
+---
+
+# Implement Components
+
+## Organization
+
+- every component has a dedicated directory under `./packages/components/src`
+- includes an `index.js`; see [exports](#exports) below
+- includes a `README.mdx`
+- may include other files that are not publicly exported in the `index.js`
+
+```shell
+.
+└── packages
+    └── components
+        └── src
+            ├── SpacedGroup
+            ├── index.js
+            ├── README.mdx
+            ├── otherInternalOnlyFunctionality.js
+            └── SpacedGroup.js
+```
+
+## Exports
+
+The component directory's `index.js` file export the publicly consumable portions of the component. In other words, it should never be required to import from a file within the component's directory other than the `index.js` file.
+
+Component directories should **always** export the main component as the **default export**. Other named exports are also allowed to be publicly exported; just be sure to document them, too.
+
+### Example `index.js`
+
+```js
+import MyComponent from './MyComponent';
+import SecondaryComponent from './MyComponent';
+
+export default MyComponent;
+export { SecondaryComponent };
+```
+
+## Styling
+
+Component styling is powered by our implementation using [fela](https://fela.js.org). See the relevant sections for [StyleContainer](/components/style-container) and [StyleProvider](/components/style-provider) for a more in-depth explanation.
+
+- use `createComponent` function to create styled components ([see StyleContainer component](/components/style-container))
+- any component containing styled components should render a `StyleProvider` as its root component ([see StyleProvider component](/components/style-provider))
+
+### Using `StyleProvider` and `createComponent` Example
+
+```js
+const Button = createComponent(
+  () => ({
+    color: 'blue',
+  }),
+  'div',
+);
+
+const SaveButton = ({ children }) => (
+  <StyleProvider>
+    <Button>{children}</Button>
+  </StyleProvider>
+);
+```
+
+## Required PropTypes
+
+- components declare appropriate `propTypes` and also comments on each `propType`
+- components declare appropraite `defaultProps`
+
+```js
+const MyComponent = ({text}) => <span>Hello {text}.</span>;
+
+MyComponent.propTypes = {
+  /** Inner text */
+  text: PropTypes.color,
+};
+MyComponent.defaultProps: {
+  text: 'world',
+};
+```
+
+## ThemeDefinition
+
+Not all components are theme-enabled; however, those that are should declare a `ThemeDefinition` and `defaultThemeValues`.
+
+> See [createComponent](/components/style-container#createcomponent) and [ThemeProvider](/components/style-container#themeprovider-component) for more details on how to consume the theme in your component.
+
+- components declare appropriate `themeDefintion` and also comment descriptions for each value; similar to `propTypes`, but describes the theme-able configuration properites of the component
+- components declare appropriate `defaultThemeValues`
+
+```js
+const MyComponent = () => <span>Hello World</span>;
+
+MyComponent.themeDefintion = {
+  /** Text color */
+  color: PropTypes.color,
+};
+MyComponent.defaultThemeValues: {
+  color: 'lightgray',
+};
+```
+
+## Further Reading
+
+- [Document Components](/getting-started/document-components)

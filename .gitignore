@@ -13,5 +13,4 @@ cypress/videos
 /packages/components/*
 !/packages/components/package.json
 !/packages/components/src
-!/packages/components/.babelrc
 

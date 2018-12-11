@@ -1,0 +1,32 @@
+---
+name: Component Checklist
+menu: Getting Started
+route: /getting-started/component-checklist
+---
+
+# Component Checklist
+
+## Component Directory
+
+- [ ] contains an `index.js`
+- [ ] `index.js` exports the main component as the default export
+- [ ] `index.js` exports secondary components/functions as named exports
+
+## Implementation Documentation
+
+- [ ] each component declares `propTypes` with comment descriptions
+- [ ] each component declares appropriate defaultProps
+- [ ] each theme-enabled compnent declares `themeDefintion`
+- [ ] each theme-enabled component declares appropriate defaultThemeValues
+
+## Documentation
+
+- [ ] contains a `README.mdx` in component directory's root
+- [ ] contains a short paragraph/written explanation of the component's purpose
+- [ ] contains examples exercising the various edge cases of the component
+- [ ] contains API section; documenting each component's API
+- [ ] contains Theme API section; documenting each theme-enabled component's theme API
+
+## Tests
+
+- [ ] e2e cypress tests are written against docs site for a component's relevant edge cases

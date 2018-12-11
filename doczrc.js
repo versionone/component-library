@@ -7,13 +7,19 @@ export default {
   menu: [
     {
       name: 'Getting Started',
-      menu: ['Start Here'],
+      menu: [
+        'Start Here',
+        'Contributing Content',
+        'Developer Guide',
+        'Implement Components',
+        'Document Components',
+      ],
     },
     {
-      name: 'Components',
+      name: 'Layout',
     },
     {
-      name: 'Other Packages',
+      name: 'Other Components',
       menu: ['StyleProvider', 'StyleContainer'],
     },
   ],
