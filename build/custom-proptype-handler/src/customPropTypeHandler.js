@@ -7,6 +7,7 @@ const recast = require('recast');
 const resolveToModule = require('react-docgen/dist/utils/resolveToModule');
 const resolveToValue = require('react-docgen/dist/utils/resolveToValue');
 const isRequiredPropType = require('react-docgen/dist/utils/isRequiredPropType');
+const getPropDescriptor = require('./getCustomPropDescriptor');
 
 const {
   types: { namedTypes: types },
@@ -62,16 +63,6 @@ function amendPropTypes(getDescriptor, path) {
   });
 }
 
-function getPropDescriptor(propName) {
-  return function getDescriptor(property) {
-    let propDescriptor = this._data.get(propName)[property];
-    if (!propDescriptor) {
-      propDescriptor = {};
-      this._data.get(propName)[property] = propDescriptor;
-    }
-    return propDescriptor;
-  };
-}
 function getPropTypeHandler(propName) {
   return function customPropTypeHandler(documentation, path) {
     let propTypesPath = getMemberValuePath.default(path, propName);
