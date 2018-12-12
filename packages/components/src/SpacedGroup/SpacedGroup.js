@@ -71,7 +71,8 @@ SpacedGroup.themeDefinition = {
   /** example only */
   color: PropTypes.string.isRequired,
 };
+const color = 'blue';
 SpacedGroup.defaultThemeValues = {
-  color: 'blue',
+  color,
 };
 export default SpacedGroup;

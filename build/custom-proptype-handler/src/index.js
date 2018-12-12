@@ -5,7 +5,7 @@ module.exports = (propName, defaultValuePropName) => {
   return [
     customPropTypeHandler(propName),
     defaultValuePropName
-      ? defaultValuesHandler(defaultValuePropName)
+      ? defaultValuesHandler(defaultValuePropName, propName)
       : undefined,
   ].filter(Boolean);
 };

@@ -1,6 +1,6 @@
 const getPropertyName = require('react-docgen/dist/utils/getPropertyName');
 const getMemberValuePath = require('react-docgen/dist/utils/getMemberValuePath');
-const printValue = require('react-docgen/dist/utils/printValue');
+const printValue = require('react-docgen/dist/utils/printValue').default;
 const recast = require('recast');
 const resolveFunctionDefinitionToReturnValue = require('react-docgen/dist/utils/resolveFunctionDefinitionToReturnValue');
 const resolveToValue = require('react-docgen/dist/utils/resolveToValue');
@@ -72,7 +72,7 @@ function getDefaultPropsPath(propName, componentDefinition) {
 }
 
 function getDefaultValuesFromProps(
-  propName,
+  propTypeName,
   properties,
   documentation,
   isStateless,
@@ -86,7 +86,7 @@ function getDefaultValuesFromProps(
         types.AssignmentPattern.check(propertyPath.get('value').node),
     )
     .forEach(propertyPath => {
-      const propDescriptor = documentation._data.get(propName)[
+      const propDescriptor = documentation._data.get(propTypeName)[
         getPropertyName.default(propertyPath)
       ];
       const defaultValue = getDefaultValue(
@@ -100,7 +100,7 @@ function getDefaultValuesFromProps(
     });
 }
 
-module.exports = function deafultValueHandler(propName) {
+module.exports = function defaultValueHandler(propName, propTypeName) {
   return function defaultValuesHandler(documentation, componentDefinition) {
     let statelessProps = null;
     const defaultPropsPath = getDefaultPropsPath(propName, componentDefinition);
@@ -111,7 +111,7 @@ module.exports = function deafultValueHandler(propName) {
     // Do both statelessProps and defaultProps if both are available so defaultProps can override
     if (statelessProps && types.ObjectPattern.check(statelessProps.node)) {
       getDefaultValuesFromProps(
-        propName,
+        propTypeName,
         statelessProps.get('properties'),
         documentation,
         true,
@@ -122,7 +122,7 @@ module.exports = function deafultValueHandler(propName) {
       types.ObjectExpression.check(defaultPropsPath.node)
     ) {
       getDefaultValuesFromProps(
-        propName,
+        propTypeName,
         defaultPropsPath.get('properties'),
         documentation,
         false,
