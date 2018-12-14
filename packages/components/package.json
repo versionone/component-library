@@ -4,8 +4,14 @@
   "description": "",
   "version": "0.0.3",
   "license": "MIT",
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
+  "files": [
+    "dist",
+    "LICENSE.md"
+  ],
   "scripts": {
-    "build": "babel --root-mode upward src --out-dir ./"
+    "build": "babel --root-mode upward src --out-dir ./dist"
   },
   "publishConfig": {
     "access": "public"
