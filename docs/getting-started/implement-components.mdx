@@ -18,7 +18,6 @@ route: /getting-started/implement-components
 └── packages
     └── components
         └── src
-            ├── SpacedGroup
             ├── index.js
             ├── README.mdx
             ├── otherInternalOnlyFunctionality.js
@@ -29,7 +28,7 @@ route: /getting-started/implement-components
 
 The component directory's `index.js` file export the publicly consumable portions of the component. In other words, it should never be required to import from a file within the component's directory other than the `index.js` file.
 
-Component directories should **always** export the main component as the **default export**. Other named exports are also allowed to be publicly exported; just be sure to document them, too.
+Component directories should **always** export the main component as the **default export**. Other named exports are also allowed to be publicly exported; just be sure to document them (see [Document Components](./document-components)), too.
 
 ### Example `index.js`
 
@@ -43,10 +42,12 @@ export { SecondaryComponent };
 
 ## Styling
 
-Component styling is powered by our implementation using [fela](https://fela.js.org). See the relevant sections for [StyleContainer](/components/style-container) and [StyleProvider](/components/style-provider) for a more in-depth explanation.
+Component styling is powered by our implementation using [fela](https://fela.js.org).
 
 - use `createComponent` function to create styled components ([see StyleContainer component](/components/style-container))
 - any component containing styled components should render a `StyleProvider` as its root component ([see StyleProvider component](/components/style-provider))
+
+> See [createComponent](/components/style-container#createcomponent) and [ThemeProvider](/components/style-container#themeprovider-component) for more a more in-depth explanation.
 
 ### Using `StyleProvider` and `createComponent` Example
 
