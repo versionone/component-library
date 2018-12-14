@@ -10,10 +10,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": "^8.6.0 || ^10.0.0",
-    "yarn": "^1.12.3"
-  },
   "peerDependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
