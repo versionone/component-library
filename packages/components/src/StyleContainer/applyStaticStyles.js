@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import getComponentDisplayName from './getComponentDisplayName';
 import WithRenderer from './WithRenderer';
 
+// comment for publishing only; remove me later
+
 const applyStaticStyles = (staticStyles, selector) => ComponentToWrap => {
   class CompWithStaticStyles extends PureComponent {
     componentDidMount() {
