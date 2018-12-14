@@ -2,7 +2,7 @@
   "private": true,
   "name": "@versionone/component-library",
   "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "collaborators": [
     "Andrew Smith <andrew@andrew.codes>"
   ],
@@ -18,7 +18,9 @@
     "test:ci": "start-server-and-test start http-get://localhost:3000 test:cy:run:ci",
     "test:cy:run": "cypress run",
     "test:cy:run:ci": "cypress run",
-    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
+    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint .",
+    "prepublish": "yarn build",
+    "publish:patch": "lerna publish patch"
   },
   "engines": {
     "node": "^8.6.0 || ^10.0.0",

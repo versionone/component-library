@@ -1,11 +1,14 @@
 {
-  "private": true,
+  "private": false,
   "name": "@versionone/components",
   "description": "",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "build": "babel --root-mode upward src --out-dir ./"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": "^8.6.0 || ^10.0.0",
