@@ -1,9 +1,12 @@
 const path = require('path');
 const pkg = require('./package.json');
 
+const base = `/${process.env.BASE_URL ? process.env.BASE_URL : ''}`;
+
 export default {
   description: pkg.description,
   title: 'Component Library',
+  base,
   menu: [
     {
       name: 'Getting Started',
