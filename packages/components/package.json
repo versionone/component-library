@@ -2,7 +2,7 @@
   "private": false,
   "name": "@versionone/components",
   "description": "",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "build": "babel --root-mode upward src --out-dir ./"
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
-    "@versionone/docz": "^0.0.0-development"
+    "@versionone/docz": "^0.0.2"
   },
   "dependencies": {
     "@material-ui/core": "^3.4.0",
