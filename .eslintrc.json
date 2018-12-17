@@ -4,6 +4,7 @@
   "plugins": ["prettier", "import", "cypress"],
   "rules": {
     "linebreak-style": ["off"],
+    "import/named": ["off"],
     "import/no-extraneous-dependencies": [
       "error",
       {
