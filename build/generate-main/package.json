@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "@versionone/generate-main",
+  "version": "0.0.4",
+  "description": "Generate component package's main `index.js` file.",
+  "license": "MIT",
+  "bin": "./src/bin/index.js",
+  "peerDependencies": {
+    "@babel/core": "^7.2.2"
+  }
+}

@@ -11,7 +11,9 @@
     "LICENSE.md"
   ],
   "scripts": {
-    "build": "babel --root-mode upward src --out-dir ./dist"
+    "prebuild": "rm -rf dist",
+    "build": "babel --root-mode upward src --out-dir ./dist",
+    "postbuild": "generate-main"
   },
   "publishConfig": {
     "access": "public"
@@ -24,7 +26,8 @@
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
-    "@versionone/docz": "^0.0.4"
+    "@versionone/docz": "^0.0.4",
+    "@versionone/generate-main": "^0.0.4"
   },
   "dependencies": {
     "@material-ui/core": "^3.4.0",
