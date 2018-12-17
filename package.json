@@ -19,11 +19,7 @@
     "test:e2e:ci": "start-server-and-test start http-get://localhost:3000 test:e2e:run:ci",
     "test:e2e:run": "cypress run",
     "test:e2e:run:ci": "cypress run",
-    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint .",
-    "publish:patch": "lerna publish patch",
-    "postpublish:patch": "yarn publish:docs",
-    "prepublish:docs": "cross-env BASE_URL=component-library docz build",
-    "publish:docs": "gh-pages -d ./.docz/dist"
+    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {
     "node": "^8.6.0 || ^10.0.0",
