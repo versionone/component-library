@@ -1,6 +1,6 @@
 context('createComponent', () => {
   beforeEach(() => {
-    cy.visit('/packages/style-container');
+    cy.visit('/components/style-container');
   });
 
   specify(
