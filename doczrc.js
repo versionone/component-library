@@ -2,13 +2,10 @@ const path = require('path');
 const netlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
 
-const base = `/${process.env.BASE_URL ? process.env.BASE_URL : ''}`;
-
 export default {
   description: pkg.description,
   title: 'Component Library',
   plugins: [netlify()],
-  base,
   menu: [
     {
       name: 'Getting Started',
