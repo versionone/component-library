@@ -9,11 +9,12 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "prestart": "lerna run --scope @versionone/components generate:main",
     "start": "docz dev",
     "verify": "concurrently 'yarn lint' 'yarn test:e2e'",
     "lint": "yarn lint:eslint",
     "build": "lerna run build",
-    "prebuild:website": "yarn bootstrap",
+    "prebuild:website": "yarn bootstrap && lerna run --scope @versionone/components generate:main",
     "build:website": "docz build",
     "test:e2e": "start-test start http-get://localhost:3000 test:e2e:run",
     "test:e2e:ci": "start-server-and-test start http-get://localhost:3000 test:e2e:run:ci",
