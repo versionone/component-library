@@ -2,7 +2,7 @@
 
 yarn --frozen-lockfile
 yarn bootstrap
-yarn add -W cypress
+yarn add -W --dev cypress
 
 NODE_ENV=test
 yarn verify
