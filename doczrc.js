@@ -1,4 +1,3 @@
-const path = require('path');
 const netlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
 
