@@ -30,15 +30,6 @@ export default {
     resolve: {
       ...config.resolve,
       mainFields: ['main:src', 'main'],
-      alias: {
-        ...config.resolve.alias,
-        '@versionone/components': path.join(
-          __dirname,
-          'packages',
-          'components',
-          'src',
-        ),
-      },
     },
   }),
   modifyBabelRc: () => ({
