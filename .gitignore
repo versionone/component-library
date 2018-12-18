@@ -9,8 +9,7 @@ cypress/videos
 
 .docz
 **/dist
+packages/components/src/index.js
 
-/packages/components/*
-!/packages/components/package.json
-!/packages/components/src
-
+# Components must live within their own directory. There should not be any loose files in the source directory.
+packages/components/src/*.*

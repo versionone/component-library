@@ -1,7 +1,6 @@
 import capitalize from 'capitalize';
 import PropTypes from 'prop-types';
 import React from 'react';
-import StyleProvider from '@versionone/components/StyleProvider';
 import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider';
 import humanize from './humanize';
 
@@ -56,48 +55,46 @@ const PropsTable = ({ of, components }) => {
   );
 
   return (
-    <StyleProvider>
-      <div data-component="PropsTable">
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>Property</Th>
-              <Th>Type</Th>
-              <Th>Default</Th>
-              <Th width="40%">Description</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {themeDefinitions.map(([key, value]) => {
-              let defaultValue = '[No Default]';
-              if (value.defaultValue) {
-                if (value.defaultValue.value === "''") {
-                  defaultValue = '[Empty String]';
-                } else {
-                  defaultValue = value.defaultValue.value.replace(/('|")/g, '');
-                }
+    <div data-component="PropsTable">
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Property</Th>
+            <Th>Type</Th>
+            <Th>Default</Th>
+            <Th width="40%">Description</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {themeDefinitions.map(([key, value]) => {
+            let defaultValue = '[No Default]';
+            if (value.defaultValue) {
+              if (value.defaultValue.value === "''") {
+                defaultValue = '[Empty String]';
+              } else {
+                defaultValue = value.defaultValue.value.replace(/('|")/g, '');
               }
-              return (
-                <Tr key={key}>
-                  <Td>{key}</Td>
-                  <Td>{getPropType(value, Tooltip)}</Td>
-                  <Td>{defaultValue}</Td>
-                  <Td>
-                    {value.deprecated ? (
-                      <span>
-                        <strong>@deprecated</strong> {value.description}
-                      </span>
-                    ) : (
-                      <span>{value.description}</span>
-                    )}
-                  </Td>
-                </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
-      </div>
-    </StyleProvider>
+            }
+            return (
+              <Tr key={key}>
+                <Td>{key}</Td>
+                <Td>{getPropType(value, Tooltip)}</Td>
+                <Td>{defaultValue}</Td>
+                <Td>
+                  {value.deprecated ? (
+                    <span>
+                      <strong>@deprecated</strong> {value.description}
+                    </span>
+                  ) : (
+                    <span>{value.description}</span>
+                  )}
+                </Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    </div>
   );
 };
 PropsTable.propTypes = {

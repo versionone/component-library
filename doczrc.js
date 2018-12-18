@@ -1,12 +1,10 @@
-const path = require('path');
+const netlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
-
-const base = `/${process.env.BASE_URL ? process.env.BASE_URL : ''}`;
 
 export default {
   description: pkg.description,
   title: 'Component Library',
-  base,
+  plugins: [netlify()],
   menu: [
     {
       name: 'Getting Started',
@@ -31,15 +29,6 @@ export default {
     resolve: {
       ...config.resolve,
       mainFields: ['main:src', 'main'],
-      alias: {
-        ...config.resolve.alias,
-        '@versionone/components': path.join(
-          __dirname,
-          'packages',
-          'components',
-          'src',
-        ),
-      },
     },
   }),
   modifyBabelRc: () => ({
@@ -59,13 +48,6 @@ export default {
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
-      [
-        'babel-plugin-transform-react-remove-prop-types',
-        {
-          mode: 'wrap',
-          ignoreFilenames: ['node_modules'],
-        },
-      ],
       'babel-plugin-dev-expression',
       [
         '@versionone/babel-plugin-react-docgen',
