@@ -1,0 +1,34 @@
+---
+name: DirectStyleRule
+menu: Styling
+route: /components/DirectStyleRule
+---
+
+import { Fragment } from 'react';
+import { Playground, PropsTable, ThemeDefinitionTable } from '@versionone/docz';
+import { DirectStyleRule } from './';
+
+## Usage
+
+Apply a style rule directly to children without rendering an intermediate element.
+
+## Examples
+
+<Playground data-test="examples">
+{()=>{
+const styleRule = ({color}) => ({color});
+return (
+  <Fragment>
+    <DirectStyleRule color="coral" styleRule={styleRule}>I am coral.</DirectStyleRule>
+    <DirectStyleRule color="purple" styleRule={styleRule}>
+      <div>I am purple.</div>
+    </DirectStyleRule>
+</Fragment>
+);
+}}
+
+</Playground>
+
+## Component API
+
+<PropsTable of={DirectStyleRule} />

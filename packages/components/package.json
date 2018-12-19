@@ -41,8 +41,10 @@
     "fela-plugin-unit": "^5.1.2",
     "fela-plugin-validator": "^5.2.5",
     "fela-utils": "^8.1.3",
+    "lodash.isstring": "^4.0.1",
     "lodash.mergewith": "^4.6.1",
     "react-fela": "^8.0.4",
+    "resize-observer": "^1.0.0",
     "tiny-invariant": "^1.0.3"
   }
 }

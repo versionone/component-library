@@ -1,16 +1,19 @@
 import extractPassThroughProps from 'fela-bindings/lib/extractPassThroughProps';
 import invariant from 'tiny-invariant';
 import PropTypes from 'prop-types';
-import React, { createElement as reactCreateElement } from 'react';
+import React, {
+  createElement as reactCreateElement,
+  cloneElement as reactCloneElement,
+} from 'react';
 import resolvePassThrough from 'fela-bindings/lib/resolvePassThrough';
 import getComponentDisplayName from './getComponentDisplayName';
 import { WithTheme } from './ThemeProvider';
 
-const createComponentFactory = (createElement, contextTypes) => (
-  rule,
-  type,
-  passThroughProps,
-) => {
+const createComponentFactory = ({
+  createElement,
+  cloneElement,
+  contextTypes,
+}) => (rule, type, passThroughProps) => {
   const componentName = getComponentDisplayName(type);
   const FelaComponent = ({ children, ...ruleProps }, { renderer }) => (
     <WithTheme>
@@ -63,6 +66,10 @@ const createComponentFactory = (createElement, contextTypes) => (
           componentProps.ref = rulePropsWithTheme.innerRef;
         }
 
+        if (rulePropsWithTheme.instance) {
+          return cloneElement(rulePropsWithTheme.instance, componentProps);
+        }
+
         const customType = rulePropsWithTheme.is || type;
 
         return createElement(customType, componentProps, children);
@@ -87,7 +94,11 @@ const createComponentFactory = (createElement, contextTypes) => (
   return FelaComponent;
 };
 
-export default createComponentFactory(reactCreateElement, {
-  renderer: PropTypes.object,
-  theme: PropTypes.object,
+export default createComponentFactory({
+  createElement: reactCreateElement,
+  contextTypes: {
+    renderer: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    theme: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  },
+  cloneElement: reactCloneElement,
 });

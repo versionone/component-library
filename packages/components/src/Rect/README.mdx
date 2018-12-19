@@ -1,0 +1,39 @@
+---
+name: Rect
+route: /components/Rect
+menu: Utilities
+---
+
+import { Playground, PropsTable, ThemeDefinitionTable } from '@versionone/docz';
+import { Rect } from './';
+
+## Usage
+
+Render prop that calls back with the reference to a DOM node and its measurements (from `element.getBoundingClientRect()`). Measurements are, by default, observable.
+
+## Examples
+
+<Playground data-test="examples">
+  <Rect>
+    {({ref, rect}) => (
+      <div>
+        <div>Get measurements for below DIV element</div>
+          <div
+            ref={ref}
+            style={{display: 'inline-block', padding: 20, margin: 5, border: '1px solid black'}}
+          >
+            {JSON.stringify(rect, null, 2)}
+        </div>
+      </div>
+    )}
+
+  </Rect>
+</Playground>
+
+## Component API
+
+<PropsTable of={Rect} />
+
+## Theme API
+
+<ThemeDefinitionTable of={Rect} />

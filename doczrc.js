@@ -16,13 +16,9 @@ export default {
         'Document Components',
       ],
     },
-    {
-      name: 'Layout',
-    },
-    {
-      name: 'Other Components',
-      menu: ['StyleProvider', 'StyleContainer'],
-    },
+    'Styling',
+    'Utilities',
+    'Layout',
   ],
   modifyBundlerConfig: config => ({
     ...config,

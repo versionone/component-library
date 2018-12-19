@@ -1,10 +1,10 @@
-context('createComponent', () => {
+context('StyleContainer', () => {
   beforeEach(() => {
-    cy.visit('/components/style-container');
+    cy.navigate('Styling', 'StyleContainer');
   });
 
   specify(
-    'components can be created and styled via the createComponent function',
+    'components can be created and styled via the `createComponent` function',
     () => {
       return cy
         .get('[data-test="createComponent"]')
