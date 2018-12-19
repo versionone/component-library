@@ -5,6 +5,3 @@ ID = "47d61e1a-be82-478a-a0b1-6b4b954ef0c5"
 
 [build]
   publish = ".docz/dist"
-  command = "yarn build:website"
-[build.environment]
-  YARN_VERSION = "1.12.3"
