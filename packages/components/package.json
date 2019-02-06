@@ -1,9 +1,17 @@
 {
   "private": false,
   "name": "@versionone/components",
-  "description": "",
+  "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
   "version": "0.0.4",
   "license": "MIT",
+  "homepage": "https://versionone-components.netlify.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/versionone/component-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/versionone/component-library/issues"
+  },
   "main": "dist/index.js",
   "main:src": "src/index.js",
   "files": [
