@@ -28,16 +28,26 @@ route: /getting-started/implement-components
 
 The component directory's `index.js` file export the publicly consumable portions of the component. In other words, it should never be required to import from a file within the component's directory other than the `index.js` file.
 
-Component directories should **always** export the main component as the **default export**. Other named exports are also allowed to be publicly exported; just be sure to document them (see [Document Components](./document-components)), too.
+> Component directories should **always** export all items as **named exports**.
 
 ### Example `index.js`
 
 ```js
-import MyComponent from './MyComponent';
-import SecondaryComponent from './MyComponent';
+export { default as MainComponent } from './MainComponent';
+export { default as SecondaryComponent } from './SecondaryComponent';
+```
 
-export default MyComponent;
-export { SecondaryComponent };
+Occassionally there will be a group of components that work together and are only relevant when used with each other (example: a list and list items). In these cases, ensure the primary component is a named export and namespace secondary components off the primary one. As an example, in the case of `List`:
+
+```js
+import List from './List';
+import Item from './Item';
+import ItemText from './ItemText';
+
+List.Item = Item;
+List.ItemText = ItemText;
+
+export { List };
 ```
 
 ## Styling

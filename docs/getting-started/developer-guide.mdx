@@ -50,12 +50,13 @@ Which package to install a new NPM package into is specified with the `--scope` 
 - use `yarn lerna add --scope @versionone/pkg-name dependency-pkg-name` to install dependencies into a specific package
 - also applies to internal packages; `yarn lerna add --scope @versionone/pkg-name @versionone/other-pkg-name`
 
-## Developer Build Tasks
+## Developer Tasks
 
 - `yarn start` - locally run docs site: [http://localhost:3000](http://localhost:3000)
-- `yarn test` - run all tests from CLI
+- `yarn test:e2e` - run sub-set of cypress tests for development/debugging purposes
+- `yarn test:e2e:cli` - run all e2e tests from CLI
 - `yarn lint` - lint source files
-- `yarn verify` - run both `test`and `lint` concurrently (quickly verify changes before issuing PR)
+- `yarn verify` - run both tests and linting concurrently (quickly verify changes before issuing PR)
 
 ## Debugging Tests Locally
 

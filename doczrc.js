@@ -18,11 +18,10 @@ export default {
       ],
     },
     {
-      name: 'Layout',
+      name: 'Styling',
     },
     {
-      name: 'Other Components',
-      menu: ['StyleProvider', 'StyleContainer'],
+      name: 'Layout',
     },
   ],
   modifyBundlerConfig: config => ({
