@@ -5,6 +5,7 @@ export default {
   description: pkg.description,
   title: 'Component Library',
   plugins: [netlify()],
+  codeSandbox: false,
   menu: [
     {
       name: 'Getting Started',
