@@ -48,6 +48,7 @@ export default {
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
+      '@babel/plugin-proposal-class-properties',
       'babel-plugin-dev-expression',
       [
         '@versionone/babel-plugin-react-docgen',
