@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
 import Arrow from '../Arrow';
 import SpacedGroup from '../SpacedGroup';
-import palette from '../palette';
+import { palette } from '../palette';
 
 const ArrowPlaceholder = createComponent(() => ({ height: 28 }), 'div');
 

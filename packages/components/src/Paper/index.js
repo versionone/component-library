@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
-import palette from '../palette';
+import { palette } from '../palette';
 
 const PaperImpl = createComponent(
   ({ square, theme }) => ({

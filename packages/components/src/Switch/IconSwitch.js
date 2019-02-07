@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { createComponent, StyleProvider } from '../StyleProvider';
-import palette from '../palette';
+import { palette } from '../palette';
 
 const Root = createComponent(
   ({ size }) => ({

@@ -9,7 +9,7 @@ import { Provider as FelaProvider } from 'react-fela';
 import createRenderer from './createRenderer';
 import mergeThemes from './mergeThemes';
 import { ThemeProvider, WithTheme } from './ThemeProvider';
-import defaultTheme from '../defaultTheme';
+import { defaultTheme } from '../defaultTheme';
 
 let singletonRenderer;
 const getRenderer = ({ dev, renderer }) => {

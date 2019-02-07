@@ -2,7 +2,7 @@ import { noop, isFunction } from 'underscore';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import palette from '../palette';
+import { palette } from '../palette';
 import Scrim from '../Scrim';
 import { PortalContainer } from '../PortalContainer';
 

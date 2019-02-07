@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import Arrow from '../Arrow';
 import SpacedGroup from '../SpacedGroup';
-import palette from '../palette';
+import { palette } from '../palette';
 
 const Header = createComponent(
   ({ theme }) => ({

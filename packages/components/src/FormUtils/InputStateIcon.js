@@ -7,7 +7,7 @@ import {
   CheckIconIcon,
   LoadingSpinIcon,
 } from './../Icons';
-import palette from './../palette';
+import { palette } from './../palette';
 import SpacedGroup from '../SpacedGroup';
 
 const IconContainer = createComponent(

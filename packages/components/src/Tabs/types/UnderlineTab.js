@@ -6,7 +6,7 @@ import {
 	styleUtils,
 } from '../../StyleProvider';
 import SpacedGroup from './../../SpacedGroup';
-import palette from '../../palette';
+import { palette } from '../../palette';
 
 const UnderlineTabImpl = createComponent(
 	({ placement, selected, disabled, focused, theme }) => {

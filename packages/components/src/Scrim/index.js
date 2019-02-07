@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import palette from '../palette';
+import { palette } from '../palette';
 import { PortalContainer } from '../PortalContainer';
 
 const ScrimImpl = createComponent(

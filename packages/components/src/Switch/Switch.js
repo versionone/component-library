@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop, isFunction } from 'underscore';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
-import palette from '../palette';
+import { palette } from '../palette';
 import { WithFormFieldState } from '../FormUtils';
 
 const Root = createComponent(

@@ -4,7 +4,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { Hoverable } from '../Hoverable';
 import { PortalContainer } from '../PortalContainer';
-import palette from '../palette';
+import { palette } from '../palette';
 
 const PositionedTooltip = createComponent(
   ({ style, disableContainment }) => ({
