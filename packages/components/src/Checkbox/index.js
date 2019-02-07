@@ -52,4 +52,4 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {};
 
-export default Checkbox;
+export { Checkbox };
