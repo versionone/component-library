@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { noop } from 'underscore';
 import { createComponent, StyleProvider } from '../StyleProvider';
-import Border from './../Border';
+import { Border } from './../Border';
 
 const DefinitionList = createComponent(
   () => ({

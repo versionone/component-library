@@ -107,4 +107,4 @@ Badge.defaultProps = {
   bordered: false,
 };
 
-export default Badge;
+export { Badge };
