@@ -2,7 +2,7 @@ import { noop, isFunction } from 'underscore';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
-import Arrow from '../Arrow';
+import { Arrow } from '../Arrow';
 import SpacedGroup from '../SpacedGroup';
 import { palette } from '../palette';
 

@@ -336,4 +336,4 @@ Avatar.defaultProps = {
   tabIndex: '0',
 };
 
-export default Avatar;
+export { Avatar };

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop, isFunction } from 'underscore';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
-import Arrow from '../Arrow';
+import { Arrow } from '../Arrow';
 
 const HeaderButton = createComponent(
   ({ disabled, isFirst, isLast, open, focused, theme }) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { isFunction, noop } from 'underscore';
 import { StyleProvider } from '../StyleProvider';
-import Arrow from '../Arrow';
+import { Arrow } from '../Arrow';
 import {
   InputFieldContainer,
   InputStateIcon,

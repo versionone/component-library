@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider } from '../StyleProvider';
-import Avatar from '../Avatar';
+import { Avatar } from '../Avatar';
 import List from '../List';
 import Menu from '../Menu';
 import OnClickOutside from '../OnClickOutside';
@@ -204,4 +204,4 @@ AvatarGroup.defaultProps = {
   showTooltip: false,
 };
 
-export default AvatarGroup;
+export { AvatarGroup };
