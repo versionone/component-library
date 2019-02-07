@@ -1,4 +1,15 @@
-import { isWidthUp } from '@material-ui/core/withWidth';
+import PropTypes from 'prop-types';
+import withWidth from '@material-ui/core/withWidth';
 
-export { default as WithBreakpoint } from './WithBreakpoint';
-export { isWidthUp };
+const WithBreakpoint = withWidth()(props => props.children(props.width));
+
+WithBreakpoint.propTypes = {
+  /**
+   * fuction that returns the current breakpoint
+   */
+  children: PropTypes.func.isRequired,
+};
+
+WithBreakpoint.defaultProps = {};
+
+export default WithBreakpoint;

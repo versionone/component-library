@@ -1,0 +1,194 @@
+---
+name: Drawer
+route: /components/Drawer
+menu: Data Display
+---
+
+import { Fragment } from 'react';
+import { Playground, PropsTable } from 'docz';
+import Drawer from './';
+import Button from '../Button';
+import SpacedGroup from '../SpacedGroup';
+import TextField from '../TextField';
+import { FocusManager } from '../FocusManager';
+
+# Drawer
+
+Drawers are used when you need to augment or switch a user's context. It may be combined with focus groups (see [FocusManager](/components/FocusManager)), to ensure that the consumer can switch focus to the drawer and then return it once the drawer closes.
+
+## Placement
+
+<Playground>
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = {
+          right: {
+            open: false,
+            shadow: true,
+            placement: 'right',
+          },
+          left: {
+            open: false,
+            shadow: true,
+            placement: 'left',
+          },
+          bottom: {
+            open: false,
+            shadow: true,
+            placement: 'bottom',
+          },
+          top: {
+            open: false,
+            shadow: true,
+            placement: 'top',
+          },
+        };
+        this.toggle = this.toggle.bind(this);
+        this.toggleShadow = this.toggleShadow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+      }
+      toggle(placement) {
+        return () => {
+          this.setState(
+            Object.assign({}, this.state, {
+              [placement]: Object.assign({}, this.state[placement], {
+                open: !this.state[placement].open,
+              }),
+            }),
+          );
+        };
+      }
+      toggleShadow() {
+        this.setState(
+          Object.assign({}, this.state, {
+            right: Object.assign(this.state.right, {
+              shadow: !this.state.right.shadow,
+            }),
+            left: Object.assign(this.state.left, {
+              shadow: !this.state.left.shadow,
+            }),
+            bottom: Object.assign(this.state.bottom, {
+              shadow: !this.state.bottom.shadow,
+            }),
+            top: Object.assign(this.state.top, {
+              shadow: !this.state.top.shadow,
+            }),
+          }),
+        );
+      }
+      handleClose(placement) {
+        return () => {
+          this.setState(
+            Object.assign({}, this.state, {
+              [placement]: Object.assign({}, this.state[placement], {
+                open: false,
+              }),
+            }),
+          );
+        };
+      }
+      render() {
+        const toggleLeft = this.toggle('left');
+        const toggleRight = this.toggle('right');
+        const toggleBottom = this.toggle('bottom');
+        const toggleTop = this.toggle('top');
+        const closeLeft = this.handleClose('left');
+        const closeRight = this.handleClose('right');
+        const closeBottom = this.handleClose('bottom');
+        const closeTop = this.handleClose('top');
+        return (
+          <div>
+            <Button onClick={toggleLeft}>Left</Button>
+            <Button onClick={toggleRight}>Right</Button>
+            <Button onClick={toggleBottom}>Bottom</Button>
+            <Button onClick={toggleTop}>Top</Button>
+            <Button onClick={this.toggleShadow}>Toggle Shadow</Button>
+            <Drawer {...this.state.left} handleClickOutside={closeLeft} />
+            <Drawer {...this.state.right} handleClickOutside={closeRight} />
+            <Drawer {...this.state.bottom} handleClickOutside={closeBottom} />
+            <Drawer {...this.state.top} handleClickOutside={closeTop} />
+          </div>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+## Focus
+
+When opening a drawer, the focus is given and scoped to the contents of the drawer. Upon closing the drawer, focus is given back to the element that triggered the drawer to open.
+
+> In order to "give back" focus, the consumer of `Drawer` must establish a `FocusManager.FocusGroup` (see [FocusManager](/components/FocusManager)).
+
+<Playground>
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = {
+          open: false,
+        };
+        this.open = this.open.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+      }
+      open() {
+        this.setState(({ open }) => ({
+          open: true,
+        }));
+      }
+      handleClose() {
+        this.setState(
+          ({ open }) => ({
+            open: false,
+          }),
+          this.pop,
+        );
+      }
+      render() {
+        return (
+          <FocusManager>
+            {pop => {
+              this.pop = pop;
+              return (
+                <FocusManager.Group>
+                  {bind => (
+                    <Fragment>
+                      <Button {...bind} onClick={this.open}>
+                        Open Drawer
+                      </Button>
+                      <Drawer
+                        {...this.state}
+                        handleClickOutside={this.handleClose}
+                        placement="right"
+                      >
+                        <FocusManager.Group>
+                          {bind => (
+                            <SpacedGroup direction="vertical">
+                              <TextField {...bind} focused={this.state.open} />
+                              <TextField {...bind} />
+                              <TextField {...bind} />
+                              <TextField {...bind} />
+                              <Button onClick={this.handleClose}>Close</Button>
+                            </SpacedGroup>
+                          )}
+                        </FocusManager.Group>
+                      </Drawer>
+                    </Fragment>
+                  )}
+                </FocusManager.Group>
+              );
+            }}
+          </FocusManager>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+## API
+
+<PropsTable of={Drawer} />

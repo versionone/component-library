@@ -1,0 +1,183 @@
+---
+name: Chip
+route: /components/Chip
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import Chip from './';
+import SpacedGroup from '../SpacedGroup';
+import Avatar from '../Avatar';
+
+# Chip
+
+Chips are great for allowing the user to make selections, filter content, or trigger actions.
+
+## Basic
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <SpacedGroup>
+      <Chip>Basic</Chip>
+      <Chip
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+      >
+        My Friend
+      </Chip>
+      <Chip
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+      >
+        My Friend
+      </Chip>
+      <Chip
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+            shouldSimulateSlowLoad={true}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+      >
+        Unasssign
+      </Chip>
+      <Chip
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onClick={() => console.log('assign')}
+      >
+        Assign
+      </Chip>
+    </SpacedGroup>
+    <SpacedGroup>
+      <Chip outlined>Basic</Chip>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+            shouldSimulateSlowLoad={true}
+          />
+        }
+      >
+        My Friend
+      </Chip>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+      >
+        My Friend
+      </Chip>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+      >
+        Unasssign
+      </Chip>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onClick={() => console.log('assign')}
+      >
+        Assign
+      </Chip>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+        onClick={() => console.log('assign')}
+      >
+        Assign or Delete
+      </Chip>
+    </SpacedGroup>
+    <SpacedGroup>
+      <Chip
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+        onClick={() => console.log('assign')}
+      >
+        Very Very Very Very Very Very Very Very Long Text
+      </Chip>
+    </SpacedGroup>
+    <SpacedGroup>
+      <Chip
+        clamped
+        outlined
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+        onClick={() => console.log('assign')}
+      >
+        Clamped text Very Very Very Very Very Very Long Text
+      </Chip>
+    </SpacedGroup>
+    <SpacedGroup>
+      <Chip size={28} outlined>
+        Smaller Chip
+      </Chip>
+      <Chip
+        size={28}
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+        onClick={() => console.log('assign')}
+      >
+        Smaller Chip
+      </Chip>
+      <Chip
+        size={42}
+        avatar={
+          <Avatar
+            src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+          />
+        }
+        onDismiss={() => console.log('remove')}
+        onClick={() => console.log('assign')}
+      >
+        Largest Chip
+      </Chip>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Chip} />

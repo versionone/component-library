@@ -1,0 +1,34 @@
+---
+name: EventBoundary
+route: /components/EventBoundary
+menu: Utilities
+---
+
+import { Playground, PropsTable } from 'docz';
+import { EventBoundary } from './';
+import Border from '../Border';
+
+# EventBoundary
+
+Provide a boundary that will stop propogation of specified events.
+
+<Playground>
+  <div onClick={() => console.log('parent click')}>
+    <Border>
+      parent click
+      <EventBoundary onClick={() => console.log('child click')}>
+        {bind => (
+          <button {...bind} data-test="childButton">
+            child click
+          </button>
+        )}
+      </EventBoundary>
+    </Border>
+  </div>
+</Playground>
+
+## API
+
+> `EventBoundary` accepts any prop starting with `"on"` that is also a function.
+
+<PropsTable of={EventBoundary} />

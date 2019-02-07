@@ -1,0 +1,107 @@
+---
+name: Badge
+menu: Data Display
+route: /components/Badge
+---
+
+import { Playground, PropsTable } from 'docz';
+import Badge from './';
+import SpacedGroup from '../SpacedGroup';
+import Avatar from '../Avatar';
+import {
+  MailboxIcon,
+  FlagIconIcon as FlagIcon,
+  ConversationsIcon,
+  TopicIconIcon as TopicsIcon,
+} from '../Icons';
+import palette from '../palette';
+
+# Badge
+
+Badges are used to show notification count and call the user's attention to take action on them.
+
+### Comparisions
+
+| Component                      | Purpose / Use Case         |
+| :----------------------------- | :------------------------- |
+| [Lozenge](/components/Lozenge) | Highlight an item's status |
+| [Badge](/components/Badge)     | Counts and tallies         |
+| [Tag](/components/Tag)         | Visually label items       |
+
+<Playground>
+  <SpacedGroup xs={24}>
+    <Badge count={5}>
+      <FlagIcon size={36} />
+    </Badge>
+    <Badge count={0} showZero>
+      <TopicsIcon size={36} />
+    </Badge>
+    <Badge count={50} maxCount={10}>
+      <ConversationsIcon size={36} />
+    </Badge>
+    <Badge count={10000} maxCount={99}>
+      <MailboxIcon size={36} />
+    </Badge>
+  </SpacedGroup>
+</Playground>
+
+## Without Children
+
+<Playground>
+  <SpacedGroup xs={36}>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={12} />
+      <span>Count</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={12} maxCount={10} />
+      <span>Max Count</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={100} maxCount={1000} />
+      <span>Ignore Max Count</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={0} showZero />
+      <span>Show Zero</span>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+## Colors
+
+<Playground>
+  <SpacedGroup xs={36}>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={12} backgroundColor={palette.fern} />
+      <span>Fern</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge
+        count={12}
+        maxCount={10}
+        backgroundColor={palette.paper}
+        color={palette.obsidian}
+        bordered
+      />
+      <span>Paper</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge
+        count={100}
+        maxCount={1000}
+        backgroundColor={palette.denim}
+        color={palette.paper}
+      />
+      <span>Denim</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" center>
+      <Badge count={0} showZero />
+      <span>Sunset (Default)</span>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Badge} />

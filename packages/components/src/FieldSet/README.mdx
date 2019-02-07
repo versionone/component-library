@@ -1,0 +1,44 @@
+---
+name: FieldSet
+route: /components/FieldSet
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import FieldSet from './';
+import Button from './../Button';
+import TextField from './../TextField';
+import Label from './../Label';
+import FormField from './../FormField';
+import { Switch } from './../Switch';
+import SpacedGroup from './../SpacedGroup';
+
+# FieldSet
+
+FieldSet are great to visually group form fields
+
+<Playground>
+  <FieldSet>
+    <SpacedGroup direction="vertical" xs={8}>
+      <SpacedGroup>
+        <span>Account Details</span>
+      </SpacedGroup>
+      <FormField>
+        <Label>My Label</Label>
+        <TextField fullWidth />
+      </FormField>
+      <FormField>
+        <Label>My Label</Label>
+        <TextField stretch />
+      </FormField>
+      <FormField center stretch>
+        <Label>Enabled Feature</Label>
+        <Switch />
+      </FormField>
+    </SpacedGroup>
+  </FieldSet>
+</Playground>
+
+## API
+
+<PropsTable of={FieldSet} />

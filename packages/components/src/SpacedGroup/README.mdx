@@ -4,8 +4,9 @@ route: /components/SpacedGroup
 menu: Layout
 ---
 
-import { Playground, PropsTable, ThemeDefinitionTable } from '@versionone/docz';
-import { SpacedGroup } from './';
+import { Playground, PropsTable } from 'docz';
+import SpacedGroup from './';
+import Button from './../Button';
 
 # SpacedGroup
 
@@ -14,20 +15,25 @@ SpacedGroups are great when you have variable width elements you want to uniform
 ## Horizontal spacing
 
 <Playground>
-    <SpacedGroup>
-      <div>some content</div>
-      <div>some more content</div>
-      <div>additional content</div>
-      <div>even more, additional content</div>
-    </SpacedGroup>
+  <SpacedGroup direction="vertical" xs={24}>
+	<SpacedGroup>
+	  <Button variant="contained">Standard</Button>
+	  <Button variant="contained" type="primary">Primary</Button>
+	  <Button variant="contained" disabled>Disabled</Button>
+	  <Button variant="contained">Standard</Button>
+	  <Button variant="contained" disabled>Disabled</Button>
+	  <Button variant="contained">More Buttons</Button>
+	  <Button variant="contained" disabled>Disabled</Button>
+	  <Button variant="contained">More Cowbell</Button>
+	</SpacedGroup>
 
     <SpacedGroup>
-      <div>some content</div>
-      <div>some more content</div>
-      <div>additional content</div>
-      <div>even more, additional content</div>
+      <div>Standard</div>
+      <div>Primary</div>
+      <div>Disabled</div>
     </SpacedGroup>
 
+  </SpacedGroup>
 </Playground>
 
 ## Vertical spacing
@@ -37,28 +43,40 @@ The desire to have equal spacing among hetergeneous elements
 highlights why individual components should not "own" the spacing outside themselves (margin).
 
 <Playground>
-  <SpacedGroup direction="vertical" xs={24}>
-    <SpacedGroup direction="vertical">
-      <div>some content</div>
-      <div>some more content</div>
-      <div>additional content</div>
-      <div>even more, additional content</div>
+	<SpacedGroup direction="vertical" xs={24}>
+		<SpacedGroup direction="vertical">
+			<Button variant="contained">Standard</Button>
+			<Button variant="contained" type="primary">Primary</Button>
+			<Button variant="contained" disabled>Disabled</Button>
+		</SpacedGroup>
+
+    	<SpacedGroup direction="vertical">
+    		<div>Standard</div>
+    		<div>Primary</div>
+    		<div>Disabled</div>
+    		<Button variant="contained" disabled>
+    			Disabled
+    		</Button>
+    		<div>Disabled</div>
+    	</SpacedGroup>
+
+    	<SpacedGroup direction="vertical" center>
+    		<div>Standard</div>
+    		<div>Primary</div>
+    		<div>Disabled</div>
+    		<Button variant="contained" disabled>
+    			Disabled
+    		</Button>
+    		<div>Disabled</div>
+    	</SpacedGroup>
     </SpacedGroup>
 
-    <SpacedGroup direction="vertical">
-       <div>some content</div>
-      <div>some more content</div>
-      <div>additional content</div>
-      <div>even more, additional content</div>
-    </SpacedGroup>
-
-  </SpacedGroup>
 </Playground>
 
 ## Changing Screen Size
 
 <Playground>
-  <SpacedGroup xs={0} sm={8} md={24}>
+  <SpacedGroup direction="vertical" xs={0} sm={8} md={24}>
     <div>Standard</div>
     <div>Primary</div>
     <div>Disabled</div>
@@ -68,7 +86,3 @@ highlights why individual components should not "own" the spacing outside themse
 ## API
 
 <PropsTable of={SpacedGroup} />
-
-## Theme API
-
-<ThemeDefinitionTable of={SpacedGroup} />

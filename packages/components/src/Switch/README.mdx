@@ -1,0 +1,82 @@
+---
+name: Switch
+route: /components/Switch
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import FormField from '../FormField';
+import Label from '../Label';
+import SpacedGroup from '../SpacedGroup';
+import { Switch } from './';
+import Button from '../Button';
+
+# Switch
+
+Great for allowing users to turn a setting on or off.
+
+## Basic
+
+<Playground>
+	<SpacedGroup direction="vertical">
+		<SpacedGroup xs={2} center>
+			<Label>Not Checked</Label>
+			<Switch />
+		</SpacedGroup>
+		<SpacedGroup xs={2} center>
+			<Label>checked</Label>
+			<Switch checked />
+		</SpacedGroup>
+
+    	<SpacedGroup xs={2} center>
+    		<Label>Disabled</Label>
+    		<Switch disabled />
+    	</SpacedGroup>
+
+    	<SpacedGroup xs={2} center>
+    		<Label>Focused</Label>
+    		<Switch focused />
+    	</SpacedGroup>
+    </SpacedGroup>
+
+</Playground>
+
+## Stateful
+
+<Playground>
+{() => {
+	class StateManager extends React.Component {
+		constructor(props, context) {
+			super(props, context);
+			this.state = {
+				isCheckedGlobally: false,
+				isChecked: false
+			}
+			this.toggle = this.toggle.bind(this);
+			this.toggleGlobally = this.toggleGlobally.bind(this);
+		}
+
+    	toggleGlobally() { this.setState({ isCheckedGlobally: !this.state.isCheckedGlobally }); }
+    	toggle() { this.setState({ isChecked: !this.state.isChecked }); }
+
+    	render() {
+    		return (
+    			<SpacedGroup direction="vertical">
+    				<Button onClick={this.toggleGlobally}>Set Externally</Button>
+    				<Switch checked={this.state.isCheckedGlobally} />
+
+    				<Switch checked={this.state.isChecked} onClick={this.toggle} />
+    			</SpacedGroup>
+    		)
+    	}
+    }
+
+    return <StateManager />
+
+}}
+
+</Playground>
+
+## API
+
+<PropsTable of={Switch} />

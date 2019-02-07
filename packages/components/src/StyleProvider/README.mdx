@@ -7,7 +7,6 @@ route: /components/styling-components
 import { Fragment } from 'react';
 import { Playground, PropsTable } from '@versionone/docz';
 import {
-  applyStaticStyles,
   createComponent,
   StyleProvider,
   styleUtils,
@@ -201,28 +200,6 @@ const MyComponent = props => (
   </WithRenderer>
 );
 ```
-
-## `applyStaticStyles` HoC
-
-Enables providing global styles to be injected into the page.
-
-> Be aware, that global styles are global and once added to the page, are not removed.
-
-<Playground>
-  {() => {
-    // Try changing 'white' to 'blue' and then back to 'white'
-    const globalStyles = {
-      backgroundColor: 'white',
-    };
-    const ThemedHeading = applyStaticStyles(globalStyles, 'p')(createComponent(() => ({}), 'h3'));
-    return (
-      <StyleProvider>
-        <ThemedHeading>I have global styles</ThemedHeading>
-      </StyleProvider>
-    );
-}}
-
-</Playground>
 
 ## API
 

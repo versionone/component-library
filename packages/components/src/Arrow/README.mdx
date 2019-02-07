@@ -1,0 +1,34 @@
+---
+name: Arrow
+menu: Data Display
+route: /components/Arrow
+---
+
+import { Playground, PropsTable } from 'docz';
+import Arrow from './';
+import SpacedGroup from '../SpacedGroup';
+
+# Arrow
+
+Arrows can be used with `Collapse` and `Select` to visually re-enforce the relationship between collapseable content and its parent.
+
+<Playground>
+  <SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <Arrow />
+      <span>Closed</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <Arrow open />
+      <span>Open</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <Arrow disabled />
+      <span>Disabled</span>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Arrow} />

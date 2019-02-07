@@ -1,0 +1,373 @@
+---
+name: SingleSelect
+route: /components/SingleSelect
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Fragment } from 'react';
+import { SingleSelect } from './';
+import SpacedGroup from './../SpacedGroup';
+import Divider from '../Divider';
+import Chip from '../Chip';
+import Avatar from '../Avatar';
+import List from '../List';
+import Border from '../Border';
+import Paper from '../Paper';
+import Label from '../Label';
+import FormField from '../FormField';
+import Link from '../Link';
+import Button from '../Button';
+import items from './demoState';
+
+# SingleSelect
+
+Use a `SingleSelect` when selecting a zero or more values from a larger set of values; where it is not nececssary to show all values immediately.
+
+The SingleSelect tracks its `selectedItem` as an object that must have an `id` and a `value`.
+
+In the abscense of a `selection` prop it will use the `value` of the `selectedItem` as the value of the underlying input field.
+
+## States
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <SingleSelect fullWidth hintText="Default" />
+    <SingleSelect fullWidth disabled hintText="Disabled" />
+    <SingleSelect fullWidth dirty hintText="Dirty" />
+    <SingleSelect fullWidth focused hintText="Focused" />
+    <SingleSelect fullWidth error="snikes" hintText="Error" />
+  </SpacedGroup>
+</Playground>
+
+## Single Select
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = {
+					items,
+					selectedItem: null,
+				};
+				this.handleSelect= this.handleSelect.bind(this);
+				this.handleRemove = this.handleRemove.bind(this);
+			}
+
+    		handleSelect(id) {
+    			this.setState({
+    				selectedItem: this.state.items[id],
+    			});
+    		}
+
+    		handleRemove() {
+    			this.setState({
+    				selectedItem: null,
+    			});
+    		}
+
+    		render() {
+    			const renderOptions = ({ getItemProps }) => {
+    				const group = Object.keys(this.state.items).map((id) => {
+    					const item = this.state.items[id];
+    					const itemProps = getItemProps({ item, index: id });
+    					return (
+    						<Fragment key={item.id}>
+    							<List.Item
+    								{...itemProps}
+    								selected={itemProps.isSelected || itemProps.isActive}
+    								//icon={<Avatar size={36} src={item.href} />}
+    							>
+    								<List.ItemText primary={item.value} secondary={item.email} />
+    							</List.Item>
+    							<Divider />
+    						</Fragment>
+    					)
+    				});
+
+    				return (
+    					<List>
+    						{group}
+    					</List>
+    				)
+    			}
+
+    			return (
+    				<SpacedGroup direction="vertical" xs={24}>
+    					<SingleSelect
+    						hintText="Select your team members"
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						renderOptions={renderOptions}
+    						selectedItem={this.state.selectedItem}
+    					/>
+
+    					<SingleSelect
+    						hintText="Select your team members"
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						renderOptions={renderOptions}
+    						selectedItem={this.state.selectedItem}
+    						dropdownWidth="500px"
+    						dropdownMaxHeight={50}
+    					/>
+
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    				</SpacedGroup>
+    			)
+    		}
+    	}
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## Control Selection Rendering
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = {
+					items,
+					selectedItem: null,
+				};
+				this.handleSelect= this.handleSelect.bind(this);
+				this.handleRemove = this.handleRemove.bind(this);
+			}
+
+    		handleSelect(id) {
+    			this.setState({
+    				selectedItem: this.state.items[id],
+    			});
+    		}
+
+    		handleRemove() {
+    			this.setState({
+    				selectedItem: null,
+    			});
+    		}
+
+    		render() {
+    			const renderOptions = ({ getItemProps }) => {
+    				const group = Object.keys(this.state.items).map((id) => {
+    					const item = this.state.items[id];
+    					const itemProps = getItemProps({ item, index: id });
+    					return (
+    						<Fragment key={id}>
+    							<List.Item
+    								{...itemProps}
+    								selected={itemProps.isSelected || itemProps.isActive}
+    								icon={<Avatar size={36} src={item.href} />}
+    							>
+    								<List.ItemText primary={item.value} secondary={item.email} />
+    							</List.Item>
+    							<Divider />
+    						</Fragment>
+    					)
+    				});
+
+    				return (
+    					<Fragment>
+    						<div>Full control heading</div>
+    						<Divider heavy />
+    						<List>
+    							{group}
+    						</List>
+    					</Fragment>
+    				)
+    			}
+
+    			const item = (
+    				this.state.selectedItem !== null
+    				&& this.state.items[this.state.selectedItem.id]
+    			);
+
+    			const renderLink = ({ removeItem }) => {
+    				return <Link href={item.href}>{item.value}</Link>
+    			}
+
+    			const renderChip = ({ removeItem }) => {
+    				return (
+    					<Chip size={28} onDismiss={removeItem}>
+    						{item.value}
+    					</Chip>
+    				)
+    			}
+
+    			return (
+    				<SpacedGroup direction="vertical" xs={24}>
+    					<SingleSelect
+    						hintText="Select your team members"
+    						selectedItem={this.state.selectedItem}
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						renderOptions={renderOptions}
+    						renderSelection={renderLink}
+    					/>
+    					<SingleSelect
+    						hintText="Select your team members"
+    						selectedItem={this.state.selectedItem}
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						renderOptions={renderOptions}
+    						renderSelection={renderChip}
+    					/>
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    				</SpacedGroup>
+    			)
+    		}
+    	}
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## Creatable
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = {
+					items,
+					selectedItem: null,
+				};
+				this.handleCreate = this.handleCreate.bind(this);
+				this.handleSelect= this.handleSelect.bind(this);
+				this.handleRemove = this.handleRemove.bind(this);
+			}
+
+    		handleSelect(id) {
+    			this.setState({
+    				selectedItem: this.state.items[id],
+    			});
+    		}
+
+    		handleRemove() {
+    			this.setState({
+    				selectedItem: null,
+    			});
+    		}
+
+    		handleCreate(item) {
+    			this.setState({
+    				items: Object.assign({}, this.state.items, {
+    					[item.id]: item,
+    				})
+    			});
+    		}
+
+    		render() {
+    			const renderOptions = ({ getItemProps }) => {
+    				const group = Object.keys(this.state.items).map((id) => {
+    					const item = this.state.items[id];
+    					const itemProps = getItemProps({ item, index: id });
+    					return (
+    						<Fragment key={id}>
+    							<List.Item
+    								{...itemProps}
+    								selected={itemProps.isSelected || itemProps.isActive}
+    							>
+    								<List.ItemText primary={item.value} secondary={item.email} />
+    							</List.Item>
+    							<Divider />
+    						</Fragment>
+    					)
+    				})
+
+    				return (
+    					<Fragment>
+    						<div>Full control heading</div>
+    						<Divider heavy />
+    						<List>
+    							{group}
+    						</List>
+    					</Fragment>
+    				)
+    			}
+
+    			return (
+    				<SpacedGroup direction="vertical">
+    					<SingleSelect
+    						fullWidth
+    						hintText="When you're done typing click enter"
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						onCreate={this.handleCreate}
+    						selectedItem={this.state.selectedItem}
+    						renderOptions={renderOptions}
+    					/>
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    				</SpacedGroup>
+    			)
+    		}
+    	}
+
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## Layout
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <FormField center>
+      <Label>My Label</Label>
+      <SingleSelect hintText="Default" />
+    </FormField>
+    <FormField center>
+      <Label>My Label</Label>
+      <SingleSelect hintText="fullWidth" fullWidth />
+    </FormField>
+    <FormField center>
+      <Label>My Label</Label>
+      <SingleSelect hintText="stretch" stretch />
+    </FormField>
+  </SpacedGroup>
+</Playground>
+
+## Inline Edit
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <SingleSelect fullWidth inlineEdit hintText="Default" />
+    <SingleSelect fullWidth inlineEdit disabled hintText="Disabled" />
+    <SingleSelect fullWidth inlineEdit dirty hintText="Dirty" />
+    <SingleSelect fullWidth inlineEdit error="snikes" hintText="Error" />
+    <SingleSelect fullWidth inlineEdit loading hintText="Loading" />
+    <SingleSelect fullWidth inlineEdit success hintText="Success" />
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={SingleSelect} />

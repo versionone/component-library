@@ -1,0 +1,54 @@
+---
+name: Hoverable
+route: /components/Hoverable
+menu: Utilities
+---
+
+import { Component } from 'react';
+import { Playground, PropsTable } from 'docz';
+import SpacedGroup from '../SpacedGroup';
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Hoverable } from './';
+
+# Hoverable
+
+Tracks hover state for a component. Uses [TrackEventState](/components/TrackEventState) internally.
+
+## Basic Example
+
+<Playground>
+  {() => {
+    const StyledInput = createComponent(
+      ({ hovered }) => ({
+        backgroundColor: hovered ? 'lightblue' : 'white',
+      }),
+      'input',
+      ['onMouseEnter', 'onMouseLeave', 'type'],
+    );
+    class TextInput extends Component {
+      render() {
+        const { hovered } = this.props;
+        return (
+          <Hoverable hovered={hovered}>
+            {({ bind, hovered, ref }) => {
+              return <StyledInput {...bind} hovered={hovered} innerRef={ref} />;
+            }}
+          </Hoverable>
+        );
+      }
+    }
+    return (
+      <StyleProvider>
+        <SpacedGroup direction="vertical">
+          <TextInput focused />
+          <TextInput />
+          <TextInput />
+        </SpacedGroup>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+## API
+
+<PropsTable of={Hoverable} />

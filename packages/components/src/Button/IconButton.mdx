@@ -1,0 +1,51 @@
+---
+name: Icon Buttons
+route: /components/IconButton
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import { IconButton } from './';
+import { AdminIcon, CloseIcon } from '../Icons';
+import SpacedGroup from './../SpacedGroup';
+
+# Icon Buttons
+
+`IconButton`s are buttons that contain only a single `Icon`.
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <SpacedGroup>
+      <IconButton icon={AdminIcon} title="admin" />
+      <IconButton icon={AdminIcon} title="admin" type="primary" />
+      <IconButton icon={AdminIcon} title="admin" type="secondary" />
+      <IconButton icon={AdminIcon} title="admin" disabled />
+    </SpacedGroup>
+
+    <SpacedGroup>
+      <IconButton icon={CloseIcon} title="admin" />
+      <IconButton icon={CloseIcon} title="admin" type="primary" />
+      <IconButton icon={CloseIcon} title="admin" type="secondary" />
+      <IconButton icon={CloseIcon} title="admin" disabled />
+    </SpacedGroup>
+
+    <SpacedGroup>
+      <IconButton icon={CloseIcon} title="admin" size={24} />
+      <IconButton icon={CloseIcon} title="admin" type="primary" size={24} />
+      <IconButton icon={CloseIcon} title="admin" type="secondary" size={24} />
+      <IconButton icon={CloseIcon} title="admin" disabled size={24} />
+    </SpacedGroup>
+
+    <SpacedGroup>
+      <IconButton icon={CloseIcon} title="admin" size={42} />
+      <IconButton icon={CloseIcon} title="admin" type="primary" size={42} />
+      <IconButton icon={CloseIcon} title="admin" type="secondary" size={42} />
+      <IconButton icon={CloseIcon} title="admin" disabled size={42} />
+    </SpacedGroup>
+
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={IconButton} />

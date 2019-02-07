@@ -1,0 +1,59 @@
+---
+name: EmptyState
+route: /components/EmptyState
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import EmptyState from './';
+import Button from './../Button';
+import { DaagIconIcon } from '../Icons';
+
+# EmptyState
+
+Empty states are great when you need express that a view has no data yet and prompt with user on how to get started.
+
+## Basic
+
+<Playground>
+  <EmptyState
+    icon={DaagIconIcon}
+    title="To view this Board"
+    primaryAction={<Button>Connect Continuum</Button>}
+  >
+    In order to enhance your Lifecycle expereince you can connect it with
+    Continuum and begin measuring your value stream!
+  </EmptyState>
+</Playground>
+
+## No primary action
+
+<Playground>
+  <EmptyState icon={DaagIconIcon} title="To view this Board">
+    In order to enhance your Lifecycle expereince you can <a>connect</a> it with
+    Continuum and begin measuring your value stream!
+  </EmptyState>
+</Playground>
+
+## No additional guidance
+
+<Playground>
+  <EmptyState
+    icon={DaagIconIcon}
+    title="To view this Board"
+    primaryAction={<Button>Connect Continuum</Button>}
+  />
+</Playground>
+
+## No icon
+
+<Playground>
+  <EmptyState
+    title="To view this Board"
+    primaryAction={<Button>Connect Continuum</Button>}
+  />
+</Playground>
+
+## API
+
+<PropsTable of={EmptyState} />

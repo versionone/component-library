@@ -1,0 +1,165 @@
+---
+name: TextField
+route: /components/TextField
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import FormField from '../FormField';
+import Label from '../Label';
+import SpacedGroup from '../SpacedGroup';
+import TextField from './';
+import Lozenge from './../Lozenge';
+import { HomeIconIcon } from '../Icons';
+
+# TextField
+
+Used to provide free-form textual input.
+
+## States
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <TextField hintText="Default" stretch />
+    <TextField hintText="Dirty" dirty stretch />
+    <TextField hintText="Disabled" disabled stretch />
+    <TextField hintText="Focused" stretch focused />
+    <TextField hintText="Error" error="invalid value" stretch />
+    <TextField hintText="Multiline" multiline stretch />
+  </SpacedGroup>
+</Playground>
+
+## Multiline
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <TextField hintText="Default" multiline />
+    <TextField hintText="Disabled" multiline disabled />
+    <TextField hintText="Dirty" multiline dirty />
+    <TextField hintText="Error" multiline error="Error" />
+    <TextField hintText="Prepend Icon" multiline prependIcon="item" />
+    <FormField>
+      <Label>with a label</Label>
+      <TextField multiline stretch />
+    </FormField>
+  </SpacedGroup>
+</Playground>
+
+## Prepending/Appending Items
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <TextField prependIcon="item" />
+    <FormField>
+      <Label>with a label</Label>
+      <TextField prependIcon="item" stretch />
+    </FormField>
+    <TextField fullWidth prependIcon="item" />
+    <TextField fullWidth prependIcon={<HomeIconIcon />} />
+    <TextField fullWidth prependIcon="item" multiline />
+    <TextField fullWidth appendIcon="item" />
+    <TextField fullWidth appendIcon={<HomeIconIcon />} />
+    <TextField fullWidth password />
+  </SpacedGroup>
+</Playground>
+
+## Passwords
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <TextField fullWidth password appendIcon={<HomeIconIcon />} />
+    <TextField fullWidth password />
+  </SpacedGroup>
+</Playground>
+
+## Layout
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <FormField>
+      <Label>Label:</Label>
+      <TextField hintText="default" />
+    </FormField>
+    <FormField>
+      <Label>Label:</Label>
+      <TextField hintText="fullWidth" fullWidth />
+    </FormField>
+    <FormField>
+      <Label>Label:</Label>
+      <TextField hintText="stretch" stretch />
+    </FormField>
+  </SpacedGroup>
+</Playground>
+
+## InlineEdit
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <TextField hintText="Default" inlineEdit />
+    <TextField hintText="Disabled" inlineEdit disabled />
+    <TextField hintText="Dirty" inlineEdit dirty />
+    <TextField
+      hintText="Error"
+      inlineEdit
+      error="You really screwed the pooch"
+    />
+    <TextField hintText="Loading" inlineEdit loading />
+    <TextField hintText="Success" inlineEdit success />
+  </SpacedGroup>
+</Playground>
+
+## Stateful
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = { value: '' };
+				this.handleChange = this.handleChange.bind(this);
+				this.handleBlur = this.handleBlur.bind(this);
+				this.handleFocus = this.handleFocus.bind(this);
+			}
+
+    		handleChange(event, value) {
+    			this.setState({ value });
+    		}
+
+    		handleBlur(event) {
+    			this.setState({ value: event.target.value });
+    		}
+
+    		handleFocus() {
+    			console.log('focus');
+    		}
+
+    		componentDidMount() {
+    			this.setState({ value: 'default value on mount...' });
+    		}
+
+    		render() {
+    			return (
+    				<div>
+    					<TextField
+    						focsued
+    						onBlur={this.handleBlur}
+    						onFocus={this.handleFocus}
+    						defaultValue={this.state.value}
+    						hintText="https://example.com"
+    						dirty={false}
+    						fullWidth
+    					/>
+    					<div>{this.state.value}</div>
+    				</div>
+    			)
+    		}
+    	}
+
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## API
+
+<PropsTable of={TextField} />

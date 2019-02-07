@@ -1,0 +1,75 @@
+---
+name: CopyToClipboard
+route: /components/CopyToClipboard
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import CopyToClipboard from './';
+import SpacedGroup from './../SpacedGroup';
+import Button from './../Button';
+import Divider from './../Divider';
+import TextField from '../TextField';
+
+# CopyToClipboard
+
+Allows users to copy text to their clipboard with a single click
+
+## Basic
+
+<Playground>
+{() => {
+	class StateManager extends React.Component {
+		constructor(props, context) {
+			super(props, context);
+			this.state = { text: '' }
+		}
+
+    	updateClipboard(text) {
+    		return () => this.setState({ text })
+    	}
+
+    	render() {
+    		return (
+    			<SpacedGroup direction="vertical">
+    				<SpacedGroup center>
+    					<span>
+    						Clipboard: {this.state.text || ' is empty'}
+    					</span>
+    					<TextField
+    						stretch
+    						hintText="Paste in here to verify!"
+    					/>
+    				</SpacedGroup>
+    				<Divider />
+    				<SpacedGroup>
+    					<CopyToClipboard
+    						text={"SPAN"}
+    						onCopy={this.updateClipboard('SPAN')}
+    					>
+    						<span>Click on me to copy: SPAN</span>
+    					</CopyToClipboard>
+
+    					<CopyToClipboard
+    						text={'BUTTON'}
+    						onCopy={this.updateClipboard('BUTTON')}
+    					>
+    						<Button>Click on me to copy: BUTTON</Button>
+    					</CopyToClipboard>
+    				</SpacedGroup>
+    			</SpacedGroup>
+    		)
+    	}
+    }
+
+    return <StateManager />
+
+}}
+
+</Playground>
+
+## API
+
+### CopyToClipboard
+
+<PropsTable of={CopyToClipboard} />

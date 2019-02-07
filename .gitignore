@@ -13,3 +13,4 @@ packages/components/src/index.js
 
 # Components must live within their own directory. There should not be any loose files in the source directory.
 packages/components/src/*.*
+packages/components/src/Icons

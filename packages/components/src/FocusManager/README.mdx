@@ -1,0 +1,66 @@
+---
+name: FocusManager
+route: /components/FocusManager
+menu: Utilities
+---
+
+import { Fragment } from 'react';
+import { Playground, PropsTable } from 'docz';
+import { FocusManager } from './';
+import Border from '../Border';
+import Button from '../Button';
+import SpacedGroup from '../SpacedGroup';
+import TextField from '../TextField';
+import Lozenge from '../Lozenge';
+
+# FocusManager
+
+Provides a way to group focusable items and navigate between these groups. This is useful for components that "take the focus" to a new location and then "give it back" once complete. See [Drawer](/components/Drawer#focus) for a real-world example.
+
+<SpacedGroup>
+  <Lozenge variant="warning" text="Experimental" />
+</SpacedGroup>
+
+## Defining a Focus Group
+
+A `FocusGroup` is a group of focusable items. It provides the proper event handlers to update focus (onFocus/onBlur), as well as a way to return focus to the previous focus group.
+
+> Remember to use the `FocusManager` as a parent somewhere in the UI tree.
+
+<Playground>
+  <FocusManager>
+    {pop => (
+      <FocusManager.Group>
+        {bind => (
+          <Fragment>
+            Not In Focus Group
+            <TextField {...bind} />
+            <FocusManager.Group>
+              {bind => (
+                <Border>
+                  In Focus Group
+                  <SpacedGroup>
+                    <TextField {...bind} />
+                    <TextField {...bind} />
+                    <TextField {...bind} />
+                    <Button onClick={pop}>Go Back Previous Focus Group</Button>
+                  </SpacedGroup>
+                </Border>
+              )}
+            </FocusManager.Group>
+          </Fragment>
+        )}
+      </FocusManager.Group>
+    )}
+  </FocusManager>
+</Playground>
+
+## API
+
+### FocusManager
+
+<PropsTable of={FocusManager} />
+
+### FocusManager.Group
+
+<PropsTable of={FocusManager.Group} />

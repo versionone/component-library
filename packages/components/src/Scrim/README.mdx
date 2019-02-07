@@ -1,0 +1,44 @@
+---
+name: Scrim
+menu: Data Display
+route: /components/Scrim
+---
+
+import { Playground, PropsTable } from 'docz';
+import Scrim from './';
+import Button from '../Button';
+
+# Scrim
+
+Scrims cover the underlying UI to allow the user to focus on a specific task in the elevated layer.
+
+<Playground>
+{() => {
+	class StateManager extends React.Component {
+		constructor(props, context) {
+			super(props, context);
+			this.state = { isOpen: false };
+			this.toggle = this.toggle.bind(this);
+		}
+
+    	toggle() { this.setState({ isOpen: !this.state.isOpen }) }
+
+    	render() {
+    		return (
+    			<span>
+    				<Button onClick={this.toggle}>{this.state.isOpen ? "Close" : "Open"}</Button>
+    				<Scrim open={this.state.isOpen} onClick={this.toggle} />
+    			</span>
+    		)
+    	}
+    }
+
+    return <StateManager />
+
+}}
+
+</Playground>
+
+## API
+
+<PropsTable of={Scrim} />

@@ -1,0 +1,46 @@
+---
+name: ScrollableContainer
+menu: Data Display
+route: /components/ScrollableContainer
+---
+
+import { Playground, PropsTable } from 'docz';
+import ScrollableContainer from './';
+import Button from '../Button';
+import Border from '../Border';
+
+# ScrollableContainer
+
+ScrollableContainer allow content to be vertically scrollable with a custom scrollbar
+
+<Playground>
+  <Border>
+    <ScrollableContainer height="100px">
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <Button>Anything</Button>
+    </ScrollableContainer>
+  </Border>
+</Playground>
+
+## API
+
+<PropsTable of={ScrollableContainer} />
