@@ -1,8 +1,8 @@
 import * as ButtonTypes from './ButtonTypes';
 import * as variants from './variants';
-import Button from './Button';
+import { Button } from './Button';
+import { IconButton } from './IconButton';
 
-export default Button;
+export { Button, IconButton };
 export const Types = ButtonTypes;
 export { variants };
-export { default as IconButton } from './IconButton';

@@ -185,4 +185,4 @@ IconButton.defaultProps = {
   type: standard,
 };
 
-export default IconButton;
+export { IconButton };

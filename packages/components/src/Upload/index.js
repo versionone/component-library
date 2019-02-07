@@ -8,7 +8,7 @@ import {
   WithTheme,
 } from '../StyleProvider';
 import { DeliveryIcon } from './../Icons';
-import Button from '../Button';
+import { Button } from '../Button';
 import SpacedGroup from './../SpacedGroup';
 
 const Root = createComponent(
