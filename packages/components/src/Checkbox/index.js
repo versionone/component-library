@@ -3,7 +3,7 @@ import React from 'react';
 import MaterialCheckbox from '@material-ui/core/Checkbox';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { StyleProvider, createComponent } from '../StyleProvider';
-import { theme } from '../muiTheme';
+import { theme } from '../defaultTheme/muiTheme';
 
 const Impl = createComponent(
   () => ({

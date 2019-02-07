@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import MaterialRadio from '@material-ui/core/Radio';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { theme } from '../muiTheme';
+import { theme } from '../defaultTheme/muiTheme';
 
 const Radio = props => (
   <MuiThemeProvider theme={theme}>
