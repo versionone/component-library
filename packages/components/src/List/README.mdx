@@ -1,0 +1,427 @@
+---
+name: List
+menu: Data Display
+route: /components/List
+---
+
+import { Playground, PropsTable } from 'docz';
+import List from './';
+import { Switch } from '../Switch';
+import { Avatar } from '../Avatar';
+import { Button } from '../Button';
+import { IconButton } from '../Button';
+import { AdminIcon, DeleteIcon } from '../Icons';
+import SpacedGroup from '../SpacedGroup';
+import Lozenge from '../Lozenge';
+import Link from '../Link';
+
+# List
+
+## Item Selection
+
+<Playground>
+  <List data-test="list-item-selection">
+    <List.Item selected>
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item>
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item selected>
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item>
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+  </List>
+</Playground>
+
+## Supporting Visual
+
+A list item may optionally contain a supporting visual. These are not limited to simply icons, but may also be interactive components. When using an interactive component as the supporting visual, the onClick event of the supporting visual will **not** trigger the `ListItem` primary action (its `onClick` event handler).
+
+<Playground>
+  <List data-test="list-supporting-visual">
+    <List.Item
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </List.Item>
+    <List.Item
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </List.Item>
+    <List.Item
+      supportingVisual={
+        <IconButton
+          icon={AdminIcon}
+          onClick={() => console.log('Supporting visual click')}
+        />
+      }
+      onClick={() => console.log('List.Item click')}
+    >
+      <List.ItemText primary="Action-able (onClick) supporting visual" />
+    </List.Item>
+  </List>
+</Playground>
+
+## Item Actions
+
+List items are clickable; which represents the primary action. Items may also contain a single, ancillary action; a secondary action.
+
+> Clicking a secondary action will **not** trigger the primary action (`onClick` event handler on the `ListItem`).
+
+<Playground>
+  <List data-test="list-item-actions">
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+    >
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </List.Item>
+  </List>
+</Playground>
+
+## Keyboard Navigation
+
+List items with primary actions are focus-able. When a list item is focused, then tabbing will focus the list item's supporting visual and then secondary action. Pressing up/down arrow keys will move the focus to the next list item.
+
+> All list items are focus-able, even if they do not contain a primary action.
+
+<Playground>
+  <List data-test="list-focusable">
+    <List.Item
+      onClick={() => console.log('List.Item 1 click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action 1 click')}>
+          Secondary Action 1
+        </Button>
+      }
+      supportingVisual={
+        <IconButton
+          icon={AdminIcon}
+          onClick={() => console.log('Supporting visual 1 click')}
+        />
+      }
+    >
+      <List.ItemText primary="1" />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item 2 click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action 2 click')}>
+          Secondary Action 2
+        </Button>
+      }
+      supportingVisual={
+        <IconButton
+          icon={AdminIcon}
+          onClick={() => console.log('Supporting visual 2 click')}
+        />
+      }
+    >
+      <List.ItemText primary="2" />
+    </List.Item>
+    <List.Item
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText primary="3 (not focusable)" />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item 4 click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText primary="4" />
+    </List.Item>
+  </List>
+</Playground>
+
+## List Item Content Lines
+
+A `ListItem` may have up to 3 distinct content values; `primary`, `secondary`, `tertiary`. Each value will render on its own line. Content that is too long will be [clamped](/components/Clamp) (to a single line only).
+
+> A list item text's values can contain click event handlers; triggering one will **not** trigger the click event handler on the `ListItem`.
+
+<Playground>
+  <List data-test="list-content-too-long">
+    <List.Item
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Actions
+        </Button>
+      }
+    >
+      <List.ItemText
+        primary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
+        secondary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
+        tertiary="Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text."
+      />
+    </List.Item>
+    <List.Item
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Actions
+        </Button>
+      }
+    >
+      <List.ItemText
+        primary="Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext."
+        secondary="Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext."
+        tertiary="Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext."
+      />
+    </List.Item>
+  </List>
+</Playground>
+
+## Dense Lists
+
+A dense list is suited for Lists with items that contain only a primary action. Do not use a dense list if requiring a secondary action.
+
+<Playground>
+  <List dense>
+    <List.Item onClick={() => console.log('List.Item click')}>
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item onClick={() => console.log('List.Item click')}>
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </List.Item>
+    <List.Item onClick={() => console.log('List.Item click')}>
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText primary="First line of content" />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </List.Item>
+    <List.Item
+      onClick={() => console.log('List.Item click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+        />
+      }
+    >
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </List.Item>
+  </List>
+</Playground>
+
+## Non-Bordered Lists
+
+<Playground>
+  <List noBorder>
+    <List.Item>
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="third line of content"
+      />
+    </List.Item>
+    <List.Item>
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="third line of content"
+      />
+    </List.Item>
+    <List.Item>
+      <List.ItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="third line of content"
+      />
+    </List.Item>
+  </List>
+</Playground>
+
+## API
+
+### List
+
+<PropsTable of={List} />
+
+### List.Item
+
+<PropsTable of={List.Item} />
+
+### List.ItemText
+
+<PropsTable of={List.ItemText} />

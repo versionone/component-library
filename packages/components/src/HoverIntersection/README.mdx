@@ -1,0 +1,59 @@
+---
+name: IntersectionHover
+route: /components/IntersectionHover
+menu: Utilities
+---
+
+import { Component } from 'react';
+import { Playground, PropsTable } from 'docz';
+import SpacedGroup from '../SpacedGroup';
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Hoverable } from '../Hoverable';
+import { HoverIntersection } from './';
+
+# IntersectionHover
+
+Tracks hover state for a component; remove hover state from child intesection regions.
+
+## Basic Example
+
+<Playground>
+  {() => {
+    const ColorDiv = createComponent(
+      ({ hovered }) => ({
+        backgroundColor: hovered ? 'lightblue' : 'white',
+        padding: 10,
+      }),
+      'div',
+      ['onMouseEnter', 'onMouseLeave'],
+    );
+    return (
+      <HoverIntersection>
+        {({ bind, hovered }) => (
+          <StyleProvider>
+            <ColorDiv {...bind} hovered={hovered}>
+              <p>parent div</p>
+              <HoverIntersection.Exclude>
+                {({ bind, hovered }) => (
+                  <ColorDiv {...bind} hovered={hovered}>
+                    child div
+                  </ColorDiv>
+                )}
+              </HoverIntersection.Exclude>
+            </ColorDiv>
+          </StyleProvider>
+        )}
+      </HoverIntersection>
+    );
+  }}
+</Playground>
+
+## API
+
+### IntersectionHover
+
+<PropsTable of={HoverIntersection} />
+
+### IntersectionHover.Exclude
+
+<PropsTable of={HoverIntersection.Exclude} />

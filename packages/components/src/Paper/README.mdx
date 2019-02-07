@@ -1,0 +1,29 @@
+---
+name: Paper
+route: /components/Paper
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import Paper from './';
+import SpacedGroup from '../SpacedGroup';
+
+# Paper
+
+The physical properties of paper are translated to the screen.
+Great for creating depth to the application with the use of shadows.
+
+<Playground>
+  <SpacedGroup direction="vertical" xs={16}>
+    <Paper>
+      <SpacedGroup xs={24}>
+        <span>Content</span>
+      </SpacedGroup>
+    </Paper>
+    <Paper square>square paper</Paper>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Paper} />

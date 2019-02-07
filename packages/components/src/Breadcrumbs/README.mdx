@@ -1,0 +1,112 @@
+---
+name: Breadcrumbs
+route: /components/Breadcrumbs
+menu: Navigation
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Breadcrumb } from './';
+import Link from './../Link';
+import SpacedGroup from '../SpacedGroup';
+import { AdminIcon, HomeIconIcon, ScopeIconIcon, FlagIconIcon } from '../Icons';
+
+# Breadcrumb
+
+Breadcrumb displays the current location within a hierarchy and allows for navigating between layers.
+
+<Playground>
+	<SpacedGroup direction="vertical">
+
+    <Breadcrumb>
+    	<Breadcrumb.Item
+    		icon={HomeIconIcon}
+    		onClick={() => console.log('Home')}
+    	>
+
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item
+    		icon={ScopeIconIcon}
+    	>
+    		<a href="#">Projects</a>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item>
+    		<Link href="#/">Project A</Link>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item icon={FlagIconIcon} selected>
+    		Selected Story
+    	</Breadcrumb.Item>
+    </Breadcrumb>
+
+    <Breadcrumb>
+    	<Breadcrumb.Item
+    		icon={HomeIconIcon}
+    		onClick={() => console.log('Home')}
+    	>
+    		Home
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item collapse>
+    		<a href="#">Projects</a>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item>
+    		<Link href="#/">Project A</Link>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item selected>
+    		Selected Story
+    	</Breadcrumb.Item>
+    </Breadcrumb>
+
+    <Breadcrumb>
+    	<Breadcrumb.Item
+    		icon={HomeIconIcon}
+    		onClick={() => console.log('Home')}
+    	>
+    		Home
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item
+    		icon={ScopeIconIcon}
+    	>
+    		<a href="#">Projects</a>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item>
+    		<Link href="#/">Project A</Link>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item icon={FlagIconIcon} selected>
+    		Selected Story
+    	</Breadcrumb.Item>
+    </Breadcrumb>
+
+    <Breadcrumb separator=">">
+    	<Breadcrumb.Item
+    		icon={HomeIconIcon}
+    		onClick={() => console.log('Home')}
+    	>
+    		Home
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item selected>
+    		<a href="#">Selected anchor</a>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item selected>
+    		<Link href="#/">Selected Link</Link>
+    	</Breadcrumb.Item>
+    	<Breadcrumb.Item selected>
+    		Selected Text
+    	</Breadcrumb.Item>
+    </Breadcrumb>
+
+    </SpacedGroup>
+
+</Playground>
+
+## API
+
+### Breadcrumb
+
+<PropsTable of={Breadcrumb} />
+
+### Breadcrumb.Item
+
+| Property | Type | Required | Default  | Description                                         |
+| :------- | :--- | :------- | :------- | :-------------------------------------------------- |
+| children | Node | false    |          | Link, anchor, or text                               |
+| selected | bool | false    | false    | If true the Breadcrumb item is selected             |
+| onClick  | func | false    | () => {} | Function called when the Breadcrumb item is clicked |

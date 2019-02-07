@@ -1,0 +1,32 @@
+---
+name: Link
+menu: Navigation
+route: /components/Link
+---
+
+import { Playground, PropsTable } from 'docz';
+import Link from './';
+import SpacedGroup from '../SpacedGroup';
+
+# Link
+
+A link navigates the user to a new page or opens a new window
+
+<Playground>
+  <SpacedGroup>
+    <Link href="http://localhost:3000">Basic link</Link>
+    <Link href="http://localhost:3000" disableUnderline>
+      Disabled underline
+    </Link>
+    <Link href="http://localhost:3000" newWindow>
+      Open in new tab or window
+    </Link>
+    <Link href="http://localhost:3000" external>
+      Navigate to external domain
+    </Link>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Link} />

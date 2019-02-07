@@ -1,0 +1,158 @@
+---
+name: Avatar
+route: /components/Avatar
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Avatar } from './';
+import SpacedGroup from './../SpacedGroup';
+import { AdminIcon } from '../Icons';
+
+# Avatar
+
+Avatars are used to indentify a user
+
+## ImageAvatars
+
+<Playground>
+  <SpacedGroup xs={2}>
+    <Avatar
+      size={36}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+    />
+    <Avatar
+      size={36}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      shouldSimulateError={true}
+    />
+    <Avatar
+      size={36}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      shouldSimulateSlowLoad={true}
+    />
+    <Avatar size={36} />
+  </SpacedGroup>
+</Playground>
+
+## LetterAvatar
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <Avatar size={36} title="Walker" />
+    <Avatar size={36} title="Kristen" />
+    <Avatar size={36} title="Susan" />
+  </SpacedGroup>
+</Playground>
+
+## Tooltips
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <Avatar
+      size={36}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      title="Walker"
+      showTooltip
+    />
+    <Avatar size={36} title="Sam" showTooltip />
+  </SpacedGroup>
+</Playground>
+
+## Selection
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <span>These Avatars will get focus and are tabble!</span>
+    <Avatar
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+    />
+    <Avatar
+      onClick={() => console.log('handle letter avatar selection')}
+      title="S"
+    />
+    <Avatar title="S" />
+  </SpacedGroup>
+</Playground>
+
+## Status
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <SpacedGroup direction="vertical" xs={4} center>
+      <Avatar
+        size={72}
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+        onClick={() => console.log('handle avatar selection')}
+        status="online"
+      />
+      <span>Online</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" xs={4} center>
+      <Avatar
+        size={72}
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+        onClick={() => console.log('handle avatar selection')}
+        status="offline"
+      />
+      <span>Offline</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" xs={4} center>
+      <Avatar
+        size={72}
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+        onClick={() => console.log('handle avatar selection')}
+        status="busy"
+      />
+      <span>Busy</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical" xs={4} center>
+      <Avatar
+        size={72}
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+        onClick={() => console.log('handle avatar selection')}
+        status="focus"
+      />
+      <span>Focus</span>
+    </SpacedGroup>
+    <Avatar
+      size={36}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+      status="online"
+    />
+    <Avatar
+      size={28}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+      status="online"
+    />
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Avatar} />

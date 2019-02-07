@@ -1,0 +1,34 @@
+---
+name: Icons
+route: /theme/icons
+menu: Icons
+---
+
+import Tooltip from '@material-ui/core/Tooltip';
+import { Playground, PropsTable } from 'docz';
+import { DeleteIcon } from './';
+import * as AllIcons from './';
+import SpacedGroup from './../SpacedGroup';
+import { Grid, Column } from '../Grid';
+import CopyToClipboard from '../CopyToClipboard';
+
+# Icons
+
+`Icons` are great for conveying complex information in a simple manner.
+Avoid using `Icons` outside of an `IconButton`, `EmptyState`, or `Avatar`
+
+Prior to adding in an icon, make sure the icons file is named the way you want to refer to it
+in React code. For example, below you see the usage of a Delete icon. This icon is named
+`delete.svg`, and the usage of it in React is `<DeleteIcon />`. Add your icon into the directory
+`VersionOne.Web/css/images/svg` and run the build steps `./gulp build:svg` and
+`./gulp build:svg:components`. Once you do you should see it listed below in the set of all icons.
+
+## Basic Usage
+
+<Playground>
+  <DeleteIcon />
+</Playground>
+
+## API
+
+<PropsTable of={AllIcons.DeleteIcon} />

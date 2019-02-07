@@ -1,18 +1,31 @@
 ---
-name: StyleProvider
-menu: Other Components
-route: /components/style-provider
+name: Styling Components
+menu: Styling
+route: /components/styling-components
 ---
 
+import { Fragment } from 'react';
 import { Playground, PropsTable } from '@versionone/docz';
-import { createComponent } from '../StyleContainer';
-import { StyleProvider } from './';
+import {
+  createComponent,
+  StyleProvider,
+  styleUtils,
+  ThemeProvider,
+  WithTheme,
+} from './';
 
-# StyleProvider
+# Creating Style Components
 
-The style provider component powers the styling mechanism behind `StyleContainer`'s `createComponent`. It is required to be a parent in any component tree that needs to leverage `createComponent`.
+These components and functions are the primary way to create custom, theme-enabled, styled components. The main items you will likely use regularly are:
 
-## Example
+- `StyleProvider`
+- `createComponent`
+- `ThemeProvider`
+- `WithTheme`
+
+## StyleProvider
+
+The style provider component powers the styling mechanism behind `StyleContainer`'s `createComponent`. It is **required** to be a **parent** in any component tree that needs to leverage `createComponent`.
 
 <Playground>
   {() => {
@@ -22,17 +35,178 @@ The style provider component powers the styling mechanism behind `StyleContainer
       }),
       'div',
     );
-
     return (
       <StyleProvider>
         <StyledDiv background="cyan">I am cyan</StyledDiv>
       </StyleProvider>
     );
+  }}
+</Playground>
 
+## `createComponent`
+
+This is the how you will create styled components. The benefits of using this is that it will:
+
+1. leverage existing `<StyleProvider>` ([read more](/packages/style-provider))
+2. enable access to the theme used by the library
+3. provide consistent mechanism to style components
+4. provide component styling isolation and insulation from competing global styles
+
+`createComponent` is a **named export** function that **accepts 2 or 3 parameters** and returns a renderable Component. The first parameter is a style rule and the second is the type of element. It will **return a component**. The style rule receives all passed props **and theme**.
+
+<Playground data-test="createComponent">
+  {() => {
+    const styleRule = ({ color, theme }) => ({
+      backgroundColor: color,
+    });
+    const Heading = createComponent(styleRule, 'h3');
+    return (
+      <StyleProvider>
+        <Fragment>
+          <Heading color="rgb(173, 216, 230)">Blue heading</Heading>
+          <Heading color="rgb(144, 238, 144)">Green heading</Heading>
+        </Fragment>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+### Pass-Through Props
+
+`createComponent` returns a new component; meaning that the supplied props are not automatically applied to the underlying element. To pass props through to the underlying element, there is a third parameter that can be leveraged. You can provide an array of prop names to pass through to the underlying component. This is **helpful to pass event handlers** and other data attibutes to render on the underlying element.
+
+<Playground>
+  {() => {
+    const styleRule = props => ({
+      backgroundColor: props.color,
+    });
+    const Heading = createComponent(styleRule, 'h3');
+    const ClickableHeading = createComponent(styleRule, 'h3', ['onClick']);
+    return (
+      <StyleProvider>
+        <Fragment>
+          <h2>Check console for logged click events</h2>
+          <Heading color="lightblue" onClick={console.log}>
+            This header does not pass through onClick prop
+          </Heading>
+          <ClickableHeading color="lightblue" onClick={console.log}>
+            This header **does pass through** onClick prop
+          </ClickableHeading>
+        </Fragment>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+## `styleUtils`
+
+A [caveat](http://fela.js.org/docs/introduction/Caveats.html) with using Fela is that it is advised to **not use shorthand** CSS properties and instead **favor longhand** properties. To ease some of the burden of tying out longhand properties, there are a set of exported functions as `utils`. See the `styleUtils.js` source for more information on available style utility functions.
+
+<Playground>
+  {() => {
+    const styleRule = ({ color, hasMargins }) => ({
+      backgroundColor: color,
+      ...styleUtils.padding('1rem'),
+      ...styleUtils.conditionalStyles(hasMargins, styleUtils.margin('1rem')),
+    });
+    const Heading = createComponent(styleRule, 'h3');
+    return (
+      <StyleProvider>
+        <Fragment>
+          <Heading color="lightblue">
+            This has a custom padding and no margins
+          </Heading>
+          <Heading hasMargins color="lightblue">
+            This has a custom padding and has margins
+          </Heading>
+        </Fragment>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+## `ThemeProvider` Component
+
+Inject a theme to be merged into the current context's theme for a sub-tree of components. Accepted theme prop is a function receiving the current theme and returns the portions of the theme to be updated.
+
+> It is not required to spread the old theme into the returned theme.
+
+<Playground>
+  {() => {
+    const blueTheme = () => ({
+      backgroundColor: 'blue',
+      color: 'white',
+    });
+    const greenTheme = (ctxTheme) => ({
+      backgroundColor: 'green'
+    });
+    const styleRule = ({theme}) => ({
+      backgroundColor: theme.backgroundColor,
+      color: theme.color,
+    });
+    const Heading = createComponent(styleRule, 'h3');
+    return (
+      <StyleProvider>
+        <ThemeProvider theme={blueTheme}>
+          <Heading>I use the blueTheme</Heading>
+          <ThemeProvider theme={greenTheme}>
+            <Heading>I use the greenTheme</Heading>
+          </ThemeProvider>
+        </ThemeProvider>
+      </StyleProvider>
+    );
 }}
 
 </Playground>
 
+## `WithTheme` Component
+
+Provides internals of a component access to the the theme outside of the `createComponent` mechanism.
+
+<Playground>
+  {() => {
+    const theme  = {
+      backgroundColor: 'darkgreen',
+      color: 'white'
+    };
+    const styleRule = (props) => ({
+      backgroundColor: props.theme.backgroundColor,
+      color: props.theme.color,
+    });
+    const ThemedHeading = createComponent(styleRule, 'h3');
+    return (
+      <StyleProvider>
+        <ThemeProvider theme={theme}>
+          <WithTheme>
+            {theme => <ThemedHeading theme={theme}>I am themed to have a darkgreen background</ThemedHeading>}
+          </WithTheme>
+        </ThemeProvider>
+      </StyleProvider>
+    );
+}}
+
+</Playground>
+
+## `WithRenderer` Component
+
+Provides a component access to the underlying Fela renderer.
+
+```js
+import { WithRenderer } from '@versionone/components/StyleContainer';
+
+const MyComponent = props => (
+  <WithRenderer>
+    {renderer => <span>I have access to the renderer</span>}
+  </WithRenderer>
+);
+```
+
 ## API
 
+### StyleProvider
+
 <PropsTable of={StyleProvider} />
+
+### ThemeProvider
+
+<PropsTable of={ThemeProvider} />

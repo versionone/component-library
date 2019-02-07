@@ -1,0 +1,25 @@
+---
+name: Label
+menu: Data Entry
+route: /components/Label
+---
+
+import { Playground, PropsTable } from 'docz';
+import Label from './';
+import SpacedGroup from '../SpacedGroup';
+
+# Label
+
+A label used to identify a form field. Use within a [FormField](/components/FormField) in conjection with a field.
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <Label>basic label</Label>
+    <Label required>required label</Label>
+    <Label disabled>disabled label</Label>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Label} />

@@ -1,0 +1,328 @@
+---
+name: Accordion
+route: /components/Accordion
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import Accordion, { StatefulAccordion, BasicHeader } from './';
+import SpacedGroup from './../SpacedGroup';
+import { Button } from './../Button';
+
+# Accordion
+
+Content area that can be collapsed and expanded.
+
+## Controlled
+
+<Playground>
+		{() => {
+			class StateManager extends React.Component {
+				constructor(props, context) {
+					super(props, context);
+					this.state = {
+						isOpenByIndex: {
+							0: true,
+							1: false,
+						},
+						canExpandAll: true,
+					}
+					this.toggle = this.toggle.bind(this);
+					this.toggleAll = this.toggleAll.bind(this);
+				}
+
+    			toggle(index) {
+    				const newOpenState = Object.assign({}, this.state.isOpenByIndex, {
+    					[index]: !this.state.isOpenByIndex[index],
+    				});
+
+    				const anyClosed = Object.values(newOpenState).some(isOpen => !isOpen);
+
+    				this.setState({
+    					isOpenByIndex: newOpenState,
+    					canExpandAll: anyClosed,
+    				});
+    			}
+
+    			toggleAll() {
+    				const willExpandAll = this.state.canExpandAll;
+
+    				if (willExpandAll) {
+    					const allOpen = Object.keys(this.state.isOpenByIndex).reduce((acc, panelId) => {
+    						return Object.assign({}, acc, {
+    							[panelId]: true,
+    						})
+    					}, {});
+
+    					this.setState({
+    						isOpenByIndex: allOpen,
+    						canExpandAll: false,
+    					});
+    				} else {
+    					const allClosed = Object.keys(this.state.isOpenByIndex).reduce((acc, panelId) => {
+    						return Object.assign({}, acc, {
+    							[panelId]: false,
+    						})
+    					}, {});
+
+    					this.setState({
+    						isOpenByIndex: allClosed,
+    						canExpandAll: true,
+    					})
+    				}
+    			}
+
+    			render() {
+    				const toggleAllButton = (
+    					<Button onClick={this.toggleAll}>
+    						{this.state.canExpandAll ? 'Expand All' : 'Collapse All'}
+    					</Button>
+    				)
+    				return (
+    					<SpacedGroup direction="vertical">
+    						{toggleAllButton}
+    						<Accordion data-test="Accordion-controlled" onSelect={this.toggle}>
+    							<Accordion.Item open={this.state.isOpenByIndex[0]}>
+    								<Accordion.Header data-test="Accordion-Header-1">
+    									<BasicHeader title="Title 1" />
+    								</Accordion.Header>
+    								<Accordion.Panel>
+    									Content of the panel 1.
+    								</Accordion.Panel>
+    							</Accordion.Item>
+    							<Accordion.Item open={this.state.isOpenByIndex[1]}>
+    								<Accordion.Header data-test="Accordion-Header-2">
+    									<BasicHeader title="Title 2" />
+    								</Accordion.Header>
+    								<Accordion.Panel>
+    									Content of the panel 2.
+    								</Accordion.Panel>
+    							</Accordion.Item>
+    						</Accordion>
+    					</SpacedGroup>
+    				)
+    			}
+    		}
+    		return <StateManager />
+    	}}
+
+</Playground>
+
+## Basic
+
+<Playground>
+  <StatefulAccordion data-test="Accordion-default">
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        {({ arrow }) => {
+          return <SpacedGroup center>{arrow} Title 1</SpacedGroup>;
+        }}
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Many Expandable
+
+<Playground>
+  <StatefulAccordion manyExpandable={true} data-test="Accordion-manyexpandable">
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## All Collapsable
+
+<Playground>
+  <StatefulAccordion allCollapsable={true} data-test="Accordion-allcollapsable">
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Disable Border
+
+<Playground>
+  <StatefulAccordion disableBorder={true}>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Disabled Header
+
+<Playground>
+  <StatefulAccordion>
+    <Accordion.Item disabled>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item disabled>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Disable Dividers
+
+<Playground>
+  <StatefulAccordion disableDividers={true}>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Status
+
+<Playground>
+  <StatefulAccordion>
+    <Accordion.Item status="success">
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item status="failure">
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>
+        <StatefulAccordion>
+          <Accordion.Item status="success">
+            <Accordion.Header data-test="Accordion-Header-1">
+              <BasicHeader title="Title 1" />
+            </Accordion.Header>
+            <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+          </Accordion.Item>
+          <Accordion.Item status="failure">
+            <Accordion.Header data-test="Accordion-Header-2">
+              <BasicHeader title="Title 2" />
+            </Accordion.Header>
+            <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+          </Accordion.Item>
+        </StatefulAccordion>
+      </Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Disable Panel Padding
+
+<Playground>
+  <StatefulAccordion>
+    <Accordion.Item disablePadding>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item disablePadding>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
+
+## Long
+
+<Playground>
+	{() => {
+		const items = Array.from(Array(5).keys()).map(index => {
+			const title = "Title " + index;
+			const content = "Content of Panel " + index;
+			return (
+				<Accordion.Item key={index}>
+					<Accordion.Header>
+						<BasicHeader title={title} />
+					</Accordion.Header>
+					<Accordion.Panel>
+						{content}
+					</Accordion.Panel>
+				</Accordion.Item>
+			)
+		});
+
+    	return (
+    		<StatefulAccordion>
+    			{items}
+    		</StatefulAccordion>
+    	)
+    }}
+
+</Playground>
+
+## API
+
+### StatfulAccordion (Uncontrolled)
+
+<PropsTable of={StatefulAccordion} />
+
+### Accordion (Controlled)
+
+<PropsTable of={Accordion} />
+
+### Accordion.Item
+
+<PropsTable of={Accordion.Item} />
+
+### Accordion.Header
+
+<PropsTable of={Accordion.Header} />
+
+### Accordion.Panel
+
+<PropsTable of={Accordion.Panel} />

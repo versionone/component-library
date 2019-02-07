@@ -98,8 +98,12 @@ const PropsTable = ({ of, components }) => {
 };
 PropsTable.propTypes = {
   of: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.object),
-    PropTypes.object,
+    PropTypes.shape({
+      __docgenInfo: PropTypes.shape({
+        props: PropTypes.object.isRequired,
+      }).isRequired,
+    }).isRequired,
+    PropTypes.func.isRequired,
   ]),
   // eslint-disable-next-line react/forbid-prop-types
   components: PropTypes.object,

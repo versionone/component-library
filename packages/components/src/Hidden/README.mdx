@@ -1,0 +1,33 @@
+---
+name: Hidden
+route: /components/Hidden
+menu: Utilities
+---
+
+import { Playground, PropsTable } from 'docz';
+import { VisuallyHidden, HiddenFromScreenReaders } from './';
+
+# Hidden
+
+Either visually hide content from the screen, but keep it accessible for screen readers or hide content from screen readers, but show it visually.
+
+## Visually Hiding Content
+
+A common example of when to visually hide content is the `IconButton`'s title text. The meaning of an `IconButton` is not displayed on the screen, but provides easier navigation by screen readers than simply the `Icon`.
+
+<Playground>
+  View the hidden content in the developer tools.
+  <VisuallyHidden>
+    I am hidden from view, but not from screen readers
+  </VisuallyHidden>
+</Playground>
+
+## Hiding from Screen readers
+
+A common example of when to hide content from screen readers are `Icon`s within `IconButton`s.
+
+<Playground>
+  <HiddenFromScreenReaders>
+    I am hidden from screen readers, but not from the screen.
+  </HiddenFromScreenReaders>
+</Playground>

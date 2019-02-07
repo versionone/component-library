@@ -1,0 +1,66 @@
+---
+name: Tag
+route: /components/Tag
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import Tag from './';
+import SpacedGroup from '../SpacedGroup';
+import { Avatar } from '../Avatar';
+
+# Tag
+
+Lifecycle Tags are used for arbitary labeling, however in Continuum Tags are used a mechanism to secure access to entities.
+
+### Comparisions
+
+| Component                      | Purpose / Use Case         |
+| :----------------------------- | :------------------------- |
+| [Lozenge](/components/Lozenge) | Highlight an item's status |
+| [Badge](/components/Badge)     | Counts and tallies         |
+| [Tag](/components/Tag)         | Visually label items       |
+
+<Playground>
+  <SpacedGroup>
+    <Tag href="http://tagDetails">Link</Tag>
+    <Tag>No Link</Tag>
+    <Tag href="http://tagDetails" clamped>
+      Link too long to deal with so clamp the text with
+    </Tag>
+    <Tag clamped>Tag too long to deal with so clamp the text with</Tag>
+    <Tag
+      onDismiss={() => {
+        console.log('dismissed');
+      }}
+    >
+      Dismissable Tag
+    </Tag>
+    <Tag
+      href="http://tagDetails"
+      onDismiss={() => {
+        console.log('dismissed');
+      }}
+    >
+      Dismissable Link
+    </Tag>
+    <Tag
+      href="http://tagDetails"
+      clamped
+      onDismiss={() => {
+        console.log('dismissed');
+      }}
+    >
+      Dismissable Link too long to deal with so clamp the text with
+    </Tag>
+    <Tag>
+      Not clamped, but this tag is too long to be meaningful. In the case we
+      don't clamp a long we will see if this thing wraps to the next line or
+      just breaks. Good luck
+    </Tag>
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Tag} />

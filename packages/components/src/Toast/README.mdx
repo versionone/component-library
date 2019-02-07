@@ -1,0 +1,44 @@
+---
+name: Toast
+route: /components/Toast
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import Toast from './';
+import SpacedGroup from './../SpacedGroup';
+import { Button, IconButton } from './../Button';
+import { CloseIcon } from '../Icons';
+
+# Toast
+
+Inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <Toast
+      variant="error"
+      message="The message service has stopped working"
+      action={<IconButton icon={CloseIcon} title="dismiss" />}
+    />
+    <Toast
+      variant="warning"
+      message="This page may be stale"
+      action={<Button>Refresh</Button>}
+    />
+    <Toast
+      variant="info"
+      message="365 messages deleted"
+      action={<Button>Learn More</Button>}
+    />
+    <Toast
+      variant="success"
+      message="Pipeline 1234 was successful"
+      action={null}
+    />
+  </SpacedGroup>
+</Playground>
+
+## API
+
+<PropsTable of={Toast} />

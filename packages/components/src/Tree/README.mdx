@@ -1,0 +1,69 @@
+---
+name: Tree
+route: /components/Tree
+menu: Data Display
+---
+
+import { Playground, PropsTable } from 'docz';
+import Tree from './';
+import { Fragment } from 'react';
+
+# Tree
+
+Best for showing hierchial data.
+
+<Playground>
+  <Tree
+    expanded
+    title="System All Projects"
+    handleSelection={() => console.log('System All Projects')}
+    handleExpand={() => console.log('Toggle expansion')}
+  >
+    <Tree
+      expanded
+      title="Project A.A"
+      handleSelection={() => console.log('Project A.A')}
+    />
+    <Tree
+      expanded
+      title="Project A.B"
+      handleSelection={() => console.log('Project A.B')}
+    />
+    <Tree
+      expanded
+      selected
+      title="Project A.C"
+      handleSelection={() => console.log('Project A.C')}
+    >
+      <Tree
+        selected
+        title="Project A.C.A"
+        handleSelection={() => console.log('Project A.C.A')}
+      />
+      <Tree
+        selected
+        title="Project A.C.B"
+        handleSelection={() => console.log('Project A.C.B')}
+      />
+      <Tree
+        selected
+        title="Project A.C.C"
+        handleSelection={() => console.log('Project A.C.C')}
+      />
+    </Tree>
+    <Tree
+      expanded
+      title="Project A.D"
+      handleSelection={() => console.log('Project A.D')}
+    />
+    <Tree
+      expanded
+      title="Project A.E"
+      handleSelection={() => console.log('Project A.E')}
+    />
+  </Tree>
+</Playground>
+
+## API
+
+<PropsTable of={Tree} />

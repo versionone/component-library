@@ -7,7 +7,9 @@ import React, {
 } from 'react';
 import { Provider as FelaProvider } from 'react-fela';
 import createRenderer from './createRenderer';
-import { mergeThemes, ThemeProvider, WithTheme } from '../StyleContainer';
+import mergeThemes from './mergeThemes';
+import { ThemeProvider, WithTheme } from './ThemeProvider';
+import { defaultTheme } from '../defaultTheme';
 
 let singletonRenderer;
 const getRenderer = ({ dev, renderer }) => {
@@ -21,14 +23,14 @@ const getRenderer = ({ dev, renderer }) => {
 };
 class StyleProvider extends Component {
   render() {
-    const { dev, children, renderer, theme, ...rest } = this.props;
+    const { dev, children, renderer, ...rest } = this.props;
     const providerRenderer = getRenderer({ dev, renderer });
     const child = Children.only(children);
     return (
       <FelaProvider renderer={providerRenderer}>
         <WithTheme>
           {(ctxTheme = () => {}) => (
-            <ThemeProvider theme={mergeThemes(theme, ctxTheme)}>
+            <ThemeProvider theme={mergeThemes(defaultTheme, ctxTheme)}>
               {isValidElement(child) ? cloneElement(child, { ...rest }) : child}
             </ThemeProvider>
           )}
@@ -51,13 +53,9 @@ StyleProvider.propTypes = {
    */
   // eslint-disable-next-line react/forbid-prop-types
   renderer: PropTypes.object,
-  /** Localized theme for a component found in this library. Enables co-locating theme data with each component. */
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
 };
 StyleProvider.defaultProps = {
   dev: false,
-  theme: {},
 };
 
 export default StyleProvider;

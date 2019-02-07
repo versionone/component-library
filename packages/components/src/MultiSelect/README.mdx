@@ -1,0 +1,352 @@
+---
+name: MultiSelect
+route: /components/MultiSelect
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import { Fragment } from 'react';
+import MultiSelect from './';
+import SpacedGroup from './../SpacedGroup';
+import Divider from '../Divider';
+import { Chip } from '../Chip';
+import { Avatar } from '../Avatar';
+import List from '../List';
+import { Border } from '../Border';
+import Paper from '../Paper';
+import Label from '../Label';
+import FormField from '../FormField';
+import Tag from '../Tag';
+import items from './demoState';
+
+# MultiSelect
+
+Use a `MultiSelect` when selecting a zero or more values from a larger set of values; where it is not nececssary to show all values immediately.
+
+To learn more about how to handle rendering the options, the selection head to the API below
+
+## States
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <MultiSelect fullWidth hintText="Default" multi />
+    <MultiSelect fullWidth disabled hintText="Disabled" multi />
+    <MultiSelect fullWidth dirty hintText="Dirty" multi />
+    <MultiSelect fullWidth focused hintText="Focused" multi />
+    <MultiSelect fullWidth error="snikes" hintText="Error" multi />
+  </SpacedGroup>
+</Playground>
+
+## MultiSelect
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = {
+					items,
+					selectedItems: [1, 2],
+				};
+				this.handleRemove = this.handleRemove.bind(this);
+				this.handleSelect = this.handleSelect.bind(this);
+				this.handleClear = this.handleClear.bind(this);
+			}
+
+    		handleClear() {
+    			this.setState({ selectedItems: [] });
+    		}
+
+    		handleRemove(id) {
+    			this.setState({
+    				selectedItems: this.state.selectedItems.filter(x => x !== id)
+    			})
+    		}
+
+    		handleSelect(id) {
+    			this.setState({
+    				selectedItems: [...this.state.selectedItems, id]
+    			})
+    		}
+
+    		render() {
+    			const renderOptions = ({ getItemProps }) => {
+    				const group = Object.keys(this.state.items).map((id, index) => {
+    					const item = this.state.items[id];
+    					const itemProps = getItemProps({ item, index });
+    					return (
+    						<List.Item
+    							key={id}
+    							{...itemProps}
+    							selected={itemProps.isSelected || itemProps.isActive}
+    							icon={<Avatar size={36} src={item.href} />}
+    						>
+    							<List.ItemText primary={item.value} secondary={item.email} />
+    						</List.Item>
+    					)
+    				})
+
+    				return (
+    					<Paper>
+    						<Border>
+    							<div>Full control heading</div>
+    							<Divider heavy />
+    							<List bordered>
+    								{group}
+    							</List>
+    						</Border>
+    					</Paper>
+    				)
+    			}
+
+    			const renderSelection = ({ removeItem }) => {
+    				return this.state.selectedItems.map(id => {
+    					const item = this.state.items[id];
+    					return (
+    						<Chip
+    							key={id}
+    							id={id}
+    							avatar={<Avatar src={item.href} />}
+    							onDismiss={() => removeItem(id)}
+    						>
+    							{item.value}
+    						</Chip>
+    					)
+    				});
+    			}
+
+    			return (
+    				<div>
+    					<MultiSelect
+    						stretch
+    						hintText="Select your team members"
+    						clearable
+    						onClear={this.handleClear}
+    						onSelect={this.handleSelect}
+    						onRemove={this.handleRemove}
+    						selectedItems={this.state.selectedItems}
+    						renderSelection={renderSelection}
+    						renderOptions={renderOptions}
+    					/>
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    					<br />
+    				</div>
+    			)
+    		}
+    	}
+
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## Creatable
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = {
+					items,
+					selectedItems: [],
+				}
+				this.handleRemove = this.handleRemove.bind(this);
+				this.handleSelect = this.handleSelect.bind(this);
+				this.handleCreate = this.handleCreate.bind(this);
+			}
+
+    		handleCreate(item) {
+    			this.setState({
+    				items: Object.assign({}, this.state.items, {
+    					[item.id]: item,
+    				}),
+    				selectedItems: [
+    					...this.state.selectedItems,
+    					item.id,
+    				]
+    			});
+    		}
+
+    		handleRemove(id) {
+    			this.setState({
+    				selectedItems: this.state.selectedItems.filter(x => x !== id)
+    			})
+    		}
+
+    		handleSelect(id) {
+    			this.setState({
+    				selectedItems: [...this.state.selectedItems, id]
+    			})
+    		}
+
+    		render() {
+    			const renderOptions = ({ getItemProps }) => {
+    				const group = Object.keys(this.state.items).map((id, index) => {
+    					const item = this.state.items[id];
+    					const itemProps = getItemProps({ item, index });
+    					return (
+    						<List.Item
+    							key={id}
+    							id={itemProps.id}
+    							role={itemProps.role}
+    							aria-selected={itemProps['aria-selected']}
+    							selected={itemProps.isSelected || itemProps.isActive}
+    							icon={<Avatar size={36} src={item.href} />}
+    							onClick={itemProps.onClick}
+    						>
+    							<List.ItemText primary={item.value} secondary={item.email} />
+    						</List.Item>
+    					)
+    				})
+
+    				return (
+    					<Paper>
+    						<Border>
+    							<div>Full control heading</div>
+    							<Divider heavy />
+    							<List bordered>
+    								{group}
+    							</List>
+    						</Border>
+    					</Paper>
+    				)
+    			}
+
+    			const renderSelection = ({ removeItem }) => {
+    				return this.state.selectedItems.map(id => {
+    					const item = this.state.items[id];
+    					return (
+    						<Chip
+    							id={id}
+    							avatar={<Avatar src={item.href} />}
+    							onDismiss={removeItem}
+    						>
+    							{item.value}
+    						</Chip>
+    					)
+    				});
+    			}
+
+    			return (
+    				<MultiSelect
+    					fullWidth
+    					hintText="When you're done typing click enter"
+    					onSelect={this.handleSelect}
+    					onRemove={this.handleRemove}
+    					onCreate={this.handleCreate}
+    					selectedItems={this.state.selectedItems}
+    					renderOptions={renderOptions}
+    					renderSelection={renderSelection}
+    				/>
+    			)
+    		}
+    	}
+
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## Layout
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <FormField center>
+      <Label>My Label</Label>
+      <MultiSelect hintText="Default" />
+    </FormField>
+    <FormField center>
+      <Label>My Label</Label>
+      <MultiSelect hintText="fullWidth" fullWidth />
+    </FormField>
+    <FormField center>
+      <Label>My Label</Label>
+      <MultiSelect hintText="stretch" stretch />
+    </FormField>
+  </SpacedGroup>
+</Playground>
+
+## Inline Edit
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <MultiSelect fullWidth inlineEdit hintText="Default" />
+    <MultiSelect fullWidth inlineEdit disabled hintText="Disabled" />
+    <MultiSelect fullWidth inlineEdit dirty hintText="Dirty" />
+    <MultiSelect fullWidth inlineEdit error="snikes" hintText="Error" />
+    <MultiSelect fullWidth inlineEdit loading hintText="Loading" />
+    <MultiSelect fullWidth inlineEdit success hintText="Success" />
+  </SpacedGroup>
+</Playground>
+
+## API
+
+The MultiSelect tracks its `selectedItems` as an array of ids.
+
+<Divider />
+
+### Render options
+
+When rendering options in the list use the `({ getItemProps }) => {}` render prop. `getItemProps` is a function to help make your items smarter without imposing UI.
+Provide `getItemProps` with the `id` and the `index` of each item and it will return props that can be appliedto your List.Item UI.
+
+```
+const options = [] // manage your own list of items
+const renderOptions = ({ getItemProps }) => {
+	options.map((option, index) => {
+		const itemProps = getItemProps({ option.id, index });
+		// render my Item using itemProps
+	})
+}
+```
+
+```
+// Given an id and an index I can get back item props
+// These should be applied to each option
+const itemProps = getItemProps({ id, index });
+itemProps.onClick          // add/remove item on click
+itemProps['aria-selected'] //aria labels for accesibility
+itemProps.id               // id of the underlying DOM used for accesibility
+itemProps.Selected         // If true the item is selected
+itemProps.isActive         // If true the item is highlighted by keypress of up/down arrows
+```
+
+<Divider />
+
+### Render Selection
+
+When rendering the selected items use the `({ removeItem }) => {}` render prop.
+
+```
+const renderSelection = ({ removeItem }) => {
+	selectedItems.map(item => {
+
+		// apply the removeItem prop as a click handler, etc to your UI
+	})
+}
+```
+
+<PropsTable of={MultiSelect} />

@@ -5,6 +5,7 @@ export default {
   description: pkg.description,
   title: 'Component Library',
   plugins: [netlify()],
+  codeSandbox: false,
   menu: [
     {
       name: 'Getting Started',
@@ -17,11 +18,10 @@ export default {
       ],
     },
     {
-      name: 'Layout',
+      name: 'Styling',
     },
     {
-      name: 'Other Components',
-      menu: ['StyleProvider', 'StyleContainer'],
+      name: 'Layout',
     },
   ],
   modifyBundlerConfig: config => ({
@@ -48,6 +48,7 @@ export default {
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
+      '@babel/plugin-proposal-class-properties',
       'babel-plugin-dev-expression',
       [
         '@versionone/babel-plugin-react-docgen',

@@ -1,0 +1,56 @@
+---
+name: Lozenge
+menu: Data Display
+route: /components/Lozenge
+---
+
+import { Playground, PropsTable } from 'docz';
+import Lozenge from './';
+import { Grid, Column } from '../Grid';
+import SpacedGroup from '../SpacedGroup';
+
+# Lozenge
+
+Use lozenges to highlight an item's status so it can be recognized quickly
+
+### Comparisions
+
+| Component                      | Purpose / Use Case         |
+| :----------------------------- | :------------------------- |
+| [Lozenge](/components/Lozenge) | Highlight an item's status |
+| [Badge](/components/Badge)     | Counts and tallies         |
+| [Tag](/components/Tag)         | Visually label items       |
+
+<Playground>
+  <Grid>
+    <Column xs={3} />
+    <Column xs={3}>
+      <SpacedGroup direction="vertical">
+        <Lozenge text="Default" variant="info" bold />
+        <Lozenge text="Warning" variant="warning" bold />
+        <Lozenge text="Error" variant="error" bold />
+        <Lozenge
+          text="Success Super Duper Long Text. Please Wrap at some point"
+          variant="success"
+          bold
+        />
+      </SpacedGroup>
+    </Column>
+    <Column xs={3}>
+      <SpacedGroup direction="vertical">
+        <Lozenge text="Default" variant="info" />
+        <Lozenge text="Warning" variant="warning" />
+        <Lozenge text="Error" variant="error" />
+        <Lozenge
+          text="Succes Super Duper Long Text. Please Wrap at some point"
+          variant="success"
+        />
+      </SpacedGroup>
+    </Column>
+    <Column xs={3} />
+  </Grid>
+</Playground>
+
+## API
+
+<PropsTable of={Lozenge} />

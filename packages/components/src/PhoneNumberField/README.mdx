@@ -1,0 +1,117 @@
+---
+name: PhoneNumberField
+route: /components/PhoneNumberField
+menu: Data Entry
+---
+
+import { Playground, PropsTable } from 'docz';
+import FormField from '../FormField';
+import Label from '../Label';
+import SpacedGroup from '../SpacedGroup';
+import PhoneNumberField from './';
+import { HomeIconIcon } from '../Icons';
+
+# PhoneNumberField
+
+Used to provide a phone number. Uses a number keypad on mobile devices and restricts keyboard input to
+`Space`, `Backspace`, `Shift`, `Left`, `Right`, `Up`, `Down`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `0`, `+`, `-`
+
+## States
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <PhoneNumberField hintText="Default" stretch />
+    <PhoneNumberField hintText="Dirty" dirty stretch />
+    <PhoneNumberField hintText="Disabled" disabled stretch />
+    <PhoneNumberField hintText="Focused" stretch focused />
+    <PhoneNumberField hintText="Error" error="invalid value" stretch />
+  </SpacedGroup>
+</Playground>
+
+## Prepending/Appending Items
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <PhoneNumberField prependIcon="item" />
+    <FormField>
+      <Label>with a label</Label>
+      <PhoneNumberField prependIcon="item" stretch />
+    </FormField>
+    <PhoneNumberField fullWidth prependIcon="item" />
+    <PhoneNumberField fullWidth prependIcon={<HomeIconIcon />} />
+    <PhoneNumberField fullWidth prependIcon="item" multiline />
+    <PhoneNumberField fullWidth appendIcon="item" />
+    <PhoneNumberField fullWidth appendIcon={<HomeIconIcon />} />
+  </SpacedGroup>
+</Playground>
+
+## Layout
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <FormField>
+      <Label>Label:</Label>
+      <PhoneNumberField hintText="default" />
+    </FormField>
+    <FormField>
+      <Label>Label:</Label>
+      <PhoneNumberField hintText="fullWidth" fullWidth />
+    </FormField>
+    <FormField>
+      <Label>Label:</Label>
+      <PhoneNumberField hintText="stretch" stretch />
+    </FormField>
+  </SpacedGroup>
+</Playground>
+
+## InlineEdit
+
+<Playground>
+  <SpacedGroup direction="vertical">
+    <PhoneNumberField hintText="Default" inlineEdit />
+    <PhoneNumberField hintText="Disabled" inlineEdit disabled />
+    <PhoneNumberField hintText="Dirty" inlineEdit dirty />
+    <PhoneNumberField
+      hintText="Error"
+      inlineEdit
+      error="You really screwed the pooch"
+    />
+    <PhoneNumberField hintText="Loading" inlineEdit loading />
+    <PhoneNumberField hintText="Success" inlineEdit success />
+  </SpacedGroup>
+</Playground>
+
+## Stateful
+
+<Playground>
+	{() => {
+		class StateManager extends React.Component {
+			constructor(props, context) {
+				super(props, context);
+				this.state = { value: '' };
+				this.handleChange = this.handleChange.bind(this);
+			}
+
+    		handleChange(event, value) {
+    			this.setState({ value });
+    		}
+
+    		render() {
+    			return (
+    				<PhoneNumberField
+    					focsued
+    					value={this.state.value}
+    					onChange={this.handleChange}
+    				/>
+    			)
+    		}
+    	}
+
+    	return <StateManager />
+    }}
+
+</Playground>
+
+## API
+
+<PropsTable of={PhoneNumberField} />

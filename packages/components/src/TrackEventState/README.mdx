@@ -1,0 +1,62 @@
+---
+name: TrackEventState
+route: /components/TrackEventState
+menu: Utilities
+---
+
+import { Component, createRef } from 'react';
+import { Playground, PropsTable } from 'docz';
+import SpacedGroup from '../SpacedGroup';
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { TrackEventState } from './';
+
+# TrackEventState
+
+Sometimes it is helpful to track "on" or "off" state that is triggered via events. Tracking focus (is focused or is not focused) and hover state are two examples. This provides a consistent way to manage event on/off state. This is the underlying implementation for [Focusable](/components/Focusable) and [Hoverable](/components/Hoverable).
+
+## Using to Track Focused State
+
+<Playground>
+  {() => {
+    const StyledInput = createComponent(
+      ({ focused }) => ({
+        backgroundColor: focused ? 'lightblue' : 'white',
+      }),
+      'input',
+      ['onBlur', 'onFocus', 'type'],
+    );
+    class TextInput extends Component {
+      render() {
+        const { focused } = this.props;
+        return (
+          <TrackEventState
+            eventState={focused}
+            on="onFocus"
+            off="onBlur"
+            triggerOn={el => el.focus()}
+            triggerOff={el => el.blur()}
+          >
+            {({ bind, eventState, ref }) => {
+              return (
+                <StyledInput {...bind} focused={eventState} innerRef={ref} />
+              );
+            }}
+          </TrackEventState>
+        );
+      }
+    }
+    return (
+      <StyleProvider>
+        <SpacedGroup direction="vertical">
+          <TextInput focused />
+          <TextInput />
+          <TextInput />
+        </SpacedGroup>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+## API
+
+<PropsTable of={TrackEventState} />
