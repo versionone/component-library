@@ -152,7 +152,7 @@ IconSwitch.propTypes = {
   /**
    * Attribute used to track user interaction
    */
-  'data-trackingid': PropTypes.string,
+  'data-trackingid': PropTypes.string.isRequired,
 };
 
 IconSwitch.defaultProps = {

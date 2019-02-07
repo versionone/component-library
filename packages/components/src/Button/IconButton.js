@@ -171,7 +171,7 @@ IconButton.propTypes = {
   /**
    * Attribute used to track user interaction
    */
-  'data-trackingid': PropTypes.string,
+  'data-trackingid': PropTypes.string.isRequired,
 };
 IconButton.defaultProps = {
   disabled: false,
