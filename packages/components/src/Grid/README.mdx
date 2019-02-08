@@ -5,7 +5,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Grid, Column } from './';
+import { Grid } from './';
 import { Paper } from '../Paper';
 import { Lozenge } from '../Lozenge';
 import { SpacedGroup } from './../SpacedGroup';
@@ -17,23 +17,14 @@ import { SpacedGroup } from './../SpacedGroup';
 Provides a consistent way to layout components.
 
 <SpacedGroup>
-  <Lozenge variant="info" text="Material-UI" />
+  <Lozenge bold variant="error" text="deprecated" />
 </SpacedGroup>
 
+Provides a consistent way to layout components.
+
 <Playground>
-  <Grid spacing={8}>
-    <Column xs={12}>
-      <Paper>xs-12</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
+  <Grid>
+    <Paper>xs-12</Paper>
   </Grid>
 </Playground>
 

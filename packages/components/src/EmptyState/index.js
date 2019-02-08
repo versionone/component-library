@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import { Grid } from "../Grid";
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Grid } from '../Grid';
 import { SpacedGroup } from '../SpacedGroup';
 
 const Impl = createComponent(

@@ -1,9 +1,28 @@
-import MaterialGrid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Column from './Column';
+import { createComponent, StyleProvider } from '../StyleProvider';
 
-const Grid = props => <MaterialGrid {...props} container />;
+const GridImpl = createComponent(
+  ({ alignContent, alignItems, direction, justify, wrap }) => ({
+    alignContent,
+    alignItems,
+    boxSizing: 'border-box',
+    flexDirection: direction,
+    display: 'flex',
+    flexBasis: '100%',
+    flexGrow: 0,
+    justifyContent: justify,
+    maxWidth: '100%',
+    width: '100%',
+    flexWrap: wrap,
+  }),
+  'div',
+);
+const Grid = ({ children, ...otherProps }) => (
+  <StyleProvider>
+    <GridImpl {...otherProps}>{children}</GridImpl>
+  </StyleProvider>
+);
 
 Grid.propTypes = {
   /**
@@ -52,13 +71,8 @@ Grid.propTypes = {
     'space-evenly',
   ]),
   /**
-   * Defines the space between the type item component. It can only be used on a type container component.
-   */
-  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
-  /**
    * Defines the flex-wrap style property. It's applied for all screen sizes.
    */
-
   wrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
 };
 
@@ -67,7 +81,6 @@ Grid.defaultProps = {
   alignItems: 'stretch',
   direction: 'row',
   justify: 'flex-start',
-  spacing: 0,
   wrap: 'wrap',
 };
 
