@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isFunction } from 'underscore';
 import copy from 'copy-to-clipboard';
 
-export class CopyToClipboard extends React.Component {
+class CopyToClipboard extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.onClick = this.onClick.bind(this);
