@@ -11,7 +11,7 @@ import {
   WithFormFieldState,
 } from './../FormUtils';
 import SpacedGroup from '../SpacedGroup';
-import ComboBox from '../ComboBox';
+import { ComboBox } from '../ComboBox';
 import { IconButton } from '../Button';
 import { CloseIcon } from '../Icons';
 import Menu from '../Menu';

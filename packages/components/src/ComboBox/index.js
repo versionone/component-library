@@ -43,4 +43,4 @@ ComboBox.defaultProps = {
   'aria-labelby': null,
 };
 
-export default ComboBox;
+export { ComboBox };

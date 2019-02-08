@@ -11,7 +11,7 @@ import {
   WithFormFieldState,
 } from './../FormUtils';
 import Menu from '../Menu';
-import ComboBox from '../ComboBox';
+import { ComboBox } from '../ComboBox';
 
 const HideOnSelection = createComponent(
   ({ shrink, height }) => ({
