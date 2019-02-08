@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { ChevronIcon } from '../Icons';
+import { Rotate } from '../Rotate';
 
 const buildStyles = ({ height }) => ({
   background: 'none',
@@ -55,13 +56,6 @@ const ArrowIcon = createComponent(buildStyles, 'span', [
   'data-component',
   'data-test',
 ]);
-
-const Rotate = createComponent(
-  ({ deg }) => ({
-    transform: `rotate(${deg}deg)`,
-  }),
-  'div',
-);
 
 const Arrow = props => {
   const arrow = props.open ? (
@@ -123,4 +117,4 @@ Arrow.defaultProps = {
   is: 'button',
 };
 
-export  { Arrow };
+export { Arrow };

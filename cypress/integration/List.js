@@ -1,6 +1,6 @@
 context('List', () => {
   beforeEach(() => {
-    cy.navigate(['Data Display', 'List']);
+    cy.navigate(['Components', 'List']);
   });
 
   context('List.Item actions', () => {

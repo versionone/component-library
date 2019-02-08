@@ -1,6 +1,6 @@
 context('Accordion', () => {
   beforeEach(() => {
-    cy.navigate(['Data Display', 'Accordion']);
+    cy.navigate(['Components', 'Accordion']);
   });
 
   specify('Accordion accepts data attributes', () => {

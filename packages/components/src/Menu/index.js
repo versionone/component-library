@@ -25,6 +25,7 @@ const AdjustmentForFocusDisplay = createComponent(
 
 const MenuChildren = ({
   placement,
+  modifiers,
   width,
   height,
   disableContainment,
@@ -59,7 +60,7 @@ const MenuChildren = ({
 
   return (
     <PortalContainer mounted={open}>
-      <Popper placement={placement} positionFixed={true} modifiers={{}}>
+      <Popper placement={placement} positionFixed modifiers={modifiers}>
         {({ ref, style, placement }) => {
           const container = (
             <ScrollableContainer width={width} height={height}>
@@ -110,10 +111,12 @@ class Menu extends React.Component {
     const {
       anchor,
       children,
+      disableScrim,
       disableContainment,
       height,
       open,
       placement,
+      modifiers,
       width,
     } = this.props;
 
@@ -129,13 +132,16 @@ class Menu extends React.Component {
               </div>
             )}
           </Reference>
-          <Scrim open={open} disableVisibility onClick={this.close} />
+          {!disableScrim && (
+            <Scrim open={open} disableVisibility onClick={this.close} />
+          )}
           <MenuChildren
             open={open}
             disableContainment={disableContainment}
             height={height}
             width={width}
             placement={placement}
+            modifiers={modifiers}
             onKeyDown={this.handleKeyDown}
           >
             {children}
@@ -149,9 +155,7 @@ class Menu extends React.Component {
 
       return (
         <Manager>
-          <FocusManager.Group disableLock={true}>
-            {renderMenu}
-          </FocusManager.Group>
+          <FocusManager.Group disableLock>{renderMenu}</FocusManager.Group>
         </Manager>
       );
     };
@@ -209,6 +213,14 @@ Menu.propTypes = {
    * Function called when the user clicks outside the menu
    */
   onClickOutside: PropTypes.func,
+  /**
+   * If true a Scrim will not render or catch "click outside"
+   */
+  disableScrim: PropTypes.bool,
+  /**
+   * Popper.js modifiers
+   */
+  modifiers: PropTypes.object,
 };
 
 Menu.defaultProps = {
@@ -218,6 +230,8 @@ Menu.defaultProps = {
   width: '200px',
   height: '300px',
   onClickOutside: noop,
+  disableScrim: false,
+  modifiers: {},
 };
 
 export default Menu;
