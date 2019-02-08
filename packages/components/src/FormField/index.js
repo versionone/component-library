@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
@@ -57,4 +57,4 @@ FormField.defaultProps = {
   stretch: false,
   disableGutter: false,
 };
-export default FormField;
+export { FormField };

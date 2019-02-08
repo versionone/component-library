@@ -48,4 +48,4 @@ Divider.defaultProps = {
   borderLeft: null,
 };
 
-export default Divider;
+export { Divider };

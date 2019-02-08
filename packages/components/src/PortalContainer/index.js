@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 const DOM_ID = 'REACT_PORTAL';
 
-export class PortalContainer extends React.Component {
+class PortalContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
     if (document.getElementById(DOM_ID)) return;
@@ -24,3 +25,11 @@ export class PortalContainer extends React.Component {
     );
   }
 }
+PortalContainer.propTypes = {
+  mounted: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+};
+PortalContainer.defaultProps = {
+  mounted: false,
+};
+export { PortalContainer };

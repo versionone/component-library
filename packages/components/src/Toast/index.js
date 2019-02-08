@@ -3,7 +3,7 @@ import React from 'react';
 import { lighten, toRgbaString } from '@andrew-codes/color-functions';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { AlertIcon, CheckedIcon, InfoIcon } from '../Icons';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 
 const ToastImpl = createComponent(
   ({ variant, theme }) => {
@@ -64,4 +64,4 @@ Toast.defaultProps = {
   action: null,
 };
 
-export default Toast;
+export { Toast };

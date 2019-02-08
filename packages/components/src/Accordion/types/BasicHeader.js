@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, createComponent } from '../../StyleProvider';
-import SpacedGroup from '../../SpacedGroup';
+import { SpacedGroup } from '../../SpacedGroup';
 
 const Container = createComponent(
 	() => ({

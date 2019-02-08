@@ -9,7 +9,7 @@ import {
 } from '../StyleProvider';
 import { DeliveryIcon } from './../Icons';
 import { Button } from '../Button';
-import SpacedGroup from './../SpacedGroup';
+import { SpacedGroup } from './../SpacedGroup';
 
 const Root = createComponent(
   ({ width, height }) => ({
@@ -320,4 +320,4 @@ Upload.defaultProps = {
   multi: false,
 };
 
-export default Upload;
+export { Upload };

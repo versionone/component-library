@@ -3,9 +3,9 @@ import React, { Fragment } from 'react';
 import { noop, isFunction } from 'underscore';
 import { Manager, Reference, Popper } from 'react-popper';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
-import Paper from '../Paper';
-import ScrollableContainer from '../ScrollableContainer';
-import Scrim from '../Scrim';
+import { Paper } from '../Paper';
+import { ScrollableContainer } from '../ScrollableContainer';
+import { Scrim } from '../Scrim';
 import { FocusManager } from '../FocusManager';
 import { PortalContainer } from '../PortalContainer';
 
@@ -234,4 +234,4 @@ Menu.defaultProps = {
   modifiers: {},
 };
 
-export default Menu;
+export { Menu };

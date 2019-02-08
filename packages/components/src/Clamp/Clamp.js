@@ -25,4 +25,4 @@ Clamp.propTypes = {
   'data-test': PropTypes.string,
 };
 
-export { Clamp };
+export default Clamp;

@@ -5,4 +5,4 @@ import ItemText from './ItemText';
 List.Item = Item;
 List.ItemText = ItemText;
 
-export default List;
+export { List };

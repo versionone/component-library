@@ -9,7 +9,7 @@ import {
   AppendIconContainer,
   InputField,
   WithFormFieldState,
-} from './../FormUtils';
+} from "../FormUtils";
 
 const Root = createComponent(
   ({ fullWidth, stretch }) => ({
@@ -101,7 +101,7 @@ class PhoneNumberField extends Component {
               fullWidth={fullWidth}
               stretch={stretch}
               height={height}
-              isHeightCapped={true}
+              isHeightCapped
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             >
@@ -118,7 +118,7 @@ class PhoneNumberField extends Component {
                 placeholder={hintText}
                 innerRef={inputRef}
                 tabIndex={tabIndex}
-                type={'tel'}
+                type="tel"
                 value={value}
               />
               <InputStateIcon
@@ -148,6 +148,7 @@ class PhoneNumberField extends Component {
       </WithFormFieldState>
     );
   }
+
   handleChange(evt) {
     const value = evt.target.value;
     this.props.onChange(evt, value);
@@ -281,4 +282,4 @@ PhoneNumberField.defaultProps = {
   onFocus: noop,
 };
 
-export default PhoneNumberField;
+export { PhoneNumberField };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, createComponent } from '../StyleProvider';
-import { palette } from './../palette';
+import { palette } from "../palette";
 
 const Container = createComponent(
   ({ height, width }) => ({
@@ -49,4 +49,4 @@ ScrollableContainer.defaultProps = {
   width: '100%',
 };
 
-export default ScrollableContainer;
+export { ScrollableContainer };

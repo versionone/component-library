@@ -4,7 +4,7 @@ import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 
 const LinkImpl = createComponent(
   ({ color, disableUnderline, theme }) => ({
-    color: Boolean(color) ? color : theme.Link.main,
+    color: color || theme.Link.main,
     'text-decoration': 'none',
     ':hover': {
       color: theme.Link.mainHighlight,
@@ -69,4 +69,4 @@ Link.defaultProps = {
   color: null,
 };
 
-export default Link;
+export { Link };
