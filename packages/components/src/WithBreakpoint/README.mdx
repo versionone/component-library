@@ -1,30 +1,60 @@
 ---
 name: WithBreakpoint
-route: /components/WithBreakpoint
-menu: Utilities
+route: /packages/with-breakpoint/components/WithBreakpoint
+menu: Layout
 ---
 
-import { Playground, PropsTable } from 'docz';
-import WithBreakpoint from './';
+import { Playground, PropsTable, ThemeDefinitionTable } from '@versionone/docz';
+import { WithBreakpoint } from './';
 
-# WithBreakpoint
+## Usage
 
-Provides the inner component with the breakpoint based on the Viewport width.
+Provides the current breakpoint; based on the viewport size.
 
-## Breakpoints
+## Examples
 
-| Breakpoint | Use Case         |
-| :--------- | :--------------- |
-| **xs**     | Phone            |
-| **sm**     | Tablet portrait  |
-| **md**     | Tablet landscape |
-| **lg**     | Desktop          |
-| **xl**     | Large Desktop    |
-
-<Playground>
-  <WithBreakpoint>{width => <div>{width}</div>}</WithBreakpoint>
+<Playground data-test="withbreakpoint">
+  <WithBreakpoint>
+    {breakpoint => (
+      <div>
+        Current breakpoint is:
+        <div>
+          <strong>{breakpoint}</strong>
+        </div>
+      </div>
+    )}
+  </WithBreakpoint>
 </Playground>
 
-## API
+## Breakpoint Utilities
+
+Functions that aid in determining if a provided breakpoint is equal to or above/below a target breakpoint.
+
+<Playground data-test="utilities">
+  <WithBreakpoint>
+    {breakpoint => (
+      <div>
+        <p>
+          Current breakpoint above md:{' '}
+          <strong>
+            {WithBreakpoint.isBreakpointUp('md', breakpoint).toString()}
+          </strong>
+        </p>
+        <p>
+          Current breakpoint below md:{' '}
+          <strong>
+            {WithBreakpoint.isBreakpointDown('md', breakpoint).toString()}
+          </strong>
+        </p>
+      </div>
+    )}
+  </WithBreakpoint>
+</Playground>
+
+## Component API
 
 <PropsTable of={WithBreakpoint} />
+
+## Theme API
+
+<ThemeDefinitionTable of={WithBreakpoint} />

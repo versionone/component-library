@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { isWidthUp } from '@material-ui/core/withWidth';
-import WithBreakpoint from './../WithBreakpoint';
 import { createComponent, StyleProvider } from '../StyleProvider';
+import { WithBreakpoint } from '../WithBreakpoint';
 
 const FieldSetContainer = createComponent(
   () => ({
@@ -16,11 +15,11 @@ const FieldSetContainer = createComponent(
 const FieldSetBar = createComponent(
   ({ xs, sm, md, lg, xl, breakpoint, theme }) => {
     const margin =
-      (isWidthUp('xl', breakpoint) && xl) ||
-      (isWidthUp('lg', breakpoint) && lg) ||
-      (isWidthUp('md', breakpoint) && md) ||
-      (isWidthUp('sm', breakpoint) && sm) ||
-      (isWidthUp('xs', breakpoint) && xs);
+      (WithBreakpoint.isBreakpointUp('xl', breakpoint) && xl) ||
+      (WithBreakpoint.isBreakpointUp('lg', breakpoint) && lg) ||
+      (WithBreakpoint.isBreakpointUp('md', breakpoint) && md) ||
+      (WithBreakpoint.isBreakpointUp('sm', breakpoint) && sm) ||
+      (WithBreakpoint.isBreakpointUp('xs', breakpoint) && xs);
 
     const width = margin + theme.FieldSet.size;
 
