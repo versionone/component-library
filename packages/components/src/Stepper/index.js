@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
 import Step from './Step';
 
@@ -29,14 +29,14 @@ class Stepper extends React.Component {
       }),
     );
     return (
-      <div data-component="Stepper" data-test={this.props['data-test']}>
-        <StepperImpl direction={this.props.direction}>{children}</StepperImpl>
-      </div>
+      <StyleProvider>
+        <div data-component="Stepper" data-test={this.props['data-test']}>
+          <StepperImpl direction={this.props.direction}>{children}</StepperImpl>
+        </div>
+      </StyleProvider>
     );
   }
 }
-
-Stepper.Step = Step;
 
 Stepper.propTypes = {
   /**
@@ -54,4 +54,5 @@ Stepper.defaultProps = {
   size: 36,
 };
 
+Stepper.Step = Step;
 export { Stepper };
