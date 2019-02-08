@@ -203,4 +203,4 @@ Button.defaultProps = {
   variant: contained,
 };
 
-export { Button };
+export default Button;
