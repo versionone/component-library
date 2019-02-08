@@ -20,9 +20,6 @@ export default {
     {
       name: 'Styling',
     },
-    {
-      name: 'Layout',
-    },
   ],
   modifyBundlerConfig: config => ({
     ...config,
