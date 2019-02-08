@@ -67,4 +67,4 @@ CopyToClipboard.defaultProps = {
   message: 'Copy to clipboard: #{key}, Enter',
 };
 
-export default CopyToClipboard;
+export { CopyToClipboard };

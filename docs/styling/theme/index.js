@@ -6,7 +6,7 @@ import {
 import { Tooltip } from '../../../packages/components/src/Tooltip';
 import SpacedGroup from '../../../packages/components/src/SpacedGroup';
 import { Switch } from '../../../packages/components/src/Switch';
-import CopyToClipboard from '../../../packages/components/src/CopyToClipboard';
+import { CopyToClipboard } from '../../../packages/components/src/CopyToClipboard';
 import { palette } from '../../../packages/components/src/palette';
 
 const Swatch = createComponent(
