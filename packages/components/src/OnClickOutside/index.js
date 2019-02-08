@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'underscore';
-import DetectExternalEvents from '../DetectExternalEvents';
+import { DetectExternalEvents } from '../DetectExternalEvents';
 
 const OnClickOutside = props => {
   return (
