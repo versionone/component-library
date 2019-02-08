@@ -33,9 +33,7 @@ Use lozenges to highlight an item's status so it can be recognized quickly
         variant="success"
         bold
       />
-      <Lozenge bold variant="info" bold color={palette.plum}>
-        Override color
-      </Lozenge>
+      <Lozenge bold variant="info" color={palette.plum}text="Override color" />
     </SpacedGroup>
     <SpacedGroup direction="vertical">
       <Lozenge text="Default" variant="info" />
@@ -45,10 +43,9 @@ Use lozenges to highlight an item's status so it can be recognized quickly
         text="Succes Super Duper Long Text. Please Wrap at some point"
         variant="success"
       />
-      <Lozenge variant="info" bold color={palette.plum}>
-        Override color
-      </Lozenge>
+      <Lozenge variant="info" color={palette.plum} text="Override color" />
     </SpacedGroup>
+
   </Grid>
 </Playground>
 
