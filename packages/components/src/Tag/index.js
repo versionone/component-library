@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { toRgbaString, darken } from '@andrew-codes/color-functions';
 import {
   createComponent,
   StyleProvider,
   styleUtils,
   WithTheme,
 } from '../StyleProvider';
-import { CloseIcon } from './../Icons';
-import { EventBoundary } from './../EventBoundary';
-import Link from '../Link';
-import { toRgbaString, darken } from '@andrew-codes/color-functions';
+import { CloseIcon } from '../Icons';
+import { EventBoundary } from '../EventBoundary';
+import { Link } from '../Link';
 
 const Impl = createComponent(
   ({ size, theme }) => {
@@ -81,7 +81,7 @@ const InternalTag = props => {
   const boundText = (
     <WithTheme>
       {theme => {
-        const text = Boolean(props.href) ? (
+        const text = props.href ? (
           <Link href={props.href} color={theme.Tag.color}>
             {props.children}
           </Link>
@@ -141,4 +141,4 @@ Tag.defaultProps = {
   href: null,
 };
 
-export default Tag;
+export { Tag };

@@ -5,7 +5,7 @@ import {
 	StyleProvider,
 	styleUtils,
 } from '../../StyleProvider';
-import SpacedGroup from './../../SpacedGroup';
+import { SpacedGroup } from './../../SpacedGroup';
 import { palette } from '../../palette';
 
 const UnderlineTabImpl = createComponent(

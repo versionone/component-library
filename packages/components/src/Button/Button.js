@@ -6,7 +6,7 @@ import variants, { contained, text } from './variants';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Hoverable } from '../Hoverable';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 
 const getBackgroundColor = ({
   buttonType,

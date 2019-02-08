@@ -9,8 +9,8 @@ import {
   InputStateIcon,
   InputField,
   WithFormFieldState,
-} from './../FormUtils';
-import Menu from '../Menu';
+} from "../FormUtils";
+import { Menu } from '../Menu';
 import { ComboBox } from '../ComboBox';
 
 const HideOnSelection = createComponent(
@@ -196,7 +196,7 @@ export class SingleSelect extends React.Component {
           <InputFieldContainer
             innerRef={inputContainerRef}
             height={height}
-            isHeightCapped={true}
+            isHeightCapped
             fullWidth={fullWidth}
             stretch={stretch}
             dirty={dirty}
@@ -238,7 +238,7 @@ export class SingleSelect extends React.Component {
           </InputFieldContainer>
         );
 
-        const dropdownHeight = Boolean(menuContents)
+        const dropdownHeight = menuContents
           ? this.props.dropdownHeight || dropdownMaxHeight
           : 0;
         const width = this.props.dropdownWidth || dropdownWidth;

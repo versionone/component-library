@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
 import { isFunction, noop } from 'underscore';
 import ListContext from './ListValueContext';
-import WithBreakPoint from '../WithBreakpoint';
+import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
@@ -191,9 +191,9 @@ class ListItemImpl extends React.Component {
 
 const ListItem = props => (
   <StyleProvider>
-    <WithBreakPoint>
+    <WithBreakpoint>
       {breakpoint => <ListItemImpl {...props} breakpoint={breakpoint} />}
-    </WithBreakPoint>
+    </WithBreakpoint>
   </StyleProvider>
 );
 

@@ -5,9 +5,8 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import Stepper from './';
-import Step from './Step';
-import SpacedGroup from '../SpacedGroup';
+import { Stepper } from './';
+import { SpacedGroup } from '../SpacedGroup';
 import { CheckIconIcon, LoadingSpinIcon } from '../Icons';
 
 # Stepper
@@ -17,153 +16,122 @@ import { CheckIconIcon, LoadingSpinIcon } from '../Icons';
 ## Basic
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={40}>
-
-    	<Stepper>
-    		<Step
-    			title="Finsihed"
-    			description="Phone number verified"
-    			seen
-    		/>
-    		<Step
-    			title="In Progress"
-    			description="Step is in progress and nees action"
-    			current
-    		/>
-    		<Step
-    			title="Needs Action"
-    			description="Step was completed, but we went back to step 2"
-    		/>
-    		<Step
-    			title="Finish Line"
-    			description="Step has not been seen yet."
-    		/>
-    	</Stepper>
-
-    	<Stepper>
-    		<Step
-    			title="Step 1"
-    			description="Additional information"
-    			seen
-    		/>
-    		<Step
-    			title="Step 2"
-    			description="Step is in progress and nees action"
-    			current
-    		/>
-    		<Step
-    			title="Step 3"
-    			description="Step was completed, but we went back to step 2"
-    			seen
-    		/>
-    		<Step
-    			title="Step 4"
-    			description="Step has not been seen yet."
-    		/>
-    	</Stepper>
-
-    	<Stepper>
-    		<Step
-    			title="Step 1"
-    			description="Additional information"
-    			icon={CheckIconIcon}
-    			seen
-    		/>
-    		<Step
-    			title="Step 2"
-    			description="Step is in progress and nees action"
-    			icon={LoadingSpinIcon}
-    			current
-    		/>
-    		<Step
-    			title="Step 3"
-    			description="Step was completed, but we went back to step 2"
-    		/>
-    	</Stepper>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={40}>
+    <Stepper>
+      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+        description="Step was completed, but we went back to step 2"
+      />
+      <Stepper.Step
+        title="Finish Line"
+        description="Step has not been seen yet."
+      />
+    </Stepper>
+    <Stepper>
+      <Stepper.Step title="Step 1" description="Additional information" seen />
+      <Stepper.Step
+        title="Step 2"
+        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Step 3"
+        description="Step was completed, but we went back to step 2"
+        seen
+      />
+      <Stepper.Step title="Step 4" description="Step has not been seen yet." />
+    </Stepper>
+    <Stepper>
+      <Stepper.Step
+        title="Step 1"
+        description="Additional information"
+        icon={CheckIconIcon}
+        seen
+      />
+      <Stepper.Step
+        title="Step 2"
+        description="Step is in progress and nees action"
+        icon={LoadingSpinIcon}
+        current
+      />
+      <Stepper.Step
+        title="Step 3"
+        description="Step was completed, but we went back to step 2"
+      />
+    </Stepper>
+  </SpacedGroup>
 </Playground>
 
 ## Direction
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={40}>
-
-    	<Stepper direction="vertical">
-    		<Step
-    			title="Finsihed"
-    			description="Phone number verified"
-    			seen
-    		/>
-    		<Step
-    			title="In Progress"
-    			description="Step is in progress and nees action"
-    			current
-    		/>
-    		<Step
-    			title="Needs Action"
-    			description="Step was completed, but we went back to step 2"
-    		/>
-    		<Step
-    			title="Finish Line"
-    			description="Step has not been seen yet."
-    		/>
-    	</Stepper>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={40}>
+    <Stepper direction="vertical">
+      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+        description="Step was completed, but we went back to step 2"
+      />
+      <Stepper.Step
+        title="Finish Line"
+        description="Step has not been seen yet."
+      />
+    </Stepper>
+  </SpacedGroup>
 </Playground>
 
 ## Sizes
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={40}>
-
-    	<Stepper size={24}>
-    		<Step
-    			title="Finsihed"
-    			description="Phone number verified"
-    			seen
-    		/>
-    		<Step
-    			title="In Progress"
-    			description="Step is in progress and nees action"
-    			current
-    		/>
-    		<Step
-    			title="Needs Action"
-    			description="Step was completed, but we went back to step 2"
-    		/>
-    		<Step
-    			title="Finish Line"
-    			description="Step has not been seen yet."
-    		/>
-    	</Stepper>
-
-    	<Stepper
-    		size={24}
-    		direction="vertical"
-    	>
-    		<Step
-    			title="Finsihed"
-    			description="Phone number verified"
-    			icon={CheckIconIcon}
-    			seen
-    		/>
-    		<Step
-    			title="Finished"
-    			description="Organization created"
-    			icon={CheckIconIcon}
-    			seen
-    		/>
-    		<Step
-    			title="Building workspace"
-    			description="Setting up workspace in the background"
-    			icon={LoadingSpinIcon}
-    			current
-    		/>
-    	</Stepper>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={40}>
+    <Stepper size={24}>
+      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+        description="Step was completed, but we went back to step 2"
+      />
+      <Stepper.Step
+        title="Finish Line"
+        description="Step has not been seen yet."
+      />
+    </Stepper>
+    <Stepper size={24} direction="vertical">
+      <Stepper.Step
+        title="Finsihed"
+        description="Phone number verified"
+        icon={CheckIconIcon}
+        seen
+      />
+      <Stepper.Step
+        title="Finished"
+        description="Organization created"
+        icon={CheckIconIcon}
+        seen
+      />
+      <Stepper.Step
+        title="Building workspace"
+        description="Setting up workspace in the background"
+        icon={LoadingSpinIcon}
+        current
+      />
+    </Stepper>
+  </SpacedGroup>
 </Playground>
 
 ## API

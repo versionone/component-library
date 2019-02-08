@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
 import { Arrow } from '../Arrow';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
 
 const ArrowPlaceholder = createComponent(() => ({ height: 28 }), 'div');
@@ -125,4 +125,4 @@ Tree.defaultProps = {
   title: '',
 };
 
-export default Tree;
+export { Tree };

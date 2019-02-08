@@ -32,4 +32,4 @@ Paper.propTypes = {
 Paper.defaultProps = {
   square: false,
 };
-export default Paper;
+export { Paper };

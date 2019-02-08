@@ -9,6 +9,5 @@ Tabs.Panels = Panels;
 Tabs.Tab = Tab;
 Tabs.List = List;
 
-export default Tabs;
-
+export { Tabs };
 export { default as UnderlineTab } from './types/UnderlineTab';

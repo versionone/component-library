@@ -30,4 +30,4 @@ OnClickOutside.defaultProps = {
   handleClickOutside: noop,
 };
 
-export default OnClickOutside;
+export { OnClickOutside };

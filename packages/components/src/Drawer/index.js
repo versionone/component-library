@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
-import Scrim from '../Scrim';
+import { Scrim } from '../Scrim';
 import { PortalContainer } from '../PortalContainer';
 
 const TOP = 'top';
@@ -204,4 +204,4 @@ Drawer.defaultProps = {
   handleClickOutside: noop,
 };
 
-export default Drawer;
+export { Drawer };

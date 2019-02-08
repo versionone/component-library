@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 import { getComponentDisplayName } from '../utils';
 
 const PsuedoLink = createComponent(

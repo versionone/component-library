@@ -8,7 +8,7 @@ import {
   LoadingSpinIcon,
 } from './../Icons';
 import { palette } from './../palette';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 
 const IconContainer = createComponent(
   () => {

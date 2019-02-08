@@ -4,7 +4,7 @@ import { noop, isFunction } from 'underscore';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { LoadingSpinIcon, BrokenImageIcon } from '../Icons';
 import { Tooltip } from '../Tooltip';
-import SpacedGroup from '../SpacedGroup';
+import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
 
 const AvatarWithStatus = createComponent(

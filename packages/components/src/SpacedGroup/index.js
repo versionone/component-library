@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import WithBreakpoint from '../WithBreakpoint';
+import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
 
 const HORIZONTAL = 'horizontal';
@@ -150,4 +150,4 @@ SpacedGroup.defaultProps = {
   is: 'div',
 };
 
-export default SpacedGroup;
+export { SpacedGroup };

@@ -95,4 +95,4 @@ Scrim.defaultProps = {
   disableScrollLock: false,
 };
 
-export default Scrim;
+export { Scrim };

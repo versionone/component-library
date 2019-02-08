@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import WithBreakpoint from './../WithBreakpoint';
+import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, StyleProvider } from '../StyleProvider';
 
 const FieldSetContainer = createComponent(
@@ -95,4 +95,4 @@ FieldSet.defaultProps = {
   xs: 8,
 };
 
-export default FieldSet;
+export { FieldSet };

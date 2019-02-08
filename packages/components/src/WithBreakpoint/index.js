@@ -5,11 +5,11 @@ const WithBreakpoint = withWidth()(props => props.children(props.width));
 
 WithBreakpoint.propTypes = {
   /**
-   * fuction that returns the current breakpoint
+   * function that returns the current breakpoint
    */
   children: PropTypes.func.isRequired,
 };
 
 WithBreakpoint.defaultProps = {};
 
-export default WithBreakpoint;
+export { WithBreakpoint };

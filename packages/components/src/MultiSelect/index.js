@@ -9,12 +9,12 @@ import {
   InputStateIcon,
   InputField,
   WithFormFieldState,
-} from './../FormUtils';
-import SpacedGroup from '../SpacedGroup';
+} from "../FormUtils";
 import { ComboBox } from '../ComboBox';
+import { SpacedGroup } from '../SpacedGroup';
 import { IconButton } from '../Button';
 import { CloseIcon } from '../Icons';
-import Menu from '../Menu';
+import { Menu } from '../Menu';
 
 class MultiDownshift extends React.Component {
   constructor(props, context) {
@@ -229,7 +229,7 @@ class MultiSelect extends React.Component {
           innerRef: inputRef,
           onKeyDown: handleKeyDown,
           onFocus: handleFocusWrapper,
-          onBlur: onBlur,
+          onBlur,
         });
 
         const menuContents =
@@ -298,7 +298,7 @@ class MultiSelect extends React.Component {
           </InputFieldContainer>
         );
 
-        const dropdownHeight = Boolean(menuContents)
+        const dropdownHeight = menuContents
           ? this.props.dropdownHeight || dropdownMaxHeight
           : 0;
 
@@ -488,4 +488,4 @@ MultiSelect.defaultProps = {
   onBlur: noop,
 };
 
-export default MultiSelect;
+export { MultiSelect };

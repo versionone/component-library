@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { Avatar } from '../Avatar';
-import List from '../List';
-import Menu from '../Menu';
-import OnClickOutside from '../OnClickOutside';
+import { List } from '../List';
+import { Menu } from '../Menu';
+import { OnClickOutside } from '../OnClickOutside';
 
 const OverlapedGroup = createComponent(
   ({ disabledGutter }) => ({

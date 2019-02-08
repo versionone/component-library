@@ -54,4 +54,4 @@ Stepper.defaultProps = {
   size: 36,
 };
 
-export default Stepper;
+export { Stepper };
