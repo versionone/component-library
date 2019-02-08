@@ -1,13 +1,14 @@
 ---
 name: Avatar
 route: /components/Avatar
-menu: Data Display
+menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
 import { Avatar } from './';
 import SpacedGroup from './../SpacedGroup';
-import { AdminIcon } from '../Icons';
+import { MemberIcon } from '../Icons';
+import { palette } from '../palette';
 
 # Avatar
 
@@ -148,6 +149,78 @@ Avatars are used to indentify a user
         'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
       }
       onClick={() => console.log('handle avatar selection')}
+      status="online"
+    />
+  </SpacedGroup>
+</Playground>
+
+## Count
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <Avatar
+      size={32}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+      count={1}
+    />
+    <Avatar
+      size={32}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+      count={3}
+    />
+    <Avatar
+      size={32}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+      onClick={() => console.log('handle avatar selection')}
+      count={10}
+    />
+  </SpacedGroup>
+</Playground>
+
+## Color
+
+<Playground>
+  <SpacedGroup xs={8}>
+    <Avatar
+      size={72}
+      color={palette.paper}
+      backgroundColor={palette.plum}
+      src={
+        'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+      }
+    />
+    <Avatar
+      size={72}
+      color={palette.paper}
+      backgroundColor={palette.plum}
+      icon={<MemberIcon />}
+    />
+    <Avatar
+      size={72}
+      color={palette.paper}
+      backgroundColor={palette.plum}
+      title="walker"
+    />
+    <Avatar
+      size={72}
+      color={palette.paper}
+      backgroundColor={palette.plum}
+      title="walker"
+      count={0}
+    />
+    <Avatar
+      size={72}
+      color={palette.paper}
+      backgroundColor={palette.plum}
+      title="walker"
       status="online"
     />
   </SpacedGroup>
