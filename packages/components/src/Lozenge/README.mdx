@@ -23,27 +23,29 @@ Use lozenges to highlight an item's status so it can be recognized quickly
 | [Tag](/components/Tag)         | Visually label items       |
 
 <Playground>
-  <Grid>
+  <Grid justifyContent="center">
     <SpacedGroup direction="vertical">
-      <Lozenge text="Default" variant="info" bold />
-      <Lozenge text="Warning" variant="warning" bold />
-      <Lozenge text="Error" variant="error" bold />
+      <Lozenge variant="info" bold >Default</Lozenge>
+      <Lozenge variant="warning" bold >Warning</Lozenge>
+      <Lozenge variant="error" bold >Error</Lozenge>
       <Lozenge
-        text="Success Super Duper Long Text. Please Wrap at some point"
         variant="success"
         bold
-      />
-      <Lozenge bold variant="info" color={palette.plum}text="Override color" />
+      >
+        Success Super Duper Long Text. Please Wrap at some point
+      </Lozenge>
+      <Lozenge bold variant="info" color={palette.plum}>Override Color</Lozenge>
     </SpacedGroup>
     <SpacedGroup direction="vertical">
-      <Lozenge text="Default" variant="info" />
-      <Lozenge text="Warning" variant="warning" />
-      <Lozenge text="Error" variant="error" />
+      <Lozenge variant="info" >Default</Lozenge>
+      <Lozenge variant="warning" >Warning</Lozenge>
+      <Lozenge variant="error" >Error</Lozenge>
       <Lozenge
-        text="Succes Super Duper Long Text. Please Wrap at some point"
         variant="success"
-      />
-      <Lozenge variant="info" color={palette.plum} text="Override color" />
+      >
+        Succes Super Duper Long Text. Please Wrap at some point
+      </Lozenge>
+      <Lozenge variant="info" color={palette.plum}>Override Color</Lozenge>
     </SpacedGroup>
 
   </Grid>
