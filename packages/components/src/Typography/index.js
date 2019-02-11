@@ -1,56 +1,112 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 
-const getStyles = ({ variant }) => {
-  switch (variant) {
-    case 'huge':
-      return {
-        color: palette.forge,
-        fontSize: '24px',
-        fontWeight: 300,
-        fontFamily:
-          "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
-        letterSpacing: '-.025em',
-      };
-      break;
-    case 'xlarge':
-      return {
-        fontSize: '20px',
-        letterSpacing: '-.025em',
-      };
-      break;
+const map = {
+  mega: {
+    fontSize: '56px',
+    fontWeight: 800,
+    letterSpacing: '-.03em',
+  },
+  huge: {
+    color: palette.forge,
+    fontSize: '24px',
+    fontWeight: 300,
+    letterSpacing: '-.025em',
+  },
+  xlarge: {
+    color: palette.forge,
+    fontSize: '20px',
+    letterSpacing: '-.025em',
+    fontWeight: 600,
+  },
+  button: {
+    fontSize: '14px',
+    fontWeight: 600,
+    letterSpacing: '0.03rem',
+    lineHeight: 1.5,
+    margin: 0,
+    textTransform: 'capitalize',
+  },
+};
+
+const getFontStrategy = variant => {
+  if (variant === 'mega') {
+    return map.mega;
+  } else if (variant === 'huge') {
+    return map.huge;
+  } else if (variant === 'xlarge') {
+    return map.xlarge;
+  } else if (variant === 'button') {
+    return map.button;
+  }
+};
+
+const getWeight = ({ weight }) => {
+  switch (weight) {
+    case 'bold':
+      return 800;
+    case 'light':
+      return 300;
     default:
-      return '12px';
+      return weight;
+  }
+};
+
+const getColor = ({ color }) => {
+  switch (color) {
+    case 'white':
+      return palette.white;
+    default:
+      return;
   }
 };
 
 class Typography extends Component {
   render() {
-    const { variant, is, children } = this.props;
+    const { is, children, variant } = this.props;
+
+    const fontStrategy = getFontStrategy(variant);
 
     const TypographyImpl = createComponent(
-      ({ variant }) => ({
-        ...getStyles({ variant }),
+      () => ({
+        fontFamily:
+          "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
+        ...fontStrategy,
       }),
       is,
-      [],
     );
 
     return (
       <StyleProvider>
-        <TypographyImpl variant={variant}>{children}</TypographyImpl>
+        <TypographyImpl>{children}</TypographyImpl>
       </StyleProvider>
     );
   }
 }
 
 Typography.propTypes = {
+  /** Color of the text */
+  color: PropTypes.oneOf(['white']),
+  /** Tag to be used for element */
+  is: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span']),
+  /** Font Size */
+  size: PropTypes.oneOf([
+    '10px',
+    '12px',
+    '14px',
+    '16px',
+    '20px',
+    '24px',
+    '56px',
+  ]),
   /** Styling Variant */
-  is: PropTypes.oneOf(['h1', 'h2']),
-  /** Styling Variant */
-  variant: PropTypes.oneOf(['huge', 'xlarge']),
+  variant: PropTypes.oneOf(['huge', 'xlarge', 'mega', 'button']),
+  /** Text Transform */
+  transform: PropTypes.oneOf(['uppercase']),
+  /** Font Weight */
+  weight: PropTypes.oneOf([300, 400, 700, 800, 900, 'light', 'bold']),
 };
 
 Typography.defaultProps = {
