@@ -1,2 +1,1 @@
-import SpacedGroup from '../SpacedGroup';
-export default FormField;
+export { default as FormField } from './FormField';

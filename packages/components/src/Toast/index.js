@@ -1,2 +1,1 @@
-import SpacedGroup from '../SpacedGroup';
-export default Toast;
+export { default as Toast } from './Toast';

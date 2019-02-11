@@ -1,2 +1,1 @@
-import Scrim from '../Scrim';
-export default Drawer;
+export { default as Drawer } from './Drawer';

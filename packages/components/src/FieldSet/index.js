@@ -1,2 +1,1 @@
-import WithBreakpoint from './../WithBreakpoint';
-export default FieldSet;
+export { default as FieldSet } from './FieldSet';
