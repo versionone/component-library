@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { noop, isFunction } from 'underscore';
+import { isFunction } from 'underscore';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { LoadingSpinIcon, BrokenImageIcon } from '../Icons';
 import { Tooltip } from '../Tooltip';
@@ -166,34 +166,46 @@ class ImageAvatar extends Component {
   }
 
   render() {
-    const props = this.props;
-    const imageStatus = this.state.imageStatus;
+    const {
+      size,
+      Container,
+      border,
+      backgroundColor,
+      color,
+      onClick,
+      tabIndex,
+      'data-test': dataTest,
+      src,
+      srcSet,
+      sizes,
+      alt,
+    } = this.props;
+    const { imageStatus } = this.state;
+
     const isLoading = imageStatus === LOADING;
     const hasErrored = imageStatus === ERROR;
     const hasLoaded = imageStatus === LOADED;
 
-    const imageWrapperSize = hasLoaded ? props.size : 0;
+    const imageWrapperSize = hasLoaded ? size : 0;
     const shouldHide = isLoading || hasErrored;
     const imageSize = shouldHide ? 0 : '100%';
-
-    const Container = props.Container;
 
     const image = (
       <Container
         size={imageWrapperSize}
-        backgroundColor={props.backgroundColor}
-        color={props.color}
-        border={props.border}
-        onClick={props.onClick}
-        tabIndex={props.tabIndex}
+        backgroundColor={backgroundColor}
+        color={color}
+        border={border}
+        onClick={onClick}
+        tabIndex={tabIndex}
         data-component="Avatar"
-        data-test={props['data-test']}
+        data-test={dataTest}
       >
         <Img
-          src={props.src}
-          srcSet={props.srcSet}
-          sizes={props.sizes}
-          alt={props.alt}
+          src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          alt={alt}
           height={imageSize}
           width={imageSize}
           onLoad={this.handleImageLoaded}
@@ -203,18 +215,18 @@ class ImageAvatar extends Component {
     );
 
     const loading = isLoading && (
-      <IconWrapper size={props.size} border={props.border}>
-        <LoadingSpinIcon size={props.size} />
+      <IconWrapper size={size} border={border}>
+        <LoadingSpinIcon size={size} />
       </IconWrapper>
     );
 
     const brokenImageProps = {
-      size: props.size,
-      border: props.border,
-      backgroundColor: props.backgroundColor,
-      color: props.color,
+      size,
+      border,
+      backgroundColor,
+      color,
       'data-component': 'Avatar',
-      'data-test': props['data-test'],
+      'data-test': dataTest,
     };
 
     const error = hasErrored && (

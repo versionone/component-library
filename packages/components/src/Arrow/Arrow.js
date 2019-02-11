@@ -58,7 +58,8 @@ const ArrowIcon = createComponent(buildStyles, 'span', [
 ]);
 
 const Arrow = props => {
-  const arrow = props.open ? (
+  const { open, is, disabled, tabIndex, 'data-test': dataTest } = props;
+  const arrow = open ? (
     <Rotate deg={90}>
       <ChevronIcon size={12} />
     </Rotate>
@@ -68,17 +69,17 @@ const Arrow = props => {
     </Rotate>
   );
 
-  const ArrowImpl = props.is === 'button' ? ArrowButton : ArrowIcon;
+  const ArrowImpl = is === 'button' ? ArrowButton : ArrowIcon;
 
   return (
     <StyleProvider>
       <ArrowImpl
         {...props}
-        disabled={props.disabled}
+        disabled={disabled}
         data-component="Arrow"
-        data-test={props['data-test']}
+        data-test={dataTest}
         type="button"
-        tabIndex={props.disabled ? '-1' : props.tabIndex}
+        tabIndex={disabled ? '-1' : tabIndex}
       >
         {arrow}
       </ArrowImpl>

@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { isWidthUp } from '@material-ui/core/withWidth';
-import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { WithBreakpoint } from '../WithBreakpoint';
 
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
@@ -23,11 +22,11 @@ const buildStyles = ({
   const isHorizontal = direction === HORIZONTAL;
 
   const margin =
-    (isWidthUp('xl', breakpoint) && xl) ||
-    (isWidthUp('lg', breakpoint) && lg) ||
-    (isWidthUp('md', breakpoint) && md) ||
-    (isWidthUp('sm', breakpoint) && sm) ||
-    (isWidthUp('xs', breakpoint) && xs);
+    (WithBreakpoint.isBreakpointUp('xl', breakpoint) && xl) ||
+    (WithBreakpoint.isBreakpointUp('lg', breakpoint) && lg) ||
+    (WithBreakpoint.isBreakpointUp('md', breakpoint) && md) ||
+    (WithBreakpoint.isBreakpointUp('sm', breakpoint) && sm) ||
+    (WithBreakpoint.isBreakpointUp('xs', breakpoint) && xs);
 
   return {
     display: 'flex',

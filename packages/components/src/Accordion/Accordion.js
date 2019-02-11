@@ -66,10 +66,10 @@ class Accordion extends Component {
     const count = React.Children.count(children);
     const max = count - 1;
     const min = 0;
-    const index = parseInt(focusedIndex);
+    const index = parseInt(focusedIndex, 10);
     const one = 1;
 
-    const linkedList = React.Children.map(this.props.children, (child, i) => {
+    const linkedList = React.Children.map(children, (child, i) => {
       return {
         i,
         disabled: Boolean(child.props.disabled),
@@ -95,23 +95,19 @@ class Accordion extends Component {
     const getFirst = find(max, 'next');
     const getLast = find(min, 'previous');
 
-    const newIndex = isUp
-      ? getPrevious()
-      : isDown
-      ? getNext()
-      : isHome
-      ? getFirst()
-      : getLast();
-
-    this.handleFocus(newIndex);
+    if (isUp) this.handleFocus(getPrevious());
+    if (isDown) this.handleFocus(getNext());
+    if (isHome) this.handleFocus(getFirst());
+    else this.handleFocus(getLast());
   }
 
   toggle(index) {
+    const { onSelect } = this.props;
     this.setState({
       focusedIndex: index,
     });
 
-    this.props.onSelect(index);
+    onSelect(index);
   }
 
   handleFocus(index) {
@@ -127,21 +123,29 @@ class Accordion extends Component {
   }
 
   render() {
-    const count = React.Children.count(this.props.children) - 1;
+    const { focusedIndex } = this.state;
+    const {
+      children,
+      disableDividers,
+      disableBorder,
+      'data-test': dataTest,
+    } = this.props;
 
-    const items = React.Children.map(this.props.children, (child, index) => {
+    const count = React.Children.count(children) - 1;
+
+    const items = React.Children.map(children, (child, index) => {
       const childProps = {
         key: index,
         accoridionId: `accordionId-${index + 1}`,
         isLast: index === count,
         isFirst: index === 0,
-        focusedIndex: this.state.focusedIndex,
-        focused: this.state.focusedIndex === index,
+        focusedIndex,
+        focused: focusedIndex === index,
         status: child.props.status,
         handleSelection: () => this.toggle(index),
         handleFocus: () => this.handleFocus(index),
         handleBlur: this.handleBlur,
-        disableDividers: this.props.disableDividers,
+        disableDividers,
       };
 
       return React.cloneElement(child, childProps);
@@ -151,7 +155,7 @@ class Accordion extends Component {
       <DefinitionList role="presentation">{items}</DefinitionList>
     );
 
-    const borderedChilden = this.props.disableBorder ? (
+    const borderedChilden = disableBorder ? (
       definitionList
     ) : (
       <Border radius={8}>{definitionList}</Border>
@@ -159,7 +163,7 @@ class Accordion extends Component {
 
     return (
       <StyleProvider>
-        <span data-component="Accordion" data-test={this.props['data-test']}>
+        <span data-component="Accordion" data-test={dataTest}>
           {borderedChilden}
         </span>
       </StyleProvider>
