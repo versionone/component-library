@@ -75,4 +75,4 @@ EmptyState.propTypes = {
 
 EmptyState.defaultProps = {};
 
-export default EmptyState;
+export { EmptyState };

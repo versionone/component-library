@@ -49,4 +49,4 @@ ScrollableContainer.defaultProps = {
   width: '100%',
 };
 
-export default ScrollableContainer;
+export { ScrollableContainer };

@@ -84,4 +84,4 @@ Grid.defaultProps = {
   wrap: 'wrap',
 };
 
-export default Grid;
+export { Grid };

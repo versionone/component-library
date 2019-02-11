@@ -1,1 +1,1 @@
-export { default as OnClickOutside } from './OnClickOutside';
+export { OnClickOutside } from './OnClickOutside';

@@ -1,1 +1,1 @@
-export { default as Border } from './Border';
+export { Border } from './Border';

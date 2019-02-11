@@ -1,1 +1,1 @@
-export { default as EventBoundary } from './EventBoundary';
+export { EventBoundary } from './EventBoundary';

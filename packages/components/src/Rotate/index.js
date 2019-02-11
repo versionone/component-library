@@ -1,1 +1,1 @@
-export { default as Rotate } from './Rotate';
+export { Rotate } from './Rotate';

@@ -286,4 +286,4 @@ TextField.defaultProps = {
   onFocus: noop,
 };
 
-export default TextField;
+export { TextField };

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isEmpty, noop } from 'underscore';
-import Accordion from './Accordion';
+import { Accordion } from './Accordion';
 
 class StatefulAccordion extends React.Component {
   constructor() {

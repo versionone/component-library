@@ -234,4 +234,4 @@ Menu.defaultProps = {
   modifiers: {},
 };
 
-export default Menu;
+export { Menu };

@@ -66,4 +66,4 @@ Tabs.defaultProps = {
   handleSelection: noop,
 };
 
-export default Tabs;
+export { Tabs };

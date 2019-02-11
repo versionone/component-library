@@ -1,1 +1,1 @@
-export { default as PortalContainer } from './PortalContainer';
+export { PortalContainer } from './PortalContainer';

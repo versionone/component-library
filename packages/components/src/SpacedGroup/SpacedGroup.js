@@ -149,4 +149,4 @@ SpacedGroup.defaultProps = {
   is: 'div',
 };
 
-export default SpacedGroup;
+export { SpacedGroup };

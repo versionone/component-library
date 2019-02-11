@@ -57,4 +57,4 @@ FormField.defaultProps = {
   stretch: false,
   disableGutter: false,
 };
-export default FormField;
+export { FormField };

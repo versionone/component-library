@@ -1,1 +1,1 @@
-export { default as AvatarGroup } from './AvatarGroup';
+export { AvatarGroup } from './AvatarGroup';

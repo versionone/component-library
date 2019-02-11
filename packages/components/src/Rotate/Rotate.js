@@ -17,6 +17,9 @@ const Rotate = props => (
 );
 
 Rotate.propTypes = {
+  /**
+   * Degs to rotate
+   */
   deg: PropTypes.number,
 };
 
@@ -24,4 +27,4 @@ Rotate.defaultProps = {
   deg: 0,
 };
 
-export default Rotate;
+export { Rotate };

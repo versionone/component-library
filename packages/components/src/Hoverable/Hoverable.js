@@ -31,4 +31,4 @@ Hoverable.defaultProps = {
   onMouseEnter: noop,
   onMouseLeave: noop,
 };
-export default Hoverable;
+export { Hoverable };

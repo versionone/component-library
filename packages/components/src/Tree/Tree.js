@@ -125,4 +125,4 @@ Tree.defaultProps = {
   title: '',
 };
 
-export default Tree;
+export { Tree };

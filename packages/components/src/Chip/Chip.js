@@ -174,4 +174,4 @@ Chip.defaultProps = {
   clamped: false,
 };
 
-export default Chip;
+export { Chip };

@@ -25,7 +25,7 @@ const HideOnSelection = createComponent(
   'span',
 );
 
-export class SingleSelect extends React.Component {
+class SingleSelect extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -416,4 +416,4 @@ SingleSelect.defaultProps = {
   onBlur: noop,
 };
 
-export default SingleSelect;
+export { SingleSelect };

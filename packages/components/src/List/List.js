@@ -179,4 +179,4 @@ List.defaultProps = {
   dense: false,
 };
 
-export default List;
+export { List };

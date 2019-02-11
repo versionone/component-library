@@ -1,1 +1,1 @@
-export { default as DetectExternalEvents } from './DetectExternalEvents';
+export { DetectExternalEvents } from './DetectExternalEvents';

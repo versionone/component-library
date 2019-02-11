@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 const DOM_ID = 'REACT_PORTAL';
 
-export default class extends React.Component {
+class PortalContainer extends React.Component {
   constructor(props, context) {
     super(props, context);
     if (document.getElementById(DOM_ID)) return;
@@ -24,3 +24,5 @@ export default class extends React.Component {
     );
   }
 }
+
+export { PortalContainer };

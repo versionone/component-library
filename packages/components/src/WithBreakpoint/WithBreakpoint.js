@@ -110,4 +110,4 @@ WithBreakpoint.defaultThemeValues = {
   },
 };
 
-export default WithBreakpoint;
+export { WithBreakpoint };

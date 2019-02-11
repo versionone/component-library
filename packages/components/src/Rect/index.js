@@ -1,1 +1,1 @@
-export { default as Rect } from './Rect';
+export { Rect } from './Rect';

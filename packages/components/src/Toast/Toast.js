@@ -64,4 +64,4 @@ Toast.defaultProps = {
   action: null,
 };
 
-export default Toast;
+export { Toast };

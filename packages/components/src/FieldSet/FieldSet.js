@@ -94,4 +94,4 @@ FieldSet.defaultProps = {
   xs: 8,
 };
 
-export default FieldSet;
+export { FieldSet };

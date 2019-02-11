@@ -1,4 +1,4 @@
-import Accordion from './Accordion';
+import { Accordion } from './Accordion';
 import Header from './Header';
 import Item from './Item';
 import Panel from './Panel';

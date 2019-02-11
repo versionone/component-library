@@ -60,4 +60,4 @@ Border.defaultProps = {
   radius: null,
 };
 
-export default Border;
+export { Border };

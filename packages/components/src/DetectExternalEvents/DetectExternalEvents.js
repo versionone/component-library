@@ -58,4 +58,4 @@ class DetectExternalEvents extends React.Component {
   };
 }
 
-export default DetectExternalEvents;
+export { DetectExternalEvents };

@@ -245,8 +245,8 @@ class ImageAvatar extends Component {
   }
 }
 
-const BrokenImageAvatar = props => {
-  return <BrokenImageIcon size={props.size / 2} />;
+const BrokenImageAvatar = ({ size }) => {
+  return <BrokenImageIcon size={size / 2} />;
 };
 
 const IconAvatar = props => {
@@ -377,4 +377,4 @@ Avatar.defaultProps = {
   tabIndex: '0',
 };
 
-export default Avatar;
+export { Avatar };

@@ -99,4 +99,4 @@ TrackEventState.defaultProps = {
   onHandler: noop,
   offHandler: noop,
 };
-export default TrackEventState;
+export { TrackEventState };

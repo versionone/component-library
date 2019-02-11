@@ -118,4 +118,4 @@ Arrow.defaultProps = {
   is: 'button',
 };
 
-export default Arrow;
+export { Arrow };

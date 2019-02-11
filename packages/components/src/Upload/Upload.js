@@ -319,4 +319,4 @@ Upload.defaultProps = {
   multi: false,
 };
 
-export default Upload;
+export { Upload };

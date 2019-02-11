@@ -6,8 +6,8 @@ import {
   styleUtils,
   WithTheme,
 } from '../StyleProvider';
-import { CloseIcon } from './../Icons';
-import { EventBoundary } from './../EventBoundary';
+import { CloseIcon } from '../Icons';
+import { EventBoundary } from '../EventBoundary';
 import { Link } from '../Link';
 import { toRgbaString, darken } from '@andrew-codes/color-functions';
 
@@ -141,4 +141,4 @@ Tag.defaultProps = {
   href: null,
 };
 
-export default Tag;
+export { Tag };

@@ -166,4 +166,4 @@ IconSwitch.defaultProps = {
   fill: false,
 };
 
-export default IconSwitch;
+export { IconSwitch };

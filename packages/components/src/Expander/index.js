@@ -1,1 +1,1 @@
-export { default as Expander } from './Expander';
+export { Expander } from './Expander';

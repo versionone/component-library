@@ -198,4 +198,4 @@ Accordion.defaultProps = {
   onSelect: noop,
 };
 
-export default Accordion;
+export { Accordion };

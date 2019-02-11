@@ -259,7 +259,7 @@ Switch.propTypes = {
 Switch.defaultProps = {
   checked: false,
   disabled: false,
-  onChange: noop,
+  onClick: noop,
   value: '',
   tabIndex: '0',
   type: 'default',
@@ -267,4 +267,4 @@ Switch.defaultProps = {
   onBlur: noop,
 };
 
-export default Switch;
+export { Switch };

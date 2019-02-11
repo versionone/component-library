@@ -281,4 +281,4 @@ PhoneNumberField.defaultProps = {
   onFocus: noop,
 };
 
-export default PhoneNumberField;
+export { PhoneNumberField };

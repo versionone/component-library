@@ -1,1 +1,1 @@
-export { default as SpacedGroup } from './SpacedGroup';
+export { SpacedGroup } from './SpacedGroup';

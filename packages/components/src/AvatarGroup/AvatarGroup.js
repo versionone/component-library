@@ -203,4 +203,4 @@ AvatarGroup.defaultProps = {
   showTooltip: false,
 };
 
-export default AvatarGroup;
+export { AvatarGroup };

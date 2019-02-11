@@ -69,4 +69,4 @@ Link.defaultProps = {
   color: null,
 };
 
-export default Link;
+export { Link };

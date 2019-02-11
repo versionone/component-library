@@ -488,4 +488,4 @@ MultiSelect.defaultProps = {
   onBlur: noop,
 };
 
-export default MultiSelect;
+export { MultiSelect };

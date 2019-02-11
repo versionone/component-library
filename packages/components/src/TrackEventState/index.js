@@ -1,1 +1,1 @@
-export { default as TrackEventState } from './TrackEventState';
+export { TrackEventState } from './TrackEventState';

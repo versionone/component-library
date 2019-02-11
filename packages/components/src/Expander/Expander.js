@@ -85,4 +85,4 @@ Expander.defaultProps = {
   onToggle: noop,
 };
 
-export default Expander;
+export { Expander };

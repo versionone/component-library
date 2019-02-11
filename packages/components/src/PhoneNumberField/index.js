@@ -1,1 +1,1 @@
-export { default as PhoneNumberField } from './PhoneNumberField';
+export { PhoneNumberField } from './PhoneNumberField';

@@ -33,4 +33,4 @@ Focusable.defaultProps = {
   onBlur: noop,
   onFocus: noop,
 };
-export default Focusable;
+export { Focusable };

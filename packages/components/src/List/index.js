@@ -1,4 +1,4 @@
-import List from './List';
+import { List } from './List';
 import Item from './Item';
 import ItemText from './ItemText';
 

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
-import Step from './Step';
 
 const StepperImpl = createComponent(
   ({ direction }) => ({
@@ -36,8 +35,6 @@ class Stepper extends React.Component {
   }
 }
 
-Stepper.Step = Step;
-
 Stepper.propTypes = {
   /**
    * Render the stepper vertically or horizontally
@@ -54,4 +51,4 @@ Stepper.defaultProps = {
   size: 36,
 };
 
-export default Stepper;
+export { Stepper };

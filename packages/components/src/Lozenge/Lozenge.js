@@ -66,4 +66,4 @@ Lozenge.defaultProps = {
   color: null,
 };
 
-export default Lozenge;
+export { Lozenge };

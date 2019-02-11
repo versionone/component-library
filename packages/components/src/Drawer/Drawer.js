@@ -190,4 +190,4 @@ Drawer.defaultProps = {
   handleClickOutside: noop,
 };
 
-export default Drawer;
+export { Drawer };
