@@ -9,7 +9,7 @@ import {
   InputStateIcon,
   InputField,
   WithFormFieldState,
-} from "../FormUtils";
+} from '../FormUtils';
 import { Menu } from '../Menu';
 import { ComboBox } from '../ComboBox';
 

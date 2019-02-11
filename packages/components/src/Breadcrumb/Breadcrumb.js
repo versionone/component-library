@@ -180,4 +180,4 @@ Breadcrumb.defaultProps = {
   separator: '/',
 };
 
-export { Breadcrumb };
+export default Breadcrumb;

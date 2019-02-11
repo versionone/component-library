@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FocusContext from './FocusContext';
 import { isEmpty, last } from 'underscore';
+import FocusContext from './FocusContext';
 
 const history = [];
 let currentGroupId = null;

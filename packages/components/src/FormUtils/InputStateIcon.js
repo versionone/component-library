@@ -1,13 +1,8 @@
 import React from 'react';
 import { Tooltip } from '../Tooltip';
 import { createComponent, styleUtils } from '../StyleProvider';
-import {
-  EditIcon,
-  AlertIcon,
-  CheckIconIcon,
-  LoadingSpinIcon,
-} from './../Icons';
-import { palette } from './../palette';
+import { EditIcon, AlertIcon, CheckIconIcon, LoadingSpinIcon } from '../Icons';
+import { palette } from '../palette';
 import { SpacedGroup } from '../SpacedGroup';
 
 const IconContainer = createComponent(

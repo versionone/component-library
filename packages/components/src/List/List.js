@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Children, cloneElement, Fragment } from 'react';
 import { findLastIndex } from 'underscore';
-import ListContext from './ListValueContext';
 import { StyleProvider } from '../StyleProvider';
 import { Divider } from '../Divider';
+import ListContext from './ListValueContext';
 
 class List extends React.Component {
   constructor() {
