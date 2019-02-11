@@ -169,7 +169,6 @@ class Switch extends React.Component {
 
   render() {
     const renderChildrenWithFormState = ({ onBlur, onFocus, focused }) => {
-      focused;
       return (
         <StyleProvider>
           <Root

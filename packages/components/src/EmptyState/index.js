@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import { Grid } from "../Grid";
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Grid } from '../Grid';
 import { SpacedGroup } from '../SpacedGroup';
 
 const Impl = createComponent(
@@ -35,16 +35,16 @@ const EmptyState = props => {
     <StyleProvider>
       <div data-component="EmptyState" data-test={props['data-test']}>
         <SpacedGroup xs={8}>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
+          <Grid direction="row" justify="center" alignItems="center">
             {icon}
           </Grid>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
+          <Grid direction="row" justify="center" alignItems="center">
             <Title>{props.title}</Title>
           </Grid>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
+          <Grid direction="row" justify="center" alignItems="center">
             {props.children}
           </Grid>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
+          <Grid direction="row" justify="center" alignItems="center">
             {props.primaryAction}
           </Grid>
         </SpacedGroup>

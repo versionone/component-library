@@ -6,7 +6,7 @@ route: /components/Lozenge
 
 import { Playground, PropsTable } from 'docz';
 import { Lozenge } from './';
-import { Grid, Column } from '../Grid';
+import { Grid } from '../Grid';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
 
@@ -24,40 +24,28 @@ Use lozenges to highlight an item's status so it can be recognized quickly
 
 <Playground>
   <Grid>
-    <Column xs={3} />
-    <Column xs={3}>
-      <SpacedGroup direction="vertical">
-        <Lozenge variant="info" bold>
-          Default
-        </Lozenge>
-        <Lozenge variant="warning" bold>
-          Warning
-        </Lozenge>
-        <Lozenge variant="error" bold>
-          Error
-        </Lozenge>
-        <Lozenge variant="success" bold>
-          Success Super Duper Long Text. Please Wrap at some point
-        </Lozenge>
-        <Lozenge variant="info" bold color={palette.plum}>
-          Override color
-        </Lozenge>
-      </SpacedGroup>
-    </Column>
-    <Column xs={3}>
-      <SpacedGroup direction="vertical">
-        <Lozenge variant="info">Default</Lozenge>
-        <Lozenge variant="warning">Warning</Lozenge>
-        <Lozenge variant="error">Error</Lozenge>
-        <Lozenge variant="success">
-          Succes Super Duper Long Text. Please Wrap at some point
-        </Lozenge>
-        <Lozenge variant="info" color={palette.plum}>
-          Override color
-        </Lozenge>
-      </SpacedGroup>
-    </Column>
-    <Column xs={3} />
+    <SpacedGroup direction="vertical">
+      <Lozenge text="Default" variant="info" bold />
+      <Lozenge text="Warning" variant="warning" bold />
+      <Lozenge text="Error" variant="error" bold />
+      <Lozenge
+        text="Success Super Duper Long Text. Please Wrap at some point"
+        variant="success"
+        bold
+      />
+      <Lozenge bold variant="info" color={palette.plum}text="Override color" />
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <Lozenge text="Default" variant="info" />
+      <Lozenge text="Warning" variant="warning" />
+      <Lozenge text="Error" variant="error" />
+      <Lozenge
+        text="Succes Super Duper Long Text. Please Wrap at some point"
+        variant="success"
+      />
+      <Lozenge variant="info" color={palette.plum} text="Override color" />
+    </SpacedGroup>
+
   </Grid>
 </Playground>
 

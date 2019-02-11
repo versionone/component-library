@@ -5,97 +5,19 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import { Grid, Column } from './';
+import { Grid } from './';
 import { Paper } from '../Paper';
 import { Lozenge } from '../Lozenge';
 import { SpacedGroup } from './../SpacedGroup';
 
 # Grid
 
-<Lozenge variant="warning">deprecated: DO NOT USE</Lozenge>
+<SpacedGroup>
+  <Lozenge bold variant="error" text="deprecated" />
+</SpacedGroup>
 
 Provides a consistent way to layout components.
 
-<SpacedGroup>
-  <Lozenge variant="info" text="Material-UI" />
-</SpacedGroup>
-
-<Playground>
-  <Grid spacing={8}>
-    <Column xs={12}>
-      <Paper>xs-12</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-  </Grid>
-</Playground>
-
-## Responsive
-
-A grid's `Column` can be configured to a different column span value depending on the width of the browser window. Each breakpoint (`xl`, `lg`, `md`, `sm`, `xs`) can have its own column span value.
-
-Below is a grid with 3 columns spanning 4 units each for screen sizes `lg`. For screen sizes `xs` to `lg`, the columns are displayed with a span width of the full 12 units.
-
-> Resize the browser window smaller to see the transition between the two breakpoint layouts.
-
-<Playground>
-  <Grid spacing={16}>
-    <Column xs={12} lg={4}>
-      <Paper>xs-12, lg=4</Paper>
-    </Column>
-    <Column xs={12} lg={4}>
-      <Paper>xs-12, lg=4</Paper>
-    </Column>
-    <Column xs={12} lg={4}>
-      <Paper>xs-12, lg=4</Paper>
-    </Column>
-  </Grid>
-</Playground>
-
-## Nested Grids
-
-Grids can be nested within other grids for advanced layout configurations.
-
-<Playground>
-  <Grid spacing={16}>
-    <Column xs={8}>
-      <Grid spacing={16}>
-        <Column xs={12}>
-          <Paper>nested xs-12</Paper>
-        </Column>
-        <Column xs={4}>
-          <Paper>nested xs-4</Paper>
-        </Column>
-        <Column xs={4}>
-          <Paper>nested xs-4</Paper>
-        </Column>
-        <Column xs={4}>
-          <Paper>nested xs-4</Paper>
-        </Column>
-      </Grid>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-    <Column xs={4}>
-      <Paper>xs-4</Paper>
-    </Column>
-  </Grid>
-</Playground>
-
 ## API
 
-### Grid
-
 <PropsTable of={Grid} />
-
-### Column
-
-<PropsTable of={Column} />

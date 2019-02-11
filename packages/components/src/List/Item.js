@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
 import { isFunction, noop } from 'underscore';
 import ListContext from './ListValueContext';
-import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
 import { HoverIntersection } from '../HoverIntersection';
+import { WithBreakpoint } from '../WithBreakpoint';
 
 const Row = createComponent(
   ({ dense, hovered, selected, theme }) => ({

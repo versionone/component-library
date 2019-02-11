@@ -39,8 +39,6 @@
   },
   "dependencies": {
     "@andrew-codes/color-functions": "^1.4.2",
-    "@material-ui/core": "^3.4.0",
-    "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.0.8",
     "downshift": "^3.2.2",
     "fela": "^6.2.3",
@@ -56,6 +54,7 @@
     "fela-utils": "^8.1.3",
     "lodash.merge": "^4.6.1",
     "lodash.mergewith": "^4.6.1",
+    "react-event-listener": "^0.6.6",
     "react-fela": "^8.0.4",
     "react-focus-lock": "^1.17.7",
     "react-popper": "^1.3.3",
