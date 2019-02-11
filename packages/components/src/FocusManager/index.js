@@ -1,5 +1,5 @@
 import FocusGroup from './FocusGroup';
-import FocusManager from './FocusManager';
+import { FocusManager } from './FocusManager';
 
 FocusManager.Group = FocusGroup;
 

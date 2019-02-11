@@ -1,2 +1,2 @@
-export { default as Switch } from './Switch';
-export { default as IconSwitch } from './IconSwitch';
+export { Switch } from './Switch';
+export { IconSwitch } from './IconSwitch';

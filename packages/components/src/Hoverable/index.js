@@ -1,1 +1,1 @@
-export { default as Hoverable } from './Hoverable';
+export { Hoverable } from './Hoverable';

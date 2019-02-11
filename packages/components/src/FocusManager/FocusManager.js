@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import FocusContext from './FocusContext';
 import { isEmpty, last } from 'underscore';
+import FocusContext from './FocusContext';
 
 const history = [];
 let currentGroupId = null;
@@ -31,6 +31,7 @@ class FocusManager extends React.Component {
       this.forceUpdate();
     }
   }
+
   pop() {
     if (isEmpty(history)) {
       return;
@@ -49,4 +50,4 @@ FocusManager.propTypes = {
   /** Receives function to navigate back through focus group history. */
   children: PropTypes.func.isRequired,
 };
-export default FocusManager;
+export { FocusManager };

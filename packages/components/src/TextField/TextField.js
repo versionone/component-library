@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
@@ -10,7 +10,7 @@ import {
   InputField,
   TextareaField,
   WithFormFieldState,
-} from './../FormUtils';
+} from '../FormUtils';
 import { ShowIcon, HideIcon } from '../Icons';
 
 const Root = createComponent(
@@ -286,4 +286,4 @@ TextField.defaultProps = {
   onFocus: noop,
 };
 
-export default TextField;
+export { TextField };

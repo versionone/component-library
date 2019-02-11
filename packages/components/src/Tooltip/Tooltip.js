@@ -126,4 +126,4 @@ Tooltip.defaultProps = {
   disableContainment: false,
 };
 
-export default Tooltip;
+export { Tooltip };

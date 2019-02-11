@@ -37,9 +37,7 @@ const Impl = createComponent(
 
 const Lozenge = props => (
   <StyleProvider>
-    <Impl {...props} data-component="Lozenge">
-      {props.text}
-    </Impl>
+    <Impl {...props} data-component="Lozenge" />
   </StyleProvider>
 );
 
@@ -47,7 +45,7 @@ Lozenge.propTypes = {
   /**
    * message being conveyed
    */
-  text: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   /**
    * Sparse, important information
    */
@@ -68,4 +66,4 @@ Lozenge.defaultProps = {
   color: null,
 };
 
-export default Lozenge;
+export { Lozenge };

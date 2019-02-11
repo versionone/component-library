@@ -1,1 +1,1 @@
-export { default as Lozenge } from './Lozenge';
+export { Lozenge } from './Lozenge';

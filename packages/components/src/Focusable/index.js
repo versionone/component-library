@@ -1,1 +1,1 @@
-export { default as Focusable } from './Focusable';
+export { Focusable } from './Focusable';

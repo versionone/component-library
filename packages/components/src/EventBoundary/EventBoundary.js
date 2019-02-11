@@ -21,4 +21,4 @@ EventBoundary.propTypes = {
   /** Render prop injecting event handler functions to bind to a child component. */
   children: PropTypes.func.isRequired,
 };
-export default EventBoundary;
+export { EventBoundary };

@@ -62,4 +62,4 @@ Rect.defaultProps = {
   notObserved: false,
 };
 
-export default Rect;
+export { Rect };

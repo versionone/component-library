@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { noop } from 'underscore';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import TabContext from './TabContext';
 
@@ -62,6 +63,7 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
   defaultActiveTab: 0,
   defaultFocusedTab: null,
+  handleSelection: noop,
 };
 
-export default Tabs;
+export { Tabs };

@@ -1,4 +1,4 @@
-import WithBreakpoint from './WithBreakpoint';
+import { WithBreakpoint } from './WithBreakpoint';
 import { keys as breakpointKeys } from './breakpoints';
 import {
   getBreakpointValue,
