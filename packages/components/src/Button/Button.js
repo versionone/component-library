@@ -7,6 +7,7 @@ import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Hoverable } from '../Hoverable';
 import { SpacedGroup } from '../SpacedGroup';
+import Typography from '../Typography';
 
 const getBackgroundColor = ({
   buttonType,
@@ -67,14 +68,14 @@ const ButtonImpl = createComponent(
     color: getColor({ buttonType, disabled, hovered, theme, variant }),
     cursor: disabled ? 'not-allowed' : 'pointer',
     display: 'inline-flex',
-    fontWeight: 600,
+    // fontWeight: 600,
     height: 32,
-    lineHeight: 1.5,
+    // lineHeight: 1.5,
     justifyItems: 'center',
-    letterSpacing: '0.03rem',
+    // letterSpacing: '0.03rem',
     outline: 'none',
     padding: '0 1rem',
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     transition: '0.5s all linear',
     whiteSpace: 'nowrap',
     ...styleUtils.conditionalStyles(
@@ -121,6 +122,18 @@ class Button extends React.Component {
       onMouseLeave,
     } = this.props;
 
+    const childrenWithTypography = React.Children.map(children, child => {
+      if (typeof child === 'string') {
+        return (
+          <Typography is="span" variant="button">
+            {child}
+          </Typography>
+        );
+      } else {
+        return child;
+      }
+    });
+
     return (
       <StyleProvider>
         <Focusable onBlur={onBlur} onFocus={onFocus}>
@@ -142,7 +155,7 @@ class Button extends React.Component {
                   type="button"
                   variant={variant}
                 >
-                  <SpacedGroup center>{children}</SpacedGroup>
+                  <SpacedGroup center>{childrenWithTypography}</SpacedGroup>
                 </ButtonImpl>
               )}
             </Hoverable>
