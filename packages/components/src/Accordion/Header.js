@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop, isFunction } from 'underscore';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { Focusable } from '../Focusable';
 import { Arrow } from '../Arrow';
 
 const HeaderButton = createComponent(
@@ -111,71 +112,72 @@ const IconPlaceholder = createComponent(
   'span',
 );
 
-class Header extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.ref = React.createRef();
-  }
+const Header = ({
+  accordionId,
+  bordered,
+  children,
+  'data-test': dataTest,
+  disabled,
+  focused,
+  handleSelection,
+  isFirst,
+  isLast,
+  onBlur,
+  onFocus,
+  open,
+  status,
+}) => {
+  const arrow = (
+    <IconPlaceholder>
+      <Arrow open={open} is="span" />
+    </IconPlaceholder>
+  );
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.focused !== nextProps.focused) {
-      const method = nextProps.focused ? 'focus' : 'blur';
-      this.ref.current[method]();
-    }
-  }
+  const childProps = {
+    arrow,
+  };
 
-  render() {
-    const props = this.props;
-    const arrow = (
-      <IconPlaceholder>
-        <Arrow open={props.open} is="span" />
-      </IconPlaceholder>
-    );
-
-    const childProps = {
-      arrow,
-    };
-
-    const children = isFunction(props.children)
-      ? props.children(childProps)
-      : React.cloneElement(props.children, childProps);
-
-    return (
-      <StyleProvider>
-        <Container
-          bordered={props.bordered}
-          open={props.open}
-          isFirst={props.isFirst}
-          isLast={props.isLast}
-          status={props.status}
-          disabled={props.disabled}
-          role="heading"
-          data-component="Accordion.Header"
-          data-test={props['data-test']}
-        >
-          <HeaderButton
-            isFirst={props.isFirst}
-            isLast={props.isLast}
-            open={props.open}
-            disabled={props.disabled}
-            aria-expanded={props.open}
-            aria-disabled={props.disabled}
-            aria-controls={props.accoridionId}
-            tabIndex={props.disabled ? '-1' : '0'}
-            focused={props.focused ? true : undefined}
-            onFocus={props.disabled ? noop : props.handleFocus}
-            onBlur={props.disabled ? noop : props.handleBlur}
-            onClick={props.disabled ? noop : props.handleSelection}
-            type="button"
-            innerRef={this.ref}
+  return (
+    <StyleProvider>
+      <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
+        {({ focused, bind, ref }) => (
+          <Container
+            bordered={bordered}
+            open={open}
+            isFirst={isFirst}
+            isLast={isLast}
+            status={status}
+            disabled={disabled}
+            role="heading"
+            data-component="Accordion.Header"
+            data-test={dataTest}
           >
-            {children}
-          </HeaderButton>
-        </Container>
-      </StyleProvider>
-    );
-  }
-}
+            <HeaderButton
+              isFirst={isFirst}
+              isLast={isLast}
+              open={open}
+              disabled={disabled}
+              aria-expanded={open}
+              aria-disabled={disabled}
+              aria-controls={accordionId}
+              tabIndex={disabled ? '-1' : '0'}
+              focused={focused}
+              onFocus={disabled ? noop : bind.onFocus}
+              onBlur={disabled ? noop : bind.onBlur}
+              onClick={disabled ? noop : handleSelection}
+              type="button"
+              innerRef={ref}
+            >
+              {isFunction(children)
+                ? children(childProps)
+                : React.cloneElement(children, childProps)}
+            </HeaderButton>
+          </Container>
+        )}
+      </Focusable>
+    </StyleProvider>
+  );
+};
 
 Header.propTypes = {
   /**
