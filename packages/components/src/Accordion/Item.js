@@ -6,17 +6,9 @@ const Item = ({ children, ...otherProps }) => {
   return (
     <StyleProvider>
       <Fragment>
-        {React.Children.map(children, (child, i) => {
-          const childProps = Object.keys(otherProps).reduce(
-            (acc, next) => ({
-              ...acc,
-              [next]: otherProps[next],
-            }),
-            {},
-          );
-          const clonedChild = React.cloneElement(child, childProps);
-          return clonedChild;
-        })}
+        {React.Children.map(children, (child, i) =>
+          React.cloneElement(child, otherProps),
+        )}
       </Fragment>
     </StyleProvider>
   );

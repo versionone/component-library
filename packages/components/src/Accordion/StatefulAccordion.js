@@ -24,10 +24,10 @@ class StatefulAccordion extends React.Component {
     const isOpenByIndex = React.Children.toArray(props.children).reduce(
       (acc, child, index) => {
         const isOpen = (() => {
-          if (!props.manyExpandable) {
+          if (props.manyExpandable) {
             return Boolean(child.props.open);
           }
-          return props.manyExpandable && firstOpenIndex === index;
+          return !props.manyExpandable && firstOpenIndex === index;
         })();
         return {
           ...acc,
