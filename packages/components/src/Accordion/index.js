@@ -8,8 +8,5 @@ Accordion.Item = Item;
 Accordion.Header = Header;
 Accordion.Panel = Panel;
 
-export default Accordion;
-
-export { StatefulAccordion };
-
+export { Accordion, StatefulAccordion };
 export { default as BasicHeader } from './types/BasicHeader';

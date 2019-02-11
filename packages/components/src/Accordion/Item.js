@@ -2,29 +2,21 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { StyleProvider } from '../StyleProvider';
 
-const Item = props => {
-  const children = React.Children.map(props.children, (child, i) => {
-    const childProps = Object.keys(props)
-      .filter(propName => propName !== 'children')
-      .reduce(
-        (acc, next) => ({
-          ...acc,
-          [next]: props[next],
-        }),
-        {},
-      );
-    const clonedChild = React.cloneElement(child, childProps);
-    return clonedChild;
-  });
-
+const Item = ({ children, ...otherProps }) => {
   return (
     <StyleProvider>
-      <Fragment>{children}</Fragment>
+      <Fragment>
+        {React.Children.map(children, (child, i) =>
+          React.cloneElement(child, otherProps),
+        )}
+      </Fragment>
     </StyleProvider>
   );
 };
 
 Item.propTypes = {
+  /** Children to display within panel. */
+  children: PropTypes.node,
   /**
    * Disable padding in the panel
    */
@@ -33,6 +25,8 @@ Item.propTypes = {
    * If true the panel is disabled
    */
   disabled: PropTypes.bool,
+  /** When true, Item's header is focused. */
+  focused: PropTypes.bool,
   /**
    * If true the panel is open before any user interaction
    */
@@ -44,10 +38,11 @@ Item.propTypes = {
 };
 
 Item.defaultProps = {
-  open: false,
-  status: 'default',
   disabled: false,
   disablePadding: false,
+  focused: false,
+  open: false,
+  status: 'default',
 };
 
 export default Item;

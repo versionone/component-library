@@ -1,39 +1,42 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { noop } from 'underscore';
+import { isEmpty, noop } from 'underscore';
 import Accordion from './Accordion';
 
 class StatefulAccordion extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    const childrenArray = React.Children.toArray(props.children);
-
-    const firstOpenIndex = childrenArray.findIndex(child => child.props.open);
-
-    const isOpenByIndex = childrenArray.reduce((acc, child, index) => {
-      const isOpen = (() => {
-        if (!props.manyExpandable) {
-          return Boolean(child.props.open);
-        }
-        if (props.manyExpandable && firstOpenIndex === index) {
-          return true;
-        } else {
-          return false;
-        }
-      })();
-
-      return {
-        ...acc,
-        [index]: isOpen,
-      };
-    }, {});
+  constructor() {
+    super();
 
     this.state = {
-      isOpenByIndex,
+      isOpenByIndex: {},
     };
 
     this.toggle = this.toggle.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!isEmpty(Object.keys(state.isOpenByIndex))) {
+      return null;
+    }
+    const firstOpenIndex = React.Children.toArray(props.children).findIndex(
+      child => child.props.open,
+    );
+    const isOpenByIndex = React.Children.toArray(props.children).reduce(
+      (acc, child, index) => {
+        const isOpen = (() => {
+          if (props.manyExpandable) {
+            return Boolean(child.props.open);
+          }
+          return !props.manyExpandable && firstOpenIndex === index;
+        })();
+        return {
+          ...acc,
+          [index]: isOpen,
+        };
+      },
+      {},
+    );
+    return { isOpenByIndex };
   }
 
   toggle(index) {
@@ -93,6 +96,10 @@ class StatefulAccordion extends React.Component {
 
 StatefulAccordion.propTypes = {
   /**
+   * If true all panels can be closed
+   */
+  allCollapsable: PropTypes.bool,
+  /**
    * data-test attribute
    */
   'data-test': PropTypes.string,
@@ -109,20 +116,16 @@ StatefulAccordion.propTypes = {
    */
   manyExpandable: PropTypes.bool,
   /**
-   * If true all panels can be closed
-   */
-  allCollapsable: PropTypes.bool,
-  /**
    * Function called when a selection is made
    */
   onSelect: PropTypes.func,
 };
 
 StatefulAccordion.defaultProps = {
+  allCollapsable: false,
   disableBorder: false,
   disableDividers: false,
   manyExpandable: false,
-  allCollapasble: false,
   onSelect: noop,
 };
 

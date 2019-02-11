@@ -5,13 +5,32 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
-import Accordion, { StatefulAccordion, BasicHeader } from './';
+import { Accordion, StatefulAccordion, BasicHeader } from './';
 import { SpacedGroup } from './../SpacedGroup';
 import { Button } from './../Button';
 
 # Accordion
 
 Content area that can be collapsed and expanded.
+
+## Setting Focus
+
+<Playground>
+  <StatefulAccordion data-test="Accordion-default">
+    <Accordion.Item>
+      <Accordion.Header data-test="Accordion-Header-1">
+        <BasicHeader title="Title 1" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
+    </Accordion.Item>
+    <Accordion.Item focused>
+      <Accordion.Header data-test="Accordion-Header-2">
+        <BasicHeader title="Title 2 (initially focused)" />
+      </Accordion.Header>
+      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
+    </Accordion.Item>
+  </StatefulAccordion>
+</Playground>
 
 ## Controlled
 
@@ -112,7 +131,7 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion data-test="Accordion-default">
-    <Accordion.Item>
+    <Accordion.Item open={true}>
       <Accordion.Header data-test="Accordion-Header-1">
         {({ arrow }) => {
           return <SpacedGroup center>{arrow} Title 1</SpacedGroup>;

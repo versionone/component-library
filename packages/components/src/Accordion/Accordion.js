@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import { noop } from 'underscore';
+import Item from './Item';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { Border } from '../Border';
 
@@ -12,17 +13,10 @@ const DefinitionList = createComponent(
   ['role'],
 );
 
-class Accordion extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    const childrenArray = React.Children.toArray(props.children);
-
-    const focusedIndex = childrenArray.findIndex(child => child.props.focused);
-
-    this.state = {
-      focusedIndex,
-    };
+class Accordion extends Component {
+  constructor() {
+    super();
+    this.state = { focusedIndex: -1 };
 
     this.toggle = this.toggle.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -38,9 +32,21 @@ class Accordion extends React.Component {
     window.removeEventListener('keydown', this.handleKeyPress, false);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (state.focusedIndex >= 0) {
+      return null;
+    }
+    const focusedIndex = React.Children.toArray(props.children).findIndex(
+      child => child.props.focused,
+    );
+    return {
+      focusedIndex,
+    };
+  }
+
   handleKeyPress(event) {
     const { children } = this.props;
-    const focusedIndex = this.state.focusedIndex;
+    const { focusedIndex } = this.state;
 
     if (focusedIndex === -1) return;
 
@@ -126,7 +132,7 @@ class Accordion extends React.Component {
     const items = React.Children.map(this.props.children, (child, index) => {
       const childProps = {
         key: index,
-        accoridionId: 'accordionId-' + (index + 1),
+        accoridionId: `accordionId-${index + 1}`,
         isLast: index === count,
         isFirst: index === 0,
         focusedIndex: this.state.focusedIndex,
@@ -162,6 +168,8 @@ class Accordion extends React.Component {
 }
 
 Accordion.propTypes = {
+  /** Accordion items. */
+  children: PropTypes.instanceOf(Item),
   /**
    * data-test attribute
    */
