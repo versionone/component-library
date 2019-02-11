@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createComponent, StyleProvider } from '../StyleProvider';
+import { palette } from '../palette';
 
-const getFontSize = ({ variant }) => {
+const getStyles = ({ variant }) => {
   switch (variant) {
     case 'huge':
-      return '24px';
+      return {
+        color: palette.forge,
+        fontSize: '24px',
+        fontWeight: 300,
+        fontFamily:
+          "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
+        letterSpacing: '-.025em',
+      };
       break;
     case 'xlarge':
-      return '20px';
+      return {
+        fontSize: '20px',
+        letterSpacing: '-.025em',
+      };
       break;
     default:
       return '12px';
@@ -21,7 +32,7 @@ class Typography extends Component {
 
     const TypographyImpl = createComponent(
       ({ variant }) => ({
-        fontSize: getFontSize({ variant }),
+        ...getStyles({ variant }),
       }),
       is,
       [],
