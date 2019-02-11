@@ -6,7 +6,7 @@ import {
   StyleProvider,
   WithTheme,
 } from '../StyleProvider';
-import { Divider } from './../Divider';
+import { Divider } from '../Divider';
 
 const Content = createComponent(
   ({ disablePadding, open, status, theme }) => {
