@@ -1,0 +1,41 @@
+{
+  "private": false,
+  "name": "@versionone/icons",
+  "description": "Collection of icon components used in VersionOne and Continuum.",
+  "version": "0.0.4",
+  "license": "MIT",
+  "homepage": "https://versionone-components.netlify.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/versionone/component-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/versionone/component-library/issues"
+  },
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
+  "files": [
+    "dist",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "generate:main": "svgr -d src src/svg",
+    "postgenerate:main": "rm -f src/index.js && generate-main-icons",
+    "prebuild": "yarn generate:main",
+    "build": "babel --root-mode upward src --out-dir ./dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@svgr/cli": "^4.1.0",
+    "@versionone/generate-main-icons": "^0.0.4",
+    "svgo": "^1.1.1"
+  }
+}
