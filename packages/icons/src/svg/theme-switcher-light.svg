@@ -1,0 +1,13 @@
+<svg version="1.1" id="theme-switcher-light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+	<g>
+		<circle fill="none" stroke-miterlimit="10" cx="7.5" cy="7.25" r="2"/>
+		<line fill="none"  stroke-miterlimit="10" x1="7.5" y1="4" x2="7.5" y2="0"/>
+		<line fill="none"  stroke-miterlimit="10" x1="7.5" y1="15" x2="7.5" y2="11"/>
+		<line fill="none"  stroke-miterlimit="10" x1="11" y1="7.5" x2="15" y2="7.5"/>
+		<line fill="none"  stroke-miterlimit="10" x1="0" y1="7.5" x2="4" y2="7.5"/>
+		<line fill="none"  stroke-miterlimit="10" x1="9.975" y1="5.025" x2="12.804" y2="2.197"/>
+		<line fill="none"  stroke-miterlimit="10" x1="2.197" y1="12.804" x2="5.025" y2="9.975"/>
+		<line fill="none"  stroke-miterlimit="10" x1="9.975" y1="9.975" x2="12.804" y2="12.804"/>
+		<line fill="none"  stroke-miterlimit="10" x1="2.197" y1="2.197" x2="5.025" y2="5.025"/>
+	</g>
+</svg>

@@ -1,0 +1,21 @@
+<svg version="1.1" id="calendar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<polygon points="22.5,2.9 18.7,2.9 18.7,1 16.8,1 16.8,6.7 18.7,6.7 18.7,4.8 20.6,4.8 20.6,21.1 3.4,21.1 3.4,4.8 4.3,4.8 
+		4.3,2.9 1.5,2.9 1.5,23 22.5,23 	"/>
+	<polygon points="7.2,1 5.3,1 5.3,6.7 7.2,6.7 7.2,4.8 15.8,4.8 15.8,2.9 7.2,2.9 	"/>
+	<rect x="5.3" y="12.5" width="1.9" height="1.9"/>
+	<rect x="8.2" y="12.5" width="1.9" height="1.9"/>
+	<rect x="11" y="12.5" width="1.9" height="1.9"/>
+	<rect x="13.9" y="12.5" width="1.9" height="1.9"/>
+	<rect x="8.2" y="9.6" width="1.9" height="1.9"/>
+	<rect x="11" y="9.6" width="1.9" height="1.9"/>
+	<rect x="13.9" y="9.6" width="1.9" height="1.9"/>
+	<rect x="5.3" y="15.3" width="1.9" height="1.9"/>
+	<rect x="8.2" y="15.3" width="1.9" height="1.9"/>
+	<rect x="11" y="15.3" width="1.9" height="1.9"/>
+	<rect x="13.9" y="15.3" width="1.9" height="1.9"/>
+	<rect x="16.8" y="12.5" width="1.9" height="1.9"/>
+	<rect x="16.8" y="9.6" width="1.9" height="1.9"/>
+</g>
+</svg>

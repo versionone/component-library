@@ -1,0 +1,10 @@
+<svg version="1.1" id="value-stream" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<path d="M11,20.1H13v-1c1.1,0,1.9-0.9,1.9-1.9v-1c0-1.1-0.9-1.9-1.9-1.9H11v-1h3.8v-1.9H13v-1H11v1c-1.1,0-1.9,0.9-1.9,1.9v1
+		c0,1.1,0.9,1.9,1.9,1.9h1v0h1v1H9.1v1.9H11V20.1z"/>
+	<polygon points="5.3,1 5.3,6.7 7.2,6.7 7.2,4.8 15.8,4.8 15.8,2.9 7.2,2.9 7.2,1 	"/>
+	<path d="M22.5,9.6V7.7V2.9h-3.8V1h-1.9v5.7h1.9V4.8h1.9v2.9H3.4V4.8h1V2.9H1.5v4.8v1.9V23h21V9.6z M20.6,21.1H3.4V9.6h17.2V21.1z"
+		/>
+</g>
+</svg>

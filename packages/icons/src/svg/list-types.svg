@@ -1,0 +1,11 @@
+<svg version="1.1" id="list-types" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g>
+	<rect x="1" y="7.3" width="2" height="2"/>
+	<rect x="1" y="11.3" width="2" height="2"/>
+	<rect x="1" y="15.3" width="2" height="2"/>
+	<rect x="6" y="7.3" width="17" height="2"/>
+	<rect x="6" y="11.3" width="17" height="2"/>
+	<rect x="6" y="15.3" width="17" height="2"/>
+</g>
+</svg>

@@ -1,0 +1,18 @@
+<svg version="1.1" id="budget-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<rect x="6.5" y="11" width="2" height="2"/>
+	<rect x="9.5" y="11" width="2" height="2"/>
+	<rect x="12.5" y="11" width="2" height="2"/>
+	<rect x="15.5" y="11" width="2" height="2"/>
+	<rect x="6.5" y="14" width="2" height="2"/>
+	<rect x="9.5" y="14" width="2" height="2"/>
+	<rect x="12.5" y="14" width="2" height="2"/>
+	<rect x="6.5" y="17" width="2" height="2"/>
+	<rect x="9.5" y="17" width="2" height="2"/>
+	<rect x="12.5" y="17" width="2" height="2"/>
+	<polygon points="15.5,15 15.5,16 15.5,19 17.5,19 17.5,16 17.5,15 17.5,14 15.5,14 	"/>
+	<polygon points="8.5,7 17.5,7 17.5,5 6.5,5 6.5,9 8.5,9 	"/>
+	<path d="M2.5,3v18c0,1.1,0.9,2,2,2h15c1.1,0,2-0.9,2-2V3c0-1.1-0.9-2-2-2h-15C3.4,1,2.5,1.9,2.5,3z M19.5,21h-15V3h15L19.5,21z"/>
+</g>
+</svg>
