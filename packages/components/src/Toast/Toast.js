@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { lighten, toRgbaString } from '@andrew-codes/color-functions';
+import { AlertIcon, CheckedIcon, InfoIcon } from '@versionone/icons';
 import { createComponent, StyleProvider } from '../StyleProvider';
-import { AlertIcon, CheckedIcon, InfoIcon } from '../Icons';
 import { SpacedGroup } from '../SpacedGroup';
 
 const ToastImpl = createComponent(

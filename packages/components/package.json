@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@versionone/components",
-  "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
+  "description": "Collection of components and accompanying documentation site VersionOne and Continuum.",
   "version": "0.0.4",
   "license": "MIT",
   "homepage": "https://versionone-components.netlify.com/",
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@andrew-codes/color-functions": "^1.4.2",
+    "@versionone/icons": "^0.0.4",
     "copy-to-clipboard": "^3.0.8",
     "downshift": "^3.2.2",
     "fela": "^6.2.3",

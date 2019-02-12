@@ -1,13 +1,13 @@
 import React, { Fragment, Component, createRef } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
+import { DeliveryIcon } from '@versionone/icons';
 import {
   createComponent,
   StyleProvider,
   styleUtils,
   WithTheme,
 } from '../StyleProvider';
-import { DeliveryIcon } from '../Icons';
 import { Button } from '../Button';
 
 const Root = createComponent(
@@ -176,14 +176,14 @@ class Upload extends Component {
     const Component =
       this.props.variant === 'button'
         ? UploadButton
-        : Boolean(this.props.primaryText)
+        : this.props.primaryText
         ? DropZoneLarge
         : DropZoneSmall;
 
     const dimensions =
       this.props.variant === 'button'
         ? {}
-        : Boolean(this.props.primaryText)
+        : this.props.primaryText
         ? { width: 320, height: 200 }
         : { width: 100, height: 100 };
 

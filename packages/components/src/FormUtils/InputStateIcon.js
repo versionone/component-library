@@ -1,7 +1,12 @@
 import React from 'react';
+import {
+  EditIcon,
+  AlertIcon,
+  CheckIcon,
+  LoadingSpinIcon,
+} from '@versionone/icons';
 import { Tooltip } from '../Tooltip';
 import { createComponent, styleUtils } from '../StyleProvider';
-import { EditIcon, AlertIcon, CheckIconIcon, LoadingSpinIcon } from '../Icons';
 import { palette } from '../palette';
 import { SpacedGroup } from '../SpacedGroup';
 
