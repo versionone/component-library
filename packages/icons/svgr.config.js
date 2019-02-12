@@ -1,5 +1,5 @@
 module.exports = {
-  svgo: false,
+  svgo: true,
   svgoCongig: './svgo.config.json',
   titleProp: true,
   template: ({ template }, opts, { imports, componentName, props, jsx }) => {
