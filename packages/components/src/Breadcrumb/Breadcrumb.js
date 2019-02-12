@@ -81,7 +81,7 @@ const BreadcrumbItem = props => {
     </Fragment>
   );
 
-  const coloredChilren = React.Children.toArray(props.children).map(
+  const coloredChildren = React.Children.toArray(props.children).map(
     (child, i) => {
       return typeof child === 'string' ? (
         <PsuedoLink key={i} selected={props.selected} onClick={props.onClick}>
@@ -105,7 +105,7 @@ const BreadcrumbItem = props => {
   return props.collapse ? (
     <PsuedoLink>...</PsuedoLink>
   ) : props.children ? (
-    coloredChilren
+    coloredChildren
   ) : (
     <PsuedoLink selected={props.selected}>{icon}</PsuedoLink>
   );
