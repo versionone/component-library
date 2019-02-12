@@ -14,7 +14,7 @@ const PositionedMenu = createComponent(
     ...style,
   }),
   'div',
-  ['data-placement'],
+  ['data-placement', 'data-test', 'data-component'],
 );
 const AdjustmentForFocusDisplay = createComponent(
   () => ({
@@ -24,6 +24,7 @@ const AdjustmentForFocusDisplay = createComponent(
 );
 
 const MenuChildren = ({
+  dataTest,
   placement,
   modifiers,
   width,
@@ -79,6 +80,8 @@ const MenuChildren = ({
               innerRef={ref}
               style={style}
               data-placement={placement}
+              data-component="Menu"
+              data-test={dataTest}
             >
               {positionedMenu}
             </PositionedMenu>
@@ -118,6 +121,7 @@ class Menu extends React.Component {
       placement,
       modifiers,
       width,
+      'data-test': dataTest,
     } = this.props;
 
     const renderMenu = bind => {
@@ -143,6 +147,7 @@ class Menu extends React.Component {
             placement={placement}
             modifiers={modifiers}
             onKeyDown={this.handleKeyDown}
+            dataTest={dataTest}
           >
             {children}
           </MenuChildren>
@@ -221,6 +226,10 @@ Menu.propTypes = {
    * Popper.js modifiers
    */
   modifiers: PropTypes.object,
+  /**
+   * Data test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 Menu.defaultProps = {
