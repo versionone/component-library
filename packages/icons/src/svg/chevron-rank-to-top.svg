@@ -1,0 +1,9 @@
+<svg version="1.1" id="chevron-rank-to-top" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 8.5 9.8" style="enable-background:new 0 0 8.5 9.8;" xml:space="preserve">
+<g transform="matrix(1,0,0,1.0297627,0,-18.962544)">
+	<path stroke="none" d="M0.2,27.7c-0.3-0.3-0.3-0.8,0-1.1L3,23.8c0.2-0.2,0.3-0.4,0.3-0.6S3.1,22.8,3,22.6l-2.8-2.8
+		c-0.2-0.2-0.3-0.8,0-1.1c0.3-0.3,0.8-0.3,1.1,0l2.9,2.9c0.5,0.4,0.7,1,0.7,1.7c0,0.7-0.3,1.1-0.7,1.6l-2.9,2.8
+		C1,28,0.5,28,0.2,27.7L0.2,27.7z"/>
+</g>
+<path stroke="none" d="M7.7,0C7.3,0,6.9,0.5,6.9,0.8v4.1v4c0,0.4,0.4,0.9,0.8,0.9S8.5,9.3,8.5,9V4.9V0.8C8.5,0.4,8.1,0,7.7,0z"/>
+</svg>

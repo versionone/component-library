@@ -1,0 +1,9 @@
+<svg version="1.1" id="push-notifications" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g>
+	<path d="M7,23H17c1,0,1.8-0.8,1.8-1.8V2.8c0-1-0.8-1.8-1.8-1.8H7c-1,0-1.8,0.8-1.8,1.8v18.3C5.1,22.2,5.9,23,7,23z M7,21.2v-1.8H17
+		v1.8H7z M7,17.5V5.6H17v11.9H7z M17,2.8v0.9H7V2.8H17z"/>
+	<polygon points="16.1,10.2 13.4,7.4 10.6,10.2 12.5,10.2 12.5,15.7 14.3,15.7 14.3,10.2 	"/>
+	<polygon points="9.7,11.1 7.9,12.9 8.8,12.9 8.8,15.7 10.6,15.7 10.6,12.9 11.5,12.9 	"/>
+</g>
+</svg>

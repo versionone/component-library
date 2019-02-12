@@ -1,0 +1,6 @@
+<svg version="1.1" id="follow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<path stroke="none" d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M11.2,8.6H8.6v2.6C8.6,11.8,8.4,12,8,12c-0.6,0-0.6-0.4-0.6-0.8V8.6
+	H4.8C4.4,8.6,4,8.4,4,8c0-0.6,0.4-0.6,0.8-0.6h2.6V4.8C7.4,4.4,7.6,4,8,4c0.4,0,0.6,0.4,0.6,0.8v2.6h2.6C11.8,7.4,12,7.6,12,8
+	S11.8,8.6,11.2,8.6z"/>
+</svg>
