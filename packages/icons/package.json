@@ -37,6 +37,7 @@
     "@babel/core": "^7.2.0",
     "@svgr/cli": "^4.1.0",
     "@versionone/generate-main-icons": "^0.0.4",
+    "lodash.startcase": "^4.4.0",
     "svgo": "^1.1.1"
   }
 }

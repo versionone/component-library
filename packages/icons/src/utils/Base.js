@@ -9,6 +9,7 @@ const Base = ({ color, icon: Icon, size, ...rest }) => (
       height: `${size}px`,
       width: `${size}px`,
     }}
+    title={Icon.displayName}
     {...rest}
   />
 );
@@ -18,7 +19,7 @@ Base.propTypes = {
   /** Size dimensions of icon. */
   size: PropTypes.number,
   /** Title of icon. */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 Base.defaultProps = {
   color: '#000',
