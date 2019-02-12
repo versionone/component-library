@@ -1,0 +1,44 @@
+---
+name: All Icons
+route: /theme/icons/all
+menu: Icons
+---
+
+import { palette, SpacedGroup, Tooltip } from '@versionone/components';
+import { Playground } from '@versionone/docz';
+import * as AllIcons from '@versionone/icons';
+
+# All Icons
+
+If you don't see your icon, go to [here](/theme/icons) to for instructions on adding one in.
+
+<Playground>
+  {() => {
+    const tile = {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '24px',
+      height: '24px',
+    };
+    return (
+      <SpacedGroup xs={4}>
+        {Object.keys(AllIcons)
+          .filter(name => name !== 'BaseIcon')
+          .map(iconKey => {
+            const Icon = AllIcons[iconKey];
+            const anchor = <Icon color={palette.gunmetal} />;
+            return (
+              <div key={iconKey} style={tile}>
+                <Tooltip anchor={anchor}>
+                  <SpacedGroup xs={4}>
+                    <span>{iconKey}</span>
+                  </SpacedGroup>
+                </Tooltip>
+              </div>
+            );
+          })}
+      </SpacedGroup>
+    );
+  }}
+</Playground>

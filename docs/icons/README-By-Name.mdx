@@ -1,0 +1,57 @@
+---
+name: By Name
+route: /theme/icons/byname
+menu: Icons
+---
+
+import {
+  CopyToClipboard,
+  Grid,
+  palette,
+  SpacedGroup,
+  Tooltip,
+} from '@versionone/components';
+import { Playground, PropsTable } from '@versionone/docz';
+import * as AllIcons from '@versionone/icons';
+
+# Icons By Name (Copy to Clipboard)
+
+If you don't see your icon, go to [here](/theme/icons) to for instructions on adding one in.
+
+<Playground>
+  {() => {
+    const names = Object.keys(AllIcons).filter(name => name !== 'BaseIcon');
+    const length = names.length;
+    const firstColumn = names.slice(0, length / 2);
+    const secondColumn = names.slice(length / 2, length);
+    const buildList = items =>
+      items.map(iconKey => {
+        const Icon = AllIcons[iconKey];
+        const name = iconKey.replace(/Icon/g, '');
+        return (
+          <SpacedGroup key={iconKey} center>
+            <Icon />
+            <CopyToClipboard text={iconKey}>
+              <span style={{ cursor: 'pointer' }}>{name}</span>
+            </CopyToClipboard>
+          </SpacedGroup>
+        );
+      });
+    const first = (
+      <SpacedGroup direction="vertical" xs={2}>
+        {buildList(firstColumn)}
+      </SpacedGroup>
+    );
+    const second = (
+      <SpacedGroup direction="vertical" xs={2}>
+        {buildList(secondColumn)}
+      </SpacedGroup>
+    );
+    return (
+      <Grid>
+        <Grid>{first}</Grid>
+        <Grid>{second}</Grid>
+      </Grid>
+    );
+  }}
+</Playground>
