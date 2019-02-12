@@ -22,6 +22,9 @@ const map = {
     letterSpacing: '-.025em',
     fontWeight: 600,
   },
+  large: {
+    fontSize: '16px',
+  },
   button: {
     fontSize: '14px',
     fontWeight: 600,
@@ -49,6 +52,8 @@ const getFontStrategy = variant => {
     return map.huge;
   } else if (variant === 'xlarge') {
     return map.xlarge;
+  } else if (variant === 'large') {
+    return map.large;
   } else if (variant === 'button') {
     return map.button;
   } else if (variant === 'base') {
