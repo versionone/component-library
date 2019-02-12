@@ -1,6 +1,6 @@
 ---
 name: By Name
-route: /theme/icons/byname
+route: /icons/byname
 menu: Icons
 ---
 
@@ -16,7 +16,7 @@ import * as AllIcons from '@versionone/icons';
 
 # Icons By Name (Copy to Clipboard)
 
-If you don't see your icon, go to [here](/theme/icons) to for instructions on adding one in.
+> If you don't see your icon, see the section [adding new icons](/icons#adding-new-icons) for instructions on adding a new icon.
 
 <Playground>
   {() => {
@@ -27,7 +27,7 @@ If you don't see your icon, go to [here](/theme/icons) to for instructions on ad
     const buildList = items =>
       items.map(iconKey => {
         const Icon = AllIcons[iconKey];
-        const name = iconKey.replace(/Icon/g, '');
+        const name = iconKey;
         return (
           <SpacedGroup key={iconKey} center>
             <Icon />
@@ -37,20 +37,14 @@ If you don't see your icon, go to [here](/theme/icons) to for instructions on ad
           </SpacedGroup>
         );
       });
-    const first = (
-      <SpacedGroup direction="vertical" xs={2}>
-        {buildList(firstColumn)}
-      </SpacedGroup>
-    );
-    const second = (
-      <SpacedGroup direction="vertical" xs={2}>
-        {buildList(secondColumn)}
-      </SpacedGroup>
-    );
     return (
       <Grid>
-        <Grid>{first}</Grid>
-        <Grid>{second}</Grid>
+        <SpacedGroup direction="vertical" xs={2}>
+          {buildList(firstColumn)}
+        </SpacedGroup>
+        <SpacedGroup direction="vertical" xs={2}>
+          {buildList(secondColumn)}
+        </SpacedGroup>
       </Grid>
     );
   }}
