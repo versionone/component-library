@@ -25,14 +25,17 @@ Badges are used to show notification count and call the user's attention to take
 
 <Playground>
   <SpacedGroup xs={24}>
-    <Badge count={0} showZero>
-      <AttachmentsIcon size={36} />
+    <Badge count={0}>
+      <AttachmentsIcon size={32} />
     </Badge>
-    <Badge count={50} maxCount={10}>
-      <AlertIcon size={36} />
+    <Badge count={0} showZero>
+      <AttachmentsIcon size={32} />
+    </Badge>
+    <Badge count={50} maxCount={51}>
+      <AlertIcon size={32} />
     </Badge>
     <Badge count={10000} maxCount={99}>
-      <MailboxIcon size={36} />
+      <MailboxIcon size={32} />
     </Badge>
   </SpacedGroup>
 </Playground>
@@ -40,7 +43,7 @@ Badges are used to show notification count and call the user's attention to take
 ## Without Children
 
 <Playground>
-  <SpacedGroup xs={36}>
+  <SpacedGroup xs={32}>
     <SpacedGroup direction="vertical" center>
       <Badge count={12} />
       <span>Count</span>
@@ -63,7 +66,7 @@ Badges are used to show notification count and call the user's attention to take
 ## Colors
 
 <Playground>
-  <SpacedGroup xs={36}>
+  <SpacedGroup xs={32}>
     <SpacedGroup direction="vertical" center>
       <Badge count={12} backgroundColor={palette.fern} />
       <span>Fern</span>
