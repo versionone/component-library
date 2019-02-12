@@ -24,4 +24,4 @@ Base.defaultProps = {
   color: '#000',
   size: 24,
 };
-export default Base;
+export { Base };
