@@ -1,6 +1,6 @@
 context.only('EventBoundary', () => {
   beforeEach(() => {
-    cy.navigate(['Components', 'EventBoundary']);
+    cy.navigate([/^Components$/, 'EventBoundary']);
   });
 
   specify('Specified events do not propagate past the EventBoundary', () => {
