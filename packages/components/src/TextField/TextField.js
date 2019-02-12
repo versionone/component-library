@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
+import { ShowIcon, HideIcon } from '@versionone/icons';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import {
   InputFieldContainer,
@@ -11,7 +12,6 @@ import {
   TextareaField,
   WithFormFieldState,
 } from '../FormUtils';
-import { ShowIcon, HideIcon } from '../Icons';
 
 const Root = createComponent(
   ({ fullWidth, stretch }) => ({
@@ -169,10 +169,12 @@ class TextField extends Component {
       </WithFormFieldState>
     );
   }
+
   handleChange(evt) {
     const value = evt.target.value;
     this.props.onChange(evt, value);
   }
+
   handleTogglePassword() {
     if (this.props.password)
       this.setState({ showPassword: !this.state.showPassword });

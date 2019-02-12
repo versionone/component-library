@@ -1,14 +1,14 @@
 import { isFunction } from 'underscore';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { CloseIcon } from '@versionone/icons';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import { IconButton } from './../Button';
-import { CloseIcon } from './../Icons';
-import { EventBoundary } from './../EventBoundary';
+import { IconButton } from '../Button';
+import { EventBoundary } from '../EventBoundary';
 import { HoverIntersection } from '../HoverIntersection';
 
 const buildStyles = ({ hovered, onClick, size, clamped, outlined, theme }) => {
-  const activityStyles = Boolean(onClick)
+  const activityStyles = onClick
     ? {
         cursor: 'pointer',
         ':focus': {
