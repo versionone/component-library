@@ -1,9 +1,0 @@
-<svg version="1.1" id="attachment-links-hover" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
-<g>
-	<rect x="11" y="11" stroke="none" fill="#FFFFFF" width="6" height="6"/>
-	<path fill="#66BF10" stroke="none" d="M14,8c-3.3,0-6,2.7-6,6c0,3.3,2.7,6,6,6c3.3,0,6-2.7,6-6C20,10.7,17.3,8,14,8z M16.4,14.5h-1.9v1.9
-		c0,0.4-0.2,0.6-0.5,0.6c-0.4,0-0.5-0.3-0.5-0.6v-1.9h-1.9c-0.3,0-0.6-0.2-0.6-0.5c0-0.4,0.3-0.5,0.6-0.5h1.9v-1.9
-		c0-0.3,0.1-0.6,0.5-0.6c0.3,0,0.5,0.3,0.5,0.6v1.9h1.9c0.4,0,0.6,0.1,0.6,0.5C17,14.4,16.8,14.5,16.4,14.5z"/>
-</g>
-</svg>
