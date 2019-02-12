@@ -118,18 +118,6 @@ class Button extends React.Component {
       onMouseLeave,
     } = this.props;
 
-    const childrenWithTypography = React.Children.map(children, child => {
-      if (typeof child === 'string') {
-        return (
-          <Typography is="span" variant="button">
-            {child}
-          </Typography>
-        );
-      } else {
-        return child;
-      }
-    });
-
     return (
       <StyleProvider>
         <Focusable onBlur={onBlur} onFocus={onFocus}>
@@ -151,7 +139,11 @@ class Button extends React.Component {
                   type="button"
                   variant={variant}
                 >
-                  <SpacedGroup center>{childrenWithTypography}</SpacedGroup>
+                  <SpacedGroup center>
+                    <Typography is="span" variant="button">
+                      {children}
+                    </Typography>
+                  </SpacedGroup>
                 </ButtonImpl>
               )}
             </Hoverable>

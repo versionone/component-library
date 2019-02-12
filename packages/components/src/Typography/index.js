@@ -34,6 +34,12 @@ const map = {
     fontSize: '14px',
     color: palette.forge,
   },
+  small: {
+    fontSize: '12px',
+  },
+  xsmall: {
+    fontSize: '10px',
+  },
 };
 
 const getFontStrategy = variant => {
@@ -47,6 +53,10 @@ const getFontStrategy = variant => {
     return map.button;
   } else if (variant === 'base') {
     return map.base;
+  } else if (variant === 'small') {
+    return map.small;
+  } else if (variant === 'xsmall') {
+    return map.xsmall;
   }
 };
 
@@ -85,9 +95,17 @@ class Typography extends Component {
       is,
     );
 
+    const childrenWithTypography = React.Children.map(children, child => {
+      if (typeof child === 'string') {
+        return <TypographyImpl>{child}</TypographyImpl>;
+      } else {
+        return child;
+      }
+    });
+
     return (
       <StyleProvider>
-        <TypographyImpl>{children}</TypographyImpl>
+        <React.Fragment>{childrenWithTypography}</React.Fragment>
       </StyleProvider>
     );
   }
