@@ -1,0 +1,34 @@
+---
+name: Analytics Tracking
+menu: Getting Started
+route: /getting-started/data-trackingid
+---
+
+# Analytics Tracking
+
+Actionable components like `Buttons` and `Switches` can be tracked by analtyics enginges by providing a `data-trackingid` prop.
+Tracking the interaction with a component can help better understand its usage, expose deficiencies in the expereience.
+
+When choosing a value for your `data-trackingid` pick a value that is stable and semantic. We want to capture specific tasks so having a name that accrutaly describes the intention of the user is best. Stable ids ensure more reliable anayltics.
+
+```js
+<Button onClick={handleClick} data-trackingid="login">
+  login
+</Button>
+```
+
+In the following example we might want to know the frequency of items beinging edited. Notice that we don't need to track each item individually as we only care if any in the set are edited.
+
+```js
+<List>
+  {items.map(item => (
+    <List.Item
+      key={item.id}
+      onClick={handleEdit}
+      data-trackingid="edit-item<Type>"
+    >
+      <List.ItemText primary={item.title} />
+    </List.Item>
+  ))}
+</List>
+```
