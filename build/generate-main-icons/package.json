@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "@versionone/generate-main-icons",
+  "version": "0.0.4",
+  "description": "Generate icons package's main `index.js` file.",
+  "license": "MIT",
+  "bin": "./src/bin/index.js"
+}
