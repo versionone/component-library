@@ -11,7 +11,7 @@ cypress/videos
 **/dist
 packages/components/src/index.js
 packages/icons/src/*.*
-!packages/icons/src/Base.js
+!packages/icons/src/*.mdx
 
 # Components must live within their own directory. There should not be any loose files in the source directory.
 packages/components/src/*.*

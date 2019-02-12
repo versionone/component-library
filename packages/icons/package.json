@@ -19,9 +19,10 @@
     "LICENSE.md"
   ],
   "scripts": {
+    "pregenerate:main": "rm -f src/*.js",
     "generate:main": "svgr -d src src/svg",
-    "postgenerate:main": "rm -f src/index.js && generate-main-icons",
-    "prebuild": "yarn generate:main",
+    "postgenerate:main": "generate-main-icons",
+    "prebuild": "yarn generate:main && rm -rf dist",
     "build": "babel --root-mode upward src --out-dir ./dist"
   },
   "publishConfig": {
