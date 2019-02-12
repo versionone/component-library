@@ -20,7 +20,7 @@ export default {
     {
       name: 'Styling',
     },
-    { name: 'Icons', menu: ['Icons'] },
+    { name: 'Icons', menu: ['Icon'] },
   ],
   modifyBundlerConfig: config => ({
     ...config,

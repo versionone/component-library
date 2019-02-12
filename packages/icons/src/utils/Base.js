@@ -11,6 +11,7 @@ const Base = ({ color, icon: Icon, size, ...rest }) => (
     }}
     title={Icon.displayName}
     {...rest}
+    data-component="Icon"
   />
 );
 Base.propTypes = {
