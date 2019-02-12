@@ -29,7 +29,7 @@ export default props => {
   const showIcon = !inlineEdit || hovered;
 
   const inlineEditIcon = disabled ? null : success ? (
-    <CheckIconIcon
+    <CheckIcon
       size={12}
       color={showIcon ? palette.shamrock : palette.transparent}
     />

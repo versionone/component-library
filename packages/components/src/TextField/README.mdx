@@ -10,7 +10,7 @@ import { Label } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from './';
 import { Lozenge } from '../Lozenge';
-import { HomeIconIcon } from '@versionone/icons';
+import { HomeIcon } from '@versionone/icons';
 
 # TextField
 
@@ -55,10 +55,10 @@ Used to provide free-form textual input.
       <TextField prependIcon="item" stretch />
     </FormField>
     <TextField fullWidth prependIcon="item" />
-    <TextField fullWidth prependIcon={<HomeIconIcon />} />
+    <TextField fullWidth prependIcon={<HomeIcon />} />
     <TextField fullWidth prependIcon="item" multiline />
     <TextField fullWidth appendIcon="item" />
-    <TextField fullWidth appendIcon={<HomeIconIcon />} />
+    <TextField fullWidth appendIcon={<HomeIcon />} />
     <TextField fullWidth password />
   </SpacedGroup>
 </Playground>
@@ -67,7 +67,7 @@ Used to provide free-form textual input.
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <TextField fullWidth password appendIcon={<HomeIconIcon />} />
+    <TextField fullWidth password appendIcon={<HomeIcon />} />
     <TextField fullWidth password />
   </SpacedGroup>
 </Playground>
