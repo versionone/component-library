@@ -5,7 +5,7 @@ module.exports = {
   svgo: true,
   svgoCongig: './svgo.config.json',
   svgProps: {
-    'aria-labeledby': 'title',
+    'aria-labelledby': 'title',
     role: 'img',
   },
   titleProp: true,

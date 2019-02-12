@@ -1,5 +1,5 @@
 ---
-name: Icons
+name: Icon
 route: /icons
 menu: Icons
 ---
@@ -8,7 +8,7 @@ import { AssetIcon } from './';
 import { Base } from './utils/Base';
 import { Playground, PropsTable } from '@versionone/docz';
 
-# Icons
+# Icon
 
 `Icons` are great for conveying complex information in a simple manner. Avoid using `Icons` outside of an `IconButton`, `EmptyState`, or `Avatar`
 
@@ -22,7 +22,9 @@ Icons are contained within a **separate package** from the component library; na
 
 <Playground>
   <AssetIcon />
-  <AssetIcon title="a custom title" />
+  <AssetIcon title="custom title" />
+  <AssetIcon color="green" />
+  <AssetIcon size={48} />
 </Playground>
 
 ## Adding New Icons
