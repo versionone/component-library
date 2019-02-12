@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ChevronIcon } from '@versionone/icons';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import { ChevronIcon } from '../Icons';
 import { Rotate } from '../Rotate';
 
 const buildStyles = ({ height }) => ({
