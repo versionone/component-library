@@ -8,12 +8,7 @@ import { Playground, PropsTable } from 'docz';
 import { Badge } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { Avatar } from '../Avatar';
-import {
-  MailboxIcon,
-  FlagIcon,
-  ConversationsIcon,
-  TopicIcon,
-} from '@versionone/icons';
+import { AlertIcon, AttachmentsIcon, MailboxIcon } from '@versionone/icons';
 import { palette } from '../palette';
 
 # Badge
@@ -30,14 +25,11 @@ Badges are used to show notification count and call the user's attention to take
 
 <Playground>
   <SpacedGroup xs={24}>
-    <Badge count={5}>
-      <FlagIcon size={36} />
-    </Badge>
     <Badge count={0} showZero>
-      <TopicIcon size={36} />
+      <AttachmentsIcon size={36} />
     </Badge>
     <Badge count={50} maxCount={10}>
-      <ConversationsIcon size={36} />
+      <AlertIcon size={36} />
     </Badge>
     <Badge count={10000} maxCount={99}>
       <MailboxIcon size={36} />
