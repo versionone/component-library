@@ -1,6 +1,6 @@
 context('Tabs', () => {
   beforeEach(() => {
-    cy.navigate(['Components', 'Tabs']);
+    cy.navigate([/^Components$/, 'Tabs']);
   });
 
   specify('Tabs can have data-test attributes applied', () => {
