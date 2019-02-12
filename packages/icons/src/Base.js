@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Base = ({ color = 'blue', icon: Icon, size, ...rest }) => (
+const Base = ({ color = '#000', icon: Icon, size, ...rest }) => (
   <Icon
     style={{
       display: 'inline-flex',
