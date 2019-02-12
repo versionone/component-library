@@ -5,6 +5,7 @@ import { palette } from '../palette';
 
 const map = {
   mega: {
+    color: palette.pale,
     fontSize: '56px',
     fontWeight: 800,
     letterSpacing: '-.03em',
@@ -29,6 +30,10 @@ const map = {
     margin: 0,
     textTransform: 'capitalize',
   },
+  base: {
+    fontSize: '14px',
+    color: palette.forge,
+  },
 };
 
 const getFontStrategy = variant => {
@@ -40,6 +45,8 @@ const getFontStrategy = variant => {
     return map.xlarge;
   } else if (variant === 'button') {
     return map.button;
+  } else if (variant === 'base') {
+    return map.base;
   }
 };
 
