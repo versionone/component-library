@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Base = ({ color = '#000', icon: Icon, size, ...rest }) => (
+const Base = ({ color, icon: Icon, size, ...rest }) => (
   <Icon
     style={{
       display: 'inline-flex',
@@ -13,10 +13,15 @@ const Base = ({ color = '#000', icon: Icon, size, ...rest }) => (
   />
 );
 Base.propTypes = {
+  /** Color of icon. */
+  color: PropTypes.string,
+  /** Size dimensions of icon. */
   size: PropTypes.number,
+  /** Title of icon. */
   title: PropTypes.string.isRequired,
 };
 Base.defaultProps = {
+  color: '#000',
   size: 24,
 };
 export default Base;
