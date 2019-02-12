@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import Typography from '../Typography';
 
 const Impl = createComponent(
   ({ color, variant, bold, theme }) => ({
@@ -29,17 +30,24 @@ const Impl = createComponent(
     'text-align': 'center',
     'text-decoration': 'none',
     'text-transform': 'uppercase',
-    'font-size': 11,
+    'line-height': '12px',
   }),
   'span',
   ['data-component', 'data-test'],
 );
 
-const Lozenge = props => (
-  <StyleProvider>
-    <Impl {...props} data-component="Lozenge" />
-  </StyleProvider>
-);
+const Lozenge = props => {
+  const { children, ...others } = props;
+  return (
+    <StyleProvider>
+      <Impl {...others} data-component="Lozenge">
+        <Typography is="span" variant="xsmall">
+          {children}
+        </Typography>
+      </Impl>
+    </StyleProvider>
+  );
+};
 
 Lozenge.propTypes = {
   /**

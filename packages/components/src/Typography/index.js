@@ -54,14 +54,14 @@ const getFontStrategy = variant => {
     return map.xlarge;
   } else if (variant === 'large') {
     return map.large;
-  } else if (variant === 'button') {
-    return map.button;
   } else if (variant === 'base') {
     return map.base;
   } else if (variant === 'small') {
     return map.small;
   } else if (variant === 'xsmall') {
     return map.xsmall;
+  } else if (variant === 'button') {
+    return map.button;
   }
 };
 
@@ -87,7 +87,7 @@ const getColor = ({ color }) => {
 
 class Typography extends Component {
   render() {
-    const { is, children, variant } = this.props;
+    const { is, children, variant, ...others } = this.props;
 
     const fontStrategy = getFontStrategy(variant);
 
@@ -95,6 +95,7 @@ class Typography extends Component {
       () => ({
         fontFamily:
           "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
+        margin: 0,
         ...fontStrategy,
       }),
       is,
@@ -102,7 +103,7 @@ class Typography extends Component {
 
     const childrenWithTypography = React.Children.map(children, child => {
       if (typeof child === 'string') {
-        return <TypographyImpl>{child}</TypographyImpl>;
+        return <TypographyImpl {...others}>{child}</TypographyImpl>;
       } else {
         return child;
       }
