@@ -11,34 +11,22 @@ import * as AllIcons from '@versionone/icons';
 # All Icons
 
 > If you don't see your icon, see the section [adding new icons](/icons#adding-new-icons) for instructions on adding a new icon.
+> Remember, icons are a **separate package**; installed via `npm install @versionone/icons`
 
 <Playground>
-  {() => {
-    const tile = {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '24px',
-      height: '24px',
-    };
-    return (
-      <SpacedGroup xs={4}>
-        {Object.keys(AllIcons)
-          .filter(name => name !== 'BaseIcon')
-          .map(iconKey => {
-            const Icon = AllIcons[iconKey];
-            const anchor = <Icon color={palette.gunmetal} />;
-            return (
-              <div key={iconKey} style={tile}>
-                <Tooltip anchor={anchor}>
-                  <SpacedGroup xs={4}>
-                    <span>{iconKey}</span>
-                  </SpacedGroup>
-                </Tooltip>
-              </div>
-            );
-          })}
-      </SpacedGroup>
-    );
-  }}
+  <SpacedGroup xs={4}>
+    {Object.keys(AllIcons)
+      .filter(name => name !== 'BaseIcon')
+      .map(iconKey => {
+        const Icon = AllIcons[iconKey];
+        const anchor = <Icon color={palette.gunmetal} />;
+        return (
+          <Tooltip key={iconKey} anchor={anchor}>
+            <SpacedGroup xs={4}>
+              <span>{iconKey}</span>
+            </SpacedGroup>
+          </Tooltip>
+        );
+      })}
+  </SpacedGroup>
 </Playground>
