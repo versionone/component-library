@@ -1,6 +1,10 @@
 module.exports = {
   svgo: true,
   svgoCongig: './svgo.config.json',
+  svgProps: {
+    'aria-labeledby': 'title',
+    role: 'img',
+  },
   titleProp: true,
   template: ({ template }, opts, { imports, componentName, props, jsx }) => {
     return template.ast`${imports}
