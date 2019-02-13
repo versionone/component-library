@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
 import { isFunction, isString } from 'underscore';
 import { Clamp } from '../Clamp';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 import { createComponent, StyleProvider } from '../StyleProvider';
 
 const PrimaryContent = createComponent(

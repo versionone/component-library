@@ -7,7 +7,7 @@ import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Hoverable } from '../Hoverable';
 import { SpacedGroup } from '../SpacedGroup';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const getBackgroundColor = ({
   buttonType,

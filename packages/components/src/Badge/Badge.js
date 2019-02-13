@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const Container = createComponent(
   () => ({

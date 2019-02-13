@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
-import Typography from '../Typography';
+import { Typography } from '../Typography';
 
 const Impl = createComponent(
   ({ color, variant, bold, theme }) => ({
