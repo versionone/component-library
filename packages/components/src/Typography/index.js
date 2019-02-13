@@ -106,7 +106,7 @@ Typography.propTypes = {
   /** Color of the text */
   color: PropTypes.oneOf(['white']),
   /** Tag to be used for element */
-  is: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span']),
+  is: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p']),
   /** Styling Variant */
   variant: PropTypes.oneOf([
     'mega',

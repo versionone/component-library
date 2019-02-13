@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isFunction } from 'underscore';
-import { createComponent, StyleProvider } from './../StyleProvider';
+import { createComponent, StyleProvider } from '../StyleProvider';
 
 const TabImpl = createComponent(
   () => ({
@@ -29,15 +29,28 @@ const TabImpl = createComponent(
 );
 
 const Tab = props => {
+  const {
+    disabled,
+    selected,
+    focused,
+    children,
+    controls,
+    id,
+    tabIndex,
+    handleSelection,
+    handleBlur,
+    handleFocus,
+  } = props;
+
   const inheritedProps = {
-    selected: !props.disabled && props.selected,
-    disabled: props.disabled,
-    focused: !props.disabled && props.focused,
+    selected: !disabled && selected,
+    disabled,
+    focused: !disabled && focused,
   };
 
-  const children = isFunction(props.children)
-    ? props.children(inheritedProps)
-    : React.cloneElement(props.children, inheritedProps);
+  const updatedChildren = isFunction(children)
+    ? children(inheritedProps)
+    : React.cloneElement(children, inheritedProps);
 
   return (
     <StyleProvider>
@@ -45,17 +58,17 @@ const Tab = props => {
         {...props}
         data-component="Tabs.Tab"
         role="tab"
-        aria-selected={props.selected}
-        aria-controls={props.controls}
-        id={props.id}
-        tabIndex={props.tabIndex}
-        onClick={props.handleSelection}
-        disabled={props.disabled}
-        focused={props.focused}
-        onBlur={props.handleBlur}
-        onFocus={props.handleFocus}
+        aria-selected={selected}
+        aria-controls={controls}
+        id={id}
+        tabIndex={tabIndex}
+        onClick={handleSelection}
+        disabled={disabled}
+        focused={focused}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
       >
-        {children}
+        {updatedChildren}
       </TabImpl>
     </StyleProvider>
   );

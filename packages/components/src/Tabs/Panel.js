@@ -12,17 +12,18 @@ const PanelImpl = createComponent(
 );
 
 const Panel = props => {
+  const { 'data-test': dataTest, children, index, visible } = props;
   return (
     <StyleProvider>
       <PanelImpl
-        visible={props.visible}
-        data-test={props['data-test']}
+        visible={visible}
+        data-test={dataTest}
         data-component="Tabs.Panel"
         tabIndex="-1"
         role="tabpanel"
-        aria-labelledby={props.index}
+        aria-labelledby={index}
       >
-        {props.children}
+        {children}
       </PanelImpl>
     </StyleProvider>
   );
