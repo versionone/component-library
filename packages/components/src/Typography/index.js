@@ -1,6 +1,6 @@
 import React, { Component, Children, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, StyleProvider } from '../StyleProvider';
 import { palette } from '../palette';
 
 const map = {
@@ -36,6 +36,8 @@ const map = {
   base: {
     fontSize: '14px',
     color: palette.forge,
+    fontWeight: 400,
+    lineHeight: '1.15em',
   },
   small: {
     fontSize: '12px',
@@ -46,42 +48,25 @@ const map = {
 };
 
 const getFontStrategy = variant => {
-  if (variant === 'mega') {
-    return map.mega;
-  } else if (variant === 'huge') {
-    return map.huge;
-  } else if (variant === 'xlarge') {
-    return map.xlarge;
-  } else if (variant === 'large') {
-    return map.large;
-  } else if (variant === 'base') {
-    return map.base;
-  } else if (variant === 'small') {
-    return map.small;
-  } else if (variant === 'xsmall') {
-    return map.xsmall;
-  } else if (variant === 'button') {
-    return map.button;
-  }
-};
-
-const getWeight = ({ weight }) => {
-  switch (weight) {
-    case 'bold':
-      return 800;
-    case 'light':
-      return 300;
+  switch (variant) {
+    case 'mega':
+      return map.mega;
+    case 'huge':
+      return map.huge;
+    case 'xLarge':
+      return map.xLarge;
+    case 'large':
+      return map.large;
+    case 'base':
+      return map.base;
+    case 'small':
+      return map.small;
+    case 'xSmall':
+      return map.xSmall;
+    case 'button':
+      return map.button;
     default:
-      return weight;
-  }
-};
-
-const getColor = ({ color }) => {
-  switch (color) {
-    case 'white':
-      return palette.white;
-    default:
-      return;
+      return map.base;
   }
 };
 
@@ -101,12 +86,12 @@ class Typography extends Component {
       is,
     );
 
-      if (typeof child === 'string') {
     const childrenWithTypography = Children.map(children, child => {
+      if (typeof child === 'string' || typeof child === 'number') {
         return <TypographyImpl {...others}>{child}</TypographyImpl>;
-      } else {
-        return child;
       }
+
+      return child;
     });
 
     return (
@@ -122,22 +107,7 @@ Typography.propTypes = {
   color: PropTypes.oneOf(['white']),
   /** Tag to be used for element */
   is: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span']),
-  /** Font Size */
-  size: PropTypes.oneOf([
-    '10px',
-    '12px',
-    '14px',
-    '16px',
-    '20px',
-    '24px',
-    '56px',
-  ]),
   /** Styling Variant */
-  variant: PropTypes.oneOf(['huge', 'xlarge', 'mega', 'button']),
-  /** Text Transform */
-  transform: PropTypes.oneOf(['uppercase']),
-  /** Font Weight */
-  weight: PropTypes.oneOf([300, 400, 700, 800, 900, 'light', 'bold']),
   variant: PropTypes.oneOf([
     'mega',
     'huge',
