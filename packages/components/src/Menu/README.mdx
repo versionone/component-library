@@ -34,80 +34,128 @@ and the items in the `Menu` are verbs and themselves are actions.
 | Danny Developer   | Assign Story |
 
 <Playground>
-	{() => {
-		class StateManager extends React.Component {
-			constructor(props) {
-				super(props);
-				this.state = {
-					isOpenIndex: -1,
-					items: [
-						{ name: 'My Shared View', project: 'Project A' },
-						{ name: 'Backlog Shared View', project: 'Project A' },
-						{ name: 'Backlog Shared View', project: 'Project B' },
-						{ name: 'Holiday Party', project: 'Project A' },
-						{ name: 'Roadmaping Latest Quarter', project: 'Project A' },
-						{ name: 'Team Q Backlog', project: 'Project A' },
-					],
-				}
-				this.open = this.open.bind(this);
-				this.close = this.close.bind(this)
-			}
-			open(index) {
-				return () => this.setState({ isOpenIndex: index });
-			}
-			close() {
-				this.setState({ isOpenIndex: -1 });
-			}
-			render() {
-				const getMenuForItemAt = (index) => {
-					const isOpen = this.state.isOpenIndex === index;
-					return (
-						<Menu
-							anchor={
-								<IconButton
-									title="more-actions"
-									icon={InfoIcon}
-									onClick={this.open(index)}
-								/>
-							}
-							open={isOpen}
-							placement="bottom-end"
-							onClickOutside={this.close}
-						>
-							<List bordered>
-								<List.Item onClick={() => {}} focused={isOpen}>
-									<List.ItemText primary="Action 1" />
-								</List.Item>
-								<List.Item onClick={() => {}}>
-									<List.ItemText primary="Action 2" />
-								</List.Item>
-							</List>
-						</Menu>
-					);
-				}
-				const ListItems = this.state.items.map((item, index) => (
-					<List.Item
-						key={index}
-						secondaryAction={getMenuForItemAt(index)}
-					>
-						<List.ItemText primary={item.name} secondary={item.project} />
-					</List.Item>
-				));
-				return (
-					<SpacedGroup xs={24}>
-						<Paper>
-							<List bordered>
-								{ListItems}
-							</List>
-						</Paper>
-					</SpacedGroup>
-				);
-			}
-		}
-		return <StateManager />;
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          isOpenIndex: -1,
+          items: [
+            { name: 'My Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project B' },
+            { name: 'Holiday Party', project: 'Project A' },
+            { name: 'Roadmaping Latest Quarter', project: 'Project A' },
+            { name: 'Team Q Backlog', project: 'Project A' },
+          ],
+        };
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+      }
+      open(index) {
+        return () => this.setState({ isOpenIndex: index });
+      }
+      close() {
+        this.setState({ isOpenIndex: -1 });
+      }
+      render() {
+        const getMenuForItemAt = index => {
+          const isOpen = this.state.isOpenIndex === index;
+          return (
+            <Menu
+              anchor={<IconButton icon={InfoIcon} onClick={this.open(index)} />}
+              open={isOpen}
+              placement="bottom-end"
+              onClickOutside={this.close}
+            >
+              <List bordered>
+                <List.Item onClick={() => {}} focused={isOpen}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Menu>
+          );
+        };
+        const ListItems = this.state.items.map((item, index) => (
+          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
+            <List.ItemText primary={item.name} secondary={item.project} />
+          </List.Item>
+        ));
+        return (
+          <SpacedGroup xs={24}>
+            <Paper>
+              <List bordered>{ListItems}</List>
+            </Paper>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
 
-}}
+## Containment and Scrim
 
+<Playground data-test="containment">
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          [0]: false,
+          [1]: false,
+        };
+        this.toggle = this.toggle.bind(this);
+      }
+      toggle(id) {
+        return () => {
+          this.setState(state => ({ [id]: !state[id] }));
+        };
+      }
+      render() {
+        return (
+          <SpacedGroup>
+            <Menu
+              disableContainment
+              anchor={<IconButton icon={InfoIcon} onClick={this.toggle(0)} />}
+              onClickOutside={this.toggle(0)}
+              open={this.state[0]}
+              placement="bottom-end"
+            >
+              <List bordered>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Menu>
+            <Menu
+              disableContainment
+              disableScrim
+              anchor={<IconButton icon={InfoIcon} onClick={this.toggle(1)} />}
+              open={this.state[1]}
+              placement="bottom-end"
+            >
+              <List bordered>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Menu>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API
