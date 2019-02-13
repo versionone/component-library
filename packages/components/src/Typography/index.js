@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
@@ -101,8 +101,8 @@ class Typography extends Component {
       is,
     );
 
-    const childrenWithTypography = React.Children.map(children, child => {
       if (typeof child === 'string') {
+    const childrenWithTypography = Children.map(children, child => {
         return <TypographyImpl {...others}>{child}</TypographyImpl>;
       } else {
         return child;
@@ -111,7 +111,7 @@ class Typography extends Component {
 
     return (
       <StyleProvider>
-        <React.Fragment>{childrenWithTypography}</React.Fragment>
+        <Fragment>{childrenWithTypography}</Fragment>
       </StyleProvider>
     );
   }
