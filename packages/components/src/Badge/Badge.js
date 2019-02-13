@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
+import Typography from '../Typography';
 
 const Container = createComponent(
-  ({}) => ({
+  () => ({
     position: 'relative',
   }),
   'div',
@@ -12,11 +13,11 @@ const Container = createComponent(
 );
 
 const Counter = createComponent(
-  ({ hasChildren, bordered, color, backgroundColor, theme }) => ({
+  ({ hasChildren, bordered, color, backgroundColor }) => ({
     height: 20,
     minWidth: 20,
     borderRadius: 10,
-    fontSize: 12,
+    //fontSize: 12,
     lineHeight: 22,
     whiteSpace: 'nowrap',
     padding: `0px 8px`,
@@ -38,30 +39,38 @@ const Counter = createComponent(
 );
 
 const Badge = props => {
-  const showBadge = props.count > 0 || props.showZero;
-  const count =
-    Boolean(props.maxCount) && props.count > props.maxCount
-      ? `+${props.maxCount}`
-      : props.count;
+  const {
+    backgroundColor,
+    bordered,
+    children,
+    color,
+    count,
+    showZero,
+    maxCount,
+    'data-test': dataTest,
+  } = props;
+  const showBadge = count > 0 || showZero;
+  const badgeCount =
+    Boolean(maxCount) && count > maxCount ? `+${maxCount}` : count;
 
-  const hasChildren = React.Children.count(props.children) > 0;
+  const hasChildren = React.Children.count(children) > 0;
 
   const counter = showBadge && (
     <Counter
       hasChildren={hasChildren}
-      backgroundColor={props.backgroundColor}
-      color={props.color}
-      bordered={props.bordered}
+      backgroundColor={backgroundColor}
+      color={color}
+      bordered={bordered}
     >
-      {count}
+      <Typography variant="xSmall">{badgeCount}</Typography>
     </Counter>
   );
 
   return (
     <StyleProvider>
-      <Container data-component="Badge" data-test={props['data-test']}>
+      <Container data-component="Badge" data-test={dataTest}>
         {counter}
-        {props.children}
+        {children}
       </Container>
     </StyleProvider>
   );
@@ -96,6 +105,10 @@ Badge.propTypes = {
    * Item (s) to apply the badge
    */
   children: PropTypes.node,
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
 };
 
 Badge.defaultProps = {

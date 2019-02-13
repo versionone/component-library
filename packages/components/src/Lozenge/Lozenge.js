@@ -41,7 +41,7 @@ const Lozenge = props => {
   return (
     <StyleProvider>
       <Impl {...others} data-component="Lozenge">
-        <Typography is="span" variant="xsmall">
+        <Typography is="span" variant="xSmall">
           {children}
         </Typography>
       </Impl>
