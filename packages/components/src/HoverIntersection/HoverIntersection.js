@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Hoverable } from './../Hoverable';
+import { Hoverable } from '../Hoverable';
 import { Provider } from './Context';
 
 const HoverIntersection = ({ children }) => (
