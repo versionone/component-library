@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { palette } from '../palette';
 
-const map = {
+const fontStrategyMap = {
   mega: {
     color: palette.pale,
     fontSize: '56px',
@@ -47,34 +47,11 @@ const map = {
   },
 };
 
-const getFontStrategy = variant => {
-  switch (variant) {
-    case 'mega':
-      return map.mega;
-    case 'huge':
-      return map.huge;
-    case 'xLarge':
-      return map.xLarge;
-    case 'large':
-      return map.large;
-    case 'base':
-      return map.base;
-    case 'small':
-      return map.small;
-    case 'xSmall':
-      return map.xSmall;
-    case 'button':
-      return map.button;
-    default:
-      return map.base;
-  }
-};
-
 class Typography extends Component {
   render() {
     const { is, children, variant } = this.props;
 
-    const fontStrategy = getFontStrategy(variant);
+    const fontStrategy = fontStrategyMap[variant] || fontStrategyMap.base;
 
     const TypographyImpl = createComponent(
       () => ({
@@ -88,7 +65,7 @@ class Typography extends Component {
 
     const childrenWithTypography = Children.map(children, child => {
       if (typeof child === 'string' || typeof child === 'number') {
-        return <TypographyImpl >{child}</TypographyImpl>;
+        return <TypographyImpl>{child}</TypographyImpl>;
       }
 
       return child;
