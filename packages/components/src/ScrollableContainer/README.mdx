@@ -4,17 +4,18 @@ menu: Components
 route: /components/ScrollableContainer
 ---
 
+import { Fragment } from 'react';
 import { Playground, PropsTable } from '@versionone/docz';
 import { ScrollableContainer } from './';
 import { Button } from '../Button';
-import { Border } from '../Border';
+import { SpacedGroup } from '../SpacedGroup';
 
 # ScrollableContainer
 
 ScrollableContainer allow content to be vertically scrollable with a custom scrollbar
 
 <Playground>
-  <Border>
+  <Fragment>
     <ScrollableContainer height="100px">
       <p>
         This content is too long to fit in the available space. In order for it
@@ -38,7 +39,30 @@ ScrollableContainer allow content to be vertically scrollable with a custom scro
       </p>
       <Button>Anything</Button>
     </ScrollableContainer>
-  </Border>
+    <ScrollableContainer width="100px">
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <p>
+        This content is too long to fit in the available space. In order for it
+        be be accessed you must use a scrollbar.
+      </p>
+      <Button>Anything</Button>
+    </ScrollableContainer>
+  </Fragment>
 </Playground>
 
 ## API

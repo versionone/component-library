@@ -177,6 +177,7 @@ const StepImpl = createComponent(
     overflow: 'hidden',
   }),
   'div',
+  ['data-component'],
 );
 
 const Step = props => {
@@ -184,7 +185,7 @@ const Step = props => {
 
   return (
     <StyleProvider>
-      <StepImpl direction={props.direction}>
+      <StepImpl data-component="Step" direction={props.direction}>
         <StepIcon size={props.size} seen={props.seen} current={props.current}>
           <StepIconNumber seen={props.seen} current={props.current}>
             {stepIcon}
