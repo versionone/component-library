@@ -100,10 +100,6 @@ const ButtonImpl = createComponent(
 );
 
 class Button extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       children,
@@ -116,6 +112,7 @@ class Button extends React.Component {
       variant,
       onMouseEnter,
       onMouseLeave,
+      'data-trackingid': dataTrackingId,
     } = this.props;
 
     return (
@@ -129,7 +126,7 @@ class Button extends React.Component {
                   {...bindHoverable}
                   buttonType={type}
                   data-component="Button"
-                  data-trackingid={this.props['data-trackingid']}
+                  data-trackingid={dataTrackingId}
                   disabled={disabled}
                   focused={focused}
                   hovered={hovered}
