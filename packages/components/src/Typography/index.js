@@ -16,7 +16,7 @@ const map = {
     fontWeight: 300,
     letterSpacing: '-.025em',
   },
-  xlarge: {
+  xLarge: {
     color: palette.forge,
     fontSize: '20px',
     letterSpacing: '-.025em',
@@ -40,7 +40,7 @@ const map = {
   small: {
     fontSize: '12px',
   },
-  xsmall: {
+  xSmall: {
     fontSize: '10px',
   },
 };
@@ -138,6 +138,16 @@ Typography.propTypes = {
   transform: PropTypes.oneOf(['uppercase']),
   /** Font Weight */
   weight: PropTypes.oneOf([300, 400, 700, 800, 900, 'light', 'bold']),
+  variant: PropTypes.oneOf([
+    'mega',
+    'huge',
+    'xLarge',
+    'large',
+    'base',
+    'small',
+    'xSmall',
+    'button',
+  ]),
 };
 
 Typography.defaultProps = {
