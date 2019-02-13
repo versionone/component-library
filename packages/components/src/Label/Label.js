@@ -19,12 +19,12 @@ const RequiredText = createComponent(
 );
 
 const Label = props => {
-  const { children, disabled, required } = props;
+  const { children, disabled, required, 'data-test': dataTest } = props;
   return (
     <StyleProvider>
       <LabelText
         data-component="Label"
-        data-test={props['data-test']}
+        data-test={dataTest}
         disabled={disabled}
       >
         {children} {required && <RequiredText>*</RequiredText>}
@@ -45,6 +45,10 @@ Label.propTypes = {
    * Indicates a required field
    *  */
   required: PropTypes.bool,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 Label.defaultProps = {
   disabled: false,
