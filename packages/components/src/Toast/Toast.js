@@ -4,6 +4,7 @@ import { lighten, toRgbaString } from '@andrew-codes/color-functions';
 import { AlertIcon, CheckIcon, InfoIcon } from '@versionone/icons';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
+import { Typography } from '../Typography';
 
 const ToastImpl = createComponent(
   ({ variant, theme }) => {
@@ -23,22 +24,25 @@ const ToastImpl = createComponent(
   ['data-component', 'data-test'],
 );
 
+const iconByVariant = {
+  warning: AlertIcon,
+  error: AlertIcon,
+  success: CheckedIcon,
+};
+
 const Toast = props => {
-  const Icon =
-    props.variant === 'warning' || props.variant === 'error'
-      ? AlertIcon
-      : props.variant === 'success'
-      ? CheckIcon
-      : InfoIcon;
+  const { variant, message, action } = props;
+
+  const Icon = iconByVariant[variant] || InfoIcon;
 
   return (
     <StyleProvider>
       <ToastImpl {...props} data-component="Toast">
         <SpacedGroup>
           <Icon />
-          {props.message}
+          <Typography variant="large">{message}</Typography>
         </SpacedGroup>
-        {props.action}
+        {action}
       </ToastImpl>
     </StyleProvider>
   );
