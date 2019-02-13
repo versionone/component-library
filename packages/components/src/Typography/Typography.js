@@ -72,7 +72,7 @@ const getFontStrategy = variant => {
 
 class Typography extends Component {
   render() {
-    const { is, children, variant, ...others } = this.props;
+    const { is, children, variant } = this.props;
 
     const fontStrategy = getFontStrategy(variant);
 
@@ -88,7 +88,7 @@ class Typography extends Component {
 
     const childrenWithTypography = Children.map(children, child => {
       if (typeof child === 'string' || typeof child === 'number') {
-        return <TypographyImpl {...others}>{child}</TypographyImpl>;
+        return <TypographyImpl >{child}</TypographyImpl>;
       }
 
       return child;
