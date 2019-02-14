@@ -12,12 +12,10 @@ cache:
   override:
     - yarn install --frozen-lockfile
 
-before_install:
-  - docker pull node:10-stretch
-  - docker pull cypress/base:10
-  - docker pull bravissimolabs/generate-npm-authtoken
-
 defaults: &deploySite
+  before_install:
+    - docker pull node:10-stretch
+    - docker pull bravissimolabs/generate-npm-authtoken
   install:
     - ./scripts/bin/install.sh
   script:
@@ -28,6 +26,8 @@ jobs:
     - stage: 'Verify'
       env:
         - NODE_ENV: test
+      before_install:
+        - docker pull cypress/base:10
       install:
         - ./scripts/bin/install.sh
       script:
@@ -44,6 +44,8 @@ jobs:
       if: branch = master AND type = push
       env:
         - NODE_ENV=production
+      before_install:
+        - docker pull node:10-stretch
       install:
         - ./scripts/bin/install.sh
       script:
