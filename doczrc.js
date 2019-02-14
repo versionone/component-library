@@ -4,7 +4,7 @@ const { version } = require('./lerna.json');
 
 export default {
   description: pkg.description,
-  title: 'Component Library',
+  title: `Component Library v${version}`,
   plugins: [netlify()],
   debug: Boolean(process.env.DEBUG),
   host: process.env.HOST || 'localhost',
