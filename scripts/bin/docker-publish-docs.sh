@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-yarn --frozen-lockfile
-yarn bootstrap
+echo "Building docs site..."
+yarn build:website
 
-echo "Publishing docs site..."
-yarn docz build
 wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 
-yarn build:website
+echo "Publishing docs site..."
 
 if [ $PROD ];
   PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
