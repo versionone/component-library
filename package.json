@@ -22,7 +22,7 @@
     "test:e2e:ci": "start-server-and-test start http-get://localhost:3000 test:e2e:run:ci",
     "test:e2e:open": "cypress open",
     "test:e2e:run:cli": "cypress run",
-    "test:e2e:run:ci": "cypress run",
+    "test:e2e:run:ci": "cypress run --record",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {

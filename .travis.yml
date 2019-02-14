@@ -18,16 +18,21 @@ defaults: &deploySite
   script:
     - ./scripts/bin/docker-publish-docs.sh
 
+defaults: &test
+  install:
+    - ./scripts/bin/docker-install.sh
+    - yarn add -W cypress --dev
+  env:
+    - NODE_ENV=test
+    - STAGE_NAME=4x-electron
+  script:
+    - yarn test:e2e:ci
+    - kill $(jobs -p) || true
+
 jobs:
   include:
-    - stage: 'Verify'
-      env:
-        - NODE_ENV: test
-      install:
-        - ./scripts/bin/docker-install.sh
-        - yarn add -W cypress --dev
-      script:
-        - yarn test:e2e:ci
+    - stage: Verify
+      <<: *test
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
