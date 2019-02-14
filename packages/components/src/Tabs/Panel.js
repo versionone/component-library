@@ -6,6 +6,7 @@ const PanelImpl = createComponent(
   ({ visible }) => ({
     ...styleUtils.conditionalStyle(!visible, 'display', 'none'),
     outline: 'none',
+    width: '100%',
   }),
   'div',
   ['data-component', 'data-test', 'tabIndex', 'role', 'aria-labelledby'],
