@@ -26,12 +26,6 @@ defaults: &deploySite
 jobs:
   include:
     - stage: 'Verify'
-      install:
-        - ./scripts/bin/install.sh
-      script:
-        - ./scripts/bin/lint.sh
-
-    - stage: 'Verify'
       env:
         - NODE_ENV: test
       install:
