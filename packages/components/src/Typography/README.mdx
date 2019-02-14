@@ -1,15 +1,28 @@
 ---
 name: Typography
 route: /components/Typography
-menu: Data Display
+menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz';
 import { Typography } from './';
+import { SpacedGroup } from '../SpacedGroup';
 
 # Typography
 
-Text and stuff
+Text
+
+## Variants
 
 <Playground>
+  <SpacedGroup direction="vertical" xs={24}>
+    <Typography variant="mega">Mega</Typography>
+    <Typography variant="huge">Huge</Typography>
+    <Typography variant="xLarge">Extra Large</Typography>
+    <Typography variant="large">Large</Typography>
+    <Typography variant="base">Base Text</Typography>
+    <Typography variant="small">Small</Typography>
+    <Typography variant="xSmall">Extra Small</Typography>
+    <Typography variant="button">Button Text</Typography>
+  </SpacedGroup>
 </Playground>
