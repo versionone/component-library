@@ -1,4 +1,4 @@
-context('Stepper', () => {
+context.skip('Stepper', () => {
   beforeEach(() => {
     cy.navigate([/^Components$/, /^Stepper$/]);
     cy.get('[data-component="Playground"]').as('playgrounds');
