@@ -1,4 +1,4 @@
-context('Accordion', () => {
+context.skip('Accordion', () => {
   beforeEach(() => {
     cy.navigate([/^Components$/, 'Accordion']);
   });
