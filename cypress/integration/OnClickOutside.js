@@ -1,6 +1,6 @@
 context('onClickOutside', () => {
   beforeEach(() => {
-    cy.navigate([/^Components$/, /^onClickOutside$/]);
+    cy.navigate([/^Components$/, /^OnClickOutside$/]);
   });
 
   specify('can load the page', () => {});
