@@ -16,7 +16,7 @@ defaults: &deploySite
   install:
     - ./scripts/bin/docker-install.sh
   script:
-    - ./scripts/bin/docker-publish-docs.sh
+    - ./scripts/bin/publish-docs.sh
 
 defaults: &test
   install:
