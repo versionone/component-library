@@ -1,7 +1,7 @@
 import React, { Fragment, Component, createRef } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
-import { DeliveryIcon } from '@versionone/icons';
+import { UploadIcon } from '@versionone/icons';
 import {
   createComponent,
   StyleProvider,
@@ -103,7 +103,7 @@ const DropZoneLarge = props => {
       focused={focused}
       color={theme.Upload.main}
     >
-      <DeliveryIcon size={32} title="upload" color={theme.Upload.iconColor} />
+      <UploadIcon size={32} title="upload" color={theme.Upload.iconColor} />
       <span>{primaryText}</span>
       <span>{secondaryText}</span>
       {children}
@@ -120,7 +120,7 @@ const DropZoneSmall = props => {
       focused={focused}
       color={theme.Upload.main}
     >
-      <DeliveryIcon size={32} title="upload" color={theme.Upload.iconColor} />
+      <UploadIcon size={32} title="upload" color={theme.Upload.iconColor} />
       <span>Upload</span>
       {children}
     </InputFieldContainer>
@@ -130,7 +130,7 @@ const DropZoneSmall = props => {
 const UploadButton = props => (
   <Fragment>
     <Button onClick={props.onClick} disabled={props.disabled}>
-      <DeliveryIcon />
+      <UploadIcon />
       Upload
     </Button>
     {React.cloneElement(props.children, {
