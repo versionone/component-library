@@ -7,6 +7,13 @@
 # SHA (commit sha being published)
 # ----
 
+if [ -z "$NETLIFY_TOKEN" ]; then echo "NETLIFY_TOKEN is required."; INVALID=1; fi
+if [ -z "$GITHUB_USER" ]; then echo "GITHUB_USER is required."; INVALID=1; fi
+if [ -z "$GITHUB_TOKEN" ]; then echo "GITHUB_TOKEN is required."; INVALID=1; fi
+if [ -z "$SHA" ]; then echo "SHA is required."; INVALID=1; fi
+
+if [ ! -z "$INVALID" ]; then echo "Not all required inputs were provided; halting"; exit 1; fi
+
 [[ "$OSTYPE" == *"win"* || "$OSTYPE" == "msys" ]] && MOUNT="/$PWD" || MOUNT=$PWD
 ${BASH_SOURCE%/*}/stop.sh
 

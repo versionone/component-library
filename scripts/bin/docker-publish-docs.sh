@@ -8,6 +8,7 @@ wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 echo "Publishing docs site..."
 
 if [ $PROD ];
+then
   PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
   PUBLISH_TYPE="Production"
 else
