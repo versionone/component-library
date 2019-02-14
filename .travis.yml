@@ -13,25 +13,21 @@ cache:
     - yarn install --frozen-lockfile
 
 defaults: &deploySite
-  before_install:
-    - docker pull node:10-stretch
-    - docker pull bravissimolabs/generate-npm-authtoken
   install:
-    - ./scripts/bin/install.sh
+    - ./scripts/bin/docker-install.sh
   script:
-    - ./scripts/bin/publish-docs.sh
+    - ./scripts/bin/docker-publish-docs.sh
 
 jobs:
   include:
     - stage: 'Verify'
       env:
         - NODE_ENV: test
-      before_install:
-        - docker pull cypress/base:10
       install:
-        - ./scripts/bin/install.sh
+        - ./scripts/bin/docker-install.sh
+        - yarn add -W cypress --dev
       script:
-        - ./scripts/bin/test.sh
+        - yarn test:e2e:ci
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
@@ -44,10 +40,8 @@ jobs:
       if: branch = master AND type = push
       env:
         - NODE_ENV=production
-      before_install:
-        - docker pull node:10-stretch
       install:
-        - ./scripts/bin/install.sh
+        - ./scripts/bin/docker-install.sh
       script:
         - echo 'This is empty for now'
 
