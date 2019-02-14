@@ -14,20 +14,19 @@ cache:
 
 defaults: &deploySite
   install:
-    - ./scripts/bin/docker-install.sh
+    - ./scripts/bin/install.sh
   script:
     - ./scripts/bin/publish-docs.sh
 
 defaults: &test
   install:
-    - ./scripts/bin/docker-install.sh
+    - ./scripts/bin/install.sh
     - yarn add -W cypress --dev
   env:
     - NODE_ENV=test
     - STAGE_NAME=4x-electron
   script:
-    - yarn test:e2e:ci
-    - kill $(jobs -p) || true
+    - ./scripts/bin/test.sh
 
 jobs:
   include:
@@ -46,7 +45,7 @@ jobs:
       env:
         - NODE_ENV=production
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/install.sh
       script:
         - echo 'This is empty for now'
 
