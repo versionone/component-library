@@ -2,3 +2,4 @@ node_modules
 .docz
 dist
 packages/components/src/index.js
+packages/icons/src/*.js
