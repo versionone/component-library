@@ -1,0 +1,11 @@
+<svg version="1.1" id="rooms" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<rect x="1" y="1" width="9" height="9"/>
+	<rect x="1" y="14" width="9" height="9"/>
+</g>
+<g>
+	<rect x="14" y="1" width="9" height="9"/>
+	<rect x="14" y="14" width="9" height="9"/>
+</g>
+</svg>

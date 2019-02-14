@@ -4,7 +4,7 @@ menu: Components
 route: /components/Border
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Border } from './';
 import { SpacedGroup } from '../SpacedGroup';
 
@@ -15,6 +15,12 @@ Borders help separate content and in some cases re-enforce elevation
 <Playground>
   <SpacedGroup>
     <Border>Bordered Content!</Border>
+    <Border color="rgb(0, 82, 147)" width={5} style="dashed" radius={10}>
+      Bordered Content!
+    </Border>
+    <Border disabled width={5}>
+      Bordered Content!
+    </Border>
   </SpacedGroup>
 </Playground>
 

@@ -4,11 +4,11 @@ route: /components/Breadcrumbs
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Breadcrumb } from './';
 import { Link } from './../Link';
 import { SpacedGroup } from '../SpacedGroup';
-import { AdminIcon, HomeIconIcon, ScopeIconIcon, FlagIconIcon } from '../Icons';
+import { AssetIcon, HomeIcon, ScopeIcon } from '@versionone/icons';
 
 # Breadcrumb
 
@@ -19,27 +19,27 @@ Breadcrumb displays the current location within a hierarchy and allows for navig
 
     <Breadcrumb>
     	<Breadcrumb.Item
-    		icon={HomeIconIcon}
+    		icon={HomeIcon}
     		onClick={() => console.log('Home')}
     	>
 
     	</Breadcrumb.Item>
     	<Breadcrumb.Item
-    		icon={ScopeIconIcon}
+    		icon={ScopeIcon}
     	>
     		<a href="#">Projects</a>
     	</Breadcrumb.Item>
     	<Breadcrumb.Item>
     		<Link href="#/">Project A</Link>
     	</Breadcrumb.Item>
-    	<Breadcrumb.Item icon={FlagIconIcon} selected>
+    	<Breadcrumb.Item icon={AssetIcon} selected>
     		Selected Story
     	</Breadcrumb.Item>
     </Breadcrumb>
 
     <Breadcrumb>
     	<Breadcrumb.Item
-    		icon={HomeIconIcon}
+    		icon={HomeIcon}
     		onClick={() => console.log('Home')}
     	>
     		Home
@@ -57,27 +57,27 @@ Breadcrumb displays the current location within a hierarchy and allows for navig
 
     <Breadcrumb>
     	<Breadcrumb.Item
-    		icon={HomeIconIcon}
+    		icon={HomeIcon}
     		onClick={() => console.log('Home')}
     	>
     		Home
     	</Breadcrumb.Item>
     	<Breadcrumb.Item
-    		icon={ScopeIconIcon}
+    		icon={ScopeIcon}
     	>
     		<a href="#">Projects</a>
     	</Breadcrumb.Item>
     	<Breadcrumb.Item>
     		<Link href="#/">Project A</Link>
     	</Breadcrumb.Item>
-    	<Breadcrumb.Item icon={FlagIconIcon} selected>
+    	<Breadcrumb.Item icon={AssetIcon} selected>
     		Selected Story
     	</Breadcrumb.Item>
     </Breadcrumb>
 
     <Breadcrumb separator=">">
     	<Breadcrumb.Item
-    		icon={HomeIconIcon}
+    		icon={HomeIcon}
     		onClick={() => console.log('Home')}
     	>
     		Home
@@ -105,8 +105,4 @@ Breadcrumb displays the current location within a hierarchy and allows for navig
 
 ### Breadcrumb.Item
 
-| Property | Type | Required | Default  | Description                                         |
-| :------- | :--- | :------- | :------- | :-------------------------------------------------- |
-| children | Node | false    |          | Link, anchor, or text                               |
-| selected | bool | false    | false    | If true the Breadcrumb item is selected             |
-| onClick  | func | false    | () => {} | Function called when the Breadcrumb item is clicked |
+<PropsTable of={Breadcrumb.Item} />

@@ -42,9 +42,11 @@ const EmptyState = props => {
           <Grid xs={12} direction="row" justify="center" alignItems="center">
             <Title>{title}</Title>
           </Grid>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
-            {children}
-          </Grid>
+          {children && (
+            <Grid xs={12} direction="row" justify="center" alignItems="center">
+              {children}
+            </Grid>
+          )}
           <Grid xs={12} direction="row" justify="center" alignItems="center">
             {primaryAction}
           </Grid>

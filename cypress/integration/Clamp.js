@@ -1,6 +1,6 @@
 context('Clamp', () => {
   beforeEach(() => {
-    cy.navigate(['Utilities', 'Clamp']);
+    cy.navigate([/^Components$/, 'Clamp']);
   });
 
   specify('Content can be clamped to a single line', () => {

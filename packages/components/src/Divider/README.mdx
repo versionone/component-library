@@ -4,37 +4,35 @@ menu: Components
 route: /components/Divider
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Divider } from './';
 import { SpacedGroup } from '../SpacedGroup';
 
-# List Divider
+# Divider
 
-Separation between items in a list.
+Provide a separation between items.
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={16}>
-		<SpacedGroup direction="vertical">
-			<div>Item 1</div>
-			<Divider />
-			<div>Item 1</div>
-			<Divider />
-			<div>Heavy Divider so it stands out</div>
-			<Divider heavy />
-			<div>Item 1</div>
-		</SpacedGroup>
-
-    	<SpacedGroup direction="vertical">
-    		<div>Check</div>
-    		<Divider borderLeft="24px solid red" borderRight="24px solid red" />
-    		<div>out</div>
-    		<Divider borderLeft="42px solid red" borderRight="42px solid red" />
-    		<div>Collapse</div>
-    		<Divider heavy borderLeft="100px solid red" />
-    		<div>for this use case</div>
-    	</SpacedGroup>
+  <SpacedGroup direction="vertical" xs={16}>
+    <SpacedGroup direction="vertical">
+      <div>Item 1</div>
+      <Divider />
+      <div>Item 1</div>
+      <Divider />
+      <div>Heavy Divider so it stands out</div>
+      <Divider heavy />
+      <div>Item 1</div>
     </SpacedGroup>
-
+    <SpacedGroup direction="vertical">
+      <div>Check</div>
+      <Divider borderLeft="24px solid red" borderRight="24px solid red" />
+      <div>out</div>
+      <Divider borderLeft="42px solid red" borderRight="42px solid red" />
+      <div>Collapse</div>
+      <Divider heavy borderLeft="100px solid red" />
+      <div>for this use case</div>
+    </SpacedGroup>
+  </SpacedGroup>
 </Playground>
 
 ## API

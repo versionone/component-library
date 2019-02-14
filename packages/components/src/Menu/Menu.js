@@ -79,6 +79,7 @@ const MenuChildren = ({
             <PositionedMenu
               innerRef={ref}
               style={style}
+              data-component="Menu"
               data-placement={placement}
               data-component="Menu"
               data-test={dataTest}

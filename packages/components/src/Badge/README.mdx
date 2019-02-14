@@ -4,16 +4,11 @@ menu: Components
 route: /components/Badge
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Badge } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { Avatar } from '../Avatar';
-import {
-  MailboxIcon,
-  FlagIconIcon as FlagIcon,
-  ConversationsIcon,
-  TopicIconIcon as TopicsIcon,
-} from '../Icons';
+import { AlertIcon, AttachmentsIcon, MailboxIcon } from '@versionone/icons';
 import { palette } from '../palette';
 
 # Badge
@@ -30,17 +25,17 @@ Badges are used to show notification count and call the user's attention to take
 
 <Playground>
   <SpacedGroup xs={24}>
-    <Badge count={5}>
-      <FlagIcon size={36} />
+    <Badge count={0}>
+      <AttachmentsIcon size={32} />
     </Badge>
     <Badge count={0} showZero>
-      <TopicsIcon size={36} />
+      <AttachmentsIcon size={32} />
     </Badge>
-    <Badge count={50} maxCount={10}>
-      <ConversationsIcon size={36} />
+    <Badge count={50} maxCount={51}>
+      <AlertIcon size={32} />
     </Badge>
     <Badge count={10000} maxCount={99}>
-      <MailboxIcon size={36} />
+      <MailboxIcon size={32} />
     </Badge>
   </SpacedGroup>
 </Playground>
@@ -48,7 +43,7 @@ Badges are used to show notification count and call the user's attention to take
 ## Without Children
 
 <Playground>
-  <SpacedGroup xs={36}>
+  <SpacedGroup xs={32}>
     <SpacedGroup direction="vertical" center>
       <Badge count={12} />
       <span>Count</span>
@@ -71,7 +66,7 @@ Badges are used to show notification count and call the user's attention to take
 ## Colors
 
 <Playground>
-  <SpacedGroup xs={36}>
+  <SpacedGroup xs={32}>
     <SpacedGroup direction="vertical" center>
       <Badge count={12} backgroundColor={palette.fern} />
       <span>Fern</span>

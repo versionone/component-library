@@ -4,39 +4,40 @@ menu: Components
 route: /components/Scrim
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Scrim } from './';
 import { Button } from '../Button';
+import { SpacedGroup } from '../SpacedGroup';
 
 # Scrim
 
 Scrims cover the underlying UI to allow the user to focus on a specific task in the elevated layer.
 
 <Playground>
-{() => {
-	class StateManager extends React.Component {
-		constructor(props, context) {
-			super(props, context);
-			this.state = { isOpen: false };
-			this.toggle = this.toggle.bind(this);
-		}
-
-    	toggle() { this.setState({ isOpen: !this.state.isOpen }) }
-
-    	render() {
-    		return (
-    			<span>
-    				<Button onClick={this.toggle}>{this.state.isOpen ? "Close" : "Open"}</Button>
-    				<Scrim open={this.state.isOpen} onClick={this.toggle} />
-    			</span>
-    		)
-    	}
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = { isOpen: false };
+        this.toggle = this.toggle.bind(this);
+      }
+      toggle() {
+        this.setState({ isOpen: !this.state.isOpen });
+      }
+      render() {
+        return (
+          <SpacedGroup>
+            <Button onClick={this.toggle}>
+              {this.state.isOpen ? 'Close' : 'Open'}
+            </Button>
+            <Button onClick={() => console.log('clicked')}>Click Me</Button>
+            <Scrim open={this.state.isOpen} onClick={this.toggle} />
+          </SpacedGroup>
+        );
+      }
     }
-
-    return <StateManager />
-
-}}
-
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API

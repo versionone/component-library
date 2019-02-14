@@ -5,7 +5,7 @@ menu: Components
 ---
 
 import { Fragment } from 'react';
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { FocusManager } from './';
 import { Border } from '../Border';
 import { Button } from '../Button';
@@ -16,12 +16,6 @@ import { Lozenge } from '../Lozenge';
 # FocusManager
 
 Provides a way to group focusable items and navigate between these groups. This is useful for components that "take the focus" to a new location and then "give it back" once complete. See [Drawer](/components/Drawer#focus) for a real-world example.
-
-<SpacedGroup>
-  <Lozenge bold variant="warning">
-    Experimental
-  </Lozenge>
-</SpacedGroup>
 
 ## Defining a Focus Group
 
@@ -36,7 +30,7 @@ A `FocusGroup` is a group of focusable items. It provides the proper event handl
         {bind => (
           <Fragment>
             Not In Focus Group
-            <TextField {...bind} />
+            <TextField focused {...bind} />
             <FocusManager.Group>
               {bind => (
                 <Border>

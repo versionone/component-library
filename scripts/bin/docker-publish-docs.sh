@@ -25,7 +25,7 @@ UPDATE_STATUS_CMD=$(cat <<-END
     "target_url": "$PUBLISH_URL",
     "description": "$PUBLISH_TYPE Deployment URL",
     "context": "Deployment/$PUBLISH_TYPE"
-  }' -H "Content-Type: application/json" "https://api.github.com/repos/$GITHUB_USER/component-library/statuses/$SHA"
+  }' -H "Content-Type: application/json" "https://api.github.com/repos/versionone/component-library/statuses/$SHA"
 END
 )
 

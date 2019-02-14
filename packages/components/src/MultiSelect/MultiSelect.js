@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { isFunction, noop } from 'underscore';
+import { CloseIcon } from '@versionone/icons';
 import { StyleProvider } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import {
@@ -13,7 +14,6 @@ import {
 import { SpacedGroup } from '../SpacedGroup';
 import { ComboBox } from '../ComboBox';
 import { IconButton } from '../Button';
-import { CloseIcon } from '../Icons';
 import { Menu } from '../Menu';
 
 class MultiDownshift extends React.Component {
@@ -229,7 +229,7 @@ class MultiSelect extends React.Component {
           innerRef: inputRef,
           onKeyDown: handleKeyDown,
           onFocus: handleFocusWrapper,
-          onBlur: onBlur,
+          onBlur,
         });
 
         const menuContents =
@@ -298,7 +298,7 @@ class MultiSelect extends React.Component {
           </InputFieldContainer>
         );
 
-        const dropdownHeight = Boolean(menuContents)
+        const dropdownHeight = menuContents
           ? this.props.dropdownHeight || dropdownMaxHeight
           : 0;
 

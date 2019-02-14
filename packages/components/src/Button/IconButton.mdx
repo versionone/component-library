@@ -4,9 +4,9 @@ route: /components/IconButton
 menu: Components
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { IconButton } from './';
-import { AdminIcon, CloseIcon } from '../Icons';
+import { AssetIcon } from '@versionone/icons';
 import { SpacedGroup } from './../SpacedGroup';
 
 # Icon Buttons
@@ -16,33 +16,23 @@ import { SpacedGroup } from './../SpacedGroup';
 <Playground>
   <SpacedGroup direction="vertical">
     <SpacedGroup>
-      <IconButton icon={AdminIcon} title="admin" />
-      <IconButton icon={AdminIcon} title="admin" type="primary" />
-      <IconButton icon={AdminIcon} title="admin" type="secondary" />
-      <IconButton icon={AdminIcon} title="admin" disabled />
+      <IconButton icon={AssetIcon} title="asset" />
+      <IconButton icon={AssetIcon} title="asset" type="primary" />
+      <IconButton icon={AssetIcon} title="asset" type="secondary" />
+      <IconButton icon={AssetIcon} title="asset" disabled />
     </SpacedGroup>
-
     <SpacedGroup>
-      <IconButton icon={CloseIcon} title="admin" />
-      <IconButton icon={CloseIcon} title="admin" type="primary" />
-      <IconButton icon={CloseIcon} title="admin" type="secondary" />
-      <IconButton icon={CloseIcon} title="admin" disabled />
+      <IconButton icon={AssetIcon} title="asset" size={24} />
+      <IconButton icon={AssetIcon} title="asset" type="primary" size={24} />
+      <IconButton icon={AssetIcon} title="asset" type="secondary" size={24} />
+      <IconButton icon={AssetIcon} title="asset" disabled size={24} />
     </SpacedGroup>
-
     <SpacedGroup>
-      <IconButton icon={CloseIcon} title="admin" size={24} />
-      <IconButton icon={CloseIcon} title="admin" type="primary" size={24} />
-      <IconButton icon={CloseIcon} title="admin" type="secondary" size={24} />
-      <IconButton icon={CloseIcon} title="admin" disabled size={24} />
+      <IconButton icon={AssetIcon} title="asset" size={42} />
+      <IconButton icon={AssetIcon} title="asset" type="primary" size={42} />
+      <IconButton icon={AssetIcon} title="asset" type="secondary" size={42} />
+      <IconButton icon={AssetIcon} title="asset" disabled size={42} />
     </SpacedGroup>
-
-    <SpacedGroup>
-      <IconButton icon={CloseIcon} title="admin" size={42} />
-      <IconButton icon={CloseIcon} title="admin" type="primary" size={42} />
-      <IconButton icon={CloseIcon} title="admin" type="secondary" size={42} />
-      <IconButton icon={CloseIcon} title="admin" disabled size={42} />
-    </SpacedGroup>
-
   </SpacedGroup>
 </Playground>
 

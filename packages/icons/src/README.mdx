@@ -1,0 +1,38 @@
+---
+name: Icon
+route: /icons
+menu: Icons
+---
+
+import { AssetIcon } from './';
+import { Base } from './utils/Base';
+import { Playground, PropsTable } from '@versionone/docz';
+
+# Icon
+
+`Icons` are great for conveying complex information in a simple manner. Avoid using `Icons` outside of an `IconButton`, `EmptyState`, or `Avatar`
+
+## Installing the Icons
+
+Icons are contained within a **separate package** from the component library; named **"versionone/icons"**. Install it via:
+
+`npm install @versionone/icons`
+
+## Basic Usage
+
+<Playground>
+  <AssetIcon />
+  <AssetIcon title="custom title" />
+  <AssetIcon color="green" />
+  <AssetIcon size={48} />
+</Playground>
+
+## Adding New Icons
+
+> Remember, all icons should be **monochromatic**.
+
+Prior to adding in an icon, make sure the icon file is named without the word "icon". For example, below is the usage of a Delete icon. This icon is named `asset.svg`, and the usage of it in React is `<AssetIcon />`. Add your icon into the directory `./packages/icons/src/svg`. Re-running `yarn start` will cause the icon to be built and visible in the list of [all icons](/icons/all)
+
+## API
+
+<PropsTable of={Base} />

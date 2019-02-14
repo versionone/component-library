@@ -4,7 +4,7 @@ menu: Components
 route: /components/Arrow
 ---
 
-import { Playground, PropsTable } from 'docz';
+import { Playground, PropsTable } from '@versionone/docz';
 import { Arrow } from './';
 import { SpacedGroup } from '../SpacedGroup';
 
@@ -25,6 +25,10 @@ Arrows can be used with `Collapse` and `Select` to visually re-enforce the relat
     <SpacedGroup direction="vertical">
       <Arrow disabled />
       <span>Disabled</span>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <Arrow is="span" />
+      <span>is a Span instead of a button</span>
     </SpacedGroup>
   </SpacedGroup>
 </Playground>
