@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { lighten, toRgbaString } from '@andrew-codes/color-functions';
-import { AlertIcon, CheckedIcon, InfoIcon } from '@versionone/icons';
+import { AlertIcon, CheckIcon, InfoIcon } from '@versionone/icons';
 import { createComponent, StyleProvider } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
 
@@ -28,7 +28,7 @@ const Toast = props => {
     props.variant === 'warning' || props.variant === 'error'
       ? AlertIcon
       : props.variant === 'success'
-      ? CheckedIcon
+      ? CheckIcon
       : InfoIcon;
 
   return (
