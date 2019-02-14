@@ -1,0 +1,63 @@
+language: node_js
+
+services:
+  - docker
+
+sudo: required
+
+cache:
+  yarn: true
+  directories:
+    - ~/.cache
+  override:
+    - yarn install --frozen-lockfile
+
+before_install:
+  - docker pull node:10-stretch
+  - docker pull cypress/base:10
+  - docker pull bravissimolabs/generate-npm-authtoken
+
+defaults: &deploySite
+  install:
+    - ./scripts/bin/install.sh
+  script:
+    - ./scripts/bin/publish-docs.sh
+
+jobs:
+  include:
+    - stage: 'Verify'
+      install:
+        - ./scripts/bin/install.sh
+      script:
+        - ./scripts/bin/lint.sh
+
+    - stage: 'Verify'
+      env:
+        - NODE_ENV: test
+      install:
+        - ./scripts/bin/install.sh
+      script:
+        - ./scripts/bin/test.sh
+
+    - stage: 'Deploy Preview of Docs Site'
+      if: type = pull_request
+      env:
+        - SHA=$TRAVIS_PULL_REQUEST_SHA
+        - NODE_ENV=development
+      <<: *deploySite
+
+    - stage: 'Publish to NPM'
+      if: branch = master AND type = push
+      env:
+        - NODE_ENV=production
+      install:
+        - ./scripts/bin/install.sh
+      script:
+        - echo 'This is empty for now'
+
+    - stage: 'Deploy Production Docs Site'
+      if: branch = master AND type = push
+      env:
+        - SHA=$TRAVIS_COMMIT
+        - PROD=1
+      <<: *deploySite

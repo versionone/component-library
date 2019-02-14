@@ -1,10 +1,14 @@
 const netlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
+const { version } = require('./lerna.json');
 
 export default {
   description: pkg.description,
-  title: 'Component Library',
+  title: `Component Library v${version}`,
   plugins: [netlify()],
+  debug: Boolean(process.env.DEBUG),
+  host: process.env.HOST || 'localhost',
+  port: process.env.PORT || 3000,
   codeSandbox: false,
   menu: [
     {
@@ -46,7 +50,13 @@ export default {
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
       '@babel/plugin-proposal-class-properties',
-      'babel-plugin-dev-expression',
+      [
+        'babel-plugin-transform-react-remove-prop-types',
+        {
+          mode: 'wrap',
+          ignoreFilenames: ['node_modules'],
+        },
+      ],
       [
         '@versionone/babel-plugin-react-docgen',
         {
@@ -56,6 +66,7 @@ export default {
           ],
         },
       ],
+      'babel-plugin-dev-expression',
     ],
   }),
 };

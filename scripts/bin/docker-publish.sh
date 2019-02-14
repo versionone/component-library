@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-yarn --frozen-lockfile
-yarn bootstrap
-
 NODE_ENV=production
 yarn build
 

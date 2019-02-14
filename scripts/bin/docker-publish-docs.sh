@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-yarn --frozen-lockfile
-yarn bootstrap
-
-echo "Publishing docs site..."
-yarn docz build
-wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
-
+echo "Building docs site..."
 yarn build:website
 
+wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
+
+echo "Publishing docs site..."
+
 if [ $PROD ];
+then
   PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
   PUBLISH_TYPE="Production"
 else
