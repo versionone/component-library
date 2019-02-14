@@ -3,4 +3,4 @@
 [[ "$OSTYPE" == *"win"* || "$OSTYPE" == "msys" ]] && MOUNT="/$PWD" || MOUNT=$PWD
 ${BASH_SOURCE%/*}/stop.sh
 
-docker run --rm --name "test" --workdir="/app" -v $MOUNT":/app cypress/base:10 bash -c "NODE_ENV=test yarn test:e2e:ci"
+docker run --rm --name "test" --workdir="/app" -e NODE_ENV=test -v "$MOUNT":/app cypress/base:10 bash -c "yarn test:e2e:ci"
