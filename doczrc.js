@@ -1,5 +1,6 @@
 const netlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
+const { version } = require('./lerna.json');
 
 export default {
   description: pkg.description,
