@@ -27,7 +27,7 @@ const ToastImpl = createComponent(
 const iconByVariant = {
   warning: AlertIcon,
   error: AlertIcon,
-  success: CheckedIcon,
+  success: CheckIcon,
 };
 
 const Toast = props => {
