@@ -1,10 +1,11 @@
 import { noop, isFunction } from 'underscore';
-import React from 'react';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
+import { Typography } from '../Typography';
 
 const ArrowPlaceholder = createComponent(() => ({ height: 28 }), 'div');
 
@@ -50,12 +51,22 @@ const ClickableNode = createComponent(
 );
 
 const Tree = props => {
-  const depth = props.depth || 0;
-  const hasChildren = React.Children.count(props.children);
+  const {
+    children,
+    'data-test': dataTest,
+    depth,
+    expanded,
+    handleSelection,
+    selected,
+    title,
+  } = props;
+
+  const updatedDepth = depth || 0;
+  const hasChildren = Children.count(children);
 
   const arrow = hasChildren ? (
     <Arrow
-      open={props.expanded}
+      open={expanded}
       onClick={event => {
         event.stopPropagation();
         props.handleExpand(event);
@@ -65,36 +76,37 @@ const Tree = props => {
     <ArrowPlaceholder />
   );
 
-  const children = React.Children.map(props.children, (child, i) => {
+  const updatedChildren = Children.map(children, (child, i) => {
     return React.cloneElement(child, {
       key: i,
-      depth: depth + 1,
+      depth: updatedDepth + 1,
     });
   });
 
-  const NodeImpl = isFunction(props.handleSelection) ? ClickableNode : Leaf;
+  const NodeImpl = isFunction(handleSelection) ? ClickableNode : Leaf;
 
   return (
     <StyleProvider>
-      <span data-component="Tree" data-test={props['data-test']} depth={depth}>
+      <span data-component="Tree" data-test={dataTest} depth={updatedDepth}>
         <SpacedGroup xs={2}>
-          <LeftSpacer depth={depth} />
-          <NodeImpl
-            selected={props.selected}
-            onClick={props.handleSelection}
-            tabIndex="0"
-          >
+          <LeftSpacer depth={updatedDepth} />
+          <NodeImpl selected={selected} onClick={handleSelection} tabIndex="0">
             {arrow}
-            <span>{props.title}</span>
+            <Typography>{title}</Typography>
           </NodeImpl>
         </SpacedGroup>
-        {children}
+        {updatedChildren}
       </span>
     </StyleProvider>
   );
 };
 
 Tree.propTypes = {
+  children: PropTypes.node,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
   /**
    * If true then the node is selected
    */

@@ -62,7 +62,7 @@ const MenuChildren = ({
   return (
     <PortalContainer mounted={open}>
       <Popper placement={placement} positionFixed modifiers={modifiers}>
-        {({ ref, style, placement }) => {
+        {({ ref, style }) => {
           const container = (
             <ScrollableContainer width={width} height={height}>
               <FocusManager.Group>{renderChildren}</FocusManager.Group>

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
 import { isFunction, isString } from 'underscore';
 import { Clamp } from '../Clamp';
+import { Typography } from '../Typography';
 import { createComponent, StyleProvider } from '../StyleProvider';
 
 const PrimaryContent = createComponent(
@@ -34,21 +35,29 @@ const stopClickPropagationOnChildren = children => {
 };
 
 const ListItemText = ({ primary, secondary, tertiary }) => {
-  const hasTertiaryContent = Boolean(tertiary);
-
   return (
     <StyleProvider>
       <Root>
         <Clamp>
           <PrimaryContent>
-            {stopClickPropagationOnChildren(primary)}
+            <Typography is="span" variant="base">
+              {stopClickPropagationOnChildren(primary)}
+            </Typography>
           </PrimaryContent>
         </Clamp>
         {Boolean(secondary) && (
-          <Clamp>{stopClickPropagationOnChildren(secondary)}</Clamp>
+          <Clamp>
+            <Typography is="span" variant="small">
+              {stopClickPropagationOnChildren(secondary)}
+            </Typography>
+          </Clamp>
         )}
-        {hasTertiaryContent && (
-          <Clamp>{stopClickPropagationOnChildren(tertiary)}</Clamp>
+        {Boolean(tertiary) && (
+          <Clamp>
+            <Typography is="span" variant="small">
+              {stopClickPropagationOnChildren(tertiary)}
+            </Typography>
+          </Clamp>
         )}
       </Root>
     </StyleProvider>

@@ -84,11 +84,11 @@ context('List', () => {
       'When providing a List.ItemText with content that is too long, then the content is clamped to a single line',
       () => {
         cy.contains('span', 'Long second line of text.')
-          .parent()
+          .parents('div')
           .should('have.css', 'textOverflow', 'ellipsis')
           .should('have.css', 'overflow', 'hidden');
         cy.contains('span', 'Longsecondlineoftext.')
-          .parent()
+          .parents('div')
           .should('have.css', 'textOverflow', 'ellipsis')
           .should('have.css', 'overflow', 'hidden');
       },
