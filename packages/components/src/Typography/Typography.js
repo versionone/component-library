@@ -48,24 +48,29 @@ const fontStrategyMap = {
 };
 
 class Typography extends Component {
-  render() {
-    const { is, children, variant } = this.props;
+  constructor(props) {
+    super(props);
+    const { is } = props;
 
-    const fontStrategy = fontStrategyMap[variant] || fontStrategyMap.base;
-
-    const TypographyImpl = createComponent(
-      () => ({
+    this.TypographyImpl = createComponent(
+      ({ variant, theme }) => ({
         fontFamily:
           "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
         margin: 0,
-        ...fontStrategy,
+        ...fontStrategyMap({ theme, variant }),
       }),
       is,
     );
+  }
+
+  render() {
+    const { children, variant } = this.props;
 
     const childrenWithTypography = Children.map(children, child => {
       if (typeof child === 'string' || typeof child === 'number') {
-        return <TypographyImpl>{child}</TypographyImpl>;
+        return (
+          <this.TypographyImpl variant={variant}>{child}</this.TypographyImpl>
+        );
       }
 
       return child;
@@ -80,8 +85,8 @@ class Typography extends Component {
 }
 
 Typography.propTypes = {
-  /** Color of the text */
-  color: PropTypes.oneOf(['white']),
+  /** Text content */
+  children: PropTypes.node,
   /** Tag to be used for element */
   is: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p']),
   /** Styling Variant */
