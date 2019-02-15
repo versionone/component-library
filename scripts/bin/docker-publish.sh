@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-yarn build
+NODE_ENV=production yarn build
 
 if [ $NEXT ];
 then

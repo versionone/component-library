@@ -38,13 +38,10 @@ jobs:
       if: type = pull_request
       env:
         - SHA=$TRAVIS_PULL_REQUEST_SHA
-        - NODE_ENV=production
       <<: *deploySite
 
     - stage: 'Publish to NPM'
       if: branch = master AND type = push
-      env:
-        - NODE_ENV=production
       install:
         - ./scripts/bin/docker-install.sh
       script:
@@ -53,7 +50,6 @@ jobs:
     - stage: 'Publish to NPM (next)'
       if: branch = next AND type = push
       env:
-        - NODE_ENV=production
         - NEXT=1
       install:
         - ./scripts/bin/docker-install.sh
@@ -63,7 +59,6 @@ jobs:
     - stage: 'Deploy Production Docs Site'
       if: branch = master AND type = push
       env:
-        - NODE_ENV=production
         - SHA=$TRAVIS_COMMIT
         - PROD=1
       <<: *deploySite
@@ -71,7 +66,6 @@ jobs:
     - stage: 'Deploy Production Docs Site (next)'
       if: branch = next AND type = push
       env:
-        - NODE_ENV=production
         - SHA=$TRAVIS_COMMIT
         - PROD=1
       <<: *deploySite
