@@ -21,18 +21,39 @@ defaults: &test
   env:
     - NODE_ENV=test
     - STAGE_NAME=4x-electron
+    - SHA=$TRAVIS_COMMIT
   script:
     - ./scripts/bin/docker-test.sh
 
 jobs:
   include:
     - stage: Verify
-      <<: *test
-    - stage: Verify
       install:
         - ./scripts/bin/docker-install.sh
       script:
         - ./scripts/bin/docker-lint.sh
+
+    - stage: Verify
+      if: type = push
+      install:
+        - ./scripts/bin/docker-install.sh
+      env:
+        - NODE_ENV=test
+        - STAGE_NAME=4x-electron
+        - SHA=$TRAVIS_COMMIT
+      script:
+        - ./scripts/bin/docker-test.sh
+
+    - stage: Verify
+      if: type = pull_request
+      install:
+        - ./scripts/bin/docker-install.sh
+      env:
+        - NODE_ENV=test
+        - STAGE_NAME=4x-electron
+        - SHA=$TRAVIS_PULL_REQUEST_SHA
+      script:
+        - ./scripts/bin/docker-test.sh
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
