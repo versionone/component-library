@@ -10,7 +10,7 @@ cache:
   directories:
     - ~/.cache
   override:
-    - yarn install --frozen-lockfile
+    - yarn install
 
 defaults: &deploySite
   install:
@@ -32,6 +32,12 @@ jobs:
   include:
     - stage: Verify
       <<: *test
+
+    - stage: Verify
+      install:
+        - ./scripts/bin/install.sh
+      script:
+        - ./scripts/bin/lint.sh
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
