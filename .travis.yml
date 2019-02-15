@@ -21,7 +21,6 @@ defaults: &deploySite
 defaults: &test
   install:
     - ./scripts/bin/install.sh
-    - yarn add -W cypress --dev
   env:
     - NODE_ENV=test
     - STAGE_NAME=4x-electron
