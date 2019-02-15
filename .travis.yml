@@ -1,8 +1,5 @@
 language: node_js
 
-services:
-  - docker
-
 sudo: required
 
 cache:
@@ -16,29 +13,32 @@ defaults: &deploySite
   install:
     - ./scripts/bin/docker-install.sh
   script:
-    - ./scripts/bin/publish-docs.sh
+    - ./scripts/bin/docker-publish-docs.sh
 
 defaults: &test
   install:
     - ./scripts/bin/docker-install.sh
-    - yarn add -W cypress --dev
   env:
     - NODE_ENV=test
     - STAGE_NAME=4x-electron
   script:
-    - yarn test:e2e:ci
-    - kill $(jobs -p) || true
+    - ./scripts/bin/docker-test.sh
 
 jobs:
   include:
     - stage: Verify
       <<: *test
+    - stage: Verify
+      install:
+        - ./scripts/bin/docker-install.sh
+      script:
+        - ./scripts/bin/docker-lint.sh
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
       env:
         - SHA=$TRAVIS_PULL_REQUEST_SHA
-        - NODE_ENV=development
+        - NODE_ENV=production
       <<: *deploySite
 
     - stage: 'Publish to NPM'
@@ -50,9 +50,28 @@ jobs:
       script:
         - echo 'This is empty for now'
 
+    - stage: 'Publish to NPM (next)'
+      if: branch = next AND type = push
+      env:
+        - NODE_ENV=production
+        - NEXT=1
+      install:
+        - ./scripts/bin/docker-install.sh
+      script:
+        - ./scripts/bin/docker-publish.sh
+
     - stage: 'Deploy Production Docs Site'
       if: branch = master AND type = push
       env:
+        - NODE_ENV=production
+        - SHA=$TRAVIS_COMMIT
+        - PROD=1
+      <<: *deploySite
+
+    - stage: 'Deploy Production Docs Site (next)'
+      if: branch = next AND type = push
+      env:
+        - NODE_ENV=production
         - SHA=$TRAVIS_COMMIT
         - PROD=1
       <<: *deploySite

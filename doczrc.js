@@ -58,6 +58,7 @@ export default {
           ignoreFilenames: ['node_modules'],
         },
       ],
+      'babel-plugin-dev-expression',
       [
         '@versionone/babel-plugin-react-docgen',
         {
@@ -67,7 +68,6 @@ export default {
           ],
         },
       ],
-      'babel-plugin-dev-expression',
     ],
   }),
 };
