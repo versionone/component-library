@@ -11,49 +11,37 @@ cache:
 
 defaults: &deploySite
   install:
-    - ./scripts/bin/docker-install.sh
+    - ./scripts/bin/ci-install.sh
   script:
-    - ./scripts/bin/docker-publish-docs.sh
-
-defaults: &test
-  install:
-    - ./scripts/bin/docker-install.sh
-  env:
-    - NODE_ENV=test
-    - STAGE_NAME=4x-electron
-    - SHA=$TRAVIS_COMMIT
-  script:
-    - ./scripts/bin/docker-test.sh
+    - node ./scripts/tasks/publish-docs.js
 
 jobs:
   include:
     - stage: Verify
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/ci-install.sh
       script:
-        - ./scripts/bin/docker-lint.sh
+        - ./scripts/bin/execute.lint.sh
 
     - stage: Verify
       if: type = push
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/ci-install.sh
       env:
         - NODE_ENV=test
-        - STAGE_NAME=4x-electron
         - SHA=$TRAVIS_COMMIT
       script:
-        - ./scripts/bin/docker-test.sh
+        - node ./scripts/tasks/test.js
 
     - stage: Verify
       if: type = pull_request
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/ci-install.sh
       env:
         - NODE_ENV=test
-        - STAGE_NAME=4x-electron
         - SHA=$TRAVIS_PULL_REQUEST_SHA
       script:
-        - ./scripts/bin/docker-test.sh
+        - node ./scripts/tasks/test.js
 
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
@@ -64,18 +52,18 @@ jobs:
     - stage: 'Publish to NPM'
       if: branch = master AND type = push
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/ci-install.sh
       script:
-        - echo 'This is empty for now'
+        - node ./scripts/tasks/publish.js
 
     - stage: 'Publish to NPM (next)'
       if: branch = next AND type = push
       env:
         - NEXT=1
       install:
-        - ./scripts/bin/docker-install.sh
+        - ./scripts/bin/ci-install.sh
       script:
-        - ./scripts/bin/docker-publish.sh
+        - node ./scripts/tasks/publish.js
 
     - stage: 'Deploy Production Docs Site'
       if: branch = master AND type = push
