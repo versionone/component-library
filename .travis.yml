@@ -17,12 +17,15 @@ defaults: &deploySite
 
 jobs:
   include:
+    # Verify on push
     - stage: Verify
+      if: type = push
       install:
         - ./scripts/bin/ci-install.sh
+      env:
+        - SHA=$TRAVIS_COMMIT
       script:
-        - ./scripts/bin/execute.lint.sh
-
+        - node ./scripts/tasks/lint.js
     - stage: Verify
       if: type = push
       install:
@@ -33,6 +36,15 @@ jobs:
       script:
         - node ./scripts/tasks/test.js
 
+    # Verify on pull request
+    - stage: Verify
+      if: type = pull_request
+      install:
+        - ./scripts/bin/ci-install.sh
+      env:
+        - SHA=$TRAVIS_PULL_REQUEST_SHA
+      script:
+        - node ./scripts/tasks/lint.js
     - stage: Verify
       if: type = pull_request
       install:
@@ -43,19 +55,30 @@ jobs:
       script:
         - node ./scripts/tasks/test.js
 
+    # Deploy docs site preview
     - stage: 'Deploy Preview of Docs Site'
       if: type = pull_request
       env:
         - SHA=$TRAVIS_PULL_REQUEST_SHA
       <<: *deploySite
 
-    - stage: 'Publish to NPM'
-      if: branch = master AND type = push
-      install:
-        - ./scripts/bin/ci-install.sh
-      script:
-        - node ./scripts/tasks/publish.js
+    #  Deploy (next) docs site
+    - stage: 'Deploy Production Docs Site (next)'
+      if: branch = next AND type = push
+      env:
+        - SHA=$TRAVIS_COMMIT
+        - PROD=1
+      <<: *deploySite
 
+    #  Deploy docs site production
+    - stage: 'Deploy Production Docs Site'
+      if: branch = master AND type = push
+      env:
+        - SHA=$TRAVIS_COMMIT
+        - PROD=1
+      <<: *deploySite
+
+    #  Publish (next) NPM package
     - stage: 'Publish to NPM (next)'
       if: branch = next AND type = push
       env:
@@ -65,16 +88,10 @@ jobs:
       script:
         - node ./scripts/tasks/publish.js
 
-    - stage: 'Deploy Production Docs Site'
+    #  Publish to NPM
+    - stage: 'Publish to NPM'
       if: branch = master AND type = push
-      env:
-        - SHA=$TRAVIS_COMMIT
-        - PROD=1
-      <<: *deploySite
-
-    - stage: 'Deploy Production Docs Site (next)'
-      if: branch = next AND type = push
-      env:
-        - SHA=$TRAVIS_COMMIT
-        - PROD=1
-      <<: *deploySite
+      install:
+        - ./scripts/bin/ci-install.sh
+      script:
+        - node ./scripts/tasks/publish.js

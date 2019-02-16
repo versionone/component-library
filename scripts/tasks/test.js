@@ -5,7 +5,7 @@ const updateStatus = require('../updateStatus');
 const exp = /localhost/;
 const status = {
   description: 'Cypress Tests',
-  context: 'Cypress/Test',
+  context: 'Verify/Testing',
 };
 
 updateStatus({
