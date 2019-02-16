@@ -5,6 +5,7 @@ const status = {
   description: 'Publish Docs',
   context: 'Publish/Docs',
 };
+
 updateStatus({
   ...status,
   state: 'pending',
@@ -27,9 +28,21 @@ updateStatus({
         .stdout.replace(/^\s*/, ''),
     );
   })
-  .then(url => updateStatus({ ...status, state: 'success', url }))
-  .then(shell.exit(0))
-  .catch(() => {
-    updateStatus({ ...status, state: 'failure' });
-    shell.exit(1);
+  .then(url =>
+    updateStatus({
+      ...status,
+      description: 'Docs published',
+      state: 'success',
+      url,
+    }),
+  )
+  .then(() => {
+    shell.exit(0);
+  })
+  .catch(error => {
+    updateStatus({
+      ...status,
+      description: error,
+      state: 'failure',
+    }).then(() => shell.exit(1)); // TODO: exit 1 when linting fails build
   });
