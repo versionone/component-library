@@ -17,7 +17,7 @@ updateStatus({
     );
     let command;
     if (process.env.PROD) {
-      command = './netlifyctl -A "$NETLIFY_TOKEN" deploy';
+      command = './netlifyctl -A "$NETLIFY_TOKEN" deploy --prod';
     } else {
       command = './netlifyctl -A "$NETLIFY_TOKEN" deploy --draft';
     }
@@ -25,7 +25,7 @@ updateStatus({
       shell
         .exec(command)
         .grep('https.*.com$')
-        .stdout.replace(/^\s*/, ''),
+        .stdout.replace(/^[\s\n\t]*/g, ''),
     );
   })
   .then(url =>
