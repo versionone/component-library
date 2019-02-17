@@ -40,6 +40,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "@monorepo-utils/publish": "^2.0.3",
     "@versionone/babel-plugin-react-docgen": "*",
     "@versionone/theme-definition-handler": "*",
     "babel-eslint": "^10.0.1",
