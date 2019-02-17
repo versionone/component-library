@@ -22,7 +22,7 @@ updateStatus({
 
     const commandOutput = shell
       .exec(command)
-      .grep('versionone-component.netlify.com').stdout;
+      .grep('versionone-components.netlify.com').stdout;
     const url = urlExp.exec(commandOutput)[0];
 
     return new Promise((resolve, reject) => {

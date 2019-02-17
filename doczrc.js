@@ -51,13 +51,6 @@ export default {
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
       '@babel/plugin-proposal-class-properties',
-      [
-        'babel-plugin-transform-react-remove-prop-types',
-        {
-          mode: 'wrap',
-          ignoreFilenames: ['node_modules'],
-        },
-      ],
       'babel-plugin-dev-expression',
       [
         '@versionone/babel-plugin-react-docgen',
