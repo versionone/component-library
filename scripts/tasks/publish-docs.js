@@ -5,28 +5,32 @@ const status = {
   description: 'Publish Docs',
   context: 'Publish/Docs',
 };
+const urlExp = /https.*\.com$/;
 
 updateStatus({
   ...status,
   state: 'pending',
 })
   .then(() => {
+    shell.exec('npm install -g netlify-cli@next');
     shell.exec('yarn build:website');
-    shell.exec(
-      'wget -qO- "https://cli.netlify.com/download/latest/linux" | tar xz',
-    );
+
     let command;
-    if (process.env.PROD) {
-      command = './netlifyctl -A "$NETLIFY_TOKEN" deploy --prod';
-    } else {
-      command = './netlifyctl -A "$NETLIFY_TOKEN" deploy --draft';
-    }
-    return Promise.resolve(
-      shell
-        .exec(command)
-        .grep('https.*.com$')
-        .stdout.replace(/^[\s\n\t]*/g, ''),
-    );
+    command = `NETLIFY_AUTH_TOKEN="${
+      process.env.NETLIFY_TOKEN
+    }" netlify deploy --dir .docz/dist ${process.env.PROD ? '--prod' : ''}`;
+
+    const commandOutput = shell
+      .exec(command)
+      .grep('versionone-component.netlify.com').stdout;
+    const url = urlExp.exec(commandOutput)[0];
+
+    return new Promise((resolve, reject) => {
+      if (url) {
+        resolve(url);
+      }
+      reject('No URL');
+    });
   })
   .then(url =>
     updateStatus({
