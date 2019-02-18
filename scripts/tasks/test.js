@@ -24,9 +24,15 @@ updateStatus({
                 record: true,
                 key: process.env.CYPRESS_RECORD_KEY,
               })
-              .then(results => results.runUrl)
-              .then(url => {
-                resolve(url);
+              .then(results => {
+                if (results.totalFailed > 0) {
+                  reject({
+                    url: results.runUrl,
+                    description: `${results.totalFailed} failed`,
+                  });
+                } else {
+                  resolve(results.runUrl);
+                }
               })
               .catch(error => {
                 reject(error);
@@ -40,6 +46,6 @@ updateStatus({
     shell.exit(0);
   })
   .catch(error => {
-    updateStatus({ ...status, state: 'failure' });
+    updateStatus({ ...status, ...error, state: 'failure' });
     shell.exit(1);
   });
