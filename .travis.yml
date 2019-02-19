@@ -1,5 +1,5 @@
+os: osx
 language: node_js
-
 sudo: required
 
 cache:
@@ -67,7 +67,6 @@ jobs:
       if: branch = next AND type = push
       env:
         - SHA=$TRAVIS_COMMIT
-        - PROD=1
       <<: *deploySite
 
     #  Deploy docs site production

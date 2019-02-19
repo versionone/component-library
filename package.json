@@ -27,7 +27,7 @@
   },
   "engines": {
     "node": "^10.15.1",
-    "yarn": "^1.3.2"
+    "yarn": "^1.13.0"
   },
   "workspaces": [
     "build/*",
@@ -40,6 +40,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "@monorepo-utils/publish": "^2.0.3",
     "@versionone/babel-plugin-react-docgen": "*",
     "@versionone/theme-definition-handler": "*",
     "babel-eslint": "^10.0.1",
