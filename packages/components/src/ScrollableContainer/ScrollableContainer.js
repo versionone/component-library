@@ -8,6 +8,7 @@ const Container = createComponent(
     'max-height': height,
     width,
     'overflow-y': 'auto',
+    'overflow-x': 'hidden',
     '&::-webkit-scrollbar-thumb': {
       'background-color': palette.dove,
       'border-radius': '3px',
