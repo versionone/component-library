@@ -5,17 +5,18 @@ route: /components/Menu
 ---
 
 import { Playground, PropsTable } from '@versionone/docz';
-import { Menu } from './';
-import { SpacedGroup } from '../SpacedGroup';
-import { List } from '../List';
 import { Avatar } from '../Avatar';
-import { Divider } from '../Divider';
 import { Button } from '../Button';
-import { Lozenge } from '../Lozenge';
-import { Paper } from '../Paper';
-import { TextField } from '../TextField';
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Divider } from '../Divider';
 import { IconButton } from '../Button';
 import { InfoIcon } from '@versionone/icons';
+import { List } from '../List';
+import { Lozenge } from '../Lozenge';
+import { Menu } from './';
+import { Paper } from '../Paper';
+import { SpacedGroup } from '../SpacedGroup';
+import { TextField } from '../TextField';
 
 # Menu
 
@@ -33,7 +34,7 @@ and the items in the `Menu` are verbs and themselves are actions.
 | Ken Test Engineer | Delete Story |
 | Danny Developer   | Assign Story |
 
-<Playground>
+<Playground data-test="positioning">
   {() => {
     class StateManager extends React.Component {
       constructor(props) {
@@ -101,6 +102,12 @@ and the items in the `Menu` are verbs and themselves are actions.
 
 <Playground data-test="containment">
   {() => {
+    const InlineContainer = createComponent(
+      () => ({
+        display: 'inline-block',
+      }),
+      'div',
+    );
     class StateManager extends React.Component {
       constructor(props) {
         super(props);
@@ -117,40 +124,50 @@ and the items in the `Menu` are verbs and themselves are actions.
       }
       render() {
         return (
-          <SpacedGroup>
-            <Menu
-              disableContainment
-              anchor={<IconButton icon={InfoIcon} onClick={this.toggle(0)} />}
-              onClickOutside={this.toggle(0)}
-              open={this.state[0]}
-              placement="bottom-end"
-            >
-              <List bordered>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
-              </List>
-            </Menu>
-            <Menu
-              disableContainment
-              disableScrim
-              anchor={<IconButton icon={InfoIcon} onClick={this.toggle(1)} />}
-              open={this.state[1]}
-              placement="bottom-end"
-            >
-              <List bordered>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
-              </List>
-            </Menu>
-          </SpacedGroup>
+          <StyleProvider>
+            <SpacedGroup>
+              <InlineContainer>
+                <Menu
+                  disableContainment
+                  anchor={
+                    <IconButton icon={InfoIcon} onClick={this.toggle(0)} />
+                  }
+                  onClickOutside={this.toggle(0)}
+                  open={this.state[0]}
+                  placement="bottom-end"
+                >
+                  <List bordered>
+                    <List.Item onClick={() => {}}>
+                      <List.ItemText primary="Action 1" />
+                    </List.Item>
+                    <List.Item onClick={() => {}}>
+                      <List.ItemText primary="Action 2" />
+                    </List.Item>
+                  </List>
+                </Menu>
+              </InlineContainer>
+              <InlineContainer>
+                <Menu
+                  disableContainment
+                  disableScrim
+                  anchor={
+                    <IconButton icon={InfoIcon} onClick={this.toggle(1)} />
+                  }
+                  open={this.state[1]}
+                  placement="bottom-end"
+                >
+                  <List bordered>
+                    <List.Item onClick={() => {}}>
+                      <List.ItemText primary="Action 1" />
+                    </List.Item>
+                    <List.Item onClick={() => {}}>
+                      <List.ItemText primary="Action 2" />
+                    </List.Item>
+                  </List>
+                </Menu>
+              </InlineContainer>
+            </SpacedGroup>
+          </StyleProvider>
         );
       }
     }
