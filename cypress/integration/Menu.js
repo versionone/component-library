@@ -13,7 +13,7 @@ context('Menu', () => {
       .should('exist');
   });
 
-  specify('are positioned relative to their anchor when opened', () => {
+  specify.only('are positioned relative to their anchor when opened', () => {
     cy.get('[data-component="IconButton"]')
       .first()
       .click();
@@ -22,18 +22,11 @@ context('Menu', () => {
       .find('[data-component="Menu"]')
       .first()
       .then(el => {
-        expect(JSON.stringify(el[0].getBoundingClientRect())).to.eql(
-          JSON.stringify({
-            x: 1226,
-            y: 32,
-            width: 200,
-            height: 125,
-            top: 32,
-            right: 1426,
-            bottom: 157,
-            left: 1226,
-          }),
-        );
+        const { bottom, left, right, top } = el[0].getBoundingClientRect();
+        expect(bottom).to.be.closeTo(158, 3);
+        expect(left).to.be.closeTo(1225, 3);
+        expect(right).to.be.closeTo(1425, 3);
+        expect(top).to.be.closeTo(33, 3);
       });
   });
 
