@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -10,19 +11,25 @@ class PortalContainer extends React.Component {
     const portalContainer = document.createElement('div');
     portalContainer.setAttribute('id', DOM_ID);
     portalContainer.style.zIndex = 100000;
-    portalContainer.style.position = 'fixed';
     document.body.appendChild(portalContainer);
   }
 
   render() {
+    const { children, mounted } = this.props;
+
     return (
-      this.props.mounted &&
-      ReactDOM.createPortal(
-        this.props.children,
-        document.getElementById(DOM_ID),
-      )
+      mounted &&
+      ReactDOM.createPortal(children, document.getElementById(DOM_ID))
     );
   }
 }
+
+PortalContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  mounted: PropTypes.bool,
+};
+PortalContainer.defaultProps = {
+  mounted: false,
+};
 
 export { PortalContainer };
