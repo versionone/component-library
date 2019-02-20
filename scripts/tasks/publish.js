@@ -13,10 +13,10 @@ updateStatus({
   .then(() => {
     if (process.env.NEXT) {
       shell.echo('Publishing release (next) to NPM...');
-      shell.exec('monorepo-utils-publish --ci -dist-tag next --dry');
+      shell.exec('monorepo-utils-publish --ci -dist-tag next');
     } else {
       shell.echo('Publishing release (next) to NPM...');
-      shell.exec('monorepo-utils-publish --ci --dry');
+      shell.exec('monorepo-utils-publish --ci');
     }
   })
   .then(() => updateStatus({ ...status, state: 'success' }))
