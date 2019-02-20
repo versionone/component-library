@@ -7,14 +7,12 @@ import { PortalContainer } from '../PortalContainer';
 
 const ScrimImpl = createComponent(
   ({ open, disableVisibility, theme }) => ({
-    position: 'fixed',
+    position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    'background-color': disableVisibility
-      ? palette.transparent
-      : theme.Scrim.main,
+    backgroundColor: disableVisibility ? palette.transparent : theme.Scrim.main,
     opacity: open ? 0.6 : 0,
     ...styleUtils.conditionalStyle(!open, 'pointer-events', 'none'),
   }),
@@ -23,8 +21,20 @@ const ScrimImpl = createComponent(
 );
 
 class Scrim extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.disableScrollLock || nextProps.disableScrollLock) {
+  getSnapshotBeforeUpdate(prevProps) {
+    const { open } = this.props;
+    const willOpen = !prevProps.open && open;
+    if (willOpen) {
+      return {
+        scrollY: window.scrollY,
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { disableScrollLock, open } = this.props;
+    if (prevProps.disableScrollLock || disableScrollLock) {
       return;
     }
 
@@ -33,8 +43,8 @@ class Scrim extends React.Component {
         '[data-component="Scrim"][data-open="true"][data-scroll-lock]',
       ).length <= 1;
 
-    const willOpen = !this.props.open && nextProps.open;
-    const willClose = this.props.open && !nextProps.open && isOnlyOpenScrim;
+    const willOpen = !prevProps.open && open;
+    const willClose = prevProps.open && !open && isOnlyOpenScrim;
 
     if (willOpen) {
       const documentWidth = document.documentElement.clientWidth;
@@ -45,6 +55,9 @@ class Scrim extends React.Component {
         'style',
         `overflow: hidden; -webkit-overflow-scrolling: touch; padding-right: ${scrollBarWidth}px;`,
       );
+      if (snapshot && snapshot.scrollY) {
+        window.scrollTo(0, snapshot.scrollY);
+      }
     } else if (willClose) {
       document.body.removeAttribute('style');
     }
