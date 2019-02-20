@@ -13,18 +13,19 @@ const TabImpl = createComponent(
   }),
   'button',
   [
+    'aria-controls',
+    'aria-selected',
     'data-component',
     'data-test',
     'data-trackingid',
-    'aria-selected',
-    'aria-controls',
-    'role',
-    'id',
-    'onClick',
-    'tabIndex',
     'disabled',
-    'onFocus',
+    'id',
     'onBlur',
+    'onClick',
+    'onFocus',
+    'role',
+    'tabIndex',
+    'type',
   ],
 );
 
@@ -56,17 +57,18 @@ const Tab = props => {
     <StyleProvider>
       <TabImpl
         {...props}
-        data-component="Tabs.Tab"
-        role="tab"
-        aria-selected={selected}
         aria-controls={controls}
-        id={id}
-        tabIndex={tabIndex}
-        onClick={handleSelection}
+        aria-selected={selected}
+        data-component="Tabs.Tab"
         disabled={disabled}
         focused={focused}
+        id={id}
         onBlur={handleBlur}
+        onClick={handleSelection}
         onFocus={handleFocus}
+        role="tab"
+        tabIndex={tabIndex}
+        type="button"
       >
         {updatedChildren}
       </TabImpl>
