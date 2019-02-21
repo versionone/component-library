@@ -81,6 +81,7 @@ jobs:
     - stage: 'Publish to NPM (next)'
       if: branch = next AND type = push
       env:
+        - SHA=$TRAVIS_COMMIT
         - NEXT=1
       install:
         - ./scripts/bin/ci-install.sh
@@ -90,6 +91,8 @@ jobs:
     #  Publish to NPM
     - stage: 'Publish to NPM'
       if: branch = master AND type = push
+      env:
+        - SHA=$TRAVIS_COMMIT
       install:
         - ./scripts/bin/ci-install.sh
       script:
