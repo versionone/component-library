@@ -1,13 +1,13 @@
 {
   "private": true,
   "name": "@versionone/docz",
-  "version": "1.0.1-next.0",
+  "version": "1.1.0",
   "description": "Docz helpers.",
   "license": "MIT",
   "main:src": "./src/index.js",
   "dependencies": {
     "@mdx-js/tag": "^0.16.6",
-    "@versionone/components": "^1.0.1-next.0",
+    "@versionone/components": "^1.1.0",
     "capitalize": "^2.0.0",
     "codemirror": "^5.42.0",
     "prop-types": "^15.6.2",
