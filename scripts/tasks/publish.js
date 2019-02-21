@@ -11,13 +11,16 @@ updateStatus({
   state: 'pending',
 })
   .then(() => {
-    shell.exec('yarn build');
+    shell.exec('echo "always-auth = true" >> .npmrc');
+    shell.exec('echo "email = ${NPM_EMAIL}" >> .npmrc');
+    shell.exec('echo "_auth = ${NPM_TOKEN}" >> .npmrc');
+    shell.exec('NODE_ENV=production yarn build');
     if (process.env.NEXT) {
       shell.echo('Publishing release (next) to NPM...');
-      shell.exec('monorepo-utils-publish --ci -dist-tag next');
+      shell.exec('yarn run monorepo-utils-publish --ci -dist-tag next');
     } else {
       shell.echo('Publishing release (next) to NPM...');
-      shell.exec('monorepo-utils-publish --ci');
+      shell.exec('yarn run monorepo-utils-publish --ci');
     }
   })
   .then(() => updateStatus({ ...status, state: 'success' }))
