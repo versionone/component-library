@@ -16,7 +16,7 @@ updateStatus({
         shell.config.fatal = true;
         try {
           shell.exec('echo "always-auth = true" >> .npmrc');
-          shell.exec('echo "email = ${NPM_EMAIL}" >> .npmrc');
+          shell.exec('echo "email = ${NPM_USER}" >> .npmrc');
           shell.exec('echo "_auth = ${NPM_TOKEN}" >> .npmrc');
           shell.exec('NODE_ENV=production yarn build');
           if (process.env.NEXT) {
