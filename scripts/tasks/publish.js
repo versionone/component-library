@@ -13,7 +13,6 @@ updateStatus({
   .then(
     () =>
       new Promise((resolve, reject) => {
-        shell.config.fatal = true;
         try {
           shell.exec('NODE_ENV=production yarn build');
           if (process.env.NEXT) {
