@@ -17,13 +17,10 @@ updateStatus({
           shell.exec('NODE_ENV=production yarn build');
           if (process.env.NEXT) {
             shell.echo('Publishing release (next) to NPM...');
-            shell.exec(
-              'yarn lerna version prerelease --yes --preid next -m "next release (%v)"',
-            );
-            shell.exec('yarn lerna publish --dist-tag next');
+            shell.exec('yarn lerna publish --yes --dist-tag next');
           } else {
             shell.echo('Publishing release to NPM...');
-            shell.exec('yarn lerna publish');
+            shell.exec('yarn lerna publish minor --yes');
           }
           resolve(true);
         } catch (error) {
