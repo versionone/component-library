@@ -11,6 +11,9 @@ class PortalContainer extends React.Component {
     const portalContainer = document.createElement('div');
     portalContainer.setAttribute('id', DOM_ID);
     portalContainer.style.zIndex = 100000;
+    portalContainer.style.position = 'absolute';
+    portalContainer.style.left = 0;
+    portalContainer.style.top = 0;
     document.body.appendChild(portalContainer);
   }
 

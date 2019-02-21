@@ -13,6 +13,8 @@ const ScrimImpl = createComponent(
     left: 0,
     right: 0,
     backgroundColor: disableVisibility ? palette.transparent : theme.Scrim.main,
+    height: '100vh',
+    width: '100vw',
     opacity: open ? 0.6 : 0,
     ...styleUtils.conditionalStyle(!open, 'pointer-events', 'none'),
   }),
