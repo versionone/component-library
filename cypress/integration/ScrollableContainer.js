@@ -31,6 +31,6 @@ context('ScrollableContainer', () => {
       .eq(1)
       .should('have.css', 'width', '100px')
       .should('have.css', 'max-height', '100%')
-      .should('have.css', 'overflow-x', 'auto');
+      .should('have.css', 'overflow-x', 'hidden');
   });
 });
