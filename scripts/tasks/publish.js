@@ -11,6 +11,7 @@ updateStatus({
   state: 'pending',
 })
   .then(() => {
+    shell.exec('yarn build');
     if (process.env.NEXT) {
       shell.echo('Publishing release (next) to NPM...');
       shell.exec('monorepo-utils-publish --ci -dist-tag next');
