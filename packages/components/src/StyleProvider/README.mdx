@@ -5,7 +5,7 @@ route: /components/styling-components
 ---
 
 import { Fragment } from 'react';
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import {
   createComponent,
   StyleProvider,
@@ -137,10 +137,10 @@ Inject a theme to be merged into the current context's theme for a sub-tree of c
       backgroundColor: 'blue',
       color: 'white',
     });
-    const greenTheme = (ctxTheme) => ({
-      backgroundColor: 'green'
+    const greenTheme = ctxTheme => ({
+      backgroundColor: 'green',
     });
-    const styleRule = ({theme}) => ({
+    const styleRule = ({ theme }) => ({
       backgroundColor: theme.backgroundColor,
       color: theme.color,
     });
@@ -155,8 +155,7 @@ Inject a theme to be merged into the current context's theme for a sub-tree of c
         </ThemeProvider>
       </StyleProvider>
     );
-}}
-
+  }}
 </Playground>
 
 ## `WithTheme` Component
@@ -165,11 +164,11 @@ Provides internals of a component access to the the theme outside of the `create
 
 <Playground>
   {() => {
-    const theme  = {
+    const theme = {
       backgroundColor: 'darkgreen',
-      color: 'white'
+      color: 'white',
     };
-    const styleRule = (props) => ({
+    const styleRule = props => ({
       backgroundColor: props.theme.backgroundColor,
       color: props.theme.color,
     });
@@ -178,13 +177,16 @@ Provides internals of a component access to the the theme outside of the `create
       <StyleProvider>
         <ThemeProvider theme={theme}>
           <WithTheme>
-            {theme => <ThemedHeading theme={theme}>I am themed to have a darkgreen background</ThemedHeading>}
+            {theme => (
+              <ThemedHeading theme={theme}>
+                I am themed to have a darkgreen background
+              </ThemedHeading>
+            )}
           </WithTheme>
         </ThemeProvider>
       </StyleProvider>
     );
-}}
-
+  }}
 </Playground>
 
 ## `WithRenderer` Component

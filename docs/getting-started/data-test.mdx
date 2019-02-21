@@ -10,6 +10,8 @@ Any component that can be targeted in an end to end testing suite will contain a
 We currently use Cypress.io to write end to end tests. Consider the following example:
 
 ```js
+import { Button, SpacedGroup, Typography } from '@versionone/components';
+
 class MyCounter extends React.Component {
   constructor() {
     super();
@@ -38,10 +40,10 @@ class MyCounter extends React.Component {
 
 ```js
 suite('<MyCounter />', () => {
-    test('it can increment a counter', () => {
-        expect(cy.get('[data-test="count"'])).to.equal('0');
-        cy.get('[data-test="increment"']).click();
-        expect(cy.get('[data-test="count"'])).to.equal('1');
-    });
+  test('it can increment a counter', () => {
+    expect(cy.get('[data-test="count"]')).to.equal('0');
+    cy.get('[data-test="increment"]').click();
+    expect(cy.get('[data-test="count"]')).to.equal('1');
+  });
 });
 ```

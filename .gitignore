@@ -7,7 +7,6 @@ node_modules
 cypress/screenshots
 cypress/videos
 
-.docz
 **/dist
 packages/components/src/index.js
 packages/icons/src/*.*

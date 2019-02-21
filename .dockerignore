@@ -1,5 +1,5 @@
 node_modules
-.docz
 dist
+packages/docs-site/public
 packages/components/src/index.js
 packages/icons/src/*.js

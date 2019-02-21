@@ -5,7 +5,7 @@ menu: Components
 ---
 
 import { Component } from 'react';
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Tooltip } from './';
 import { SpacedGroup } from './../SpacedGroup';
 import { Lozenge } from '../Lozenge';
@@ -17,40 +17,44 @@ import { CheckIcon, CloseIcon } from '@versionone/icons';
 Message.
 
 <Playground>
-    {() => {
-        class StateManager extends Component {
-            constructor() {
-                super();
-                this.state = { isChecked: false };
-                this.toggle = this.toggle.bind(this);
-            }
-
-            toggle() {
-                this.setState({ isChecked: !this.state.isChecked });
-            }
-
-            render() {
-                return (
-                    <SpacedGroup center>
-                        <Tooltip anchor={<span>Hover me</span>}>
-                            <SpacedGroup xs={4}><span>Message</span></SpacedGroup>
-                        </Tooltip>
-                        <Tooltip anchor={<IconSwitch
-                            checkedIcon={<CheckIcon />}
-                            uncheckedIcon={<CloseIcon />}
-                            onClick={this.toggle}
-                            checked={this.state.isChecked}
-                        />}>
-                            <SpacedGroup xs={4}><span>Message</span></SpacedGroup>
-                        </Tooltip>
-                    </SpacedGroup>
-                );
-            }
-        }
-
-        return <StateManager />
-    }}
-
+  {() => {
+    class StateManager extends Component {
+      constructor() {
+        super();
+        this.state = { isChecked: false };
+        this.toggle = this.toggle.bind(this);
+      }
+      toggle() {
+        this.setState({ isChecked: !this.state.isChecked });
+      }
+      render() {
+        return (
+          <SpacedGroup center>
+            <Tooltip anchor={<span>Hover me</span>}>
+              <SpacedGroup xs={4}>
+                <span>Message</span>
+              </SpacedGroup>
+            </Tooltip>
+            <Tooltip
+              anchor={
+                <IconSwitch
+                  checkedIcon={<CheckIcon />}
+                  uncheckedIcon={<CloseIcon />}
+                  onClick={this.toggle}
+                  checked={this.state.isChecked}
+                />
+              }
+            >
+              <SpacedGroup xs={4}>
+                <span>Message</span>
+              </SpacedGroup>
+            </Tooltip>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API

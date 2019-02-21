@@ -11,7 +11,7 @@ import {
   SpacedGroup,
   Tooltip,
 } from '@versionone/components';
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import * as AllIcons from '@versionone/icons';
 
 # Icons By Name (Copy to Clipboard)
@@ -21,7 +21,9 @@ import * as AllIcons from '@versionone/icons';
 
 <Playground>
   {() => {
-    const names = Object.keys(AllIcons).filter(name => name !== 'BaseIcon');
+    const names = Object.keys(AllIcons).filter(
+      name => name !== 'BaseIcon' && name !== '__esModule',
+    );
     const length = names.length;
     const firstColumn = names.slice(0, length / 2);
     const secondColumn = names.slice(length / 2, length);

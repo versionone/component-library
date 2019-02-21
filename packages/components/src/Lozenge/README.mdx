@@ -4,7 +4,7 @@ menu: Components
 route: /components/Lozenge
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Lozenge } from './';
 import { Grid } from '../Grid';
 import { SpacedGroup } from '../SpacedGroup';
@@ -25,29 +25,33 @@ Use lozenges to highlight an item's status so it can be recognized quickly
 <Playground>
   <Grid justifyContent="center">
     <SpacedGroup direction="vertical">
-      <Lozenge variant="info" bold >Default</Lozenge>
-      <Lozenge variant="warning" bold >Warning</Lozenge>
-      <Lozenge variant="error" bold >Error</Lozenge>
-      <Lozenge
-        variant="success"
-        bold
-      >
+      <Lozenge variant="info" bold>
+        Default
+      </Lozenge>
+      <Lozenge variant="warning" bold>
+        Warning
+      </Lozenge>
+      <Lozenge variant="error" bold>
+        Error
+      </Lozenge>
+      <Lozenge variant="success" bold>
         Success Super Duper Long Text. Please Wrap at some point
       </Lozenge>
-      <Lozenge bold variant="info" color={palette.plum}>Override Color</Lozenge>
+      <Lozenge bold variant="info" color={palette.plum}>
+        Override Color
+      </Lozenge>
     </SpacedGroup>
     <SpacedGroup direction="vertical">
-      <Lozenge variant="info" >Default</Lozenge>
-      <Lozenge variant="warning" >Warning</Lozenge>
-      <Lozenge variant="error" >Error</Lozenge>
-      <Lozenge
-        variant="success"
-      >
+      <Lozenge variant="info">Default</Lozenge>
+      <Lozenge variant="warning">Warning</Lozenge>
+      <Lozenge variant="error">Error</Lozenge>
+      <Lozenge variant="success">
         Succes Super Duper Long Text. Please Wrap at some point
       </Lozenge>
-      <Lozenge variant="info" color={palette.plum}>Override Color</Lozenge>
+      <Lozenge variant="info" color={palette.plum}>
+        Override Color
+      </Lozenge>
     </SpacedGroup>
-
   </Grid>
 </Playground>
 

@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "name": "@versionone/docs-site",
+  "description": "",
+  "version": "1.1.0",
+  "dependencies": {
+    "@mdx-js/mdx": "^0.16.6",
+    "@mdx-js/tag": "^0.16.6",
+    "@versionone/babel-plugin-react-docgen": "^1.1.0",
+    "@versionone/components": "^1.1.0",
+    "@versionone/doc-components": "^1.1.0",
+    "@versionone/icons": "^1.0.0",
+    "@versionone/rehype-playground-plugin": "^1.1.0",
+    "@versionone/theme-definition-handler": "^1.1.0",
+    "babel-preset-gatsby": "^0.1.8",
+    "eslint-config-react-app": "^3.0.7",
+    "gatsby": "^2.0.83",
+    "gatsby-image": "^2.0.20",
+    "gatsby-mdx": "^0.3.2",
+    "gatsby-plugin-manifest": "^2.0.13",
+    "gatsby-plugin-offline": "^2.0.20",
+    "gatsby-plugin-react-helmet": "^3.0.5",
+    "gatsby-plugin-sharp": "^2.0.17",
+    "gatsby-source-filesystem": "^2.0.8",
+    "gatsby-transformer-sharp": "^2.1.10",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-docgen-deprecation-handler": "^1.1.1",
+    "react-dom": "^16.7.0",
+    "react-helmet": "^5.2.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop -p 3000",
+    "start": "npm run develop"
+  },
+  "devDependencies": {
+    "prettier": "^1.15.2"
+  }
+}

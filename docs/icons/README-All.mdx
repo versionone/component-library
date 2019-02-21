@@ -5,7 +5,7 @@ menu: Icons
 ---
 
 import { palette, SpacedGroup, Tooltip } from '@versionone/components';
-import { Playground } from '@versionone/docz';
+import { Playground } from '@versionone/doc-components';
 import * as AllIcons from '@versionone/icons';
 
 # All Icons
@@ -16,7 +16,7 @@ import * as AllIcons from '@versionone/icons';
 <Playground>
   <SpacedGroup xs={4}>
     {Object.keys(AllIcons)
-      .filter(name => name !== 'BaseIcon')
+      .filter(name => name !== 'BaseIcon' && name !== '__esModule')
       .map(iconKey => {
         const Icon = AllIcons[iconKey];
         const anchor = <Icon color={palette.gunmetal} />;

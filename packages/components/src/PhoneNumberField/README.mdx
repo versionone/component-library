@@ -4,7 +4,7 @@ route: /components/PhoneNumberField
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { FormField } from '../FormField';
 import { Label } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
@@ -84,32 +84,28 @@ Used to provide a phone number. Uses a number keypad on mobile devices and restr
 ## Stateful
 
 <Playground>
-	{() => {
-		class StateManager extends React.Component {
-			constructor(props, context) {
-				super(props, context);
-				this.state = { value: '' };
-				this.handleChange = this.handleChange.bind(this);
-			}
-
-    		handleChange(event, value) {
-    			this.setState({ value });
-    		}
-
-    		render() {
-    			return (
-    				<PhoneNumberField
-    					focsued
-    					value={this.state.value}
-    					onChange={this.handleChange}
-    				/>
-    			)
-    		}
-    	}
-
-    	return <StateManager />
-    }}
-
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = { value: '' };
+        this.handleChange = this.handleChange.bind(this);
+      }
+      handleChange(event, value) {
+        this.setState({ value });
+      }
+      render() {
+        return (
+          <PhoneNumberField
+            focsued
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API

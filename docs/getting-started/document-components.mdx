@@ -14,12 +14,12 @@ route: /getting-started/document-components
 
 ## Examples via `PlayGround`
 
-Component examples can be created via the `Playground` component from `@versionone/docz`. Examples should exercise as many edge cases as possible. This enables comphrensive E2E testing of various aspects of a component in a single page/location.
+Component examples can be created via the `Playground` component from `@versionone/doc-components`. Examples should exercise as many edge cases as possible. This enables comphrensive E2E testing of various aspects of a component in a single page/location.
 
 > Every package `README.mdx` should contain examples exercising **all major edge cases** of a component.
 
 ```js
-import { Playground } from '@versionone/docz';
+import { Playground } from '@versionone/doc-components';
 import { TextField } from './src';
 
 <Playground>
@@ -64,7 +64,7 @@ MyComponent.themeDefinition = {
 };
 ```
 
-With the **API information documented in the component's source code**, we can display this information with the `PropsTable` and `ThemeDefinitionTable` components exported from `@versionone/docz`.
+With the **API information documented in the component's source code**, we can display this information with the `PropsTable` and `ThemeDefinitionTable` components exported from `@versionone/doc-components`.
 
 ```mdx
 ## API

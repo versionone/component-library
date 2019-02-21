@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "@versionone/rehype-playground-plugin",
+  "version": "1.1.0",
+  "description": "Rehype plugin used by VersionOne documentation site; powering its Playground",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "dist/",
+    "package.json",
+    "README.mdx"
+  ],
+  "scripts": {
+    "build": "babel --root-mode upward src --out-dir ./dist"
+  },
+  "dependencies": {
+    "docz-utils": "^0.13.6",
+    "hast-util-to-string": "^1.0.1",
+    "jsx-ast-utils": "^2.0.1",
+    "lodash.flatten": "^4.4.0",
+    "unist-util-is": "^2.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3"
+  }
+}

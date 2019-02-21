@@ -200,5 +200,12 @@ Button.defaultProps = {
   type: standard,
   variant: contained,
 };
+Button.themeDefinition = {
+  /** Invert color of when disabled */
+  'disabled.invert': PropTypes.string,
+};
+Button.defaultThemeValues = {
+  'disabled.invert': 'black',
+};
 
 export { Button };
