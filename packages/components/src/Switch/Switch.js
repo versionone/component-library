@@ -175,7 +175,6 @@ class Switch extends React.Component {
             data-component="Switch"
             data-test={this.props['data-test']}
             data-trackingid={this.props['data-trackingid']}
-            onClick={this.props.onClick}
             onKeyDown={this.handleKeyDown}
           >
             <ButtonBase {...this.props}>
