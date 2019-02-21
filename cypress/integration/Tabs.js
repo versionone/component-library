@@ -44,4 +44,19 @@ context('Tabs', () => {
     cy.get('[data-test="Tabs.Panel.1"]').should('have.css', 'display', 'none');
     cy.get('[data-test="Tabs.Panel.2"]').should('have.css', 'display', 'none');
   });
+
+  specify('selecting a tab does not submit parent forms', () => {
+    cy.get('form')
+      .as('form')
+      .then(form$ => {
+        form$.on('submit', e => {
+          e.preventDefault();
+          expect(e).to.eql(null);
+        });
+      });
+    cy.get('@form')
+      .find('[data-test="Tabs.Tab.1"]')
+      .focus()
+      .click();
+  });
 });

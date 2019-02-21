@@ -1,0 +1,116 @@
+---
+name: Popover
+menu: Components
+route: /components/Popover
+---
+
+import { Playground, PropsTable } from '@versionone/docz';
+import { createComponent, StyleProvider } from '../StyleProvider';
+import { Avatar } from '../Avatar';
+import { Button } from '../Button';
+import { Divider } from '../Divider';
+import { IconButton } from '../Button';
+import { InfoIcon } from '@versionone/icons';
+import { List } from '../List';
+import { Lozenge } from '../Lozenge';
+import { Paper } from '../Paper';
+import { Popover } from './';
+import { SpacedGroup } from '../SpacedGroup';
+import { TextField } from '../TextField';
+import * as placements from './placements';
+
+# Popover
+
+A container positioned relative to an anchor; outside the flow of the document.
+
+> Remember, `Popover` will render the `anchor` in a block element. Wrap it in an `inline-block` element to prevent the Popover from positioning relative to a block level element.
+
+## Positioning
+
+<Playground data-test="positioning">
+  {() => {
+    const Container = createComponent(
+      () => ({
+        height: 100,
+        textAlign: 'center',
+        width: '100%',
+      }),
+      'div',
+    );
+    const InlineContainer = createComponent(
+      () => ({
+        display: 'inline-block',
+      }),
+      'div',
+    );
+    return (
+      <StyleProvider>
+        <SpacedGroup direction="vertical">
+          {Object.values(placements).map(placement => (
+            <Container key={placement}>
+              <InlineContainer>
+                <Popover
+                  anchor={<IconButton icon={InfoIcon} />}
+                  disableScrim={true}
+                  open={true}
+                  placement={placement}
+                >
+                  <Paper>{placement}</Paper>
+                </Popover>
+              </InlineContainer>
+            </Container>
+          ))}
+        </SpacedGroup>
+      </StyleProvider>
+    );
+  }}
+</Playground>
+
+## `onClickOutside` Event Handler
+
+<Playground data-test="event-handler">
+  {() => {
+    class StateManager extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          open: false,
+        };
+        this.close = this.close.bind(this);
+        this.open = this.open.bind(this);
+      }
+      close() {
+        this.setState({ open: false });
+      }
+      open() {
+        this.setState({ open: true });
+      }
+      render() {
+        return (
+          <SpacedGroup>
+            <Popover
+              anchor={<IconButton icon={InfoIcon} onClick={this.open} />}
+              onClickOutside={this.close}
+              open={this.state.open}
+              placement="bottom-end"
+            >
+              <List bordered>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Popover>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+## API
+
+<PropsTable of={Popover} />

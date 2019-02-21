@@ -1,7 +1,0 @@
-[Settings]
-ID = "47d61e1a-be82-478a-a0b1-6b4b954ef0c5"
-
-# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.
-
-[build]
-  publish = ".docz/dist"

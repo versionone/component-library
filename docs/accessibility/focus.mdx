@@ -1,0 +1,308 @@
+---
+name: Focus and Tabbing
+route: /accessibility/focus
+menu: Accessibility
+---
+
+import { Component, Fragment } from 'react';
+import { Playground } from '@versionone/docz';
+import {
+  Button,
+  Drawer,
+  FocusManager,
+  IconButton,
+  List,
+  Menu,
+  Paper,
+  SpacedGroup,
+  TextField,
+} from '../../packages/components/src/index';
+import { AlertIcon } from '../../packages/icons/src';
+
+# Focus and Tabbing
+
+### Relevant components
+
+1. [Focusable](/components/Focusable)
+2. [FocusManager and FocusManager.Group](/components/FocusManager)
+3. [FocusLock](/components/FocusLock)
+
+## Changing Focus Context
+
+In most cases, focus will follow the tabbing order. However, sometimes it is necessary to change the context of the user's task. In doing so, focus is placed and **constrained** on the new task. The changing of the user's context and focus is considered navigating to/between focus groups.
+
+### Drawer Focus Context
+
+The contents of a [drawer](/components/Drawer) should be contained withing a focus group.
+
+1. When a user opens a drawer, then the focus **should always** be moved to the first focusable item in the drawer.
+2. Only fields in the drawer can be focused.
+3. Upon closing the drawer, the user's focus should return to the element that triggered the drawer to open.
+
+> Opening a drawer should **always** move the focus to something within the drawer.
+
+<Playground>
+  {() => {
+    class StateManager extends Component {
+      constructor() {
+        super();
+        this.state = {
+          open: false,
+        };
+        this.open = this.open.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+      }
+      open() {
+        this.setState(({ open }) => ({
+          open: true,
+        }));
+      }
+      handleClose() {
+        this.setState(
+          ({ open }) => ({
+            open: false,
+          }),
+          this.pop,
+        );
+      }
+      render() {
+        return (
+          <FocusManager>
+            {pop => {
+              this.pop = pop;
+              return (
+                <Fragment>
+                  <FocusManager.Group disableLock={true}>
+                    {bind => (
+                      <Button {...bind} onClick={this.open}>
+                        Open Drawer
+                      </Button>
+                    )}
+                  </FocusManager.Group>
+                  <Drawer
+                    {...this.state}
+                    handleClickOutside={this.handleClose}
+                    placement="right"
+                  >
+                    <FocusManager.Group>
+                      {bind => (
+                        <SpacedGroup direction="vertical">
+                          <TextField {...bind} focused={this.state.open} />
+                          <TextField {...bind} />
+                          <TextField {...bind} />
+                          <TextField {...bind} />
+                          <Button {...bind} onClick={this.handleClose}>
+                            Close
+                          </Button>
+                        </SpacedGroup>
+                      )}
+                    </FocusManager.Group>
+                  </Drawer>
+                </Fragment>
+              );
+            }}
+          </FocusManager>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+### Menu Focus Context
+
+[Menu](/components/Menu) moves focus between the element that opened the menu and the list items within the menu.
+
+1. Opening a menu should move user focus to the first menu list item.
+2. Only items in the menu can be focused.
+3. Closing the menu should move focus back to the element that triggerd the menu to open.
+
+<Playground>
+  {() => {
+    class StateManager extends Component {
+      constructor() {
+        super();
+        this.state = {
+          isOpenIndex: -1,
+          items: [
+            { name: 'My Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project B' },
+            { name: 'Holiday Party', project: 'Project A' },
+            {
+              name: 'Roadmaping Latest Quarter',
+              project: 'Project A',
+            },
+            { name: 'Team Q Backlog', project: 'Project A' },
+          ],
+        };
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+      }
+      open(index) {
+        return () => this.setState({ isOpenIndex: index });
+      }
+      close() {
+        this.setState({ isOpenIndex: -1 });
+      }
+      render() {
+        const getMenuForItemAt = index => {
+          const isOpen = this.state.isOpenIndex === index;
+          return (
+            <Menu
+              anchor={
+                <IconButton
+                  title="more-actions"
+                  icon={AlertIcon}
+                  onClick={this.open(index)}
+                />
+              }
+              open={isOpen}
+              placement="bottom-end"
+              onClickOutside={this.close}
+            >
+              <List bordered>
+                <List.Item onClick={() => {}} focused={isOpen}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={() => {}}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Menu>
+          );
+        };
+        const ListItems = this.state.items.map((item, index) => (
+          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
+            <List.ItemText primary={item.name} secondary={item.project} />
+          </List.Item>
+        ));
+        return (
+          <SpacedGroup xs={24}>
+            <Paper>
+              <List bordered>{ListItems}</List>
+            </Paper>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+## Drawer Opened From Menu
+
+In some cases, the drawer may open in response to a menu item's primary action; in which case opening the drawer will close the menu. In this case, there is not item in which to "return" focus; it is no longer rendered/available/visible on the page. Instead, the focus should return to the element which opened the menu. This is effectively invoking `FocusManager`'s `pop` function twice.
+
+<Playground>
+  {() => {
+    class StateManager extends Component {
+      constructor() {
+        super();
+        this.state = {
+          isOpenIndex: -1,
+          items: [
+            { name: 'My Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project A' },
+            { name: 'Backlog Shared View', project: 'Project B' },
+            { name: 'Holiday Party', project: 'Project A' },
+            {
+              name: 'Roadmaping Latest Quarter',
+              project: 'Project A',
+            },
+            { name: 'Team Q Backlog', project: 'Project A' },
+          ],
+          open: false,
+        };
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+        this.openDrawer = this.openDrawer.bind(this);
+        this.closeDrawer = this.closeDrawer.bind(this);
+      }
+      open(index) {
+        return () => this.setState({ isOpenIndex: index });
+      }
+      close() {
+        this.setState({ isOpenIndex: -1 });
+      }
+      openDrawer() {
+        this.setState({ open: true, isOpenIndex: -1 });
+      }
+      closeDrawer() {
+        this.setState({ open: false }, () => {
+          this.pop();
+          this.pop();
+        });
+      }
+      render() {
+        const getMenuForItemAt = index => {
+          const isOpen = this.state.isOpenIndex === index;
+          return (
+            <Menu
+              anchor={
+                <IconButton
+                  title="more-actions"
+                  icon={AlertIcon}
+                  onClick={this.open(index)}
+                />
+              }
+              open={isOpen}
+              placement="bottom-end"
+              onClickOutside={this.close}
+            >
+              <List bordered>
+                <List.Item onClick={this.openDrawer} focused={isOpen}>
+                  <List.ItemText primary="Action 1" />
+                </List.Item>
+                <List.Item onClick={this.openDrawer}>
+                  <List.ItemText primary="Action 2" />
+                </List.Item>
+              </List>
+            </Menu>
+          );
+        };
+        const ListItems = this.state.items.map((item, index) => (
+          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
+            <List.ItemText primary={item.name} secondary={item.project} />
+          </List.Item>
+        ));
+        return (
+          <SpacedGroup xs={24}>
+            <Paper>
+              <FocusManager>
+                {pop => {
+                  this.pop = pop;
+                  return (
+                    <Fragment>
+                      <List bordered>{ListItems}</List>
+                      <Drawer
+                        open={this.state.open}
+                        handleClickOutside={this.closeDrawer}
+                        placement="right"
+                      >
+                        <FocusManager.Group>
+                          {bind => (
+                            <SpacedGroup direction="vertical">
+                              <TextField {...bind} focused={this.state.open} />
+                              <TextField {...bind} />
+                              <TextField {...bind} />
+                              <TextField {...bind} />
+                              <Button {...bind} onClick={this.closeDrawer}>
+                                Close
+                              </Button>
+                            </SpacedGroup>
+                          )}
+                        </FocusManager.Group>
+                      </Drawer>
+                    </Fragment>
+                  );
+                }}
+              </FocusManager>
+            </Paper>
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>

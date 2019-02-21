@@ -13,6 +13,33 @@ context('Menu', () => {
       .should('exist');
   });
 
+  specify.only('are positioned relative to their anchor when opened', () => {
+    cy.get('[data-component="IconButton"]')
+      .first()
+      .click();
+
+    cy.get('#REACT_PORTAL')
+      .find('[data-component="Menu"]')
+      .first()
+      .then(el => {
+        const { bottom, left, right, top } = el[0].getBoundingClientRect();
+        expect(bottom).to.be.closeTo(158, 3);
+        expect(left).to.be.closeTo(1225, 3);
+        expect(right).to.be.closeTo(1425, 3);
+        expect(top).to.be.closeTo(33, 3);
+      });
+  });
+
+  specify('opening does not reset scroll position to top of page', () => {
+    cy.get('[data-test="positioning"]')
+      .find('[data-component="IconButton"]')
+      .last()
+      .scrollIntoView()
+      .click();
+
+    cy.window().then(win => expect(win.scrollY).to.not.eql(0));
+  });
+
   specify(
     'clicking outside an open menu closes the menu and returns focus to element that triggered it to open',
     () => {

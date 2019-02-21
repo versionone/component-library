@@ -68,29 +68,36 @@ const buildCommonIconWrapperStyles = ({
   theme,
 }) => {
   return {
+    alignItems: 'center',
+    borderRadius: '50%',
     display: 'flex',
-    'align-items': 'center',
-    'justify-content': 'center',
-    'border-radius': '50%',
-    background: backgroundColor || theme.Avatar.background,
-    color: color || theme.Avatar.color,
-    width: size - 2,
     height: size - 2,
+    justifyContent: 'center',
+    overflow: 'hidden',
     position: 'relative',
+    userSelect: 'none',
+    width: size - 2,
+    ...styleUtils.conditionalStyle(
+      backgroundColor,
+      'background',
+      backgroundColor,
+      theme.Avatar.background,
+    ),
+    ...styleUtils.conditionalStyle(color, 'color', color, theme.Avatar.color),
     ':before': {
+      borderRadius: '50%',
       content: '""',
+      height: size,
       position: 'absolute',
       top: -1,
-      'z-index': -1,
+      width: size,
+      zIndex: '-1',
       ...styleUtils.conditionalStyle(
         border,
-        'background-color',
+        'backgroundColor',
         border,
         'white',
       ),
-      'border-radius': '50%',
-      width: size,
-      height: size,
     },
     ...styleUtils.conditionalStyle(
       isFunction(onClick),
@@ -98,7 +105,6 @@ const buildCommonIconWrapperStyles = ({
       'pointer',
       'default',
     ),
-    'user-select': 'none',
   };
 };
 
