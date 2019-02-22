@@ -13,7 +13,7 @@ context('Menu', () => {
       .should('exist');
   });
 
-  specify.only('are positioned relative to their anchor when opened', () => {
+  specify('are positioned relative to their anchor when opened', () => {
     cy.get('[data-component="IconButton"]')
       .first()
       .click();
@@ -23,10 +23,10 @@ context('Menu', () => {
       .first()
       .then(el => {
         const { bottom, left, right, top } = el[0].getBoundingClientRect();
-        expect(bottom).to.be.closeTo(158, 3);
+        expect(bottom).to.be.closeTo(869, 3);
         expect(left).to.be.closeTo(1225, 3);
         expect(right).to.be.closeTo(1425, 3);
-        expect(top).to.be.closeTo(33, 3);
+        expect(top).to.be.closeTo(744, 3);
       });
   });
 
@@ -38,6 +38,21 @@ context('Menu', () => {
       .click();
 
     cy.window().then(win => expect(win.scrollY).to.not.eql(0));
+  });
+
+  specify('list item contents can be clicked without closing the menu', () => {
+    cy.get('[data-component="IconButton"]')
+      .first()
+      .click();
+    cy.get('#REACT_PORTAL')
+      .find('[data-component="Menu"]')
+      .find('[data-component="List.Item"]')
+      .eq(1)
+      .click();
+
+    cy.get('#REACT_PORTAL')
+      .find('[data-component="Menu"]')
+      .should('exist');
   });
 
   specify(
