@@ -65,6 +65,25 @@ class Menu extends React.Component {
     this.close = this.close.bind(this);
   }
 
+  getSnapshotBeforeUpdate(prevProps) {
+    const { open } = this.props;
+    const willOpen = !prevProps.open && open;
+    if (willOpen) {
+      return {
+        scrollY: window.scrollY,
+      };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { open } = this.props;
+    const willOpen = !prevProps.open && open;
+    if (willOpen && snapshot && snapshot.scrollY) {
+      window.scrollTo(0, snapshot.scrollY);
+    }
+  }
+
   handleKeyDown(event) {
     const isEscape = event.which === 27;
     isEscape && this.props && this.props.open && this.close(event);
@@ -96,7 +115,7 @@ class Menu extends React.Component {
     const renderMenu = bind => {
       return (
         <Fragment>
-         {!disableScrim && (
+          {!disableScrim && (
             <Scrim open={open} disableVisibility onClick={this.close} />
           )}
           <Popover

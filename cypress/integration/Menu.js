@@ -23,10 +23,10 @@ context('Menu', () => {
       .first()
       .then(el => {
         const { bottom, left, right, top } = el[0].getBoundingClientRect();
-        expect(bottom).to.be.closeTo(869, 3);
+        expect(bottom).to.be.closeTo(157, 3);
         expect(left).to.be.closeTo(1225, 3);
-        expect(right).to.be.closeTo(1425, 3);
-        expect(top).to.be.closeTo(744, 3);
+        expect(right).to.be.closeTo(1426, 3);
+        expect(top).to.be.closeTo(32, 3);
       });
   });
 
