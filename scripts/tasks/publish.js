@@ -20,7 +20,7 @@ updateStatus({
             shell.exec('yarn lerna publish --yes --dist-tag next');
           } else {
             shell.echo('Publishing release to NPM...');
-            shell.exec('yarn lerna publish --yes');
+            shell.exec(`yarn lerna publish ${process.env.TYPE} --yes`);
           }
           resolve(true);
         } catch (error) {
