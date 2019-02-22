@@ -96,6 +96,9 @@ class Menu extends React.Component {
     const renderMenu = bind => {
       return (
         <Fragment>
+         {!disableScrim && (
+            <Scrim open={open} disableVisibility onClick={this.close} />
+          )}
           <Popover
             anchor={React.cloneElement(anchor, bind)}
             modifiers={modifiers}
@@ -114,9 +117,6 @@ class Menu extends React.Component {
               </MenuChildren>
             </div>
           </Popover>
-          {!disableScrim && (
-            <Scrim open={open} disableVisibility onClick={this.close} />
-          )}
         </Fragment>
       );
     };
