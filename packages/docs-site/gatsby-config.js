@@ -7,6 +7,22 @@ module.exports = {
     title: `VersionOne Components v${version}`,
     description: '',
     author: '@versionone',
+    navigationOrder: [
+      {
+        name: 'Getting Started',
+        pages: [
+          'Start Here',
+          'Contributing Content',
+          'Developer Guide',
+          'Implement Components',
+          'Document Components',
+        ],
+      },
+      {
+        name: 'Guides',
+        pages: ['Analytics Tracking', 'Focus and Tabbing'],
+      },
+    ],
   },
   plugins: [
     {

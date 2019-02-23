@@ -69,6 +69,10 @@ class SiteLayout extends React.Component {
                 site {
                   siteMetadata {
                     title
+                    navigationOrder {
+                      name
+                      pages
+                    }
                   }
                 }
               }
@@ -85,7 +89,11 @@ class SiteLayout extends React.Component {
                       width={asideWidth}
                     >
                       <ScrollableContainer>
-                        <MainNavigation />
+                        <MainNavigation
+                          navigationOrder={
+                            data.site.siteMetadata.navigationOrder
+                          }
+                        />
                       </ScrollableContainer>
                     </Aside>
                   </Fixed>

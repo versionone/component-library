@@ -1,33 +1,58 @@
 import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
+import { groupBy } from 'lodash';
 import Navigation from '../Navigation';
 
-const MainNavigation = () => (
+const MainNavigation = ({ navigationOrder }) => (
   <StaticQuery
     query={mainNavigation}
     render={data => {
       const { edges: pages } = data.allMdx;
-      const navMap = pages.reduce((acc, { node: page }) => {
-        if (!acc[page.frontmatter.menu]) {
-          acc[page.frontmatter.menu] = [];
-        }
-        acc[page.frontmatter.menu].push(page);
-        return acc;
-      }, {});
-
-      const navItems = Object.entries(navMap).map(([menuCategory, items]) => [
-        menuCategory,
-        items.sort((a, b) => {
-          if (a.frontmatter.name > b.frontmatter.name) return 1;
-          if (a.frontmatter.name < b.frontmatter.name) return -1;
-          return 0;
-        }),
-      ]);
-      console.log(navItems);
-      return <Navigation items={navItems} />;
+      const menuMap = groupBy(pages, ({ node: page }) => page.frontmatter.menu);
+      const orderedNavItems = navigationOrder.concat(
+        Object.keys(menuMap)
+          .filter(
+            menuName =>
+              !navigationOrder.find(navItem => navItem.name === menuName),
+          )
+          .sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+          })
+          .map(menuName => ({ name: menuName, pages: [] })),
+      );
+      const hydratedOrderedNavItems = orderedNavItems.map(navItem => ({
+        ...navItem,
+        pages: menuMap[navItem.name]
+          .sort(({ node: a }, { node: b }) => {
+            const pageAIsTracked = navItem.pages.includes(a.frontmatter.name);
+            const pageBIsTracked = navItem.pages.includes(b.frontmatter.name);
+            if (pageAIsTracked && pageBIsTracked) {
+              if (
+                navItem.pages.indexOf(a.frontmatter.name) <
+                navItem.pages.indexOf(b.frontmatter.name)
+              ) {
+                return -1;
+              }
+              return 1;
+            }
+            if (pageAIsTracked) return -1;
+            if (pageBIsTracked) return 1;
+            if (a.frontmatter.name > b.frontmatter.name) return 1;
+            if (a.frontmatter.name < b.frontmatter.name) return -1;
+            return 0;
+          })
+          .map(({ node }) => node),
+      }));
+      return <Navigation items={hydratedOrderedNavItems} />;
     }}
   />
 );
+
+MainNavigation.defaultProps = {
+  navigationOrder: [],
+};
 
 export default MainNavigation;
 

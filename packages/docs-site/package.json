@@ -23,6 +23,7 @@
     "gatsby-plugin-sharp": "^2.0.17",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.10",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-docgen-deprecation-handler": "^1.1.1",

@@ -12,10 +12,10 @@ const NavLink = createComponent(() => ({}), Link, ['to']);
 const Navigation = ({ items }) => (
   <StyleProvider>
     <nav>
-      {items.map(([heading, pages]) => (
-        <SpacedGroup key={heading} direction="vertical" xs={4} md={16}>
-          <NavHeading>{heading}</NavHeading>
-          <SpacedGroup key={heading} direction="vertical">
+      {items.map(({ name, pages }) => (
+        <SpacedGroup key={name} direction="vertical" xs={4} md={16}>
+          <NavHeading>{name}</NavHeading>
+          <SpacedGroup key={`menu-${name}`} direction="vertical">
             {pages.map(page => (
               <NavLink key={page.id} to={page.fields.slug}>
                 {page.frontmatter.name}
@@ -27,5 +27,7 @@ const Navigation = ({ items }) => (
     </nav>
   </StyleProvider>
 );
-
+Navigation.defaultProps = {
+  items: [],
+};
 export default Navigation;
