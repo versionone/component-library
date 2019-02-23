@@ -11,7 +11,10 @@ const addPropsOnPlayground = (node, idx, scopes) => {
 
   if (isPlayground(name)) {
     return format(nodeToString(node)).then(formatted => {
-      const code = formatted.slice(1, Infinity);
+      const code = `<Playground>${formatted
+        .slice(1)
+        .replace(/<Playground/, '<Fragment')
+        .replace(/<\/Playground>/, '</Fragment>')}</Playground>`;
       const scope = `{props: this ? this.props : props,${scopes.join(',')}}`;
       const child = jsx.sanitizeCode(jsx.removeTags(code));
       node.value = node.value.replace(
@@ -28,7 +31,10 @@ const addComponentsProps = scopes => (node, idx) =>
 
 module.exports = () => () => tree => {
   const importNodes = tree.children.filter(node => is('import', node));
-  const scopes = flatten(importNodes.map(imports.getImportsVariables));
+  // .concat('import { Fragment } from "react"');
+  const scopes = flatten(importNodes.map(imports.getImportsVariables))
+    .filter(scope => scope !== 'Fragment')
+    .concat(['Fragment']);
   const nodes = tree.children
     .filter(node => is('jsx', node))
     .map(addComponentsProps(scopes));
