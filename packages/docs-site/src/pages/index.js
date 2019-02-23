@@ -3,12 +3,12 @@ import { Link, graphql } from 'gatsby';
 import SiteLayout from '../components/containers/SiteLayout';
 
 const DocsIndex = ({ data }) => {
-  const { edges: posts } = data.allMdx;
+  const { edges: pages } = data.allMdx;
 
   return (
     <SiteLayout>
       <ul>
-        {posts
+        {pages
           .sort(
             (
               {
@@ -27,12 +27,12 @@ const DocsIndex = ({ data }) => {
               return 0;
             },
           )
-          .map(({ node: post }) => (
-            <li key={post.id}>
-              <Link to={post.fields.slug}>
-                <h2>{post.frontmatter.name}</h2>
+          .map(({ node: page }) => (
+            <li key={page.id}>
+              <Link to={page.fields.slug}>
+                <h2>{page.frontmatter.name}</h2>
               </Link>
-              <p>{post.excerpt}</p>
+              <p>{page.excerpt}</p>
             </li>
           ))}
       </ul>
@@ -42,7 +42,7 @@ const DocsIndex = ({ data }) => {
 
 export default DocsIndex;
 export const pageQuery = graphql`
-  query blogIndex {
+  query DocsIndex {
     allMdx {
       edges {
         node {
