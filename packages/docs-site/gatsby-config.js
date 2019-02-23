@@ -35,22 +35,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `mdx-stand-alone-pages`,
+        name: `doc-pages`,
         path: path.join(__dirname, '..', '..', 'docs'),
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `component-stand-alone-pages`,
-        path: path.join(__dirname, '..', 'components', 'src'),
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `icons-stand-alone-pages`,
-        path: path.join(__dirname, '..', 'icons', 'src'),
+        name: `packages`,
+        path: path.join(__dirname, '..'),
       },
     },
     'gatsby-transformer-sharp',
