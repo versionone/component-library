@@ -47,11 +47,12 @@ const AvatarStatus = createComponent(
 );
 
 const AvatarCount = createComponent(
-  ({ border, size }) => ({
+  ({ border, size, theme }) => ({
     ...buildBadgeStyles({ border, size }),
     top: 0,
     right: -1 * (size / 2),
-    background: palette.dove,
+    color: theme.Avatar.color,
+    background: theme.Avatar.backgroundColor,
     fontSize: 10,
     'user-select': 'all',
     cursor: 'default',
