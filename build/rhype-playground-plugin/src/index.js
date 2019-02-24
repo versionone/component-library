@@ -11,10 +11,7 @@ const addPropsOnPlayground = (node, idx, scopes) => {
 
   if (isPlayground(name)) {
     return format(nodeToString(node)).then(formatted => {
-      const code = `<Playground>${formatted
-        .slice(1)
-        .replace(/<Playground/, '<Fragment')
-        .replace(/<\/Playground>/, '</Fragment>')}</Playground>`;
+      const code = formatted.slice(1);
       const scope = `{props: this ? this.props : props,${scopes.join(',')}}`;
       const child = jsx.sanitizeCode(jsx.removeTags(code));
       node.value = node.value.replace(
