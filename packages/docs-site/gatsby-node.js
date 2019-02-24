@@ -52,7 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        result.data.allMdx.edges.forEach(({ node }) => {
+        return result.data.allMdx.edges.map(({ node }) =>
           createPage({
             path: node.fields.slug,
             component: path.join(
@@ -63,8 +63,8 @@ exports.createPages = ({ graphql, actions }) => {
               'MdxLayout.js',
             ),
             context: { id: node.id },
-          });
-        });
+          })
+        );
       }),
     );
   });
