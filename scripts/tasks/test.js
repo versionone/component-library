@@ -49,12 +49,14 @@ updateStatus({
             });
         }
       });
-      child.stderr.on('data', error => {
-        updateStatus({
-          ...status,
-          description: error,
-          state: 'error',
-        }).then(() => shell.exit(1));
+      child.on('exit', exitCode => {
+        if (exitCode > 0) {
+          updateStatus({
+            ...status,
+            description: `Exit code ${exitCode}`,
+            state: 'error',
+          }).then(() => shell.exit(exitCode));
+        }
       });
     }),
 );
