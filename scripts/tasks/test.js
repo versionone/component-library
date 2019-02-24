@@ -49,5 +49,12 @@ updateStatus({
             });
         }
       });
+      child.stderr.on('data', error => {
+        updateStatus({
+          ...status,
+          description: error,
+          state: 'error',
+        }).then(() => shell.exit(1));
+      });
     }),
 );
