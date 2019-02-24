@@ -1,4 +1,4 @@
-context.only('EventBoundary', () => {
+context('EventBoundary', () => {
   beforeEach(() => {
     cy.navigate([/^Components$/, 'EventBoundary']);
   });

@@ -7,14 +7,12 @@ import { PortalContainer } from '../PortalContainer';
 
 const ScrimImpl = createComponent(
   ({ open, disableVisibility, theme }) => ({
-    position: 'absolute',
+    position: 'fixed',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
     backgroundColor: disableVisibility ? palette.transparent : theme.Scrim.main,
-    height: '100vh',
-    width: '100vw',
     opacity: open ? 0.6 : 0,
     ...styleUtils.conditionalStyle(!open, 'pointer-events', 'none'),
   }),
@@ -66,7 +64,7 @@ class Scrim extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    const {props} = this;
 
     return (
       <PortalContainer mounted={props.open}>

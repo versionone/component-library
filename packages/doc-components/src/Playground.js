@@ -9,13 +9,13 @@ const Playground = ({
   ...otherProps
 }) => {
   return (
-    <div data-test={dataTest} data-component="Playground">
-      <LiveProvider code={__code} position={__position} scope={__scope}>
-        <LiveEditor />
-        <LiveError />
+    <LiveProvider code={__code} position={__position} scope={__scope}>
+      <LiveEditor />
+      <LiveError />
+      <div data-test={dataTest} data-component="Playground">
         <LivePreview />
-      </LiveProvider>
-    </div>
+      </div>
+    </LiveProvider>
   );
 };
 export default Playground;

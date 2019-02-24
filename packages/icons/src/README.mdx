@@ -4,9 +4,10 @@ route: /icons
 menu: Icons
 ---
 
+import { Fragment } from 'react';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { AssetIcon } from './';
 import { Base } from './utils/Base';
-import { Playground, PropsTable } from '@versionone/doc-components';
 
 # Icon
 
@@ -21,10 +22,12 @@ Icons are contained within a **separate package** from the component library; na
 ## Basic Usage
 
 <Playground>
-  <AssetIcon />
-  <AssetIcon title="custom title" />
-  <AssetIcon color="green" />
-  <AssetIcon size={48} />
+  <Fragment>
+    <AssetIcon />
+    <AssetIcon title="custom title" />
+    <AssetIcon color="green" />
+    <AssetIcon size={48} />
+  </Fragment>
 </Playground>
 
 ## Adding New Icons

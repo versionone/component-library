@@ -3,7 +3,7 @@ context('Popover', () => {
     cy.navigate([/^Components$/, /^Popover$/]);
   });
 
-  specify.only('can be positioned relative to an anchor', () => {
+  specify('can be positioned relative to an anchor', () => {
     cy.viewport(1920, 1080);
     const data = [
       { bottom: 557, left: 1067, right: 1116, top: 532 },
