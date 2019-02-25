@@ -12,6 +12,7 @@ import {
   TextareaField,
   WithFormFieldState,
 } from '../FormUtils';
+import { palette } from '../palette';
 
 const Root = createComponent(
   ({ fullWidth, stretch }) => ({
@@ -81,7 +82,11 @@ class TextField extends Component {
         (password ? (
           <AppendIconContainer focused={focused}>
             <span title="toggle password" onClick={this.handleTogglePassword}>
-              {showPassword ? <ShowIcon /> : <HideIcon />}
+              {showPassword ? (
+                <ShowIcon color={palette.paper} />
+              ) : (
+                <HideIcon color={palette.paper} />
+              )}
             </span>
           </AppendIconContainer>
         ) : (
