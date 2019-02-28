@@ -6,6 +6,14 @@ import { WithBreakpoint } from '../WithBreakpoint';
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
 
+const getMargin = ({ breakpoint, xs, sm, md, lg, xl }) => {
+  if (WithBreakpoint.isBreakpointUp('xl', breakpoint) && xl) return xl;
+  if (WithBreakpoint.isBreakpointUp('lg', breakpoint) && lg) return lg;
+  if (WithBreakpoint.isBreakpointUp('md', breakpoint) && md) return md;
+  if (WithBreakpoint.isBreakpointUp('sm', breakpoint) && sm) return sm;
+  return xs;
+};
+
 const buildStyles = ({
   center,
   stretch,
@@ -20,13 +28,7 @@ const buildStyles = ({
   xl,
 }) => {
   const isHorizontal = direction === HORIZONTAL;
-
-  const margin =
-    (WithBreakpoint.isBreakpointUp('xl', breakpoint) && xl) ||
-    (WithBreakpoint.isBreakpointUp('lg', breakpoint) && lg) ||
-    (WithBreakpoint.isBreakpointUp('md', breakpoint) && md) ||
-    (WithBreakpoint.isBreakpointUp('sm', breakpoint) && sm) ||
-    (WithBreakpoint.isBreakpointUp('xs', breakpoint) && xs);
+  const margin = getMargin({ breakpoint, xs, sm, md, lg, xl });
 
   return {
     display: 'flex',

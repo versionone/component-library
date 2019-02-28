@@ -5,25 +5,30 @@ import ReactDOM from 'react-dom';
 const DOM_ID = 'REACT_PORTAL';
 
 class PortalContainer extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    if (document.getElementById(DOM_ID)) return;
-    const portalContainer = document.createElement('div');
-    portalContainer.setAttribute('id', DOM_ID);
-    portalContainer.style.zIndex = 100000;
-    portalContainer.style.position = 'absolute';
-    portalContainer.style.left = 0;
-    portalContainer.style.top = 0;
-    document.body.appendChild(portalContainer);
+  constructor() {
+    super();
+    if (typeof document === 'undefined') {
+      return;
+    }
+    if (!document.getElementById(DOM_ID)) {
+      const portalContainer = document.createElement('div');
+      portalContainer.setAttribute('id', DOM_ID);
+      portalContainer.style.zIndex = 100000;
+      portalContainer.style.position = 'absolute';
+      portalContainer.style.left = 0;
+      portalContainer.style.top = 0;
+      document.body.appendChild(portalContainer);
+    }
+    this.el = document.getElementById(DOM_ID);
   }
 
   render() {
     const { children, mounted } = this.props;
 
-    return (
-      mounted &&
-      ReactDOM.createPortal(children, document.getElementById(DOM_ID))
-    );
+    if (!this.el) {
+      return null;
+    }
+    return mounted && ReactDOM.createPortal(children, this.el);
   }
 }
 

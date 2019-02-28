@@ -28,10 +28,7 @@ const addComponentsProps = scopes => (node, idx) =>
 
 module.exports = () => () => tree => {
   const importNodes = tree.children.filter(node => is('import', node));
-  // .concat('import { Fragment } from "react"');
-  const scopes = flatten(importNodes.map(imports.getImportsVariables))
-    .filter(scope => scope !== 'Fragment')
-    .concat(['Fragment']);
+  const scopes = flatten(importNodes.map(imports.getImportsVariables));
   const nodes = tree.children
     .filter(node => is('jsx', node))
     .map(addComponentsProps(scopes));

@@ -17,11 +17,7 @@ const FixedContainer = createComponent(
   props => ({ position: 'fixed', ...props }),
   'div',
 );
-const Fixed = props => (
-  <PortalContainer mounted>
-    <FixedContainer {...props} />
-  </PortalContainer>
-);
+const Fixed = props => <FixedContainer {...props} />;
 const Aside = createComponent(
   ({ height, width }) => ({
     height,
@@ -36,16 +32,21 @@ const Main = createComponent(
     maxWidth,
     padding: '0px 1.0875rem 1.45rem',
     paddingTop: 0,
+    width: maxWidth,
   }),
-  'main',
+  'div',
 );
 
 class SiteLayout extends React.Component {
   constructor() {
     super();
     this.state = {
-      width: window ? window.innerWidth : 0,
+      width: typeof window !== 'undefined' ? window.innerWidth : 0,
     };
+  }
+
+  componentDidMount() {
+    this.forceUpdate();
   }
 
   handleResize = evt => {
@@ -60,9 +61,13 @@ class SiteLayout extends React.Component {
     const mainWidth = 960;
     const asideWidth = 320;
     const isCentered = width > mainWidth + asideWidth * 2;
+
     return (
       <StyleProvider>
-        <EventListener onResize={this.handleResize} target={window || 'window'}>
+        <EventListener
+          onResize={this.handleResize}
+          target={typeof window !== 'undefined' ? window : 'window'}
+        >
           <StaticQuery
             query={graphql`
               query SiteTitleQuery {

@@ -13,6 +13,7 @@
     "start": "lerna run --scope @versionone/docs-site --stream start",
     "verify": "concurrently \"yarn lint\" \"yarn test:e2e:cli\"",
     "lint": "yarn lint:eslint",
+    "clean": "lerna run --stream clean",
     "build": "lerna run --stream build",
     "prebuild:website": "yarn prestart",
     "build:website": "lerna run --scope @versionone/docs-site --stream build",

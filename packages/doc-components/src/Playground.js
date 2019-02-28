@@ -1,21 +1,26 @@
 import React from 'react';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import Prism from 'prismjs';
+import { isFunction } from 'util';
 
 const Playground = ({
-  'data-test': dataTest,
   __code,
   __position,
   __scope,
+  children,
   ...otherProps
-}) => {
-  return (
-    <LiveProvider code={__code} position={__position} scope={__scope}>
-      <LiveEditor />
-      <LiveError />
-      <div data-test={dataTest} data-component="Playground">
-        <LivePreview />
-      </div>
-    </LiveProvider>
-  );
-};
+}) => (
+  <div>
+    <div {...otherProps} data-component="Playground">
+      {isFunction(children) ? children() : children}
+    </div>
+    <pre className="language-jsx">
+      <code
+        className="language-jsx"
+        dangerouslySetInnerHTML={{
+          __html: Prism.highlight(__code, Prism.languages.javascript, 'jsx'),
+        }}
+      />
+    </pre>
+  </div>
+);
 export default Playground;

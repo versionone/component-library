@@ -1,7 +1,20 @@
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+module.exports.onCreateWebpackConfig = ({ actions, plugins, stage }) => {
+  if (stage === 'build-javascript' || stage === 'develop') {
+    actions.setWebpackConfig({
+      optimization: {
+        minimizer: [
+          plugins.minifyJs({
+            terserOptions: {
+              ecma: 5,
+            },
+          }),
+          plugins.minifyCss(),
+        ],
+      },
+    });
+  }
   actions.setWebpackConfig({
     resolve: {
       mainFields: ['main:src', 'main'],
@@ -9,14 +22,53 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+module.exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: '@versionone/babel-plugin-react-docgen',
+    resolve: require.resolve('@versionone/babel-plugin-react-docgen'),
+    options: {
+      additionalHandlers: [
+        '@versionone/theme-definition-handler',
+        'react-docgen-deprecation-handler',
+      ],
+    },
+  });
+  // TODO: is this needed?
+  actions.setBabelPlugin({
+    name: '@babel/plugin-proposal-class-properties',
+  });
+  // TODO: is this needed?
+  actions.setBabelPlugin({
+    name: '@babel/plugin-transform-arrow-functions',
+  });
+  // TODO: is this needed?
+  // actions.setBabelPlugin({
+  //   name: 'babel-plugin-prismjs',
+  //   options: {
+  //     languages: ['js', 'jsx', 'markdown', 'bash'],
+  //   },
+  // });
+  // TODO: is this needed?
+  actions.setBabelPreset({
+    name: `@babel/preset-env`,
+    options: {
+      loose: true,
+      modules: false,
+      useBuiltIns: `entry`,
+      targets: ['ie >= 11'],
+    },
+  });
+};
+
+const componentExpression = /(\/src|\/README)/g;
+module.exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    const value = createFilePath({ node, getNode }).replace(
-      /\/(README|src)/g,
-      '',
-    );
+    let value = createFilePath({ node, getNode });
+    if (componentExpression.test(value)) {
+      value = `/components${value.replace(componentExpression, '')}`;
+    }
 
     createNodeField({
       name: 'slug',
@@ -26,7 +78,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.createPages = ({ graphql, actions }) => {
+module.exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
@@ -38,6 +90,10 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   id
+                  fileAbsolutePath
+                  frontmatter {
+                    name
+                  }
                   fields {
                     slug
                   }
@@ -55,15 +111,12 @@ exports.createPages = ({ graphql, actions }) => {
         return result.data.allMdx.edges.map(({ node }) =>
           createPage({
             path: node.fields.slug,
-            component: path.join(
-              __dirname,
-              'src',
-              'components',
-              'containers',
-              'MdxLayout.js',
-            ),
-            context: { id: node.id },
-          })
+            component: node.fileAbsolutePath,
+            context: {
+              id: node.id,
+              name: node.frontmatter.name,
+            },
+          }),
         );
       }),
     );

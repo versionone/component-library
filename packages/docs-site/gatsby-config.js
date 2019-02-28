@@ -1,5 +1,5 @@
 const path = require('path');
-const versiononeRehype = require('@versionone/rehype-playground-plugin');
+const versiononePlaygroundPlugin = require('@versionone/rehype-playground-plugin');
 const { version } = require('../../lerna.json');
 
 module.exports = {
@@ -22,9 +22,25 @@ module.exports = {
         name: 'Guides',
         pages: ['Analytics Tracking', 'Focus and Tabbing'],
       },
+      {
+        name: 'Icons',
+        pages: [],
+      },
     ],
   },
   plugins: [
+    // TODO: is this needed with @babel/polyfill?
+    // 'gatsby-plugin-polyfill-io',
+    {
+      resolve: 'gatsby-plugin-compile-es6-packages',
+      options: {
+        modules: [
+          '@versionone/components',
+          '@versionone/doc-components',
+          '@versionone/icons',
+        ],
+      },
+    },
     {
       resolve: `gatsby-mdx`,
       options: {
@@ -37,7 +53,26 @@ module.exports = {
             'MdxLayout.js',
           ),
         },
-        hastPlugins: [versiononeRehype()],
+        hastPlugins: [versiononePlaygroundPlugin()],
+        // TODO: is this needed?
+        // gatsbyRemarkPlugins: [
+        //   // {
+        //   //   resolve: 'gatsby-remark-images',
+        //   //   options: {
+        //   //     maxWidth: 1035,
+        //   //     sizeByPixelDensity: true,
+        //   //   },
+        //   // },
+        // TODO: is this needed?
+        //   // {
+        //   //   resolve: `gatsby-remark-prismjs`,
+        //   //   options: {
+        //   //     classPrefix: 'language-',
+        //   //     inlineCodeMarker: null,
+        //   //     aliases: {},
+        //   //   },
+        //   // },
+        // ],
       },
     },
     'gatsby-plugin-react-helmet',
@@ -59,7 +94,16 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `packages`,
-        path: path.join(__dirname, '..'),
+        path: path.join(__dirname, '..', 'components'),
+        ignore: ['**/*.js', '**/*.json'],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `packages`,
+        path: path.join(__dirname, '..', 'icons'),
+        ignore: ['**/*.js', '**/*.json'],
       },
     },
     'gatsby-transformer-sharp',
@@ -67,8 +111,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-default-mdx-basic',
-        short_name: 'starter',
+        name: '@versionone/docs-site',
+        short_name: 'docs-site',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
