@@ -22,7 +22,6 @@
   "dependencies": {
     "@mdx-js/tag": "^0.17.5",
     "@versionone/components": "^1.1.0",
-    "capitalize": "^2.0.0",
-    "prismjs": "^1.15.0"
+    "capitalize": "^2.0.0"
   }
 }

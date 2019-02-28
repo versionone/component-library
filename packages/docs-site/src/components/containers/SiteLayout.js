@@ -17,7 +17,11 @@ const FixedContainer = createComponent(
   props => ({ position: 'fixed', ...props }),
   'div',
 );
-const Fixed = props => <FixedContainer {...props} />;
+const Fixed = props => (
+  <PortalContainer mounted>
+    <FixedContainer {...props} />
+  </PortalContainer>
+);
 const Aside = createComponent(
   ({ height, width }) => ({
     height,

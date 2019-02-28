@@ -18,7 +18,7 @@ Component examples can be created via the `Playground` component from `@versiono
 
 > Every package `README.mdx` should contain examples exercising **all major edge cases** of a component.
 
-```js
+```jsx
 import { Playground } from '@versionone/doc-components';
 import { TextField } from './src';
 
@@ -30,7 +30,7 @@ import { TextField } from './src';
 
 Optionally, a `Playground` can accept a function as its children. This provides a way to programitically setup the example:
 
-```js
+```jsx
 <Playground>
   {() => {
     const options = ['option 1', 'option 2'];
@@ -66,7 +66,7 @@ MyComponent.themeDefinition = {
 
 With the **API information documented in the component's source code**, we can display this information with the `PropsTable` and `ThemeDefinitionTable` components exported from `@versionone/doc-components`.
 
-```mdx
+```markdown
 ## API
 
 <PropsTable of={TextField} />
