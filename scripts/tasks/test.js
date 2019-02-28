@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const cypress = require('cypress');
 const updateStatus = require('../updateStatus');
 
-const exp = /localhost:3000$/;
+const exp = /Compiled successfully./;
 const status = {
   description: 'Cypress Tests',
   context: 'Verify/Testing',
