@@ -2,21 +2,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { createComponent, StyleProvider,styleUtils,  WithTheme } from '../StyleProvider';
+import { StyleProvider, WithTheme } from '../StyleProvider';
 
 const Code = ({ children, height, language }) => {
   return (
     <StyleProvider>
       <WithTheme>
         {theme => (
-            <SyntaxHighlighter
-              language={language}
-              style={theme.Code}
-              customStyle={height ? {height} : null}
-              renderer={height ? virtualizedRenderer() : null}
-            >
-              {children}
-           </SyntaxHighlighter>
+          <SyntaxHighlighter
+            language={language || ''}
+            style={theme.Code}
+            customStyle={height ? { height } : null}
+            renderer={height ? virtualizedRenderer() : null}
+          >
+            {children}
+          </SyntaxHighlighter>
         )}
       </WithTheme>
     </StyleProvider>

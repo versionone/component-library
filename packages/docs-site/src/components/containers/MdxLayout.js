@@ -10,7 +10,9 @@ function PageTemplate({ children, pageContext }) {
       components={{
         pre: ({ children }) => children,
         code: ({ children, className }) => {
-          const language = className.replace('language-', '');
+          const language = className
+            ? className.replace('language-', '')
+            : null;
           return <Code language={language}>{children}</Code>;
         },
       }}
