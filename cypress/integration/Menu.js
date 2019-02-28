@@ -13,7 +13,7 @@ context('Menu', () => {
       .should('exist');
   });
 
-  specify.skip('are positioned relative to their anchor when opened', () => {
+  specify('are positioned relative to their anchor when opened', () => {
     cy.get('[data-component="IconButton"]')
       .first()
       .click();
@@ -24,8 +24,8 @@ context('Menu', () => {
       .then(el => {
         const { bottom, left, right, top } = el[0].getBoundingClientRect();
         expect(bottom).to.be.closeTo(259, 3);
-        expect(left).to.be.closeTo(1225, 3);
-        expect(right).to.be.closeTo(1426, 3);
+        expect(left).to.be.closeTo(1171, 3);
+        expect(right).to.be.closeTo(1371, 3);
         expect(top).to.be.closeTo(132, 3);
       });
   });
@@ -95,7 +95,7 @@ context('Menu', () => {
         .find('[data-component="IconButton"]')
         .eq(1)
         .click();
-      cy.get('body').click();
+      cy.get('body').click({ force: true });
       cy.get('[data-component="Menu"]').should('exist');
     },
   );

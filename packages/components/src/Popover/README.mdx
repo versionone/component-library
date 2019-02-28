@@ -41,6 +41,13 @@ A container positioned relative to an anchor; outside the flow of the document.
       }),
       'div',
     );
+    const PaperContents = createComponent(
+      () => ({
+        display: 'block',
+        width: 200,
+      }),
+      'div',
+    );
     return (
       <StyleProvider>
         <SpacedGroup direction="vertical">
@@ -53,7 +60,9 @@ A container positioned relative to an anchor; outside the flow of the document.
                   open={true}
                   placement={placement}
                 >
-                  <Paper>{placement}</Paper>
+                  <Paper>
+                    <PaperContents>{placement}</PaperContents>
+                  </Paper>
                 </Popover>
               </InlineContainer>
             </Container>
