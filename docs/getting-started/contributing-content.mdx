@@ -1,7 +1,6 @@
 ---
 name: Contributing Content
 menu: Getting Started
-route: /getting-started/contributing-content
 ---
 
 
@@ -16,15 +15,12 @@ route: /getting-started/contributing-content
 
 ### Frontmatter
 
-Every `.mdx` file contains **YAML frontmatter** at the **top of the file**. This contains metadata about the documentation page. The frontmatter specifies the page's name (**menu item text**), **menu group** and **optional URL route**.
-
-> Standard for component page routes: `/components/{componentName}`
+Every `.mdx` file contains **YAML frontmatter** at the **top of the file**. This contains metadata about the documentation page. The frontmatter specifies the page's name (**menu item text**) and **menu grouping**.
 
 ```markdown
 ---
 name: My New Page
 menu: About
-route: /custom/url/my-new-page
 ---
 ```
 
@@ -35,7 +31,6 @@ Components, and other JavaScript modules, can be imported into an `.mdx` file. A
 ```markdown
 ---
 name: TextField
-route: /components/TextField
 menu: Data Entry
 ---
 
