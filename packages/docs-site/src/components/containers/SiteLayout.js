@@ -6,6 +6,7 @@ import {
   PortalContainer,
   ScrollableContainer,
   StyleProvider,
+  styleUtils,
 } from '@versionone/components';
 
 import Header from '../header';
@@ -30,8 +31,14 @@ const Aside = createComponent(
   'aside',
 );
 const Main = createComponent(
-  ({ fromTop, margin, maxWidth }) => ({
-    margin,
+  ({ fromTop, isCentered, marginLeft, maxWidth }) => ({
+    ...styleUtils.conditionalStyle(
+      isCentered,
+      'marginLeft',
+      'auto',
+      marginLeft,
+    ),
+    ...styleUtils.conditionalStyle(isCentered, 'marginRight', 'auto'),
     marginTop: fromTop,
     maxWidth,
     padding: '0px 1.0875rem 1.45rem',
@@ -118,7 +125,8 @@ class SiteLayout extends React.Component {
                     </Aside>
                   </Fixed>
                   <Main
-                    margin={isCentered ? `0 auto` : `0 0 0 ${asideWidth}px`}
+                    isCentered={isCentered}
+                    marginLeft={asideWidth}
                     fromTop={headerHeight + 20}
                     maxWidth={mainWidth}
                   >
