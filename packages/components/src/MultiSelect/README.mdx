@@ -286,7 +286,7 @@ The MultiSelect tracks its `selectedItems` as an array of ids.
 When rendering options in the list use the `({ getItemProps }) => {}` render prop. `getItemProps` is a function to help make your items smarter without imposing UI.
 Provide `getItemProps` with the `id` and the `index` of each item and it will return props that can be appliedto your List.Item UI.
 
-```
+```js
 const options = [] // manage your own list of items
 const renderOptions = ({ getItemProps }) => {
 	options.map((option, index) => {
@@ -296,15 +296,15 @@ const renderOptions = ({ getItemProps }) => {
 }
 ```
 
-```
+```js
 // Given an id and an index I can get back item props
 // These should be applied to each option
 const itemProps = getItemProps({ id, index });
-itemProps.onClick          // add/remove item on click
-itemProps['aria-selected'] //aria labels for accesibility
-itemProps.id               // id of the underlying DOM used for accesibility
-itemProps.Selected         // If true the item is selected
-itemProps.isActive         // If true the item is highlighted by keypress of up/down arrows
+itemProps.onClick; // add/remove item on click
+itemProps['aria-selected']; //aria labels for accesibility
+itemProps.id; // id of the underlying DOM used for accesibility
+itemProps.Selected; // If true the item is selected
+itemProps.isActive; // If true the item is highlighted by keypress of up/down arrows
 ```
 
 <Divider />
@@ -313,13 +313,12 @@ itemProps.isActive         // If true the item is highlighted by keypress of up/
 
 When rendering the selected items use the `({ removeItem }) => {}` render prop.
 
-```
+```js
 const renderSelection = ({ removeItem }) => {
-	selectedItems.map(item => {
-
-		// apply the removeItem prop as a click handler, etc to your UI
-	})
-}
+  selectedItems.map(item => {
+    // apply the removeItem prop as a click handler, etc to your UI
+  });
+};
 ```
 
 <PropsTable of={MultiSelect} />
