@@ -22,7 +22,7 @@ These components and functions are the primary way to create custom, theme-enabl
 
 ## StyleProvider
 
-The style provider component powers the styling mechanism behind `StyleContainer`'s `createComponent`. It is **required** to be a **parent** in any component tree that needs to leverage `createComponent`.
+The style provider component powers the styling mechanism behind `StyleProvider`'s `createComponent`. It is **required** to be a **parent** in any component tree that needs to leverage `createComponent`.
 
 <Playground>
   {() => {
@@ -191,7 +191,7 @@ Provides internals of a component access to the the theme outside of the `create
 Provides a component access to the underlying Fela renderer.
 
 ```js
-import { WithRenderer } from '@versionone/components/StyleContainer';
+import { WithRenderer } from '@versionone/components/StyleProvider';
 
 const MyComponent = props => (
   <WithRenderer>

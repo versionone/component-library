@@ -3,7 +3,6 @@ name: Implement Components
 menu: Getting Started
 ---
 
-
 ## Organization
 
 - every component has a dedicated directory under `./packages/components/src`
@@ -11,7 +10,7 @@ menu: Getting Started
 - includes a `README.mdx`
 - may include other files that are not publicly exported in the `index.js`
 
-```shell
+```bash
 .
 └── packages
     └── components
@@ -52,10 +51,10 @@ export { List };
 
 Component styling is powered by our implementation using [fela](https://fela.js.org).
 
-- use `createComponent` function to create styled components ([see StyleContainer component](/components/style-container))
+- use `createComponent` function to create styled components ([see StyleProvider component](/components/StyleProvider))
 - any component containing styled components should render a `StyleProvider` as its root component ([see StyleProvider component](/components/style-provider))
 
-> See [createComponent](/components/style-container#createcomponent) and [ThemeProvider](/components/style-container#themeprovider-component) for more a more in-depth explanation.
+> See [createComponent](/components/StyleProvider#createcomponent) and [ThemeProvider](/components/StyleProvider#themeprovider-component) for more a more in-depth explanation.
 
 ### Using `StyleProvider` and `createComponent` Example
 
@@ -95,7 +94,7 @@ MyComponent.defaultProps: {
 
 Not all components are theme-enabled; however, those that are should declare a `ThemeDefinition` and `defaultThemeValues`.
 
-> See [createComponent](/components/style-container#createcomponent) and [ThemeProvider](/components/style-container#themeprovider-component) for more details on how to consume the theme in your component.
+> See [createComponent](/components/StyleProvider#createcomponent) and [ThemeProvider](/components/StyleProvider#themeprovider-component) for more details on how to consume the theme in your component.
 
 - components declare appropriate `themeDefintion` and also comment descriptions for each value; similar to `propTypes`, but describes the theme-able configuration properites of the component
 - components declare appropriate `defaultThemeValues`
