@@ -1,7 +1,7 @@
 context('Paper', () => {
   beforeEach(() => {
     cy.navigate([/^Components$/, /^Paper$/]);
-    cy.get('[data-component="Paper"]').as('sut');
+    cy.get('[data-component="Playground"] [data-component="Paper"]').as('sut');
   });
 
   specify('has elevation', () => {
