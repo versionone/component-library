@@ -1,11 +1,12 @@
 const path = require('path');
 const versiononePlaygroundPlugin = require('@versionone/rehype-playground-plugin');
 const { version } = require('../../lerna.json');
+const { description } = require('../../package.json');
 
 module.exports = {
   siteMetadata: {
     title: `VersionOne Components v${version}`,
-    description: '',
+    description,
     author: '@versionone',
     navigationOrder: [
       {
@@ -52,15 +53,15 @@ module.exports = {
           ),
         },
         hastPlugins: [versiononePlaygroundPlugin()],
-        // TODO: is this needed?
-        // gatsbyRemarkPlugins: [
-        //   // {
-        //   //   resolve: 'gatsby-remark-images',
-        //   //   options: {
-        //   //     maxWidth: 1035,
-        //   //     sizeByPixelDensity: true,
-        //   //   },
-        //   // },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 900,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
       },
     },
     'gatsby-plugin-react-helmet',
@@ -76,6 +77,7 @@ module.exports = {
       options: {
         name: `doc-pages`,
         path: path.join(__dirname, '..', '..', 'docs'),
+        ignore: ['**/*.js', '**/*.json'],
       },
     },
     {

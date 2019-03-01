@@ -3,7 +3,6 @@ name: Contributing Content
 menu: Getting Started
 ---
 
-
 - pages are [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) files with the `.mdx` extension ([read more about MDX](https://mdxjs.com/))
 - non-techncial guides should live in `./docs` directory
 - component or package documentation should be a `README.mdx` file in each component/package directory
@@ -40,4 +39,12 @@ import { TextField } from './src';
 <Playground>
   <TextField />
 </Playground>
+```
+
+## Images
+
+Image files must be sourced relative to the `.mdx` and can be included via standard markdown, as shown below:
+
+```markdown
+![alt text](./path/to/image.png)
 ```

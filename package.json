@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/component-library",
-  "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
+  "description": "Collection of components, used by CollabNet, and accompanying documentation site.",
   "version": "0.0.0",
   "collaborators": [
     "Andrew Smith <andrew@andrew.codes>"
