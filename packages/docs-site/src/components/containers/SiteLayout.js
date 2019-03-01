@@ -17,9 +17,9 @@ const FixedContainer = createComponent(
   props => ({ position: 'fixed', ...props }),
   'div',
 );
-const Fixed = props => (
-  <PortalContainer mounted>
-    <FixedContainer {...props} />
+const Fixed = ({ mounted, ...otherProps }) => (
+  <PortalContainer mounted={mounted}>
+    <FixedContainer {...otherProps} />
   </PortalContainer>
 );
 const Aside = createComponent(
@@ -45,12 +45,16 @@ class SiteLayout extends React.Component {
   constructor() {
     super();
     this.state = {
+      mounted: false,
       width: typeof window !== 'undefined' ? window.innerWidth : 0,
     };
   }
 
   componentDidMount() {
-    this.forceUpdate();
+    this.setState({
+      mounted: true,
+      width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    });
   }
 
   handleResize = evt => {
@@ -59,7 +63,7 @@ class SiteLayout extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { width } = this.state;
+    const { mounted, width } = this.state;
 
     const headerHeight = 100;
     const mainWidth = 960;
@@ -88,11 +92,18 @@ class SiteLayout extends React.Component {
             `}
             render={data => (
               <Fragment>
-                <Fixed left={0} right={0} top={0} height={headerHeight}>
+                <Fixed
+                  left={0}
+                  right={0}
+                  top={0}
+                  height={headerHeight}
+                  mounted={mounted}
+                  width="calc(100vw - 15px)"
+                >
                   <Header siteTitle={data.site.siteMetadata.title} />
                 </Fixed>
                 <FlexContainer>
-                  <Fixed left={0} top={headerHeight}>
+                  <Fixed left={0} top={headerHeight} mounted={mounted}>
                     <Aside
                       height={`calc(100vh - ${headerHeight + 20}px)`}
                       width={asideWidth}
