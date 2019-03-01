@@ -29,8 +29,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // TODO: is this needed with @babel/polyfill?
-    // 'gatsby-plugin-polyfill-io',
     {
       resolve: 'gatsby-plugin-compile-es6-packages',
       options: {
@@ -63,16 +61,6 @@ module.exports = {
         //   //     sizeByPixelDensity: true,
         //   //   },
         //   // },
-        // TODO: is this needed?
-        //   // {
-        //   //   resolve: `gatsby-remark-prismjs`,
-        //   //   options: {
-        //   //     classPrefix: 'language-',
-        //   //     inlineCodeMarker: null,
-        //   //     aliases: {},
-        //   //   },
-        //   // },
-        // ],
       },
     },
     'gatsby-plugin-react-helmet',
