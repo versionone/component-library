@@ -1,7 +1,9 @@
 context('ScrollableContainer', () => {
   beforeEach(() => {
     cy.navigate([/^Components$/, /^ScrollableContainer$/]);
-    cy.get('[data-component="ScrollableContainer"]').as('sut');
+    cy.get(
+      '[data-component="Playground"] [data-component="ScrollableContainer"]',
+    ).as('sut');
   });
 
   // Not sure how to test pseudo elements with cypress
