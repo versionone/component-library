@@ -184,4 +184,14 @@ context('List', () => {
         .should('have.attr', 'role', 'listitem');
     });
   });
+
+  context('Width', () => {
+    specify('List does not exceed the width of its parent', () => {
+      cy.get('[data-test="list-parent-width"]').should(
+        'have.css',
+        'width',
+        '284px',
+      );
+    });
+  });
 });

@@ -33,7 +33,7 @@ const buildStyles = ({
   return {
     display: 'flex',
     'flex-direction': isHorizontal ? 'row' : 'column',
-    'flex-wrap': 'wrap',
+    flexWrap: isHorizontal ? 'wrap' : 'nowrap',
     ...styleUtils.conditionalStyle(center, 'align-items', 'center'),
     ...styleUtils.conditionalStyle(justify, 'justify-content', justify),
     ...styleUtils.conditionalStyle(stretch, 'flex-grow', '1'),

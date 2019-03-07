@@ -13,6 +13,7 @@ import { AssetIcon } from '@versionone/icons';
 import { SpacedGroup } from '../SpacedGroup';
 import { Lozenge } from '../Lozenge';
 import { Link } from '../Link';
+import { Menu } from '../Menu';
 
 ## Item Selection
 
@@ -407,6 +408,39 @@ A dense list is suited for Lists with items that contain only a primary action. 
       />
     </List.Item>
   </List>
+</Playground>
+
+## List Width via Parent
+
+<Playground>
+  <div style={{ width: '300px' }}>
+    <SpacedGroup direction="vertical">
+      <List data-test="list-parent-width">
+        <List.Item
+          supportingVisual={
+            <Avatar
+              size={36}
+              src={'http://localhost/VersionOne.Web/css/images/no_avatar.png'}
+            />
+          }
+          secondaryAction={<AssetIcon />}
+        >
+          <List.ItemText
+            primary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
+            secondary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
+            tertiary="Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text."
+          />
+        </List.Item>
+        <List.Item>
+          <List.ItemText
+            primary="First line of content"
+            secondary="Second line of content"
+            tertiary="third line of content"
+          />
+        </List.Item>
+      </List>
+    </SpacedGroup>
+  </div>
 </Playground>
 
 ## Analytics Tracking
