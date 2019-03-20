@@ -6,21 +6,11 @@ import React, {
   cloneElement,
 } from 'react';
 import { Provider as FelaProvider } from 'react-fela';
-import createRenderer from './createRenderer';
+import getRenderer from './getRenderer';
 import mergeThemes from './mergeThemes';
 import { ThemeProvider, WithTheme } from './ThemeProvider';
 import { defaultTheme } from '../defaultTheme';
 
-let singletonRenderer;
-const getRenderer = ({ dev, renderer }) => {
-  if (renderer) {
-    return renderer;
-  }
-  if (!singletonRenderer) {
-    singletonRenderer = createRenderer({ dev });
-  }
-  return singletonRenderer;
-};
 class StyleProvider extends Component {
   render() {
     const { dev, children, renderer, ...rest } = this.props;

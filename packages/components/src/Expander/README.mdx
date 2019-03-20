@@ -1,68 +1,64 @@
 ---
 name: Expander
 menu: Components
-route: /components/Expander
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Expander } from './';
 import { SpacedGroup } from '../SpacedGroup';
-
-# Expander
 
 Expander is used to hide information from the user that is optional or secondary in a way that it can be retrieved by expanding the section it is contianed within.
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={24}>
-		<Expander title="Show Details">
-			This content can be hidden from the user in order to reduce the mental overhead required to understand the form or content.
-		</Expander>
-		<Expander expandedTitle="Hide Details" expanded>
-			This content can be hidden from the user in order to reduce the mental overhead required to understand the form or content.
-		</Expander>
-
-    	<Expander title="Custom Show Details">
-    		This content can be hidden from the user in order to reduce the mental overhead required to understand the form or content.
-    	</Expander>
-    	<Expander expandedTitle="Custom Hide Details" expanded>
-    		This content can be hidden from the user in order to reduce the mental overhead required to understand the form or content.
-    	</Expander>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={24}>
+    <Expander title="Show Details">
+      This content can be hidden from the user in order to reduce the mental
+      overhead required to understand the form or content.
+    </Expander>
+    <Expander expandedTitle="Hide Details" expanded>
+      This content can be hidden from the user in order to reduce the mental
+      overhead required to understand the form or content.
+    </Expander>
+    <Expander title="Custom Show Details">
+      This content can be hidden from the user in order to reduce the mental
+      overhead required to understand the form or content.
+    </Expander>
+    <Expander expandedTitle="Custom Hide Details" expanded>
+      This content can be hidden from the user in order to reduce the mental
+      overhead required to understand the form or content.
+    </Expander>
+  </SpacedGroup>
 </Playground>
 
 ## Stateful
 
 <Playground>
-	{() => {
-		class StateManager extends React.Component {
-			constructor(props, context) {
-				super(props, context);
-				this.state = { isExpanded: false };
-				this.toggleExpanded = this.toggleExpanded.bind(this);
-			}
-
-    		toggleExpanded() {
-    			this.setState({ isExpanded: !this.state.isExpanded });
-    		}
-
-    		render() {
-    			return (
-    				<Expander
-    					title="Show Details"
-    					expandedTitle="Hide Details"
-    					expanded={this.state.isExpanded}
-    					onToggle={this.toggleExpanded}
-    				>
-    					This content can be hidden from the user in order to reduce the mental overhead required to understand the form or content.
-    				</Expander>
-    			)
-    		}
-    	}
-
-    	return <StateManager />
-    }}
-
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = { isExpanded: false };
+        this.toggleExpanded = this.toggleExpanded.bind(this);
+      }
+      toggleExpanded() {
+        this.setState({ isExpanded: !this.state.isExpanded });
+      }
+      render() {
+        return (
+          <Expander
+            title="Show Details"
+            expandedTitle="Hide Details"
+            expanded={this.state.isExpanded}
+            onToggle={this.toggleExpanded}
+          >
+            This content can be hidden from the user in order to reduce the
+            mental overhead required to understand the form or content.
+          </Expander>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API

@@ -29,7 +29,7 @@ class MultiDownshift extends React.Component {
   stateReducer(state, changes) {
     switch (changes.type) {
       case Downshift.stateChangeTypes.keyDownEnter:
-        this.handleSelection(changes.selectedItem.id, event);
+        this.handleSelection(changes.selectedItem.id, null);
         return {};
       default:
         return changes;

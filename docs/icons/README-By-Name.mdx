@@ -1,6 +1,5 @@
 ---
 name: By Name
-route: /icons/byname
 menu: Icons
 ---
 
@@ -11,17 +10,18 @@ import {
   SpacedGroup,
   Tooltip,
 } from '@versionone/components';
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import * as AllIcons from '@versionone/icons';
 
-# Icons By Name (Copy to Clipboard)
 
 > If you don't see your icon, see the section [adding new icons](/icons#adding-new-icons) for instructions on adding a new icon.
 > Remember, icons are a **separate package**; installed via `npm install @versionone/icons`
 
 <Playground>
   {() => {
-    const names = Object.keys(AllIcons).filter(name => name !== 'BaseIcon');
+    const names = Object.keys(AllIcons).filter(
+      name => name !== 'BaseIcon' && name !== '__esModule',
+    );
     const length = names.length;
     const firstColumn = names.slice(0, length / 2);
     const secondColumn = names.slice(length / 2, length);

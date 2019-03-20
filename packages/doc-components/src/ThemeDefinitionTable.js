@@ -37,7 +37,7 @@ const getPropType = (prop, Tooltip) => {
   );
 };
 
-const PropsTable = ({ of, components }) => {
+const ThemeDefinitionTable = ({ of, components }) => {
   if (!of.__docgenInfo || !of.__docgenInfo.themeDefinition) {
     return null;
   }
@@ -97,7 +97,7 @@ const PropsTable = ({ of, components }) => {
     </div>
   );
 };
-PropsTable.propTypes = {
+ThemeDefinitionTable.propTypes = {
   of: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.object,
@@ -105,10 +105,10 @@ PropsTable.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   components: PropTypes.object,
 };
-PropsTable.defaultProps = {
+ThemeDefinitionTable.defaultProps = {
   of: {
     props: {},
   },
 };
 
-export default withMDXComponents(PropsTable);
+export default withMDXComponents(ThemeDefinitionTable);

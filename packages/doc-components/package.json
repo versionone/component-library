@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "@versionone/doc-components",
+  "description": "Documentation components and helpers.",
+  "version": "1.1.0",
+  "license": "MIT",
+  "homepage": "https://versionone-components.netlify.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/versionone/component-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/versionone/component-library/issues"
+  },
+  "main": "dist/index.js",
+  "main:src": "src/index.js",
+  "scripts": {},
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.1"
+  },
+  "dependencies": {
+    "@mdx-js/tag": "^0.17.5",
+    "@versionone/components": "^1.1.0",
+    "capitalize": "^2.0.0"
+  }
+}

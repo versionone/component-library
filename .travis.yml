@@ -31,7 +31,6 @@ jobs:
       install:
         - ./scripts/bin/ci-install.sh
       env:
-        - NODE_ENV=test
         - SHA=$TRAVIS_COMMIT
       script:
         - node ./scripts/tasks/test.js
@@ -50,7 +49,6 @@ jobs:
       install:
         - ./scripts/bin/ci-install.sh
       env:
-        - NODE_ENV=test
         - SHA=$TRAVIS_PULL_REQUEST_SHA
       script:
         - node ./scripts/tasks/test.js

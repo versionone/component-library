@@ -1,14 +1,13 @@
 ---
 name: Icon
-route: /icons
 menu: Icons
 ---
 
+import { Fragment } from 'react';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { AssetIcon } from './';
 import { Base } from './utils/Base';
-import { Playground, PropsTable } from '@versionone/docz';
 
-# Icon
 
 `Icons` are great for conveying complex information in a simple manner. Avoid using `Icons` outside of an `IconButton`, `EmptyState`, or `Avatar`
 
@@ -21,10 +20,12 @@ Icons are contained within a **separate package** from the component library; na
 ## Basic Usage
 
 <Playground>
-  <AssetIcon />
-  <AssetIcon title="custom title" />
-  <AssetIcon color="green" />
-  <AssetIcon size={48} />
+  <Fragment>
+    <AssetIcon />
+    <AssetIcon title="custom title" />
+    <AssetIcon color="green" />
+    <AssetIcon size={48} />
+  </Fragment>
 </Playground>
 
 ## Adding New Icons

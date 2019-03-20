@@ -16,9 +16,9 @@ updateStatus({
 
     const command = `netlify deploy -a "${
       process.env.NETLIFY_TOKEN
-    }" --message "Deploy SHA: ${process.env.SHA}" -d .docz/dist ${
-      process.env.PROD ? '--prod' : ''
-    }`;
+    }" --message "Deploy SHA: ${
+      process.env.SHA
+    }" -d ./packages/docs-site/public ${process.env.PROD ? '--prod' : ''}`;
     return new Promise((resolve, reject) => {
       try {
         const commandOutput = shell

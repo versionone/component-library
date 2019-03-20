@@ -1,15 +1,12 @@
 ---
 name: AvatarGroup
-route: /components/AvatarGroup
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { AvatarGroup } from './';
 import { SpacedGroup } from './../SpacedGroup';
 import { Avatar } from '../Avatar';
-
-# AvatarGroup
 
 AvatarGroups are used to indentify a set of users
 
@@ -63,128 +60,183 @@ AvatarGroups are used to indentify a set of users
 ## Thresholds
 
 <Playground>
-	<SpacedGroup xs={40}>
-		<SpacedGroup direction="vertical" xs={2}>
-			<span>Overlaped</span>
-			<AvatarGroup
-				maxCount={2}
-				size={42}
-				showTooltip={true}
-			>
-				<Avatar
-					size={12}
-					title="Amy"
-					onClick={() => console.log("Amy")}
-					src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"}
-				/>
-				<Avatar
-					size={12}
-					title="Bob"
-					onClick={() => console.log("Bob")}
-					src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"}
-				/>
-				<Avatar
-					size={12}
-					title="Cid"
-					onClick={() => console.log("Cid")}
-					src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"}
-				/>
-				<Avatar
-					size={12}
-					title="Diane"
-					onClick={() => console.log("Diane")}
-					src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"}
-				/>
-				<Avatar
-					size={12}
-					title="Erica"
-					onClick={() => console.log("Erica")}
-					src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"}
-				/>
-			</AvatarGroup>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-		</SpacedGroup>
-		<SpacedGroup direction="vertical" xs={2}>
-			<span>Grid</span>
-			<AvatarGroup
-				maxCount={2}
-				disableOverlap
-				size={42}
-			>
-				<Avatar title="Rando" size={12} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-				<Avatar title="Rando" size={32} />
-				<Avatar title="Rando" size={36} />
-				<Avatar title="Rando" />
-				<Avatar title="Rando" />
-				<Avatar title="Rando" />
-				<Avatar title="Rando" />
-				<Avatar title="Rando" />
-				<Avatar title="Rando" />
-			</AvatarGroup>
-		</SpacedGroup>
+  <SpacedGroup xs={40}>
+    <SpacedGroup direction="vertical" xs={2}>
+      <span>Overlaped</span>
+      <AvatarGroup maxCount={2} size={42} showTooltip={true}>
+        <Avatar
+          size={12}
+          title="Amy"
+          onClick={() => console.log('Amy')}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={12}
+          title="Bob"
+          onClick={() => console.log('Bob')}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={12}
+          title="Cid"
+          onClick={() => console.log('Cid')}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={12}
+          title="Diane"
+          onClick={() => console.log('Diane')}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={12}
+          title="Erica"
+          onClick={() => console.log('Erica')}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+      </AvatarGroup>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </SpacedGroup>
-
+    <SpacedGroup direction="vertical" xs={2}>
+      <span>Grid</span>
+      <AvatarGroup maxCount={2} disableOverlap size={42}>
+        <Avatar
+          title="Rando"
+          size={12}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar title="Rando" size={32} />
+        <Avatar title="Rando" size={36} />
+        <Avatar title="Rando" />
+        <Avatar title="Rando" />
+        <Avatar title="Rando" />
+        <Avatar title="Rando" />
+        <Avatar title="Rando" />
+        <Avatar title="Rando" />
+      </AvatarGroup>
+    </SpacedGroup>
+  </SpacedGroup>
 </Playground>
 
 ## Border Colors
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={0}>
-		<div style={{ backgroundColor: 'pink' }}>
-			<AvatarGroup
-				border={'pink'}
-				size={42}
-			>
-			<Avatar size={12} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-			<Avatar size={32} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-			<Avatar size={36} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-			</AvatarGroup>
-		</div>
-
-    	<div style={{ backgroundColor: 'red' }}>
-    		<AvatarGroup
-    			border={'red'}
-    			size={42}
-    		>
-    		<Avatar size={12} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		<Avatar size={32} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		<Avatar size={36} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		</AvatarGroup>
-    	</div>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={0}>
+    <div style={{ backgroundColor: 'pink' }}>
+      <AvatarGroup border={'pink'} size={42}>
+        <Avatar
+          size={12}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={32}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={36}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+      </AvatarGroup>
+    </div>
+    <div style={{ backgroundColor: 'red' }}>
+      <AvatarGroup border={'red'} size={42}>
+        <Avatar
+          size={12}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={32}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          size={36}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+      </AvatarGroup>
+    </div>
+  </SpacedGroup>
 </Playground>
 
 ## Status
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={0}>
-		<AvatarGroup
-			size={42}
-		>
-		<Avatar status="online" src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-		<Avatar status="online" src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-		<Avatar status="online" src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-		</AvatarGroup>
-
-    	<div style={{ backgroundColor: 'red' }}>
-    		<AvatarGroup
-    			border={'red'}
-    			size={42}
-    		>
-    		<Avatar status="online" size={12} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		<Avatar status="online" size={32} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		<Avatar status="online" size={36} src={"https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg"} />
-    		</AvatarGroup>
-    	</div>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={0}>
+    <AvatarGroup size={42}>
+      <Avatar
+        status="online"
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+      />
+      <Avatar
+        status="online"
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+      />
+      <Avatar
+        status="online"
+        src={
+          'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+        }
+      />
+    </AvatarGroup>
+    <div style={{ backgroundColor: 'red' }}>
+      <AvatarGroup border={'red'} size={42}>
+        <Avatar
+          status="online"
+          size={12}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          status="online"
+          size={32}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+        <Avatar
+          status="online"
+          size={36}
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+      </AvatarGroup>
+    </div>
+  </SpacedGroup>
 </Playground>
 
 ## API

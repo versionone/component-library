@@ -1,100 +1,69 @@
 ---
 name: Breadcrumbs
-route: /components/Breadcrumbs
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Breadcrumb } from './';
 import { Link } from './../Link';
 import { SpacedGroup } from '../SpacedGroup';
 import { AssetIcon, HomeIcon, ScopeIcon } from '@versionone/icons';
 
-# Breadcrumb
-
 Breadcrumb displays the current location within a hierarchy and allows for navigating between layers.
 
 <Playground>
-	<SpacedGroup direction="vertical">
-
+  <SpacedGroup direction="vertical">
     <Breadcrumb>
-    	<Breadcrumb.Item
-    		icon={HomeIcon}
-    		onClick={() => console.log('Home')}
-    	>
-
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item
-    		icon={ScopeIcon}
-    	>
-    		<a href="#">Projects</a>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item>
-    		<Link href="#/">Project A</Link>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item icon={AssetIcon} selected>
-    		Selected Story
-    	</Breadcrumb.Item>
+      <Breadcrumb.Item icon={HomeIcon} onClick={() => console.log('Home')} />
+      <Breadcrumb.Item icon={ScopeIcon}>
+        <a href="#">Projects</a>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Link href="#/">Project A</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item icon={AssetIcon} selected>
+        Selected Story
+      </Breadcrumb.Item>
     </Breadcrumb>
-
     <Breadcrumb>
-    	<Breadcrumb.Item
-    		icon={HomeIcon}
-    		onClick={() => console.log('Home')}
-    	>
-    		Home
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item collapse>
-    		<a href="#">Projects</a>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item>
-    		<Link href="#/">Project A</Link>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item selected>
-    		Selected Story
-    	</Breadcrumb.Item>
+      <Breadcrumb.Item icon={HomeIcon} onClick={() => console.log('Home')}>
+        Home
+      </Breadcrumb.Item>
+      <Breadcrumb.Item collapse>
+        <a href="#">Projects</a>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Link href="#/">Project A</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item selected>Selected Story</Breadcrumb.Item>
     </Breadcrumb>
-
     <Breadcrumb>
-    	<Breadcrumb.Item
-    		icon={HomeIcon}
-    		onClick={() => console.log('Home')}
-    	>
-    		Home
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item
-    		icon={ScopeIcon}
-    	>
-    		<a href="#">Projects</a>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item>
-    		<Link href="#/">Project A</Link>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item icon={AssetIcon} selected>
-    		Selected Story
-    	</Breadcrumb.Item>
+      <Breadcrumb.Item icon={HomeIcon} onClick={() => console.log('Home')}>
+        Home
+      </Breadcrumb.Item>
+      <Breadcrumb.Item icon={ScopeIcon}>
+        <a href="#">Projects</a>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Link href="#/">Project A</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item icon={AssetIcon} selected>
+        Selected Story
+      </Breadcrumb.Item>
     </Breadcrumb>
-
     <Breadcrumb separator=">">
-    	<Breadcrumb.Item
-    		icon={HomeIcon}
-    		onClick={() => console.log('Home')}
-    	>
-    		Home
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item selected>
-    		<a href="#">Selected anchor</a>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item selected>
-    		<Link href="#/">Selected Link</Link>
-    	</Breadcrumb.Item>
-    	<Breadcrumb.Item selected>
-    		Selected Text
-    	</Breadcrumb.Item>
+      <Breadcrumb.Item icon={HomeIcon} onClick={() => console.log('Home')}>
+        Home
+      </Breadcrumb.Item>
+      <Breadcrumb.Item selected>
+        <a href="#">Selected anchor</a>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item selected>
+        <Link href="#/">Selected Link</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item selected>Selected Text</Breadcrumb.Item>
     </Breadcrumb>
-
-    </SpacedGroup>
-
+  </SpacedGroup>
 </Playground>
 
 ## API

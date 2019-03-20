@@ -1,15 +1,12 @@
 ---
 name: Stepper
-route: /components/Stepper
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Stepper } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
-
-# Stepper
 
 `Steps` guide users through a set of tasks that are best completed in order.
 
@@ -71,30 +68,24 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
 ## Direction
 
 <Playground>
-	<SpacedGroup direction="vertical" xs={40}>
-
-    	<Stepper direction="vertical">
-    		<Stepper.Step
-    			title="Finsihed"
-    			description="Phone number verified"
-    			seen
-    		/>
-    		<Stepper.Step
-    			title="In Progress"
-    			description="Step is in progress and nees action"
-    			current
-    		/>
-    		<Stepper.Step
-    			title="Needs Action"
-    			description="Step was completed, but we went back to step 2"
-    		/>
-    		<Stepper.Step
-    			title="Finish Line"
-    			description="Step has not been seen yet."
-    		/>
-    	</Stepper>
-    </SpacedGroup>
-
+  <SpacedGroup direction="vertical" xs={40}>
+    <Stepper direction="vertical">
+      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+        description="Step was completed, but we went back to step 2"
+      />
+      <Stepper.Step
+        title="Finish Line"
+        description="Step has not been seen yet."
+      />
+    </Stepper>
+  </SpacedGroup>
 </Playground>
 
 ## Sizes

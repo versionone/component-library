@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/component-library",
-  "description": "Collection of components and accompanying documentation site LifeCycle and Continuum.",
+  "description": "Collection of components, used by CollabNet, and accompanying documentation site.",
   "version": "0.0.0",
   "collaborators": [
     "Andrew Smith <andrew@andrew.codes>"
@@ -10,13 +10,13 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "prestart": "concurrently \"lerna run --scope @versionone/components generate:main\" \"lerna run --scope @versionone/icons generate:main\"",
-    "start": "docz dev",
+    "start": "lerna run --scope @versionone/docs-site --stream start",
     "verify": "concurrently \"yarn lint\" \"yarn test:e2e:cli\"",
     "lint": "yarn lint:eslint",
-    "build:icons": "lerna run --scope @versionone/icons build",
-    "build": "lerna run build",
+    "clean": "lerna run --stream clean",
+    "build": "lerna run --stream build",
     "prebuild:website": "yarn prestart",
-    "build:website": "docz build",
+    "build:website": "lerna run --scope @versionone/docs-site --stream build",
     "test:e2e": "start-server-and-test start http-get://localhost:3000 test:e2e:open",
     "test:e2e:cli": "start-server-and-test start http-get://localhost:3000 test:e2e:run:cli",
     "test:e2e:ci": "start-server-and-test start http-get://localhost:3000 test:e2e:run:ci",
@@ -50,8 +50,6 @@
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "cypress": "^3.1.5",
-    "docz": "^0.12.15",
-    "docz-plugin-netlify": "^1.1.4",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",

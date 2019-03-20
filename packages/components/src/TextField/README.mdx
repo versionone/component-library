@@ -1,18 +1,15 @@
 ---
 name: TextField
-route: /components/TextField
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { FormField } from '../FormField';
 import { Label } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from './';
 import { Lozenge } from '../Lozenge';
 import { HomeIcon } from '@versionone/icons';
-
-# TextField
 
 Used to provide free-form textual input.
 
@@ -111,53 +108,46 @@ Used to provide free-form textual input.
 ## Stateful
 
 <Playground>
-	{() => {
-		class StateManager extends React.Component {
-			constructor(props, context) {
-				super(props, context);
-				this.state = { value: '' };
-				this.handleChange = this.handleChange.bind(this);
-				this.handleBlur = this.handleBlur.bind(this);
-				this.handleFocus = this.handleFocus.bind(this);
-			}
-
-    		handleChange(event, value) {
-    			this.setState({ value });
-    		}
-
-    		handleBlur(event) {
-    			this.setState({ value: event.target.value });
-    		}
-
-    		handleFocus() {
-    			console.log('focus');
-    		}
-
-    		componentDidMount() {
-    			this.setState({ value: 'default value on mount...' });
-    		}
-
-    		render() {
-    			return (
-    				<div>
-    					<TextField
-    						focsued
-    						onBlur={this.handleBlur}
-    						onFocus={this.handleFocus}
-    						defaultValue={this.state.value}
-    						hintText="https://example.com"
-    						dirty={false}
-    						fullWidth
-    					/>
-    					<div>{this.state.value}</div>
-    				</div>
-    			)
-    		}
-    	}
-
-    	return <StateManager />
-    }}
-
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = { value: '' };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+      }
+      handleChange(event, value) {
+        this.setState({ value });
+      }
+      handleBlur(event) {
+        this.setState({ value: event.target.value });
+      }
+      handleFocus() {
+        console.log('focus');
+      }
+      componentDidMount() {
+        this.setState({ value: 'default value on mount...' });
+      }
+      render() {
+        return (
+          <div>
+            <TextField
+              focsued
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
+              defaultValue={this.state.value}
+              hintText="https://example.com"
+              dirty={false}
+              fullWidth
+            />
+            <div>{this.state.value}</div>
+          </div>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API
