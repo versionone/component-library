@@ -1,10 +1,9 @@
 ---
 name: OnClickOutside
-route: /components/OnClickOutside
 menu: Components
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { OnClickOutside } from './';
 import { Drawer } from '../Drawer';
 import { SingleSelect } from '../SingleSelect';
@@ -15,8 +14,6 @@ import { SpacedGroup } from '../SpacedGroup';
 import { Button } from '../Button';
 import { Scrim } from '../Scrim';
 
-# OnClickOutside
-
 This is great to track when some UI component needs to react to events outsdie its component heirachy.
 Consider a `Drawer` that can be closed when the user clicks "outside" the `Drawer`. Another good case is using a `Menu` whose dropdown should close when the user clicks "away".
 
@@ -26,92 +23,84 @@ Determining "insideness" when using the `Menu` is dificult beacuse it "portals" 
 If we only use the DOM heirachy then the dropdown will not be considered a child of the `Drawer`.
 
 <Playground>
-    {() => {
-        class StateManager extends React.Component {
-            constructor(props, context) {
-                super(props, context);
-                this.state = {
-                    isOpen: false,
-                    selectedItem: null,
-                    items: [
-                        {id: 1, value: 'First Option'},
-                        {id: 2, value: 'Second Option'},
-                    ],
-                }
-                this.handleClickOutside = this.handleClickOutside.bind(this);
-                this.openDrawer = this.openDrawer.bind(this);
-                this.handleSelect = this.handleSelect.bind(this);
-            }
-
-            handleClickOutside() {
-                this.setState({ isOpen: false });
-            }
-
-            openDrawer() {
-                this.setState({
-                    isOpen: true,
-                });
-            }
-
-            handleSelect(selectedItemId) {
-                const selectedItem = this.state.items.find(item => item.id === selectedItemId);
-                this.setState({ selectedItem })
-            }
-
-            render() {
-                const renderAssetTypeOptions = ({ getItemProps }) => {
-                const group = this.state.items
-                    .map((item, index) => {
-                        const itemProps = getItemProps({ item, index });
-                        return (
-                            <List.Item
-                                onClick={itemProps.onClick}
-                                onMouseDown={itemProps.onMouseDown}
-                                id={itemProps.id}
-
-                                selected={itemProps.isSelected || itemProps.isActive}
-                                key={index}
-                            >
-                                <List.ItemText primary={item.value} />
-                            </List.Item>
-                        )
-                    });
-                    return (<List bordered>{group}</List>)
-                }
-
-                const drawer = (
-                    <Drawer
-                        open={this.state.isOpen}
-                        placement="right"
-                        handleClickOutside={this.handleClickOutside}
-                    >
-                        <SpacedGroup direction="vertical">
-                            <p>
-                                This is the drawer with a portaled select.
-                                Will the selection of the option in the portaled dropdown be considered "outside"?
-                            </p>
-                            <SingleSelect
-                                fullWidth
-                                renderOptions={renderAssetTypeOptions}
-                                onSelect={this.handleSelect}
-                                selectedItem={this.state.selectedItem}
-                            />
-                        </SpacedGroup>
-                    </Drawer>
-                )
-
-                return (
-                    <div>
-                        <Button onClick={this.openDrawer}>Open Drawer</Button>
-                        {drawer}
-                    </div>
-                )
-            }
-        }
-
-        return <StateManager />
-    }}
-
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = {
+          isOpen: false,
+          selectedItem: null,
+          items: [
+            { id: 1, value: 'First Option' },
+            { id: 2, value: 'Second Option' },
+          ],
+        };
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.openDrawer = this.openDrawer.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+      }
+      handleClickOutside() {
+        this.setState({ isOpen: false });
+      }
+      openDrawer() {
+        this.setState({
+          isOpen: true,
+        });
+      }
+      handleSelect(selectedItemId) {
+        const selectedItem = this.state.items.find(
+          item => item.id === selectedItemId,
+        );
+        this.setState({ selectedItem });
+      }
+      render() {
+        const renderAssetTypeOptions = ({ getItemProps }) => {
+          const group = this.state.items.map((item, index) => {
+            const itemProps = getItemProps({ item, index });
+            return (
+              <List.Item
+                onClick={itemProps.onClick}
+                onMouseDown={itemProps.onMouseDown}
+                id={itemProps.id}
+                selected={itemProps.isSelected || itemProps.isActive}
+                key={index}
+              >
+                <List.ItemText primary={item.value} />
+              </List.Item>
+            );
+          });
+          return <List bordered>{group}</List>;
+        };
+        const drawer = (
+          <Drawer
+            open={this.state.isOpen}
+            placement="right"
+            handleClickOutside={this.handleClickOutside}
+          >
+            <SpacedGroup direction="vertical">
+              <p>
+                This is the drawer with a portaled select. Will the selection of
+                the option in the portaled dropdown be considered "outside"?
+              </p>
+              <SingleSelect
+                fullWidth
+                renderOptions={renderAssetTypeOptions}
+                onSelect={this.handleSelect}
+                selectedItem={this.state.selectedItem}
+              />
+            </SpacedGroup>
+          </Drawer>
+        );
+        return (
+          <div>
+            <Button onClick={this.openDrawer}>Open Drawer</Button>
+            {drawer}
+          </div>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API

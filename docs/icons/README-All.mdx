@@ -1,14 +1,12 @@
 ---
 name: All Icons
-route: /icons/all
 menu: Icons
 ---
 
 import { palette, SpacedGroup, Tooltip } from '@versionone/components';
-import { Playground } from '@versionone/docz';
+import { Playground } from '@versionone/doc-components';
 import * as AllIcons from '@versionone/icons';
 
-# All Icons
 
 > If you don't see your icon, see the section [adding new icons](/icons#adding-new-icons) for instructions on adding a new icon.
 > Remember, icons are a **separate package**; installed via `npm install @versionone/icons`
@@ -16,7 +14,7 @@ import * as AllIcons from '@versionone/icons';
 <Playground>
   <SpacedGroup xs={4}>
     {Object.keys(AllIcons)
-      .filter(name => name !== 'BaseIcon')
+      .filter(name => name !== 'BaseIcon' && name !== '__esModule')
       .map(iconKey => {
         const Icon = AllIcons[iconKey];
         const anchor = <Icon color={palette.gunmetal} />;

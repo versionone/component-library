@@ -4,26 +4,28 @@ import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 
 const BorderImpl = createComponent(
-  ({ color, width, borderStyle, radius }) => ({
+  ({ borderColor, borderStyle, radius, width }) => ({
     borderStyle,
     borderWidth: width,
-    borderColor: color,
-    ...styleUtils.conditionalStyle(radius !== null, 'border-radius', radius),
+    borderColor,
+    ...styleUtils.conditionalStyle(radius !== null, 'borderRadius', radius),
   }),
   'div',
   ['data-component', 'data-test'],
 );
 
-const Border = ({ color, disabled, style, ...otherProps }) => (
-  <StyleProvider>
-    <BorderImpl
-      borderStyle={style}
-      color={disabled ? 'transparent' : color}
-      data-component="Border"
-      {...otherProps}
-    />
-  </StyleProvider>
-);
+const Border = ({ color, disabled, lineStyle, ...otherProps }) => {
+  return (
+    <StyleProvider>
+      <BorderImpl
+        borderStyle={lineStyle}
+        borderColor={disabled ? 'transparent' : color}
+        data-component="Border"
+        {...otherProps}
+      />
+    </StyleProvider>
+  );
+};
 
 Border.propTypes = {
   /**
@@ -40,9 +42,9 @@ Border.propTypes = {
    */
   width: PropTypes.number,
   /**
-   * style of the border
+   * Style of the border
    */
-  style: PropTypes.string,
+  lineStyle: PropTypes.string,
   /**
    * border radius applied
    */
@@ -53,7 +55,7 @@ Border.defaultProps = {
   disabled: false,
   color: palette.dove,
   width: 1,
-  style: 'solid',
+  lineStyle: 'solid',
   radius: null,
 };
 

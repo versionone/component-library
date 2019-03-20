@@ -1,10 +1,7 @@
 ---
 name: Contributing Content
 menu: Getting Started
-route: /getting-started/contributing-content
 ---
-
-# Contributing Content
 
 - pages are [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) files with the `.mdx` extension ([read more about MDX](https://mdxjs.com/))
 - non-techncial guides should live in `./docs` directory
@@ -17,15 +14,12 @@ route: /getting-started/contributing-content
 
 ### Frontmatter
 
-Every `.mdx` file contains **YAML frontmatter** at the **top of the file**. This contains metadata about the documentation page. The frontmatter specifies the page's name (**menu item text**), **menu group** and **optional URL route**.
+Every `.mdx` file contains **YAML frontmatter** at the **top of the file**. This contains metadata about the documentation page. The frontmatter specifies the page's name (**menu item text**) and **menu grouping**.
 
-> Standard for component page routes: `/components/{componentName}`
-
-```mdx
+```markdown
 ---
 name: My New Page
 menu: About
-route: /custom/url/my-new-page
 ---
 ```
 
@@ -33,17 +27,24 @@ route: /custom/url/my-new-page
 
 Components, and other JavaScript modules, can be imported into an `.mdx` file. All import statements should appear as a block immediately after the frontmatter; containing an empty newline before and after the block.
 
-```mdx
+```markdown
 ---
 name: TextField
-route: /components/TextField
 menu: Data Entry
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { TextField } from './src';
 
 <Playground>
   <TextField />
 </Playground>
+```
+
+## Images
+
+Image files must be sourced relative to the `.mdx` and can be included via standard markdown, as shown below:
+
+```markdown
+![alt text](./path/to/image.png)
 ```

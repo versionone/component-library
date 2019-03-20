@@ -61,9 +61,10 @@ const IconSwitchImpl = createComponent(
 
 class IconSwitch extends Component {
   handleKeyPress(event) {
-    event.which === 13 &&
-      isFunction(this.props.onClick) &&
-      this.props.onClick(event);
+    const { onClick } = this.props;
+    if (event.which === 13) {
+      onClick(event);
+    }
   }
 
   render() {

@@ -1,16 +1,13 @@
 ---
 name: Tabs
 menu: Components
-route: /components/Tabs
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Tabs, UnderlineTab } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TeamIcon } from '@versionone/icons';
 import { Grid } from '../Grid';
-
-# Tabs
 
 Tabs are great to show segregate information in a non-navigating manner. When a tab is active its corresponding content is visible.
 Only one Tab can be active at a time and there is a visual treatment applied.
@@ -183,7 +180,7 @@ Only one Tab can be active at a time and there is a visual treatment applied.
 Tab will accept a render prop or a Component, like UnderlineTab used above to provide the consumer full control of the user interface of the tab.
 The playground below will use render props and the following code block highlights its usage:
 
-```js
+```jsx
 <Tabs.Tab>
   {({ selected, disabled, focused }) => (
     <SpacedGroup center xs={4}>

@@ -1,5 +1,6 @@
 /node_modules
 **/node_modules
 /scripts
-/.docz
+/packages/docs-site/public
+/packages/docs-site/.cache
 /**/dist

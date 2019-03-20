@@ -1,21 +1,18 @@
 ---
 name: Border
 menu: Components
-route: /components/Border
 ---
 
-import { Playground, PropsTable } from '@versionone/docz';
+import { Playground, PropsTable } from '@versionone/doc-components';
 import { Border } from './';
 import { SpacedGroup } from '../SpacedGroup';
-
-# Border
 
 Borders help separate content and in some cases re-enforce elevation
 
 <Playground>
   <SpacedGroup>
     <Border>Bordered Content!</Border>
-    <Border color="rgb(0, 82, 147)" width={5} style="dashed" radius={10}>
+    <Border color="rgb(0, 82, 147)" width={5} lineStyle="dashed" radius={10}>
       Bordered Content!
     </Border>
     <Border disabled width={5}>

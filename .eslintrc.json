@@ -8,7 +8,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["./doczrc.js", "cypress/**/*.js"]
+        "devDependencies": ["cypress/**/*.js"]
       }
     ],
     "import/no-unresolved": ["off"],

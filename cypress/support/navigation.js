@@ -6,7 +6,7 @@ const navigate = menuPath => {
     (acc, menuItem) =>
       acc
         .get('@nav')
-        .contains('a', menuItem)
+        .contains(menuItem)
         .click(),
     cy,
   );
