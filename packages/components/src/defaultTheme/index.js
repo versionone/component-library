@@ -65,7 +65,7 @@ const internalTheme = {
   Button: {
     primary: {
       invert: palette.paper,
-      main: palette.mango,
+      main: 'blue',
       mainHighlight: '#c75c02',
     },
     secondary: {
