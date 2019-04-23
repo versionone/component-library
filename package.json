@@ -26,8 +26,8 @@
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {
-    "node": "^10.15.1",
-    "yarn": "^1.13.0"
+    "node": ">=10.15.1",
+    "yarn": ">=1.13.0"
   },
   "workspaces": [
     "build/*",
