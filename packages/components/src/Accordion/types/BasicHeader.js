@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleProvider, createComponent } from '../../StyleProvider';
+import { createComponent } from '../../StyleProvider';
 import { SpacedGroup } from '../../SpacedGroup';
 
 const Container = createComponent(
@@ -27,18 +27,16 @@ const Text = createComponent(
 
 const BasicHeader = ({ title, secondaryText, supportingVisual, arrow }) => {
   return (
-    <StyleProvider>
-      <Container>
-        <SpacedGroup xs={2} center>
-          {supportingVisual}
-          <Text>
-            <span>{title}</span>
-            <span>{secondaryText}</span>
-          </Text>
-        </SpacedGroup>
-        <div>{arrow}</div>
-      </Container>
-    </StyleProvider>
+    <Container>
+      <SpacedGroup xs={2} center>
+        {supportingVisual}
+        <Text>
+          <span>{title}</span>
+          <span>{secondaryText}</span>
+        </Text>
+      </SpacedGroup>
+      <div>{arrow}</div>
+    </Container>
   );
 };
 

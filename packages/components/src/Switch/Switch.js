@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { noop, isFunction } from 'underscore';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 import { WithFormFieldState } from '../FormUtils';
 
@@ -170,32 +170,30 @@ class Switch extends React.Component {
   render() {
     const renderChildrenWithFormState = ({ onBlur, onFocus, focused }) => {
       return (
-        <StyleProvider>
-          <Root
-            data-component="Switch"
-            data-test={this.props['data-test']}
-            data-trackingid={this.props['data-trackingid']}
-            onKeyDown={this.handleKeyDown}
-          >
-            <ButtonBase {...this.props}>
-              <Button {...this.props}>
-                <Ball {...this.props} />
-                <Input
-                  checked={this.props.checked}
-                  tabIndex={this.props.tabIndex}
-                  disabled={this.props.disabled}
-                  value={this.props.value}
-                  onClick={this.props.onClick}
-                  onBlur={onBlur}
-                  onFocus={onFocus}
-                  type="checkbox"
-                />
-              </Button>
-              <Ripple {...this.props} focused={focused} />
-            </ButtonBase>
-            <Bar {...this.props} />
-          </Root>
-        </StyleProvider>
+        <Root
+          data-component="Switch"
+          data-test={this.props['data-test']}
+          data-trackingid={this.props['data-trackingid']}
+          onKeyDown={this.handleKeyDown}
+        >
+          <ButtonBase {...this.props}>
+            <Button {...this.props}>
+              <Ball {...this.props} />
+              <Input
+                checked={this.props.checked}
+                tabIndex={this.props.tabIndex}
+                disabled={this.props.disabled}
+                value={this.props.value}
+                onClick={this.props.onClick}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                type="checkbox"
+              />
+            </Button>
+            <Ripple {...this.props} focused={focused} />
+          </ButtonBase>
+          <Bar {...this.props} />
+        </Root>
       );
     };
 

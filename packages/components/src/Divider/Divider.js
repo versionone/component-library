@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const DividerImpl = createComponent(
   ({ heavy, borderRight, borderLeft }) => ({
@@ -21,11 +21,7 @@ const DividerImpl = createComponent(
   ['data-component', 'data-test'],
 );
 
-const Divider = props => (
-  <StyleProvider>
-    <DividerImpl {...props} data-component="Divider" />
-  </StyleProvider>
-);
+const Divider = props => <DividerImpl {...props} data-component="Divider" />;
 
 Divider.propTypes = {
   /*

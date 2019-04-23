@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { WithBreakpoint } from '../WithBreakpoint';
 
 const HORIZONTAL = 'horizontal';
@@ -78,18 +78,16 @@ const SpacedGroup = props => {
     props.is === 'div' ? SpacedGroupDiv : SpacedGroupLabel;
 
   return (
-    <StyleProvider>
-      <WithBreakpoint>
-        {breakpoint => (
-          <SpacedGroupImpl
-            {...props}
-            breakpoint={breakpoint}
-            data-component="SpacedGroup"
-            data-test={props['data-test']}
-          />
-        )}
-      </WithBreakpoint>
-    </StyleProvider>
+    <WithBreakpoint>
+      {breakpoint => (
+        <SpacedGroupImpl
+          {...props}
+          breakpoint={breakpoint}
+          data-component="SpacedGroup"
+          data-test={props['data-test']}
+        />
+      )}
+    </WithBreakpoint>
   );
 };
 

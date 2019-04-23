@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Grid } from '../Grid';
 import { SpacedGroup } from '../SpacedGroup';
 
@@ -33,26 +33,24 @@ const EmptyState = props => {
   );
 
   return (
-    <StyleProvider>
-      <div data-component="EmptyState" data-test={dataTest}>
-        <SpacedGroup xs={8}>
+    <div data-component="EmptyState" data-test={dataTest}>
+      <SpacedGroup xs={8}>
+        <Grid xs={12} direction="row" justify="center" alignItems="center">
+          {supportingVisual}
+        </Grid>
+        <Grid xs={12} direction="row" justify="center" alignItems="center">
+          <Title>{title}</Title>
+        </Grid>
+        {children && (
           <Grid xs={12} direction="row" justify="center" alignItems="center">
-            {supportingVisual}
+            {children}
           </Grid>
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
-            <Title>{title}</Title>
-          </Grid>
-          {children && (
-            <Grid xs={12} direction="row" justify="center" alignItems="center">
-              {children}
-            </Grid>
-          )}
-          <Grid xs={12} direction="row" justify="center" alignItems="center">
-            {primaryAction}
-          </Grid>
-        </SpacedGroup>
-      </div>
-    </StyleProvider>
+        )}
+        <Grid xs={12} direction="row" justify="center" alignItems="center">
+          {primaryAction}
+        </Grid>
+      </SpacedGroup>
+    </div>
   );
 };
 

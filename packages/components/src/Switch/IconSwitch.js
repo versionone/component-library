@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { palette } from '../palette';
 
 const Root = createComponent(
@@ -82,29 +82,27 @@ class IconSwitch extends Component {
     } = this.props;
 
     return (
-      <StyleProvider>
-        <Root
-          data-component="Switch"
-          data-test={this.props['data-test']}
-          onClick={onClick}
+      <Root
+        data-component="Switch"
+        data-test={this.props['data-test']}
+        onClick={onClick}
+        size={size}
+      >
+        <IconSwitchImpl
+          {...rest}
+          data-component="IconSwitch"
+          buttonType="standard"
+          disabled={disabled}
           size={size}
+          tabIndex={tabIndex}
+          type="button"
+          data-trackingid={this.props['data-trackingid']}
         >
-          <IconSwitchImpl
-            {...rest}
-            data-component="IconSwitch"
-            buttonType="standard"
-            disabled={disabled}
-            size={size}
-            tabIndex={tabIndex}
-            type="button"
-            data-trackingid={this.props['data-trackingid']}
-          >
-            {React.cloneElement(icon, {
-              size: size - 16,
-            })}
-          </IconSwitchImpl>
-        </Root>
-      </StyleProvider>
+          {React.cloneElement(icon, {
+            size: size - 16,
+          })}
+        </IconSwitchImpl>
+      </Root>
     );
   }
 }

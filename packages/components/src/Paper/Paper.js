@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 
 const PaperImpl = createComponent(
@@ -14,11 +14,7 @@ const PaperImpl = createComponent(
   ['data-component', 'data-test'],
 );
 
-const Paper = props => (
-  <StyleProvider>
-    <PaperImpl {...props} data-component="Paper" />
-  </StyleProvider>
-);
+const Paper = props => <PaperImpl {...props} data-component="Paper" />;
 Paper.propTypes = {
   /**
    * The content of the component.

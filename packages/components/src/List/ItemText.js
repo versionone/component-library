@@ -3,7 +3,7 @@ import React, { cloneElement } from 'react';
 import { isFunction, isString } from 'underscore';
 import { Clamp } from '../Clamp';
 import { Typography } from '../Typography';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
 const PrimaryContent = createComponent(
   ({ theme }) => ({
@@ -36,31 +36,29 @@ const stopClickPropagationOnChildren = children => {
 
 const ListItemText = ({ primary, secondary, tertiary }) => {
   return (
-    <StyleProvider>
-      <Root>
+    <Root>
+      <Clamp>
+        <PrimaryContent>
+          <Typography is="span" variant="base">
+            {stopClickPropagationOnChildren(primary)}
+          </Typography>
+        </PrimaryContent>
+      </Clamp>
+      {Boolean(secondary) && (
         <Clamp>
-          <PrimaryContent>
-            <Typography is="span" variant="base">
-              {stopClickPropagationOnChildren(primary)}
-            </Typography>
-          </PrimaryContent>
+          <Typography is="span" variant="small">
+            {stopClickPropagationOnChildren(secondary)}
+          </Typography>
         </Clamp>
-        {Boolean(secondary) && (
-          <Clamp>
-            <Typography is="span" variant="small">
-              {stopClickPropagationOnChildren(secondary)}
-            </Typography>
-          </Clamp>
-        )}
-        {Boolean(tertiary) && (
-          <Clamp>
-            <Typography is="span" variant="small">
-              {stopClickPropagationOnChildren(tertiary)}
-            </Typography>
-          </Clamp>
-        )}
-      </Root>
-    </StyleProvider>
+      )}
+      {Boolean(tertiary) && (
+        <Clamp>
+          <Typography is="span" variant="small">
+            {stopClickPropagationOnChildren(tertiary)}
+          </Typography>
+        </Clamp>
+      )}
+    </Root>
   );
 };
 

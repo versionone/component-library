@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { noop, isFunction } from 'underscore';
-import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Arrow } from '../Arrow';
 
@@ -138,44 +138,42 @@ const Header = ({
   };
 
   return (
-    <StyleProvider>
-      <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
-        {({ focused, bind, ref }) => (
-          <Container
-            bordered={bordered}
-            open={open}
+    <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
+      {({ focused, bind, ref }) => (
+        <Container
+          bordered={bordered}
+          open={open}
+          isFirst={isFirst}
+          isLast={isLast}
+          status={status}
+          disabled={disabled}
+          role="heading"
+          data-component="Accordion.Header"
+          data-test={dataTest}
+        >
+          <HeaderButton
             isFirst={isFirst}
             isLast={isLast}
-            status={status}
+            open={open}
             disabled={disabled}
-            role="heading"
-            data-component="Accordion.Header"
-            data-test={dataTest}
+            aria-expanded={open}
+            aria-disabled={disabled}
+            aria-controls={accordionId}
+            tabIndex={disabled ? '-1' : '0'}
+            focused={focused}
+            onFocus={disabled ? noop : bind.onFocus}
+            onBlur={disabled ? noop : bind.onBlur}
+            onClick={disabled ? noop : handleSelection}
+            type="button"
+            innerRef={ref}
           >
-            <HeaderButton
-              isFirst={isFirst}
-              isLast={isLast}
-              open={open}
-              disabled={disabled}
-              aria-expanded={open}
-              aria-disabled={disabled}
-              aria-controls={accordionId}
-              tabIndex={disabled ? '-1' : '0'}
-              focused={focused}
-              onFocus={disabled ? noop : bind.onFocus}
-              onBlur={disabled ? noop : bind.onBlur}
-              onClick={disabled ? noop : handleSelection}
-              type="button"
-              innerRef={ref}
-            >
-              {isFunction(children)
-                ? children(childProps)
-                : React.cloneElement(children, childProps)}
-            </HeaderButton>
-          </Container>
-        )}
-      </Focusable>
-    </StyleProvider>
+            {isFunction(children)
+              ? children(childProps)
+              : React.cloneElement(children, childProps)}
+          </HeaderButton>
+        </Container>
+      )}
+    </Focusable>
   );
 };
 

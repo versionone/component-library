@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isFunction } from 'underscore';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
 const TabImpl = createComponent(
   () => ({
@@ -54,25 +54,23 @@ const Tab = props => {
     : React.cloneElement(children, inheritedProps);
 
   return (
-    <StyleProvider>
-      <TabImpl
-        {...props}
-        aria-controls={controls}
-        aria-selected={selected}
-        data-component="Tabs.Tab"
-        disabled={disabled}
-        focused={focused}
-        id={id}
-        onBlur={handleBlur}
-        onClick={handleSelection}
-        onFocus={handleFocus}
-        role="tab"
-        tabIndex={tabIndex}
-        type="button"
-      >
-        {updatedChildren}
-      </TabImpl>
-    </StyleProvider>
+    <TabImpl
+      {...props}
+      aria-controls={controls}
+      aria-selected={selected}
+      data-component="Tabs.Tab"
+      disabled={disabled}
+      focused={focused}
+      id={id}
+      onBlur={handleBlur}
+      onClick={handleSelection}
+      onFocus={handleFocus}
+      role="tab"
+      tabIndex={tabIndex}
+      type="button"
+    >
+      {updatedChildren}
+    </TabImpl>
   );
 };
 

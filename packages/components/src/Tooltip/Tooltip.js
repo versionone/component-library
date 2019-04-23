@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Manager, Reference, Popper } from 'react-popper';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Hoverable } from '../Hoverable';
 import { PortalContainer } from '../PortalContainer';
 import { palette } from '../palette';
@@ -38,51 +38,49 @@ const TooltipImpl = createComponent(() => ({}), 'span', [
 
 const Tooltip = props => {
   return (
-    <StyleProvider>
-      <TooltipImpl data-component="Tooltip" data-test={props['data-test']}>
-        <Hoverable>
-          {({ hovered, bind }) => {
-            const popper = (
-              <PortalContainer mounted={hovered}>
-                <Popper
-                  placement={props.placement}
-                  positionFixed={true}
-                  modifiers={{}}
-                >
-                  {({ ref, style, placement }) => {
-                    return (
-                      <PositionedTooltip
-                        innerRef={ref}
-                        style={style}
-                        data-placement={placement}
-                        disableContainment={props.disableContainment}
-                      >
-                        {props.children}
-                      </PositionedTooltip>
-                    );
-                  }}
-                </Popper>
-              </PortalContainer>
-            );
+    <TooltipImpl data-component="Tooltip" data-test={props['data-test']}>
+      <Hoverable>
+        {({ hovered, bind }) => {
+          const popper = (
+            <PortalContainer mounted={hovered}>
+              <Popper
+                placement={props.placement}
+                positionFixed
+                modifiers={{}}
+              >
+                {({ ref, style, placement }) => {
+                  return (
+                    <PositionedTooltip
+                      innerRef={ref}
+                      style={style}
+                      data-placement={placement}
+                      disableContainment={props.disableContainment}
+                    >
+                      {props.children}
+                    </PositionedTooltip>
+                  );
+                }}
+              </Popper>
+            </PortalContainer>
+          );
 
-            return (
-              <Manager>
-                <Fragment>
-                  <Reference>
-                    {({ ref }) => (
-                      <div ref={ref} {...bind}>
-                        {props.anchor}
-                      </div>
-                    )}
-                  </Reference>
-                  {popper}
-                </Fragment>
-              </Manager>
-            );
-          }}
-        </Hoverable>
-      </TooltipImpl>
-    </StyleProvider>
+          return (
+            <Manager>
+              <Fragment>
+                <Reference>
+                  {({ ref }) => (
+                    <div ref={ref} {...bind}>
+                      {props.anchor}
+                    </div>
+                  )}
+                </Reference>
+                {popper}
+              </Fragment>
+            </Manager>
+          );
+        }}
+      </Hoverable>
+    </TooltipImpl>
   );
 };
 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { lighten, toRgbaString } from '@andrew-codes/color-functions';
 import { AlertIcon, CheckIcon, InfoIcon } from '@versionone/icons';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
 import { Typography } from '../Typography';
 
@@ -36,15 +36,13 @@ const Toast = props => {
   const Icon = iconByVariant[variant] || InfoIcon;
 
   return (
-    <StyleProvider>
-      <ToastImpl {...props} data-component="Toast">
-        <SpacedGroup>
-          <Icon />
-          <Typography variant="large">{message}</Typography>
-        </SpacedGroup>
-        {action}
-      </ToastImpl>
-    </StyleProvider>
+    <ToastImpl {...props} data-component="Toast">
+      <SpacedGroup>
+        <Icon />
+        <Typography variant="large">{message}</Typography>
+      </SpacedGroup>
+      {action}
+    </ToastImpl>
   );
 };
 

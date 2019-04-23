@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { WithBreakpoint } from '../WithBreakpoint';
 
 const FieldSetContainer = createComponent(
@@ -42,23 +42,21 @@ const FieldSetChildren = createComponent(
 );
 
 const FieldSet = props => (
-  <StyleProvider>
-    <WithBreakpoint>
-      {breakpoint => (
-        <FieldSetContainer data-component="FieldSet">
-          <FieldSetBar
-            breakpoint={breakpoint}
-            xs={props.xs}
-            sm={props.sm}
-            md={props.md}
-            lg={props.lg}
-            xl={props.xl}
-          />
-          <FieldSetChildren>{props.children}</FieldSetChildren>
-        </FieldSetContainer>
-      )}
-    </WithBreakpoint>
-  </StyleProvider>
+  <WithBreakpoint>
+    {breakpoint => (
+      <FieldSetContainer data-component="FieldSet">
+        <FieldSetBar
+          breakpoint={breakpoint}
+          xs={props.xs}
+          sm={props.sm}
+          md={props.md}
+          lg={props.lg}
+          xl={props.xl}
+        />
+        <FieldSetChildren>{props.children}</FieldSetChildren>
+      </FieldSetContainer>
+    )}
+  </WithBreakpoint>
 );
 
 const spacingUnits = [0, 2, 4, 8, 16, 24, 32, 40];

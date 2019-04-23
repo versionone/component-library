@@ -6,7 +6,7 @@ import { Paper } from '../Paper';
 import { Popover } from '../Popover';
 import { Scrim } from '../Scrim';
 import { ScrollableContainer } from '../ScrollableContainer';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const AdjustmentForFocusDisplay = createComponent(
   () => ({
@@ -146,11 +146,7 @@ class Menu extends React.Component {
       return <FocusManager.Group disableLock>{renderMenu}</FocusManager.Group>;
     };
 
-    return (
-      <StyleProvider>
-        <FocusManager>{renderWithPop}</FocusManager>
-      </StyleProvider>
-    );
+    return <FocusManager>{renderWithPop}</FocusManager>;
   }
 }
 

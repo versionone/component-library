@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { isFunction } from 'underscore';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
 import { LoadingSpinIcon, BrokenImageIcon } from '@versionone/icons';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Tooltip } from '../Tooltip';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
@@ -326,7 +326,7 @@ const Avatar = props => {
       avatarWithStatus
     );
 
-  return <StyleProvider>{child}</StyleProvider>;
+  return child;
 };
 
 Avatar.propTypes = {

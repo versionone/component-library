@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleProvider, createComponent } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { palette } from '../palette';
 
 const Container = createComponent(
@@ -29,9 +29,7 @@ const Container = createComponent(
 );
 
 const ScrollableContainer = props => (
-  <StyleProvider>
-    <Container {...props} data-component="ScrollableContainer" />
-  </StyleProvider>
+  <Container {...props} data-component="ScrollableContainer" />
 );
 
 ScrollableContainer.propTypes = {

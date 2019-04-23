@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Typography } from '../Typography';
 
 const Impl = createComponent(
@@ -39,13 +39,11 @@ const Impl = createComponent(
 const Lozenge = props => {
   const { children, ...others } = props;
   return (
-    <StyleProvider>
-      <Impl {...others} data-component="Lozenge">
-        <Typography is="span" variant="xSmall">
-          {children}
-        </Typography>
-      </Impl>
-    </StyleProvider>
+    <Impl {...others} data-component="Lozenge">
+      <Typography is="span" variant="xSmall">
+        {children}
+      </Typography>
+    </Impl>
   );
 };
 

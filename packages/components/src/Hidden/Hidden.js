@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const ContentVisibility = createComponent(
   ({ 'aria-hidden': visuallyHidden }) => ({
@@ -11,15 +11,11 @@ const ContentVisibility = createComponent(
 );
 
 const VisuallyHidden = ({ children }) => (
-  <StyleProvider>
-    <ContentVisibility aria-hidden={false}>{children}</ContentVisibility>
-  </StyleProvider>
+  <ContentVisibility aria-hidden={false}>{children}</ContentVisibility>
 );
 
 const HiddenFromScreenReaders = ({ children }) => (
-  <StyleProvider>
-    <ContentVisibility aria-hidden={true}>{children}</ContentVisibility>
-  </StyleProvider>
+  <ContentVisibility aria-hidden>{children}</ContentVisibility>
 );
 
 export { HiddenFromScreenReaders, VisuallyHidden };

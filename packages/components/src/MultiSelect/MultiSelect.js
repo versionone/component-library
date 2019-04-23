@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { isFunction, noop } from 'underscore';
 import { CloseIcon } from '@versionone/icons';
-import { StyleProvider } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import {
   InputFieldContainer,
@@ -46,17 +45,17 @@ class MultiDownshift extends React.Component {
   }
 
   removeItem(itemId, event) {
-    const onRemove = this.props.onRemove;
+    const { onRemove } = this.props;
     isFunction(onRemove) && onRemove(itemId, event);
   }
 
   addItem(itemId, event) {
-    const onSelect = this.props.onSelect;
+    const { onSelect } = this.props;
     isFunction(onSelect) && onSelect(itemId, event);
   }
 
   removeAll(event) {
-    const onClear = this.props.onClear;
+    const { onClear } = this.props;
     const ids = this.props.selectedItems;
     isFunction(onClear) && onClear(ids, event);
   }
@@ -205,7 +204,7 @@ class MultiSelect extends React.Component {
           }
 
           if (event.key === 'Enter') {
-            const value = event.target.value;
+            const { value } = event.target;
             const canCreate =
               value !== '' && highlightedIndex === null && isFunction(onCreate);
             if (!canCreate) return;
@@ -341,19 +340,17 @@ class MultiSelect extends React.Component {
     };
 
     return (
-      <StyleProvider>
-        <WithFormFieldState
-          inlineEdit={this.props.inlineEdit}
-          focused={this.props.focused}
-          hovered={this.props.hovered}
-          dropdownMaxHeight={this.props.dropdownMaxHeight}
-          dropdownWidth={this.dropdownWidth}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-        >
-          {renderChildrenWithFormState}
-        </WithFormFieldState>
-      </StyleProvider>
+      <WithFormFieldState
+        inlineEdit={this.props.inlineEdit}
+        focused={this.props.focused}
+        hovered={this.props.hovered}
+        dropdownMaxHeight={this.props.dropdownMaxHeight}
+        dropdownWidth={this.dropdownWidth}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+      >
+        {renderChildrenWithFormState}
+      </WithFormFieldState>
     );
   }
 }
