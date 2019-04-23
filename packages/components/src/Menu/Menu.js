@@ -90,7 +90,8 @@ class Menu extends React.Component {
   }
 
   close(event) {
-    const { onClickOutside } = this.props;
+    const { onClickOutside, open } = this.props;
+    if (!open) return;
     if (isFunction(this.pop)) {
       this.pop();
     }
