@@ -2,12 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { toRgbaString, darken } from '@andrew-codes/color-functions';
 import { CloseIcon } from '@versionone/icons';
-import {
-  createComponent,
-  StyleProvider,
-  styleUtils,
-  WithTheme,
-} from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 import { EventBoundary } from '../EventBoundary';
 import { Link } from '../Link';
 
@@ -105,11 +100,7 @@ const InternalTag = props => {
   );
 };
 
-const Tag = props => (
-  <StyleProvider>
-    <InternalTag {...props} data-component="Tag" />
-  </StyleProvider>
-);
+const Tag = props => <InternalTag {...props} data-component="Tag" />;
 
 Tag.propTypes = {
   /**

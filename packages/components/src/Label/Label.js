@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
 const LabelText = createComponent(
   ({ disabled, theme }) => ({
@@ -21,15 +21,9 @@ const RequiredText = createComponent(
 const Label = props => {
   const { children, disabled, required, 'data-test': dataTest } = props;
   return (
-    <StyleProvider>
-      <LabelText
-        data-component="Label"
-        data-test={dataTest}
-        disabled={disabled}
-      >
-        {children} {required && <RequiredText>*</RequiredText>}
-      </LabelText>
-    </StyleProvider>
+    <LabelText data-component="Label" data-test={dataTest} disabled={disabled}>
+      {children} {required && <RequiredText>*</RequiredText>}
+    </LabelText>
   );
 };
 Label.propTypes = {

@@ -1,7 +1,7 @@
 import { noop } from 'underscore';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
@@ -37,21 +37,19 @@ const Expander = props => {
   const title = props.expanded ? props.expandedTitle : props.title;
 
   return (
-    <StyleProvider>
-      <div data-component="Expander" data-test={props['data-test']}>
-        <Header
-          aria-expanded={props.expanded}
-          tabIndex="0"
-          onClick={props.onToggle}
-        >
-          <SpacedGroup center xs={2}>
-            <Arrow open={props.expanded} is="span" />
-            <span>{title}</span>
-          </SpacedGroup>
-        </Header>
-        <Container open={props.expanded}>{props.children}</Container>
-      </div>
-    </StyleProvider>
+    <div data-component="Expander" data-test={props['data-test']}>
+      <Header
+        aria-expanded={props.expanded}
+        tabIndex="0"
+        onClick={props.onToggle}
+      >
+        <SpacedGroup center xs={2}>
+          <Arrow open={props.expanded} is="span" />
+          <span>{title}</span>
+        </SpacedGroup>
+      </Header>
+      <Container open={props.expanded}>{props.children}</Container>
+    </div>
   );
 };
 

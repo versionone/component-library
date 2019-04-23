@@ -52,7 +52,6 @@ export { List };
 Component styling is powered by our implementation using [fela](https://fela.js.org).
 
 - use `createComponent` function to create styled components ([see StyleProvider component](/components/StyleProvider))
-- any component containing styled components should render a `StyleProvider` as its root component ([see StyleProvider component](/components/style-provider))
 
 > See [createComponent](/components/StyleProvider#createcomponent) and [ThemeProvider](/components/StyleProvider#themeprovider-component) for more a more in-depth explanation.
 
@@ -66,11 +65,7 @@ const Button = createComponent(
   'div',
 );
 
-const SaveButton = ({ children }) => (
-  <StyleProvider>
-    <Button>{children}</Button>
-  </StyleProvider>
-);
+const SaveButton = ({ children }) => <Button>{children}</Button>;
 ```
 
 ## Required PropTypes

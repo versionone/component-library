@@ -6,7 +6,7 @@ menu: Components
 import { Component } from 'react';
 import { Playground, PropsTable } from '@versionone/doc-components';
 import { SpacedGroup } from '../SpacedGroup';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Hoverable } from './';
 
 Tracks hover state for a component. Uses [TrackEventState](/components/TrackEventState) internally.
@@ -35,13 +35,11 @@ Tracks hover state for a component. Uses [TrackEventState](/components/TrackEven
       }
     }
     return (
-      <StyleProvider>
-        <SpacedGroup direction="vertical">
-          <TextInput focused />
-          <TextInput />
-          <TextInput />
-        </SpacedGroup>
-      </StyleProvider>
+      <SpacedGroup direction="vertical">
+        <TextInput focused />
+        <TextInput />
+        <TextInput />
+      </SpacedGroup>
     );
   }}
 </Playground>

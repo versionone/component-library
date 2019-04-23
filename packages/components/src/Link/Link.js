@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const LinkImpl = createComponent(
   ({ color, disableUnderline, theme }) => ({
-    color: Boolean(color) ? color : theme.Link.main,
+    color: color || theme.Link.main,
     'text-decoration': 'none',
     ':hover': {
       color: theme.Link.mainHighlight,
@@ -32,11 +32,9 @@ const Link = props => {
     : {};
 
   return (
-    <StyleProvider>
-      <LinkImpl {...props} {...targetProps} data-component="Link">
-        {props.children}
-      </LinkImpl>
-    </StyleProvider>
+    <LinkImpl {...props} {...targetProps} data-component="Link">
+      {props.children}
+    </LinkImpl>
   );
 };
 

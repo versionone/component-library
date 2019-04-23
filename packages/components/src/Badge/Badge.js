@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 import { Typography } from '../Typography';
 
@@ -67,12 +67,10 @@ const Badge = props => {
   );
 
   return (
-    <StyleProvider>
-      <Container data-component="Badge" data-test={dataTest}>
-        {counter}
-        {children}
-      </Container>
-    </StyleProvider>
+    <Container data-component="Badge" data-test={dataTest}>
+      {counter}
+      {children}
+    </Container>
   );
 };
 

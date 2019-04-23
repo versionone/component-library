@@ -2,12 +2,7 @@ import React, { Fragment, Component, createRef } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
 import { UploadIcon } from '@versionone/icons';
-import {
-  createComponent,
-  StyleProvider,
-  styleUtils,
-  WithTheme,
-} from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 import { Button } from '../Button';
 
 const Root = createComponent(
@@ -217,15 +212,13 @@ class Upload extends Component {
     };
 
     return (
-      <StyleProvider>
-        <Root
-          data-component="Upload"
-          data-test={this.props['data-test']}
-          {...dimensions}
-        >
-          <WithTheme>{buildComponent}</WithTheme>
-        </Root>
-      </StyleProvider>
+      <Root
+        data-component="Upload"
+        data-test={this.props['data-test']}
+        {...dimensions}
+      >
+        <WithTheme>{buildComponent}</WithTheme>
+      </Root>
     );
   }
 

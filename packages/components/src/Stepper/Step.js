@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 // const size = 24;
 // const leftOffset = ((size / 2) + 8) * -1;
@@ -184,33 +184,31 @@ const Step = props => {
   const stepIcon = props.icon ? React.createElement(props.icon) : props.index;
 
   return (
-    <StyleProvider>
-      <StepImpl data-component="Step" direction={props.direction}>
-        <StepIcon size={props.size} seen={props.seen} current={props.current}>
-          <StepIconNumber seen={props.seen} current={props.current}>
-            {stepIcon}
-          </StepIconNumber>
-        </StepIcon>
-        <StepTextContainer>
-          <StepTitle
-            size={props.size}
-            direction={props.direction}
-            isLast={props.isLast}
-            seen={props.seen}
-            current={props.current}
-          >
-            {props.title}
-          </StepTitle>
-          <StepDescription
-            size={props.size}
-            direction={props.direction}
-            current={props.current}
-          >
-            {props.description}
-          </StepDescription>
-        </StepTextContainer>
-      </StepImpl>
-    </StyleProvider>
+    <StepImpl data-component="Step" direction={props.direction}>
+      <StepIcon size={props.size} seen={props.seen} current={props.current}>
+        <StepIconNumber seen={props.seen} current={props.current}>
+          {stepIcon}
+        </StepIconNumber>
+      </StepIcon>
+      <StepTextContainer>
+        <StepTitle
+          size={props.size}
+          direction={props.direction}
+          isLast={props.isLast}
+          seen={props.seen}
+          current={props.current}
+        >
+          {props.title}
+        </StepTitle>
+        <StepDescription
+          size={props.size}
+          direction={props.direction}
+          current={props.current}
+        >
+          {props.description}
+        </StepDescription>
+      </StepTextContainer>
+    </StepImpl>
   );
 };
 
