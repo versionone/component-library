@@ -1,6 +1,6 @@
 import React, { Component, Children, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { palette } from '../palette';
 
 const fontStrategyMap = {
@@ -76,11 +76,7 @@ class Typography extends Component {
       return child;
     });
 
-    return (
-      <StyleProvider>
-        <Fragment>{childrenWithTypography}</Fragment>
-      </StyleProvider>
-    );
+    return childrenWithTypography;
   }
 }
 

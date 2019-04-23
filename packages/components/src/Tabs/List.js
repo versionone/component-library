@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isNull, isUndefined } from 'underscore';
-import { StyleProvider } from '../StyleProvider';
 import TabContext from './TabContext';
 
 class SmartList extends React.Component {
@@ -88,7 +87,7 @@ class SmartList extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    const {props} = this;
     const count = React.Children.count(props.children);
     return React.Children.map(props.children, (child, index) => {
       const isSelected = parseInt(props.activeTab) === index;
@@ -96,7 +95,7 @@ class SmartList extends React.Component {
 
       const tabProps = {
         key: index,
-        id: index + '',
+        id: `${index  }`,
         controls: `${index}-tab`,
         selected: isSelected,
         handleSelection: props.selectTabByIndex(index),
@@ -120,17 +119,15 @@ SmartList.propTypes = {
 
 const List = props => {
   return (
-    <StyleProvider>
-      <span
-        role="tablist"
-        data-component="Tabs.List"
-        data-test={props['data-test']}
-      >
-        <TabContext.Consumer>
-          {value => <SmartList {...value}>{props.children}</SmartList>}
-        </TabContext.Consumer>
-      </span>
-    </StyleProvider>
+    <span
+      role="tablist"
+      data-component="Tabs.List"
+      data-test={props['data-test']}
+    >
+      <TabContext.Consumer>
+        {value => <SmartList {...value}>{props.children}</SmartList>}
+      </TabContext.Consumer>
+    </span>
   );
 };
 

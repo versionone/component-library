@@ -6,7 +6,7 @@ menu: Components
 import { Component, createRef } from 'react';
 import { Playground, PropsTable } from '@versionone/doc-components';
 import { SpacedGroup } from '../SpacedGroup';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { TrackEventState } from './';
 
 Sometimes it is helpful to track "on" or "off" state that is triggered via events. Tracking focus (is focused or is not focused) and hover state are two examples. This provides a consistent way to manage event on/off state. This is the underlying implementation for [Focusable](/components/Focusable) and [Hoverable](/components/Hoverable).
@@ -43,13 +43,11 @@ Sometimes it is helpful to track "on" or "off" state that is triggered via event
       }
     }
     return (
-      <StyleProvider>
-        <SpacedGroup direction="vertical">
-          <TextInput focused />
-          <TextInput />
-          <TextInput />
-        </SpacedGroup>
-      </StyleProvider>
+      <SpacedGroup direction="vertical">
+        <TextInput focused />
+        <TextInput />
+        <TextInput />
+      </SpacedGroup>
     );
   }}
 </Playground>

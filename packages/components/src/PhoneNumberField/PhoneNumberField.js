@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { noop, isFunction } from 'underscore';
+import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import {
   InputFieldContainer,
   InputStateIcon,
@@ -9,7 +9,7 @@ import {
   AppendIconContainer,
   InputField,
   WithFormFieldState,
-} from './../FormUtils';
+} from '../FormUtils';
 
 const Root = createComponent(
   ({ fullWidth, stretch }) => ({
@@ -85,54 +85,52 @@ class PhoneNumberField extends Component {
       );
 
       return (
-        <StyleProvider>
-          <Root
-            data-component="PhoneNumberField"
+        <Root
+          data-component="PhoneNumberField"
+          fullWidth={fullWidth}
+          stretch={stretch}
+        >
+          <InputFieldContainer
+            inlineEdit={inlineEdit}
+            success={success}
+            dirty={dirty}
+            error={error}
+            disabled={disabled}
+            focused={focused}
             fullWidth={fullWidth}
             stretch={stretch}
+            height={height}
+            isHeightCapped
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           >
-            <InputFieldContainer
-              inlineEdit={inlineEdit}
-              success={success}
+            {prependIconContainer}
+            <InputField
               dirty={dirty}
-              error={error}
+              defaultValue={defaultValue}
               disabled={disabled}
-              focused={focused}
-              fullWidth={fullWidth}
-              stretch={stretch}
               height={height}
-              isHeightCapped={true}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              {prependIconContainer}
-              <InputField
-                dirty={dirty}
-                defaultValue={defaultValue}
-                disabled={disabled}
-                height={height}
-                onBlur={onBlur}
-                onChange={this.handleChange}
-                onFocus={onFocus}
-                onKeyDown={this.handleKeyDown}
-                placeholder={hintText}
-                innerRef={inputRef}
-                tabIndex={tabIndex}
-                type={'tel'}
-                value={value}
-              />
-              <InputStateIcon
-                inlineEdit={inlineEdit}
-                disabled={disabled}
-                success={success}
-                hovered={hovered}
-                loading={loading}
-                error={error}
-              />
-              {appendIconContainer}
-            </InputFieldContainer>
-          </Root>
-        </StyleProvider>
+              onBlur={onBlur}
+              onChange={this.handleChange}
+              onFocus={onFocus}
+              onKeyDown={this.handleKeyDown}
+              placeholder={hintText}
+              innerRef={inputRef}
+              tabIndex={tabIndex}
+              type="tel"
+              value={value}
+            />
+            <InputStateIcon
+              inlineEdit={inlineEdit}
+              disabled={disabled}
+              success={success}
+              hovered={hovered}
+              loading={loading}
+              error={error}
+            />
+            {appendIconContainer}
+          </InputFieldContainer>
+        </Root>
       );
     };
 
@@ -148,8 +146,9 @@ class PhoneNumberField extends Component {
       </WithFormFieldState>
     );
   }
+
   handleChange(evt) {
-    const value = evt.target.value;
+    const { value } = evt.target;
     this.props.onChange(evt, value);
   }
 
@@ -175,7 +174,8 @@ class PhoneNumberField extends Component {
       evt.preventDefault();
       return;
     }
-    isFunction(this.props.onKeyDown) && this.props.onKeyDown();
+    const { onKeyDown } = this.props;
+    onKeyDown();
   }
 }
 PhoneNumberField.propTypes = {

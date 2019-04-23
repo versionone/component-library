@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const PanelImpl = createComponent(
   ({ visible }) => ({
@@ -15,18 +15,16 @@ const PanelImpl = createComponent(
 const Panel = props => {
   const { 'data-test': dataTest, children, index, visible } = props;
   return (
-    <StyleProvider>
-      <PanelImpl
-        visible={visible}
-        data-test={dataTest}
-        data-component="Tabs.Panel"
-        tabIndex="-1"
-        role="tabpanel"
-        aria-labelledby={index}
-      >
-        {children}
-      </PanelImpl>
-    </StyleProvider>
+    <PanelImpl
+      visible={visible}
+      data-test={dataTest}
+      data-component="Tabs.Panel"
+      tabIndex="-1"
+      role="tabpanel"
+      aria-labelledby={index}
+    >
+      {children}
+    </PanelImpl>
   );
 };
 

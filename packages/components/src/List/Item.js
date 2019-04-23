@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
 import { isFunction, noop } from 'underscore';
 import { WithBreakpoint } from '../WithBreakpoint';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
 import { HoverIntersection } from '../HoverIntersection';
@@ -136,51 +136,47 @@ class ListItemImpl extends React.Component {
     } = this.props;
 
     return (
-      <StyleProvider>
-        <ListContext.Consumer>
-          {({ dense }) => {
-            const RowImpl = isFunction(onClick) ? ClickableRow : Row;
+      <ListContext.Consumer>
+        {({ dense }) => {
+          const RowImpl = isFunction(onClick) ? ClickableRow : Row;
 
-            return (
-              <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
-                {({ focused: isFocused, bind: bindFocusable, ref }) => (
-                  <HoverIntersection>
-                    {({ bind, hovered }) => (
-                      <RowImpl
-                        {...otherProps}
-                        {...bind}
-                        {...bindFocusable}
-                        data-test={dataTest}
-                        data-trackingid={trackingId}
-                        role="listitem"
-                        data-component="List.Item"
-                        dense={dense}
-                        focused={isFocused}
-                        hovered={hovered}
-                        innerRef={ref}
-                        onClick={onClick}
-                        onKeyDown={this.handleKeyDown}
-                      >
-                        <LeftGroup>
-                          {Boolean(supportingVisual) && (
-                            <AncillaryAction>
-                              {supportingVisual}
-                            </AncillaryAction>
-                          )}
-                          {children}
-                        </LeftGroup>
-                        {Boolean(secondaryAction) && (
-                          <AncillaryAction>{secondaryAction}</AncillaryAction>
+          return (
+            <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
+              {({ focused: isFocused, bind: bindFocusable, ref }) => (
+                <HoverIntersection>
+                  {({ bind, hovered }) => (
+                    <RowImpl
+                      {...otherProps}
+                      {...bind}
+                      {...bindFocusable}
+                      data-test={dataTest}
+                      data-trackingid={trackingId}
+                      role="listitem"
+                      data-component="List.Item"
+                      dense={dense}
+                      focused={isFocused}
+                      hovered={hovered}
+                      innerRef={ref}
+                      onClick={onClick}
+                      onKeyDown={this.handleKeyDown}
+                    >
+                      <LeftGroup>
+                        {Boolean(supportingVisual) && (
+                          <AncillaryAction>{supportingVisual}</AncillaryAction>
                         )}
-                      </RowImpl>
-                    )}
-                  </HoverIntersection>
-                )}
-              </Focusable>
-            );
-          }}
-        </ListContext.Consumer>
-      </StyleProvider>
+                        {children}
+                      </LeftGroup>
+                      {Boolean(secondaryAction) && (
+                        <AncillaryAction>{secondaryAction}</AncillaryAction>
+                      )}
+                    </RowImpl>
+                  )}
+                </HoverIntersection>
+              )}
+            </Focusable>
+          );
+        }}
+      </ListContext.Consumer>
     );
   }
 
@@ -190,11 +186,9 @@ class ListItemImpl extends React.Component {
 }
 
 const ListItem = props => (
-  <StyleProvider>
-    <WithBreakpoint>
-      {breakpoint => <ListItemImpl {...props} breakpoint={breakpoint} />}
-    </WithBreakpoint>
-  </StyleProvider>
+  <WithBreakpoint>
+    {breakpoint => <ListItemImpl {...props} breakpoint={breakpoint} />}
+  </WithBreakpoint>
 );
 
 ListItem.propTypes = {

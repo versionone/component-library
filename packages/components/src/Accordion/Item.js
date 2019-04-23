@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { StyleProvider } from '../StyleProvider';
 
 const Item = ({ children, ...otherProps }) => {
   return (
-    <StyleProvider>
-      <Fragment>
-        {React.Children.map(children, (child, i) =>
-          React.cloneElement(child, otherProps),
-        )}
-      </Fragment>
-    </StyleProvider>
+    <Fragment>
+      {React.Children.map(children, (child, i) =>
+        React.cloneElement(child, otherProps),
+      )}
+    </Fragment>
   );
 };
 

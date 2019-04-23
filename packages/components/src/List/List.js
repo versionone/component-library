@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Children, cloneElement, Fragment } from 'react';
 import { findLastIndex } from 'underscore';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Divider } from '../Divider';
 import ListContext from './ListValueContext';
 
@@ -48,15 +48,13 @@ class List extends React.Component {
     });
 
     return (
-      <StyleProvider>
-        <ListImpl
-          data-component="List"
-          data-test={this.props['data-test']}
-          role="list"
-        >
-          <ListContext.Provider value={{ dense }}>{items}</ListContext.Provider>
-        </ListImpl>
-      </StyleProvider>
+      <ListImpl
+        data-component="List"
+        data-test={this.props['data-test']}
+        role="list"
+      >
+        <ListContext.Provider value={{ dense }}>{items}</ListContext.Provider>
+      </ListImpl>
     );
   }
 
