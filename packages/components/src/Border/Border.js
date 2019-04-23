@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 
 const BorderImpl = createComponent(
@@ -16,14 +16,12 @@ const BorderImpl = createComponent(
 
 const Border = ({ color, disabled, lineStyle, ...otherProps }) => {
   return (
-    <StyleProvider>
-      <BorderImpl
-        borderStyle={lineStyle}
-        borderColor={disabled ? 'transparent' : color}
-        data-component="Border"
-        {...otherProps}
-      />
-    </StyleProvider>
+    <BorderImpl
+      borderStyle={lineStyle}
+      borderColor={disabled ? 'transparent' : color}
+      data-component="Border"
+      {...otherProps}
+    />
   );
 };
 

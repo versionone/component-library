@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
-const GridImpl = createComponent(
+const Grid = createComponent(
   ({ alignContent, alignItems, direction, justify, wrap }) => ({
     alignContent,
     alignItems,
@@ -17,11 +16,6 @@ const GridImpl = createComponent(
     flexWrap: wrap,
   }),
   'div',
-);
-const Grid = ({ children, ...otherProps }) => (
-  <StyleProvider>
-    <GridImpl {...otherProps}>{children}</GridImpl>
-  </StyleProvider>
 );
 
 Grid.propTypes = {

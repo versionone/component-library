@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import TabContext from './TabContext';
 
 const TabsImpl = createComponent(() => ({}), 'div', [
@@ -32,11 +32,9 @@ class Tabs extends React.Component {
       focusTabByIndex: index => () => this.setState({ focusedTab: index }),
     };
     return (
-      <StyleProvider>
-        <TabContext.Provider value={context}>
-          <TabsImpl {...this.props} data-component="Tabs" />
-        </TabContext.Provider>
-      </StyleProvider>
+      <TabContext.Provider value={context}>
+        <TabsImpl {...this.props} data-component="Tabs" />
+      </TabContext.Provider>
     );
   }
 }

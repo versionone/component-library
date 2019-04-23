@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  createComponent,
-  StyleProvider,
-  styleUtils,
-} from '../../StyleProvider';
+import { createComponent, styleUtils } from '../../StyleProvider';
 import { SpacedGroup } from '../../SpacedGroup';
 import { palette } from '../../palette';
 import { Typography } from '../../Typography';
@@ -53,21 +49,19 @@ const UnderlineTab = props => {
 
   const spacing = icon ? 4 : 0;
   return (
-    <StyleProvider>
-      <UnderlineTabImpl
-        data-component="Tabs.UnderlineTab"
-        data-test={dataTest}
-        selected={selected}
-        disabled={disabled}
-        focused={focused}
-        placement={placement}
-      >
-        <SpacedGroup xs={spacing} center>
-          {icon}
-          <Typography>{title}</Typography>
-        </SpacedGroup>
-      </UnderlineTabImpl>
-    </StyleProvider>
+    <UnderlineTabImpl
+      data-component="Tabs.UnderlineTab"
+      data-test={dataTest}
+      selected={selected}
+      disabled={disabled}
+      focused={focused}
+      placement={placement}
+    >
+      <SpacedGroup xs={spacing} center>
+        {icon}
+        <Typography>{title}</Typography>
+      </SpacedGroup>
+    </UnderlineTabImpl>
   );
 };
 

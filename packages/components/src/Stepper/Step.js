@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import {palette} from "../palette";
 
 // const size = 24;
@@ -300,7 +300,6 @@ const Step = props => {
   const stepIcon = props.icon ? React.createElement(props.icon) : props.index;
 
   return (
-    <StyleProvider>
       <StepImpl
         data-component="Step"
         direction={props.direction}
@@ -309,35 +308,34 @@ const Step = props => {
         lineLength={props.lineLength}
         afterLength={props.afterLength}
       >
-        <StepIcon size={props.size} seen={props.seen} current={props.current}>
-          <StepIconNumber seen={props.seen} current={props.current}>
-            {stepIcon}
-          </StepIconNumber>
-        </StepIcon>
-        <StepTextContainer>
-          <StepTitle
-            size={props.size}
-            direction={props.direction}
-            isLast={props.isLast}
-            seen={props.seen}
-            current={props.current}
+      <StepIcon size={props.size} seen={props.seen} current={props.current}>
+        <StepIconNumber seen={props.seen} current={props.current}>
+          {stepIcon}
+        </StepIconNumber>
+      </StepIcon>
+      <StepTextContainer>
+        <StepTitle
+          size={props.size}
+          direction={props.direction}
+          isLast={props.isLast}
+          seen={props.seen}
+          current={props.current}
             hasDescription={!!props.description}
             lineLength={props.lineLength}
             afterLength={props.afterLength}
-          >
-            {props.title}
-          </StepTitle>
-          <StepDescription
-            size={props.size}
-            direction={props.direction}
-            current={props.current}
+        >
+          {props.title}
+        </StepTitle>
+        <StepDescription
+          size={props.size}
+          direction={props.direction}
+          current={props.current}
             seen={props.seen}
-          >
-            {props.description}
-          </StepDescription>
-        </StepTextContainer>
-      </StepImpl>
-    </StyleProvider>
+        >
+          {props.description}
+        </StepDescription>
+      </StepTextContainer>
+    </StepImpl>
   );
 };
 

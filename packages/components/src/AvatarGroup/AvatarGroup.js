@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Avatar } from '../Avatar';
 import { List } from '../List';
 import { Menu } from '../Menu';
@@ -82,7 +82,7 @@ class AvatarGroup extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    const {props} = this;
     const avatarCount = React.Children.count(props.children);
     const exceedsThreshold =
       props.maxCount !== null && avatarCount > props.maxCount;
@@ -149,21 +149,17 @@ class AvatarGroup extends React.Component {
     ));
 
     return (
-      <StyleProvider>
-        <OnClickOutside handleClickOutside={this.closeMoreMenu}>
-          <Grouping
-            direction="horizontal"
-            disableGutter
-            xs={4}
-            data-component={
-              props.disableOverlap ? 'GridGroup' : 'OverlapedGroup'
-            }
-          >
-            {avatars}
-            {avatarMenu}
-          </Grouping>
-        </OnClickOutside>
-      </StyleProvider>
+      <OnClickOutside handleClickOutside={this.closeMoreMenu}>
+        <Grouping
+          direction="horizontal"
+          disableGutter
+          xs={4}
+          data-component={props.disableOverlap ? 'GridGroup' : 'OverlapedGroup'}
+        >
+          {avatars}
+          {avatarMenu}
+        </Grouping>
+      </OnClickOutside>
     );
   }
 }

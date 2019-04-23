@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import Item from './Item';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Border } from '../Border';
 
 const DefinitionList = createComponent(
@@ -162,11 +162,9 @@ class Accordion extends Component {
     );
 
     return (
-      <StyleProvider>
-        <span data-component="Accordion" data-test={dataTest}>
-          {borderedChilden}
-        </span>
-      </StyleProvider>
+      <span data-component="Accordion" data-test={dataTest}>
+        {borderedChilden}
+      </span>
     );
   }
 }

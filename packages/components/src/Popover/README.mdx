@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
@@ -48,26 +48,24 @@ A container positioned relative to an anchor; outside the flow of the document.
       'div',
     );
     return (
-      <StyleProvider>
-        <SpacedGroup direction="vertical">
-          {Object.values(placements).map(placement => (
-            <Container key={placement}>
-              <InlineContainer>
-                <Popover
-                  anchor={<IconButton icon={InfoIcon} />}
-                  disableScrim={true}
-                  open={true}
-                  placement={placement}
-                >
-                  <Paper>
-                    <PaperContents>{placement}</PaperContents>
-                  </Paper>
-                </Popover>
-              </InlineContainer>
-            </Container>
-          ))}
-        </SpacedGroup>
-      </StyleProvider>
+      <SpacedGroup direction="vertical">
+        {Object.values(placements).map(placement => (
+          <Container key={placement}>
+            <InlineContainer>
+              <Popover
+                anchor={<IconButton icon={InfoIcon} />}
+                disableScrim={true}
+                open={true}
+                placement={placement}
+              >
+                <Paper>
+                  <PaperContents>{placement}</PaperContents>
+                </Paper>
+              </Popover>
+            </InlineContainer>
+          </Container>
+        ))}
+      </SpacedGroup>
     );
   }}
 </Playground>

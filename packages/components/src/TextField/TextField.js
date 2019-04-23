@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
 import { ShowIcon, HideIcon } from '@versionone/icons';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import {
   InputFieldContainer,
   InputStateIcon,
@@ -103,57 +103,55 @@ class TextField extends Component {
       const Input = multiline ? TextareaField : InputField;
 
       return (
-        <StyleProvider>
-          <Root
-            data-component="TextField"
+        <Root
+          data-component="TextField"
+          fullWidth={fullWidth}
+          stretch={stretch}
+        >
+          <InputFieldContainer
+            inlineEdit={inlineEdit}
+            success={success}
+            dirty={dirty}
+            error={error}
+            disabled={disabled}
+            focused={focused}
             fullWidth={fullWidth}
             stretch={stretch}
+            multiline={multiline}
+            height={height}
+            isHeightCapped={!multiline}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           >
-            <InputFieldContainer
-              inlineEdit={inlineEdit}
-              success={success}
+            {prependIconContainer}
+            <Input
               dirty={dirty}
-              error={error}
+              defaultValue={defaultValue}
               disabled={disabled}
-              focused={focused}
-              fullWidth={fullWidth}
-              stretch={stretch}
               multiline={multiline}
+              rows={multiline ? '1' : null}
               height={height}
-              isHeightCapped={!multiline}
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-            >
-              {prependIconContainer}
-              <Input
-                dirty={dirty}
-                defaultValue={defaultValue}
-                disabled={disabled}
-                multiline={multiline}
-                rows={multiline ? '1' : null}
-                height={height}
-                onBlur={onBlur}
-                onChange={this.handleChange}
-                onFocus={onFocus}
-                onKeyDown={onKeyDown}
-                placeholder={hintText}
-                innerRef={inputRef}
-                tabIndex={tabIndex}
-                type={password && !showPassword ? 'password' : 'text'}
-                value={value}
-              />
-              <InputStateIcon
-                inlineEdit={inlineEdit}
-                disabled={disabled}
-                success={success}
-                hovered={hovered}
-                loading={loading}
-                error={error}
-              />
-              {appendIconContainer}
-            </InputFieldContainer>
-          </Root>
-        </StyleProvider>
+              onBlur={onBlur}
+              onChange={this.handleChange}
+              onFocus={onFocus}
+              onKeyDown={onKeyDown}
+              placeholder={hintText}
+              innerRef={inputRef}
+              tabIndex={tabIndex}
+              type={password && !showPassword ? 'password' : 'text'}
+              value={value}
+            />
+            <InputStateIcon
+              inlineEdit={inlineEdit}
+              disabled={disabled}
+              success={success}
+              hovered={hovered}
+              loading={loading}
+              error={error}
+            />
+            {appendIconContainer}
+          </InputFieldContainer>
+        </Root>
       );
     };
 
@@ -171,7 +169,7 @@ class TextField extends Component {
   }
 
   handleChange(evt) {
-    const value = evt.target.value;
+    const {value} = evt.target;
     this.props.onChange(evt, value);
   }
 

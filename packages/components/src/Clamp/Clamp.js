@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
 const Root = createComponent(
   () => ({
@@ -14,9 +14,7 @@ const Root = createComponent(
 );
 
 const Clamp = ({ children, 'data-test': dataTest }) => (
-  <StyleProvider>
-    <Root data-test={dataTest}>{children}</Root>
-  </StyleProvider>
+  <Root data-test={dataTest}>{children}</Root>
 );
 Clamp.propTypes = {
   /** Content to clamp. */
