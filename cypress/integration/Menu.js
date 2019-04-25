@@ -24,8 +24,8 @@ context('Menu', () => {
       .then(el => {
         const { bottom, left, right, top } = el[0].getBoundingClientRect();
         expect(bottom).to.be.closeTo(259, 3);
-        expect(left).to.be.closeTo(1171, 7);
-        expect(right).to.be.closeTo(1371, 7);
+        expect(left).to.be.closeTo(1171, 10);
+        expect(right).to.be.closeTo(1371, 10);
         expect(top).to.be.closeTo(132, 3);
       });
   });
