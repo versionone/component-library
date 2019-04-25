@@ -108,11 +108,7 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
 
 ### Menu Focus Context
 
-[Menu](/components/Menu) moves focus between the element that opened the menu and the list items within the menu.
-
-1. Opening a menu should move user focus to the first menu list item.
-2. Only items in the menu can be focused.
-3. Closing the menu should move focus back to the element that triggerd the menu to open.
+[Menu](/components/Menu) does **not** moves focus between the element that opened the menu and the list items within the menu. Therefore, tabbing does not cycle the user through the menu list items.
 
 <Playground>
   {() => {
@@ -159,7 +155,7 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
               onClickOutside={this.close}
             >
               <List bordered>
-                <List.Item onClick={() => {}} focused={isOpen}>
+                <List.Item onClick={() => {}}>
                   <List.ItemText primary="Action 1" />
                 </List.Item>
                 <List.Item onClick={() => {}}>
@@ -189,7 +185,7 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
 
 ## Drawer Opened From Menu
 
-In some cases, the drawer may open in response to a menu item's primary action; in which case opening the drawer will close the menu. In this case, there is not item in which to "return" focus; it is no longer rendered/available/visible on the page. Instead, the focus should return to the element which opened the menu. This is effectively invoking `FocusManager`'s `pop` function twice.
+In some cases, a drawer may open in response to a menu item's primary action; in which case opening the drawer will close the menu and move the user's focus to the drawer. Ther user's focus is locked to the contents of the drawer and should return to the element which opened the menu upon closing the drawer.
 
 <Playground>
   {() => {
