@@ -26,7 +26,7 @@ class Scrim extends React.Component {
     const willOpen = !prevProps.open && open;
     if (willOpen) {
       return {
-        scrollY: window.scrollY,
+        scrollY: window.pageYOffset,
       };
     }
     return null;
