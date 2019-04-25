@@ -1,4 +1,4 @@
-import React, { createElement as reactCreateElement } from 'react';
+import React, { createElement as reactCreateElement, memo } from 'react';
 import extractPassThroughProps from 'fela-bindings/lib/extractPassThroughProps';
 import PropTypes from 'prop-types';
 import resolvePassThrough from 'fela-bindings/lib/resolvePassThrough';
@@ -65,10 +65,13 @@ const createComponentFactory = (createElement, contextTypes) => (
 
   FelaComponent.displayName = `${componentName}FelaWrapper`;
   FelaComponent._isFelaComponent = true;
+  const PureFelaComponent = memo(FelaComponent);
 
-  return props => (
-    <WithTheme>{theme => <FelaComponent {...props} theme={theme} />}</WithTheme>
-  );
+  return memo(props => (
+    <WithTheme>
+      {theme => <PureFelaComponent {...props} theme={theme} />}
+    </WithTheme>
+  ));
 };
 
 export default createComponentFactory(reactCreateElement, {
