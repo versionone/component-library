@@ -34,7 +34,7 @@ updateStatus({
   .then(() =>
     cypress
       .run({
-        record: true,
+        record: false,
         key: process.env.CYPRESS_RECORD_KEY,
       })
       .then(({ runUrl, totalFailed, totalPassed }) => {
