@@ -98,6 +98,9 @@ const internalTheme = {
       invert: palette.paper,
       main: 'rgb(169, 169, 169)',
     },
+    default: {
+      main: 'rgb(99, 76, 71)',
+    },
     required: {
       main: palette.sunset,
     },
