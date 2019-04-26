@@ -2,7 +2,7 @@ import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { debounce } from 'underscore';
-import { StyleProvider, ThemeProvider, WithTheme } from '../StyleProvider';
+import { ThemeProvider, WithTheme } from '../StyleProvider';
 import { keys as breakpointKeys } from './breakpoints';
 
 const isSSR = () => typeof window === 'undefined';
@@ -36,23 +36,21 @@ class WithBreakpoint extends Component {
     const { children } = this.props;
     const { breakpoint } = this.state;
     return (
-      <StyleProvider>
-        <ThemeProvider
-          theme={{ WithBreakpoint: WithBreakpoint.defaultThemeValues }}
-        >
-          <WithTheme>
-            {theme => {
-              this.theme = theme;
-              return (
-                <Fragment>
-                  {children(breakpoint)}
-                  <EventListener target="window" onResize={this.handleResize} />
-                </Fragment>
-              );
-            }}
-          </WithTheme>
-        </ThemeProvider>
-      </StyleProvider>
+      <ThemeProvider
+        theme={{ WithBreakpoint: WithBreakpoint.defaultThemeValues }}
+      >
+        <WithTheme>
+          {theme => {
+            this.theme = theme;
+            return (
+              <Fragment>
+                {children(breakpoint)}
+                <EventListener target="window" onResize={this.handleResize} />
+              </Fragment>
+            );
+          }}
+        </WithTheme>
+      </ThemeProvider>
     );
   }
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 import { PortalContainer } from '../PortalContainer';
 
@@ -26,7 +26,7 @@ class Scrim extends React.Component {
     const willOpen = !prevProps.open && open;
     if (willOpen) {
       return {
-        scrollY: window.scrollY,
+        scrollY: window.pageYOffset,
       };
     }
     return null;
@@ -64,19 +64,17 @@ class Scrim extends React.Component {
   }
 
   render() {
-    const {props} = this;
+    const { props } = this;
 
     return (
       <PortalContainer mounted={props.open}>
-        <StyleProvider>
-          <ScrimImpl
-            {...props}
-            open={props.open}
-            data-component="Scrim"
-            data-open={`${props.open}`}
-            data-scroll-lock={`${!props.disableScrollLock}`}
-          />
-        </StyleProvider>
+        <ScrimImpl
+          {...props}
+          open={props.open}
+          data-component="Scrim"
+          data-open={`${props.open}`}
+          data-scroll-lock={`${!props.disableScrollLock}`}
+        />
       </PortalContainer>
     );
   }

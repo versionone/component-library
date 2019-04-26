@@ -1,7 +1,7 @@
 import { noop, isFunction } from 'underscore';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 import { Scrim } from '../Scrim';
 import { PortalContainer } from '../PortalContainer';
@@ -110,9 +110,10 @@ class Drawer extends React.Component {
   }
 
   handleKeyDown(event) {
-    const { handleClickOutside } = this.props;
+    const { handleClickOutside, open } = this.props;
+    if (!open) return;
     const isEscape = event.which === 27;
-    if (isEscape && isFunction(handleClickOutside)) handleClickOutside();
+    if (isEscape) handleClickOutside();
   }
 
   render() {
@@ -129,11 +130,9 @@ class Drawer extends React.Component {
     );
 
     const drawer = (
-      <StyleProvider>
-        <PortalContainer mounted={props.open}>
-          <Impl {...props} data-component="Drawer" />
-        </PortalContainer>
-      </StyleProvider>
+      <PortalContainer mounted={props.open}>
+        <Impl {...props} data-component="Drawer" />
+      </PortalContainer>
     );
 
     return (

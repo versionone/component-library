@@ -1,7 +1,7 @@
 import { noop, isFunction } from 'underscore';
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
@@ -86,18 +86,16 @@ const Tree = props => {
   const NodeImpl = isFunction(handleSelection) ? ClickableNode : Leaf;
 
   return (
-    <StyleProvider>
-      <span data-component="Tree" data-test={dataTest} depth={updatedDepth}>
-        <SpacedGroup xs={2}>
-          <LeftSpacer depth={updatedDepth} />
-          <NodeImpl selected={selected} onClick={handleSelection} tabIndex="0">
-            {arrow}
-            <Typography>{title}</Typography>
-          </NodeImpl>
-        </SpacedGroup>
-        {updatedChildren}
-      </span>
-    </StyleProvider>
+    <span data-component="Tree" data-test={dataTest} depth={updatedDepth}>
+      <SpacedGroup xs={2}>
+        <LeftSpacer depth={updatedDepth} />
+        <NodeImpl selected={selected} onClick={handleSelection} tabIndex="0">
+          {arrow}
+          <Typography>{title}</Typography>
+        </NodeImpl>
+      </SpacedGroup>
+      {updatedChildren}
+    </span>
   );
 };
 

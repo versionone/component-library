@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { BreadcrumbItem } from './BreadcrumbItem';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
 
 const Separator = createComponent(
@@ -27,13 +27,11 @@ class Breadcrumb extends React.Component {
     });
 
     return (
-      <StyleProvider>
-        <span data-component="Breadcrumbs">
-          <SpacedGroup xs={4} center>
-            {children}
-          </SpacedGroup>
-        </span>
-      </StyleProvider>
+      <span data-component="Breadcrumbs">
+        <SpacedGroup xs={4} center>
+          {children}
+        </SpacedGroup>
+      </span>
     );
   }
 }

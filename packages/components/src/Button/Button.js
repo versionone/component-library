@@ -3,7 +3,7 @@ import React from 'react';
 import { noop } from 'underscore';
 import types, { standard } from './ButtonTypes';
 import variants, { contained, text } from './variants';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Hoverable } from '../Hoverable';
 import { SpacedGroup } from '../SpacedGroup';
@@ -116,37 +116,35 @@ class Button extends React.Component {
     } = this.props;
 
     return (
-      <StyleProvider>
-        <Focusable onBlur={onBlur} onFocus={onFocus}>
-          {({ bind: bindFocusable, focused, ref }) => (
-            <Hoverable onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-              {({ bind: bindHoverable, hovered }) => (
-                <ButtonImpl
-                  {...bindFocusable}
-                  {...bindHoverable}
-                  buttonType={type}
-                  data-component="Button"
-                  data-trackingid={dataTrackingId}
-                  disabled={disabled}
-                  focused={focused}
-                  hovered={hovered}
-                  innerRef={ref}
-                  onClick={onClick}
-                  tabIndex={tabIndex}
-                  type="button"
-                  variant={variant}
-                >
-                  <SpacedGroup center>
-                    <Typography is="span" variant="button">
-                      {children}
-                    </Typography>
-                  </SpacedGroup>
-                </ButtonImpl>
-              )}
-            </Hoverable>
-          )}
-        </Focusable>
-      </StyleProvider>
+      <Focusable onBlur={onBlur} onFocus={onFocus}>
+        {({ bind: bindFocusable, focused, ref }) => (
+          <Hoverable onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+            {({ bind: bindHoverable, hovered }) => (
+              <ButtonImpl
+                {...bindFocusable}
+                {...bindHoverable}
+                buttonType={type}
+                data-component="Button"
+                data-trackingid={dataTrackingId}
+                disabled={disabled}
+                focused={focused}
+                hovered={hovered}
+                innerRef={ref}
+                onClick={onClick}
+                tabIndex={tabIndex}
+                type="button"
+                variant={variant}
+              >
+                <SpacedGroup center>
+                  <Typography is="span" variant="button">
+                    {children}
+                  </Typography>
+                </SpacedGroup>
+              </ButtonImpl>
+            )}
+          </Hoverable>
+        )}
+      </Focusable>
     );
   }
 }

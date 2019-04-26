@@ -6,7 +6,7 @@ menu: Components
 import { Component, createRef } from 'react';
 import { Playground, PropsTable } from '@versionone/doc-components';
 import { SpacedGroup } from '../SpacedGroup';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Focusable } from './';
 
 Provide managed focus state to components.
@@ -35,13 +35,11 @@ Provide managed focus state to components.
       }
     }
     return (
-      <StyleProvider>
-        <SpacedGroup direction="vertical">
-          <TextInput focused />
-          <TextInput />
-          <TextInput />
-        </SpacedGroup>
-      </StyleProvider>
+      <SpacedGroup direction="vertical">
+        <TextInput focused />
+        <TextInput />
+        <TextInput />
+      </SpacedGroup>
     );
   }}
 </Playground>

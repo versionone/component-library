@@ -4,7 +4,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { noop } from 'underscore';
 import { DetectExternalEvents } from '../DetectExternalEvents';
 import { PortalContainer } from '../PortalContainer';
-import { StyleProvider, createComponent } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import * as placements from './placements';
 
 const PositionedMenu = createComponent(
@@ -40,40 +40,36 @@ class Popover extends React.Component {
     } = this.props;
 
     return (
-      <StyleProvider>
-        <DetectExternalEvents
-          domEvents={['click']}
-          reactEvents={['onClick']}
-          onExternalEvent={this.handleClickOutside}
-        >
-          <Manager>
-            <Fragment>
-              <Reference>
-                {({ ref }) => <div ref={ref}>{anchor}</div>}
-              </Reference>
-              <PortalContainer mounted={open}>
-                <Popper
-                  modifiers={modifiers}
-                  placement={placement}
-                  positionFixed={fixed}
-                >
-                  {({ ref, style }) => (
-                    <PositionedMenu
-                      data-component="Popover"
-                      data-placement={placement}
-                      data-test={dataTest}
-                      innerRef={ref}
-                      style={style}
-                    >
-                      {children}
-                    </PositionedMenu>
-                  )}
-                </Popper>
-              </PortalContainer>
-            </Fragment>
-          </Manager>
-        </DetectExternalEvents>
-      </StyleProvider>
+      <DetectExternalEvents
+        domEvents={['click']}
+        reactEvents={['onClick']}
+        onExternalEvent={this.handleClickOutside}
+      >
+        <Manager>
+          <Fragment>
+            <Reference>{({ ref }) => <div ref={ref}>{anchor}</div>}</Reference>
+            <PortalContainer mounted={open}>
+              <Popper
+                modifiers={modifiers}
+                placement={placement}
+                positionFixed={fixed}
+              >
+                {({ ref, style }) => (
+                  <PositionedMenu
+                    data-component="Popover"
+                    data-placement={placement}
+                    data-test={dataTest}
+                    innerRef={ref}
+                    style={style}
+                  >
+                    {children}
+                  </PositionedMenu>
+                )}
+              </Popper>
+            </PortalContainer>
+          </Fragment>
+        </Manager>
+      </DetectExternalEvents>
     );
   }
 }

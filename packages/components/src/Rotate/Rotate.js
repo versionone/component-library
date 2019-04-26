@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, StyleProvider } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
 const RotateImpl = createComponent(
   ({ deg }) => ({
@@ -10,11 +10,7 @@ const RotateImpl = createComponent(
   ['data-component'],
 );
 
-const Rotate = props => (
-  <StyleProvider>
-    <RotateImpl {...props} data-component="Rotate" />
-  </StyleProvider>
-);
+const Rotate = props => <RotateImpl {...props} data-component="Rotate" />;
 
 Rotate.propTypes = {
   /**

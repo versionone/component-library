@@ -1,20 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
-const ComboBoxImpl = createComponent(
+const ComboBox = createComponent(
   ({ fullWidth, stretch }) => ({
     ...styleUtils.conditionalStyle(stretch, 'flex', '1 1 auto'),
     ...styleUtils.conditionalStyle(fullWidth, 'flex', '1 1 100%'),
   }),
   'span',
   ['data-test', 'role', 'aria-expanded', 'aria-haspopup', 'aria-labeledby'],
-);
-
-const ComboBox = props => (
-  <StyleProvider>
-    <ComboBoxImpl {...props} />
-  </StyleProvider>
 );
 
 ComboBox.propTypes = {

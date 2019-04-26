@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-class DetectExternalEvents extends React.Component {
+class DetectExternalEvents extends PureComponent {
   _disposeTopLevelEvents = null;
+
   _lastInterceptedEvent = null;
 
   render() {
-    const { children, component = 'div', reactEvents } = this.props;
+    const { children, component, reactEvents } = this.props;
     const events = reactEvents.reduce((obj, eventName) => {
       obj[eventName] = this._handleWrapperEvent;
       return obj;
@@ -57,5 +58,10 @@ class DetectExternalEvents extends React.Component {
     this._lastInterceptedEvent = null;
   };
 }
+
+DetectExternalEvents.defaultProps = {
+  component: 'div',
+  reactEvents: [],
+};
 
 export { DetectExternalEvents };

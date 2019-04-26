@@ -6,7 +6,7 @@ import { Paper } from '../Paper';
 import { Popover } from '../Popover';
 import { Scrim } from '../Scrim';
 import { ScrollableContainer } from '../ScrollableContainer';
-import { StyleProvider, createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 
 const AdjustmentForFocusDisplay = createComponent(
   () => ({
@@ -22,32 +22,25 @@ const MenuChildren = ({
   children,
   onKeyDown,
 }) => {
-  const renderChildren = innerBind => {
-    const list = React.Children.toArray(children)[0];
-    const listItems = React.Children.map(list.props.children, (child, i) => {
-      const childProps = {
-        key: i,
-        ...innerBind,
-        onKeyDown: evt => {
-          onKeyDown(evt);
-          child.props.onKeyDown(evt);
-        },
-      };
-      return React.cloneElement(child, childProps);
-    });
+  const list = React.Children.toArray(children)[0];
+  const listItems = React.Children.map(list.props.children, (child, i) => {
+    const childProps = {
+      key: i,
+      onKeyDown: evt => {
+        onKeyDown(evt);
+        child.props.onKeyDown(evt);
+      },
+    };
+    return React.cloneElement(child, childProps);
+  });
 
-    const focusableList = React.cloneElement(list, {
-      children: listItems,
-    });
-
-    return (
-      <AdjustmentForFocusDisplay>{focusableList}</AdjustmentForFocusDisplay>
-    );
-  };
+  const focusableList = React.cloneElement(list, {
+    children: listItems,
+  });
 
   const container = (
     <ScrollableContainer width={width} height={height}>
-      <FocusManager.Group>{renderChildren}</FocusManager.Group>
+      <AdjustmentForFocusDisplay>{focusableList}</AdjustmentForFocusDisplay>
     </ScrollableContainer>
   );
   const positionedMenu = disableContainment ? (
@@ -70,7 +63,7 @@ class Menu extends React.Component {
     const willOpen = !prevProps.open && open;
     if (willOpen) {
       return {
-        scrollY: window.scrollY,
+        scrollY: window.pageYOffset,
       };
     }
     return null;
@@ -86,11 +79,13 @@ class Menu extends React.Component {
 
   handleKeyDown(event) {
     const isEscape = event.which === 27;
-    isEscape && this.props && this.props.open && this.close(event);
+    if (!isEscape) return;
+    this.close(event);
   }
 
   close(event) {
-    const { onClickOutside } = this.props;
+    const { onClickOutside, open } = this.props;
+    if (!open) return;
     if (isFunction(this.pop)) {
       this.pop();
     }
@@ -146,11 +141,7 @@ class Menu extends React.Component {
       return <FocusManager.Group disableLock>{renderMenu}</FocusManager.Group>;
     };
 
-    return (
-      <StyleProvider>
-        <FocusManager>{renderWithPop}</FocusManager>
-      </StyleProvider>
-    );
+    return <FocusManager>{renderWithPop}</FocusManager>;
   }
 }
 

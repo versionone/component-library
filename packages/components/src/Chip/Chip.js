@@ -2,7 +2,7 @@ import { isFunction } from 'underscore';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { CloseIcon } from '@versionone/icons';
-import { createComponent, StyleProvider, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { IconButton } from '../Button';
 import { EventBoundary } from '../EventBoundary';
 import { HoverIntersection } from '../HoverIntersection';
@@ -124,13 +124,11 @@ const InternalChip = props => {
 
 const Chip = props => {
   return (
-    <StyleProvider>
-      <HoverIntersection>
-        {({ bind, hovered }) => (
-          <InternalChip {...props} {...bind} hovered={hovered} />
-        )}
-      </HoverIntersection>
-    </StyleProvider>
+    <HoverIntersection>
+      {({ bind, hovered }) => (
+        <InternalChip {...props} {...bind} hovered={hovered} />
+      )}
+    </HoverIntersection>
   );
 };
 

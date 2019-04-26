@@ -19,15 +19,13 @@
     "build:website": "lerna run --scope @versionone/docs-site --stream build",
     "test:e2e": "start-server-and-test start http-get://localhost:3000 test:e2e:open",
     "test:e2e:cli": "start-server-and-test start http-get://localhost:3000 test:e2e:run:cli",
-    "test:e2e:ci": "start-server-and-test start http-get://localhost:3000 test:e2e:run:ci",
     "test:e2e:open": "cypress open",
     "test:e2e:run:cli": "cypress run",
-    "test:e2e:run:ci": "cypress run --record",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {
-    "node": "^10.15.1",
-    "yarn": "^1.13.0"
+    "node": ">=10.15.1",
+    "yarn": ">=1.13.0"
   },
   "workspaces": [
     "build/*",

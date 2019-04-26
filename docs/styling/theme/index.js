@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createComponent,
-  StyleProvider,
-} from '../../../packages/components/src/StyleProvider';
+import { createComponent } from '../../../packages/components/src/StyleProvider';
 import { Tooltip } from '../../../packages/components/src/Tooltip';
 import { SpacedGroup } from '../../../packages/components/src/SpacedGroup';
 import { Switch } from '../../../packages/components/src/Switch';
@@ -29,39 +26,35 @@ const Swatch = createComponent(
 );
 
 const ColorPalette = props => (
-  <StyleProvider>
-    <SpacedGroup>
-      {Object.keys(palette).map(colorName => {
-        const colorValue = palette[colorName];
-        return (
-          <Tooltip
-            key={colorName}
-            anchor={
-              <CopyToClipboard
-                text={colorName}
-                onCopy={props.handleCopy(
-                  `Copied: ${colorName} (${colorValue})`,
+  <SpacedGroup>
+    {Object.keys(palette).map(colorName => {
+      const colorValue = palette[colorName];
+      return (
+        <Tooltip
+          key={colorName}
+          anchor={
+            <CopyToClipboard
+              text={colorName}
+              onCopy={props.handleCopy(`Copied: ${colorName} (${colorValue})`)}
+            >
+              <Swatch color={colorValue}>
+                {props.showNames && (
+                  <SpacedGroup direction="vertical" xs={2} center>
+                    <span>{colorValue}</span>
+                    <span>{colorName}</span>
+                  </SpacedGroup>
                 )}
-              >
-                <Swatch color={colorValue}>
-                  {props.showNames && (
-                    <SpacedGroup direction="vertical" xs={2} center>
-                      <span>{colorValue}</span>
-                      <span>{colorName}</span>
-                    </SpacedGroup>
-                  )}
-                </Swatch>
-              </CopyToClipboard>
-            }
-          >
-            <SpacedGroup xs={2}>
-              <span>{colorName}</span>
-            </SpacedGroup>
-          </Tooltip>
-        );
-      })}
-    </SpacedGroup>
-  </StyleProvider>
+              </Swatch>
+            </CopyToClipboard>
+          }
+        >
+          <SpacedGroup xs={2}>
+            <span>{colorName}</span>
+          </SpacedGroup>
+        </Tooltip>
+      );
+    })}
+  </SpacedGroup>
 );
 
 class SmartColorPalette extends React.Component {
