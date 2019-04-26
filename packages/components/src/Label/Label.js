@@ -4,8 +4,9 @@ import { createComponent } from '../StyleProvider';
 
 const LabelText = createComponent(
   ({ disabled, theme }) => ({
-    color: disabled ? theme.Label.disabled.main : 'inherit',
+    color: disabled ? theme.Label.disabled.main : theme.Label.default.main,
     cursor: disabled && 'not-allowed',
+    textTransform: 'uppercase',
   }),
   'span',
   ['data-component', 'data-test'],
