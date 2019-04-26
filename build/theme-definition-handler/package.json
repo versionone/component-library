@@ -1,12 +1,12 @@
 {
   "private": true,
   "name": "@versionone/theme-definition-handler",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.1-alpha.0",
   "description": "Theme Definition docgen handler.",
   "license": "MIT",
   "main": "./src/index.js",
   "dependencies": {
-    "@versionone/custom-proptype-handler": "^3.0.0-alpha.0",
+    "@versionone/custom-proptype-handler": "^3.0.1-alpha.0",
     "react-docgen": "^2.21.0",
     "recast": "^0.16.1"
   }
