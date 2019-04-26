@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/babel-plugin-react-docgen",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.1-alpha.0",
   "description": "Babel plugin for react-docgen that enables customization of handlers",
   "license": "MIT",
   "main": "./src/index.js",
