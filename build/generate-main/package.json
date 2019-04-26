@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/generate-main",
-  "version": "2.0.0",
+  "version": "3.0.0-alpha.0",
   "description": "Generate component package's main `index.js` file.",
   "license": "MIT",
   "bin": "./src/bin/index.js"
