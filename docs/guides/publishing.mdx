@@ -11,10 +11,7 @@ A minor version is when a functionality is added in a backwards-compatible manne
 
 A patch version is when a backward-compatible bug fix is made.
 
-Version numbers follow the pattern MAJOR.MINOR.PATCH
-
-1. types of versions - major/minor/patch
-2. when to publish types -- what is major
+Version numbers should follow the pattern MAJOR.MINOR.PATCH
 
 ## Branching Strategy
 
@@ -22,17 +19,15 @@ There are 2 main branches, `master` and `next`.
 
 `Master` is the current published version. Minor changes such as feature updates and defect fixes should get merged into `master`.
 
-`Next` is the next major version that has not yet been released. Breaking changes should be merged into `next`.
+`Next` is the candidate branch of the next major version that has not yet been released. Breaking changes should be merged into `next`.
 
 After changes have been made to `master`, `next` should be rebased on `master`.
 
-3. branching strategy
-   - 2 main, master and next
-     - master: a place for current published version
-       - minor changes (feature updates, defect fixes) get merged into master and then into next
-     - next: next major version of unreleased stuff
-       - breaking changes get merged into next
-       - rebase as needed on master
+> Pull Request process:
+>
+> - Open Pull Request in Github
+> - Pull Request passes all the things
+> - Use Github to merge Pull Request
 
 ## How to Publish
 
@@ -46,47 +41,41 @@ Login is required, either with the VersionOne account or with an existing accoun
 Feature branches should be merged into `master` before publishing from `master`.
 Minor versions and patches can be published using `yarn lerna publish {minor|patch}`.
 
-Use `NODE_ENV=production yarn build` to build the production bundle and production doc sites.
+> Use `NODE_ENV=production yarn build` to build the production bundle and production doc sites.
 
 ### Publishing Major Versions
 
-4. how to publish
-   - where it publishes to: [npmjs.com](https://www.npmjs.com/package/@versionone/components)
-   - requires login first - versionone account or existing (how to link to our org)
-   - if you want to publish a minor version, command 'yarn lerna publish minor'
-     - feature branch -> master -> publish from master (minor/patch)
-     - `NODE_ENV=production yarn build`
-       - this will build production bundle **and** production docs sites
-     - `yarn lerna publish {minor|patch}`
-   - if publishing major version
-   - next (candidate) => master => publish major
-   - `yarn lerna publish major`
-   - if introducing a new breaking change
-     - feature branch => next => publish canary
-     - `yarn lerna publish --canary {premajor}` (verify against resource 1)
-   - if introducing another breaking change (not the first introducion)
-     - `yarn lerna publish --canary {preminor|prepatch}`
-5. how to publish doc site
-   - docs sites get published on every PR (see PR details for build site)
-   - docs site published on every merge to master and next
-   - however, to publish a new "release" of the site (and not a demo/build)
-   - Log into [netlify](https://www.netlify.com/) (creds are in skynet)
-   - navigate to versionone-components project
-   - on project overview, scroll to "Production Deploys"
-     - click on desired prodcution build
-     - "publish deploy" button
-       - this **may** happen automatically when merging to master
-       - unsure if it builds a deploy, but requires an explicty "button press" or if it will do it automatically (verify)
-6. trouble shooting- common issues
+`Next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
+Major versions can be published using `yarn lerna publish major`.
 
-- oops, I published something wrong...how do a delete/backout a publish
+### Breaking Changes and Canary
 
-7. resources
-   - https://github.com/lerna/lerna/tree/master/commands/publish#--canary
-   - https://semver.org/
+When dealing with breaking changes, a canary release can be used to reduce the risks associated with publishing.
+Changes will be rolled out to a subgroup before everyone in order to allow time for verification.
 
-PR process:
+Feature branches should be merged into `next` before publishing canary.
 
-- open PR in github
-- PR passes all the things
-- use github to merge PR
+Use `yarn lerna publish --canary {premajor}` to verify your published changes against a resource.
+If another breaking change is required, `yarn lerna publish --canary {preminor|prepatch}` should be used.
+
+## Publishing the Site
+
+The docs site gets published on every Pull Request as well as every merge to master and next.
+
+> You can find the build site in the Pull Request details
+
+However, to publish a new release of the site, instead of a demo or build, you'll need to follow these steps:
+
+1. Log into [netlify](https://www.netlify.com/).
+2. Navigate to the `versionone-components` project
+3. On project overview, scroll to "Production Deploys" and click on the desired production build.
+4. Click the "Publish Deploy" button in the first box
+
+## Trouble Shooting Common Issues
+
+Oops, I published something wrong...how do a delete/backout a publish?
+
+## Additional Resources
+
+- https://github.com/lerna/lerna/tree/master/commands/publish#--canary
+- https://semver.org/
