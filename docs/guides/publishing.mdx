@@ -5,11 +5,11 @@ menu: Guides
 
 ## Types of Versions
 
-A major version is when a incompatible API change is made.
+[Semver](https://semver.org/) versioning is used. As an overview:
 
-A minor version is when a functionality is added in a backwards-compatible manner.
-
-A patch version is when a backward-compatible bug fix is made.
+- A **major** version is when a incompatible API change is made.
+- A **minor** version is when a functionality is added in a backwards-compatible manner.
+- A **patch** version is when a backward-compatible bug fix is made.
 
 Version numbers should follow the pattern MAJOR.MINOR.PATCH
 
@@ -17,9 +17,8 @@ Version numbers should follow the pattern MAJOR.MINOR.PATCH
 
 There are 2 main branches, `master` and `next`.
 
-`Master` is the current published version. Minor changes such as feature updates and defect fixes should get merged into `master`.
-
-`Next` is the candidate branch of the next major version that has not yet been released. Breaking changes should be merged into `next`.
+- `master` is the current published version. Minor changes such as feature updates and defect fixes should get merged into `master`.
+- `next` is the candidate branch of the next major version that has not yet been released. Breaking changes should be merged into `next`.
 
 After changes have been made to `master`, `next` should be rebased on `master`.
 
@@ -31,40 +30,46 @@ After changes have been made to `master`, `next` should be rebased on `master`.
 
 ## How to Publish
 
-The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/components).
-Login is required, either with the VersionOne account or with an existing account that is linked to our org.
+The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/components). Login is required, either with the VersionOne account or with an existing account that is linked to our org.
 
 > Be sure to Login using `npm login` before attempting to publish
 
 ### Publishing Minor and Patch Versions
 
-Feature branches should be merged into `master` before publishing from `master`.
-Minor versions and patches can be published using `yarn lerna publish {minor|patch}`.
+Feature branches should be merged into `master` before publishing from `master`. Upon merging to `master`, create a production build and publish with the following:
 
-> Use `NODE_ENV=production yarn build` to build the production bundle and production doc sites.
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish {minor|patch}
+```
 
 ### Publishing Major Versions
 
-`Next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
-Major versions can be published using `yarn lerna publish major`.
+`next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
 
-### Breaking Changes and Canary
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish major
+```
 
-When dealing with breaking changes, a canary release can be used to reduce the risks associated with publishing.
-Changes will be rolled out to a subgroup before everyone in order to allow time for verification.
+### Canary Releases
 
-Feature branches should be merged into `next` before publishing canary.
+Occassionaly there may be changes that we want sooner than waiting for a new version publish. These "canary" releases ([read more](https://github.com/lerna/lerna/tree/master/commands/publish#--canary)) may be made for any given version and provide a way to release experimental features to consumers before an official publish. An example of publishing a canary release:
 
-Use `yarn lerna publish --canary {premajor}` to verify your published changes against a resource.
-If another breaking change is required, `yarn lerna publish --canary {preminor|prepatch}` should be used.
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish --canary {preminor|prepatch}
+# or for a major version
+yarn lerna publish --canary premajor
+```
 
 ## Publishing the Site
 
-The docs site gets published on every Pull Request as well as every merge to master and next.
+A deployment preview of the docs site gets published on every Pull Request as well as every merge to master and next.
 
-> You can find the build site in the Pull Request details
+> You can find a link to the build site in the Pull Request details (upon successfully passing all tests)
 
-However, to publish a new release of the site, instead of a demo or build, you'll need to follow these steps:
+However, to publish a new release of the site, instead of a preview deployment, you'll need to follow these steps:
 
 1. Log into [netlify](https://www.netlify.com/).
 2. Navigate to the `versionone-components` project
@@ -73,7 +78,13 @@ However, to publish a new release of the site, instead of a demo or build, you'l
 
 ## Trouble Shooting Common Issues
 
-Oops, I published something wrong...how do a delete/backout a publish?
+### Unsucessful Publish to NPM
+
+If you are not logged into NPM via `npm login` before attempting to publish, then the publish will fail (half-way). In these cases, the package is **not** published to NPM, but is tagged in the source code and the version in bumped. To undo this, please remove the git tag and remove the commit bumping the version. This can be done with either a revert of the commit or rebase it out (which will require a force push).
+
+### Revert a Publsh to the NPM Registry
+
+This can only be done within 72 hours. See [this article](https://docs.npmjs.com/unpublishing-packages-from-the-registry) for more details.
 
 ## Additional Resources
 
