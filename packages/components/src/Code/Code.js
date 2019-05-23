@@ -4,12 +4,18 @@ import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { WithTheme } from '../StyleProvider';
 
+const languages = {
+  js: 'javascript',
+}
+
+const languageName = key => key in languages ? languages[key] : key;
+
 const Code = ({ children, height, language }) => {
   return (
     <WithTheme>
       {theme => (
         <SyntaxHighlighter
-          language={language || ''}
+          language={languageName(language || '')}
           style={theme.Code}
           customStyle={height ? { height } : null}
           renderer={height ? virtualizedRenderer() : null}
