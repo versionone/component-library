@@ -1,0 +1,92 @@
+---
+name: Publishing
+menu: Guides
+---
+
+## Types of Versions
+
+[Semver](https://semver.org/) versioning is used. As an overview:
+
+- A **major** version is when a incompatible API change is made.
+- A **minor** version is when a functionality is added in a backwards-compatible manner.
+- A **patch** version is when a backward-compatible bug fix is made.
+
+Version numbers should follow the pattern MAJOR.MINOR.PATCH
+
+## Branching Strategy
+
+There are 2 main branches, `master` and `next`.
+
+- `master` is the current published version. Minor changes such as feature updates and defect fixes should get merged into `master`.
+- `next` is the candidate branch of the next major version that has not yet been released. Breaking changes should be merged into `next`.
+
+After changes have been made to `master`, `next` should be rebased on `master`.
+
+> Pull Request process:
+>
+> - Open Pull Request in Github
+> - Pull Request passes all the things
+> - Use Github to merge Pull Request
+
+## How to Publish
+
+The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/components). Login is required, either with the VersionOne account or with an existing account that is linked to our org.
+
+> Be sure to Login using `npm login` before attempting to publish
+
+### Publishing Minor and Patch Versions
+
+Feature branches should be merged into `master` before publishing from `master`. Upon merging to `master`, create a production build and publish with the following:
+
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish {minor|patch}
+```
+
+### Publishing Major Versions
+
+`next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
+
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish major
+```
+
+### Canary Releases
+
+Occassionaly there may be changes that we want sooner than waiting for a new version publish. These "canary" releases ([read more](https://github.com/lerna/lerna/tree/master/commands/publish#--canary)) may be made for any given version and provide a way to release experimental features to consumers before an official publish. An example of publishing a canary release:
+
+```sh
+NODE_ENV=production yarn build
+yarn lerna publish --canary {preminor|prepatch}
+# or for a major version
+yarn lerna publish --canary premajor
+```
+
+## Publishing the Site
+
+A deployment preview of the docs site gets published on every Pull Request as well as every merge to master and next.
+
+> You can find a link to the build site in the Pull Request details (upon successfully passing all tests)
+
+However, to publish a new release of the site, instead of a preview deployment, you'll need to follow these steps:
+
+1. Log into [netlify](https://www.netlify.com/).
+2. Navigate to the `versionone-components` project
+3. On project overview, scroll to "Production Deploys" and click on the desired production build.
+4. Click the "Publish Deploy" button in the first box
+
+## Trouble Shooting Common Issues
+
+### Unsucessful Publish to NPM
+
+If you are not logged into NPM via `npm login` before attempting to publish, then the publish will fail (half-way). In these cases, the package is **not** published to NPM, but is tagged in the source code and the version in bumped. To undo this, please remove the git tag and remove the commit bumping the version. This can be done with either a revert of the commit or rebase it out (which will require a force push).
+
+### Revert a Publsh to the NPM Registry
+
+This can only be done within 72 hours. See [this article](https://docs.npmjs.com/unpublishing-packages-from-the-registry) for more details.
+
+## Additional Resources
+
+- https://github.com/lerna/lerna/tree/master/commands/publish#--canary
+- https://semver.org/
