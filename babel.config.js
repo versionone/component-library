@@ -5,6 +5,7 @@ module.exports = {
     '@babel/plugin-proposal-object-rest-spread',
     'babel-plugin-transform-react-fela-display-name',
     '@babel/plugin-proposal-class-properties',
+    'transform-es2015-modules-umd',
     [
       'babel-plugin-transform-react-remove-prop-types',
       {
