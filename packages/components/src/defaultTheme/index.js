@@ -214,6 +214,7 @@ const internalTheme = {
       inverse: '#1890ff',
     },
     title: palette.gunmetal,
+    titleWeight: "normal",
     description: palette.shuttle,
     fainted: palette.slate,
   },

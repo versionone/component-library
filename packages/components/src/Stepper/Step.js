@@ -126,7 +126,7 @@ const StepTitle = createComponent(
         theme.Stepper.title,
         theme.Stepper.fainted,
       ),
-      'font-weight': '500',
+      'font-weight': theme.Stepper.titleWeight,
       position: 'relative',
       'padding-right': 16,
       ...line,
