@@ -85,22 +85,25 @@ const StepTextContainer = createComponent(
 );
 
 const StepTitle = createComponent(
-  ({ size, direction, seen, current, isLast, theme }) => {
+  ({ size, direction, seen, current, isLast, theme, hasDescription }) => {
     const { topOffset, leftOffset } = getDimensions(size);
 
     const linePosition =
       direction === 'vertical'
         ? {
-            top: topOffset,
             left: leftOffset,
             width: 1,
             height: 9999,
+            ...styleUtils.conditionalStyle(hasDescription,
+          'top',
+          topOffset,
+          topOffset - size/4)
           }
         : {
-            top: 16,
             left: '100%',
             height: 1,
             width: 9999,
+            top: "50%",
           };
 
     const line = isLast
@@ -115,6 +118,7 @@ const StepTitle = createComponent(
               'background-color',
               theme.Stepper.active.main,
               theme.Stepper.inactive.inverse,
+
             ),
             ...linePosition,
           },
@@ -129,7 +133,14 @@ const StepTitle = createComponent(
       'font-weight': theme.Stepper.titleWeight,
       position: 'relative',
       'padding-right': 16,
+      'margin-right': 32,
+      'font-size': size/2,
+      'line-height': `${size/2}px`,
       ...line,
+      ...styleUtils.conditionalStyle(hasDescription,
+        'top',
+        0,
+        size/4)
     };
   },
   'div',
@@ -198,6 +209,7 @@ const Step = props => {
             isLast={props.isLast}
             seen={props.seen}
             current={props.current}
+            hasDescription={!!props.description}
           >
             {props.title}
           </StepTitle>

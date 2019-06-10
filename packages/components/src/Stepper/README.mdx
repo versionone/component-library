@@ -16,6 +16,19 @@ import { ThemeProvider } from "../StyleProvider";
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper>
+      <Stepper.Step title="Finished" seen />
+      <Stepper.Step
+        title="In Progress"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+      />
+      <Stepper.Step
+        title="Finish Line"
+      />
+    </Stepper>
+    <Stepper>
       <Stepper.Step title="Finished" description="Phone number verified" seen />
       <Stepper.Step
         title="In Progress"
@@ -70,6 +83,19 @@ import { ThemeProvider } from "../StyleProvider";
 
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
+    <Stepper direction="vertical">
+      <Stepper.Step title="Finished" seen />
+      <Stepper.Step
+        title="In Progress"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+      />
+      <Stepper.Step
+        title="Finish Line"
+      />
+    </Stepper>
     <Stepper direction="vertical">
       <Stepper.Step title="Finished" description="Phone number verified" seen />
       <Stepper.Step
@@ -133,19 +159,16 @@ import { ThemeProvider } from "../StyleProvider";
       <Stepper size={24} direction="vertical">
         <Stepper.Step
           title="Finished"
-          description="Phone number verified"
           icon={CheckIcon}
           seen
         />
         <Stepper.Step
           title="Finished"
-          description="Organization created"
           icon={CheckIcon}
           seen
         />
         <Stepper.Step
           title="Building workspace"
-          description="Setting up workspace in the background"
           icon={LoadingSpinIcon}
           current
         />
