@@ -201,11 +201,11 @@ const internalTheme = {
     mainHighlight: '#009ff2',
   },
   Stepper: {
-    active: {
+    current: {
       main: '#1890ff',
       inverse: palette.paper,
     },
-    inactive: {
+    default: {
       main: palette.paper,
       inverse: palette.dove,
     },

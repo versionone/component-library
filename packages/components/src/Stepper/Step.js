@@ -30,16 +30,34 @@ const StepIcon = createComponent(
     'font-size': getDimensions(size).fontSize,
     'margin-right': 8,
     ...styleUtils.conditionalStyle(
-      seen || current,
+      current,
       'border-color',
-      theme.Stepper.active.main,
-      theme.Stepper.inactive.inverse,
+      theme.Stepper.current.inverse,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'border-color',
+      theme.Stepper.seen.inverse,
+    ),
+    ...styleUtils.conditionalStyle(
+      !(current || seen),
+      'border-color',
+      theme.Stepper.default.inverse,
     ),
     ...styleUtils.conditionalStyle(
       current,
       'background-color',
-      theme.Stepper.active.main,
-      theme.Stepper.active.inverse,
+      theme.Stepper.current.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'background-color',
+      theme.Stepper.seen.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      !(current || seen),
+      'background-color',
+      theme.Stepper.default.main,
     ),
     display: 'flex',
     'align-items': 'center',
@@ -61,13 +79,17 @@ const StepIconNumber = createComponent(
     ...styleUtils.conditionalStyle(
       current,
       'color',
-      theme.Stepper.active.inverse,
+      theme.Stepper.current.inverse,
     ),
-    ...styleUtils.conditionalStyle(seen, 'color', theme.Stepper.active.main),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'color',
+      theme.Stepper.seen.inverse,
+    ),
     ...styleUtils.conditionalStyle(
       !(seen || current),
       'color',
-      theme.Stepper.inactive.inverse,
+      theme.Stepper.default.inverse,
     ),
   }),
   'span',
@@ -116,8 +138,8 @@ const StepTitle = createComponent(
             ...styleUtils.conditionalStyle(
               seen || current,
               'background-color',
-              theme.Stepper.active.main,
-              theme.Stepper.inactive.inverse,
+              theme.Stepper.current.main,
+              theme.Stepper.default.inverse,
 
             ),
             ...linePosition,
