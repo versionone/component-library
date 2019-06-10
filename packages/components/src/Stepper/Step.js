@@ -32,7 +32,7 @@ const StepIcon = createComponent(
     ...styleUtils.conditionalStyle(
       current,
       'border-color',
-      theme.Stepper.current.inverse,
+      theme.Stepper.current.main,
     ),
     ...styleUtils.conditionalStyle(
       seen,
