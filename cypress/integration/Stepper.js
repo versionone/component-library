@@ -76,7 +76,10 @@ context('Stepper', () => {
         .eq(1)
         .children('div')
         .eq(0)
-        .should('have.css', 'font-weight', '700');
+        .should(($title) => {
+          const fw = $title.css('font-weight');
+          expect(fw).to.be.oneOf(['700', 'bold'])
+        });
     }
   );
 });
