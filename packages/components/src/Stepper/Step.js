@@ -8,7 +8,7 @@ import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
 
 const getDimensions = size => {
   const leftOffset = (size / 2 + 8) * -1;
-  const topOffset = size + 4;
+  const topOffset = size;
   const fontSize = size / 2;
 
   return {
@@ -214,11 +214,6 @@ const StepImpl = createComponent(
   ({ direction }) => ({
     display: 'flex',
     'flex-direction': 'row',
-    ...styleUtils.conditionalStyle(
-      direction === 'vertical',
-      'margin-bottom',
-      4,
-    ),
     ...styleUtils.conditionalStyle(direction === 'vertical', 'height', 60),
     ...styleUtils.conditionalStyle(
       direction !== 'vertical',
