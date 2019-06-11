@@ -204,19 +204,22 @@ const internalTheme = {
     current: {
       main: '#1890ff',
       inverse: palette.paper,
+      title: palette.gunmetal,
+      description: palette.shuttle,
     },
     default: {
       main: palette.paper,
       inverse: palette.dove,
+      title: palette.slate,
+      description: palette.slate,
     },
     seen: {
       main: palette.paper,
       inverse: '#1890ff',
+      title: palette.slate,
+      description: palette.slate,
     },
-    title: palette.gunmetal,
     titleWeight: "normal",
-    description: palette.shuttle,
-    fainted: palette.slate,
   },
   Timeline: {
     main: palette.dove,

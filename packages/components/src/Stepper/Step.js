@@ -149,8 +149,17 @@ const StepTitle = createComponent(
       ...styleUtils.conditionalStyle(
         current,
         'color',
-        theme.Stepper.title,
-        theme.Stepper.fainted,
+        theme.Stepper.current.title,
+      ),
+      ...styleUtils.conditionalStyle(
+        seen,
+        'color',
+        theme.Stepper.seen.title,
+      ),
+      ...styleUtils.conditionalStyle(
+        !(current || seen),
+        'color',
+        theme.Stepper.default.title,
       ),
       'font-weight': theme.Stepper.titleWeight,
       position: 'relative',
@@ -169,12 +178,21 @@ const StepTitle = createComponent(
 );
 
 const StepDescription = createComponent(
-  ({ size, direction, current, theme }) => ({
+  ({ size, direction, current, seen, theme }) => ({
     ...styleUtils.conditionalStyle(
       current,
       'color',
-      theme.Stepper.description,
-      theme.Stepper.fainted,
+      theme.Stepper.current.description,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'color',
+      theme.Stepper.seen.description,
+    ),
+    ...styleUtils.conditionalStyle(
+      !(current || seen),
+      'color',
+      theme.Stepper.default.description,
     ),
     'font-size': getDimensions(size).fontSize - 2,
     overflow: 'hidden',
@@ -239,6 +257,7 @@ const Step = props => {
             size={props.size}
             direction={props.direction}
             current={props.current}
+            seen={props.seen}
           >
             {props.description}
           </StepDescription>
