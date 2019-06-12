@@ -69,6 +69,20 @@ const StepIcon = createComponent(
       'align-items': 'center',
     },
     'box-sizing': 'border-box',
+    ...styleUtils.conditionalStyle(
+      current,
+      ':before',
+      {
+        content: '""',
+        position: 'absolute',
+        'background-color': theme.Stepper.current.main,
+        opacity: .4,
+        'border-radius': '50%',
+        width: size + (size / 8) * 2,
+        height: size + (size / 8) * 2,
+        'box-sizing': 'border-box',
+      }
+    ),
   }),
   'div',
 );
