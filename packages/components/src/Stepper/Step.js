@@ -67,6 +67,7 @@ const StepIcon = createComponent(
       display: 'flex',
       'align-items': 'center',
     },
+    'box-sizing': 'border-box',
   }),
   'div',
 );
