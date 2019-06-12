@@ -271,10 +271,11 @@ const StepDescription = createComponent(
 );
 
 const StepImpl = createComponent(
-  ({ direction }) => ({
+  ({ direction, size, isLast, lineLength, afterLength }) => ({
     display: 'flex',
     'flex-direction': 'row',
-    ...styleUtils.conditionalStyle(direction === 'vertical', 'height', 60),
+    ...styleUtils.conditionalStyle(direction === 'vertical' && isLast, 'height', size + afterLength),
+    ...styleUtils.conditionalStyle(direction === 'vertical' && !isLast, 'height', lineLength),
     ...styleUtils.conditionalStyle(
       direction !== 'vertical',
       'margin-right',
@@ -291,7 +292,14 @@ const Step = props => {
 
   return (
     <StyleProvider>
-      <StepImpl data-component="Step" direction={props.direction}>
+      <StepImpl
+        data-component="Step"
+        direction={props.direction}
+        size={props.size}
+        isLast={props.isLast}
+        lineLength={props.lineLength}
+        afterLength={props.afterLength}
+      >
         <StepIcon size={props.size} seen={props.seen} current={props.current}>
           <StepIconNumber seen={props.seen} current={props.current}>
             {stepIcon}
