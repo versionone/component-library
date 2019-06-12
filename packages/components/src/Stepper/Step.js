@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import {palette} from "../palette";
 
 // const size = 24;
 // const leftOffset = ((size / 2) + 8) * -1;
@@ -115,18 +116,68 @@ const StepTitle = createComponent(
       direction === 'vertical'
         ? {
             left: leftOffset,
-            width: 1,
+            width: 0,
             height: 9999,
-            ...styleUtils.conditionalStyle(hasDescription,
-          'top',
-          topOffset,
-          topOffset - size/4)
+            ...styleUtils.conditionalStyle(
+              hasDescription,
+              'top',
+              topOffset,
+              topOffset - size/4
+            ),
+            ...styleUtils.conditionalStyles(
+              current,
+              {
+                'border-left-style': theme.Stepper.current.lineStyle,
+                'border-left-color': theme.Stepper.current.lineColor,
+                'border-left-width': theme.Stepper.current.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              seen,
+              {
+                'border-left-style': theme.Stepper.seen.lineStyle,
+                'border-left-color': theme.Stepper.seen.lineColor,
+                'border-left-width': theme.Stepper.seen.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              !(current || seen),
+              {
+                'border-left-style': theme.Stepper.default.lineStyle,
+                'border-left-color': theme.Stepper.default.lineColor,
+                'border-left-width': theme.Stepper.default.lineWidth,
+              }
+            ),
           }
         : {
             left: '100%',
-            height: 1,
+            height: 0,
             width: 9999,
             top: "50%",
+            ...styleUtils.conditionalStyles(
+              current,
+              {
+                'border-top-style': theme.Stepper.current.lineStyle,
+                'border-top-color': theme.Stepper.current.lineColor,
+                'border-top-width': theme.Stepper.current.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              seen,
+              {
+                'border-top-style': theme.Stepper.seen.lineStyle,
+                'border-top-color': theme.Stepper.seen.lineColor,
+                'border-top-width': theme.Stepper.seen.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              !(current || seen),
+              {
+                'border-top-style': theme.Stepper.default.lineStyle,
+                'border-top-color': theme.Stepper.default.lineColor,
+                'border-top-width': theme.Stepper.default.lineWidth,
+              }
+            ),
           };
 
     const line = isLast
@@ -136,13 +187,7 @@ const StepTitle = createComponent(
             content: '""',
             display: 'block',
             position: 'absolute',
-            ...styleUtils.conditionalStyle(
-              seen || current,
-              'background-color',
-              theme.Stepper.current.main,
-              theme.Stepper.default.inverse,
-
-            ),
+            'background-color': palette.transparent,
             ...linePosition,
           },
         };
