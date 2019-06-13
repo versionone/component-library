@@ -51,7 +51,7 @@ Stepper.propTypes = {
    */
   lineLength: PropTypes.number,
   /**
-   * Determine the space after the last step of the stepper
+   * Determine the space after the last step of the stepper, since there is no line after the step to create this space.
    */
   afterLength: PropTypes.number,
 };
