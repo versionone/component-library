@@ -7,6 +7,7 @@ import { Playground, PropsTable } from '@versionone/doc-components';
 import { Stepper } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
+import { ThemeProvider } from "../StyleProvider";
 
 `Steps` guide users through a set of tasks that are best completed in order.
 
@@ -15,10 +16,23 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper>
-      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step title="Finished" seen />
       <Stepper.Step
         title="In Progress"
-        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+      />
+      <Stepper.Step
+        title="Finish Line"
+      />
+    </Stepper>
+    <Stepper>
+      <Stepper.Step title="Finished" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and needs action"
         current
       />
       <Stepper.Step
@@ -34,7 +48,7 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
       <Stepper.Step title="Step 1" description="Additional information" seen />
       <Stepper.Step
         title="Step 2"
-        description="Step is in progress and nees action"
+        description="Step is in progress and needs action"
         current
       />
       <Stepper.Step
@@ -53,7 +67,7 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
       />
       <Stepper.Step
         title="Step 2"
-        description="Step is in progress and nees action"
+        description="Step is in progress and needs action"
         icon={LoadingSpinIcon}
         current
       />
@@ -70,10 +84,23 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper direction="vertical">
-      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step title="Finished" seen />
       <Stepper.Step
         title="In Progress"
-        description="Step is in progress and nees action"
+        current
+      />
+      <Stepper.Step
+        title="Needs Action"
+      />
+      <Stepper.Step
+        title="Finish Line"
+      />
+    </Stepper>
+    <Stepper direction="vertical">
+      <Stepper.Step title="Finished" description="Phone number verified" seen />
+      <Stepper.Step
+        title="In Progress"
+        description="Step is in progress and needs action"
         current
       />
       <Stepper.Step
@@ -93,10 +120,10 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper size={24}>
-      <Stepper.Step title="Finsihed" description="Phone number verified" seen />
+      <Stepper.Step title="Finished" description="Phone number verified" seen />
       <Stepper.Step
         title="In Progress"
-        description="Step is in progress and nees action"
+        description="Step is in progress and needs action"
         current
       />
       <Stepper.Step
@@ -110,7 +137,7 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
     </Stepper>
     <Stepper size={24} direction="vertical">
       <Stepper.Step
-        title="Finsihed"
+        title="Finished"
         description="Phone number verified"
         icon={CheckIcon}
         seen
@@ -128,6 +155,42 @@ import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
         current
       />
     </Stepper>
+    <ThemeProvider theme={{ Stepper: { titleWeight: "bold"} }}>
+      <Stepper size={24} direction="vertical">
+        <Stepper.Step
+          title="Finished"
+          icon={CheckIcon}
+          seen
+        />
+        <Stepper.Step
+          title="Finished"
+          icon={CheckIcon}
+          seen
+        />
+        <Stepper.Step
+          title="Building workspace"
+          icon={LoadingSpinIcon}
+          current
+        />
+      </Stepper>
+    </ThemeProvider>
+     <Stepper size={24} direction="vertical" lineLength={90} afterLength={0}>
+        <Stepper.Step
+          title="Finished"
+          icon={CheckIcon}
+          seen
+        />
+        <Stepper.Step
+          title="Finished"
+          icon={CheckIcon}
+          seen
+        />
+        <Stepper.Step
+          title="Building workspace"
+          icon={LoadingSpinIcon}
+          current
+        />
+      </Stepper>
   </SpacedGroup>
 </Playground>
 

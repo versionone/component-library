@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
+import {palette} from "../palette";
 
 // const size = 24;
 // const leftOffset = ((size / 2) + 8) * -1;
@@ -8,7 +9,7 @@ import { createComponent, styleUtils, StyleProvider } from '../StyleProvider';
 
 const getDimensions = size => {
   const leftOffset = (size / 2 + 8) * -1;
-  const topOffset = size + 4;
+  const topOffset = size;
   const fontSize = size / 2;
 
   return {
@@ -19,7 +20,11 @@ const getDimensions = size => {
 };
 
 const StepIcon = createComponent(
-  ({ size, seen, current, theme }) => ({
+  ({ size, seen, current, theme }) => {
+
+
+    const unseen = !(current || seen);
+    return {
     width: size,
     height: size,
     'min-width': size,
@@ -30,16 +35,34 @@ const StepIcon = createComponent(
     'font-size': getDimensions(size).fontSize,
     'margin-right': 8,
     ...styleUtils.conditionalStyle(
-      seen || current,
+      current,
       'border-color',
-      theme.Stepper.active.main,
-      theme.Stepper.inactive.inverse,
+      theme.Stepper.current.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'border-color',
+      theme.Stepper.seen.inverse,
+    ),
+    ...styleUtils.conditionalStyle(
+      unseen,
+      'border-color',
+      theme.Stepper.default.inverse,
     ),
     ...styleUtils.conditionalStyle(
       current,
       'background-color',
-      theme.Stepper.active.main,
-      theme.Stepper.active.inverse,
+      theme.Stepper.current.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'background-color',
+      theme.Stepper.seen.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      unseen,
+      'background-color',
+      theme.Stepper.default.main,
     ),
     display: 'flex',
     'align-items': 'center',
@@ -49,7 +72,22 @@ const StepIcon = createComponent(
       display: 'flex',
       'align-items': 'center',
     },
-  }),
+    'box-sizing': 'border-box',
+    ...styleUtils.conditionalStyle(
+      current,
+      ':before',
+      {
+        content: '""',
+        position: 'absolute',
+        'background-color': theme.Stepper.current.main,
+        opacity: .4,
+        'border-radius': '50%',
+        width: size + (size / 8) * 2,
+        height: size + (size / 8) * 2,
+        'box-sizing': 'border-box',
+      }
+    ),
+  }},
   'div',
 );
 
@@ -61,13 +99,17 @@ const StepIconNumber = createComponent(
     ...styleUtils.conditionalStyle(
       current,
       'color',
-      theme.Stepper.active.inverse,
+      theme.Stepper.current.inverse,
     ),
-    ...styleUtils.conditionalStyle(seen, 'color', theme.Stepper.active.main),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'color',
+      theme.Stepper.seen.inverse,
+    ),
     ...styleUtils.conditionalStyle(
       !(seen || current),
       'color',
-      theme.Stepper.inactive.inverse,
+      theme.Stepper.default.inverse,
     ),
   }),
   'span',
@@ -85,22 +127,76 @@ const StepTextContainer = createComponent(
 );
 
 const StepTitle = createComponent(
-  ({ size, direction, seen, current, isLast, theme }) => {
+  ({ size, direction, seen, current, isLast, theme, hasDescription, lineLength, afterLength }) => {
     const { topOffset, leftOffset } = getDimensions(size);
 
+    const unseen = !(current || seen);
     const linePosition =
       direction === 'vertical'
         ? {
-            top: topOffset,
             left: leftOffset,
-            width: 1,
+            width: 0,
             height: 9999,
+            ...styleUtils.conditionalStyle(
+              hasDescription,
+              'top',
+              topOffset,
+              topOffset - size/4
+            ),
+            ...styleUtils.conditionalStyles(
+              current,
+              {
+                'border-left-style': theme.Stepper.current.lineStyle,
+                'border-left-color': theme.Stepper.current.lineColor,
+                'border-left-width': theme.Stepper.current.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              seen,
+              {
+                'border-left-style': theme.Stepper.seen.lineStyle,
+                'border-left-color': theme.Stepper.seen.lineColor,
+                'border-left-width': theme.Stepper.seen.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              unseen,
+              {
+                'border-left-style': theme.Stepper.default.lineStyle,
+                'border-left-color': theme.Stepper.default.lineColor,
+                'border-left-width': theme.Stepper.default.lineWidth,
+              }
+            ),
           }
         : {
-            top: 16,
             left: '100%',
-            height: 1,
+            height: 0,
             width: 9999,
+            top: "50%",
+            ...styleUtils.conditionalStyles(
+              current,
+              {
+                'border-top-style': theme.Stepper.current.lineStyle,
+                'border-top-color': theme.Stepper.current.lineColor,
+                'border-top-width': theme.Stepper.current.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              seen,
+              {
+                'border-top-style': theme.Stepper.seen.lineStyle,
+                'border-top-color': theme.Stepper.seen.lineColor,
+                'border-top-width': theme.Stepper.seen.lineWidth,
+              }
+            ),
+            ...styleUtils.conditionalStyles(
+              unseen,
+              {
+                'border-top-style': theme.Stepper.default.lineStyle,
+                'border-top-color': theme.Stepper.default.lineColor,
+                'border-top-width': theme.Stepper.default.lineWidth,
+              }
+            ),
           };
 
     const line = isLast
@@ -110,12 +206,7 @@ const StepTitle = createComponent(
             content: '""',
             display: 'block',
             position: 'absolute',
-            ...styleUtils.conditionalStyle(
-              seen || current,
-              'background-color',
-              theme.Stepper.active.main,
-              theme.Stepper.inactive.inverse,
-            ),
+            'background-color': palette.transparent,
             ...linePosition,
           },
         };
@@ -123,25 +214,54 @@ const StepTitle = createComponent(
       ...styleUtils.conditionalStyle(
         current,
         'color',
-        theme.Stepper.title,
-        theme.Stepper.fainted,
+        theme.Stepper.current.title,
       ),
-      'font-weight': '500',
+      ...styleUtils.conditionalStyle(
+        seen,
+        'color',
+        theme.Stepper.seen.title,
+      ),
+      ...styleUtils.conditionalStyle(
+        unseen,
+        'color',
+        theme.Stepper.default.title,
+      ),
+      'font-weight': theme.Stepper.titleWeight,
       position: 'relative',
       'padding-right': 16,
+      'margin-right': lineLength,
+      ...styleUtils.conditionalStyle(isLast, 'margin-right', afterLength),
+      ...styleUtils.conditionalStyle(!isLast, 'margin-right', lineLength),
+      'font-size': size/2,
+      'line-height': `${size/2}px`,
       ...line,
+      ...styleUtils.conditionalStyle(hasDescription,
+        'top',
+        0,
+        size/4)
     };
   },
   'div',
 );
 
 const StepDescription = createComponent(
-  ({ size, direction, current, theme }) => ({
+  ({ size, direction, current, seen, theme }) => {
+    const unseen = !(current || seen);
+    return {
     ...styleUtils.conditionalStyle(
       current,
       'color',
-      theme.Stepper.description,
-      theme.Stepper.fainted,
+      theme.Stepper.current.description,
+    ),
+    ...styleUtils.conditionalStyle(
+      seen,
+      'color',
+      theme.Stepper.seen.description,
+    ),
+    ...styleUtils.conditionalStyle(
+      unseen,
+      'color',
+      theme.Stepper.default.description,
     ),
     'font-size': getDimensions(size).fontSize - 2,
     overflow: 'hidden',
@@ -155,20 +275,16 @@ const StepDescription = createComponent(
     ),
     ...styleUtils.conditionalStyle(direction !== 'vertical', 'max-width', 140),
     ...styleUtils.conditionalStyle(direction !== 'vertical', 'min-width', 0),
-  }),
+  }},
   'div',
 );
 
 const StepImpl = createComponent(
-  ({ direction }) => ({
+  ({ direction, size, isLast, lineLength, afterLength }) => ({
     display: 'flex',
     'flex-direction': 'row',
-    ...styleUtils.conditionalStyle(
-      direction === 'vertical',
-      'margin-bottom',
-      4,
-    ),
-    ...styleUtils.conditionalStyle(direction === 'vertical', 'height', 60),
+    ...styleUtils.conditionalStyle(direction === 'vertical' && isLast, 'height', size + afterLength),
+    ...styleUtils.conditionalStyle(direction === 'vertical' && !isLast, 'height', size + lineLength),
     ...styleUtils.conditionalStyle(
       direction !== 'vertical',
       'margin-right',
@@ -185,7 +301,14 @@ const Step = props => {
 
   return (
     <StyleProvider>
-      <StepImpl data-component="Step" direction={props.direction}>
+      <StepImpl
+        data-component="Step"
+        direction={props.direction}
+        size={props.size}
+        isLast={props.isLast}
+        lineLength={props.lineLength}
+        afterLength={props.afterLength}
+      >
         <StepIcon size={props.size} seen={props.seen} current={props.current}>
           <StepIconNumber seen={props.seen} current={props.current}>
             {stepIcon}
@@ -198,6 +321,9 @@ const Step = props => {
             isLast={props.isLast}
             seen={props.seen}
             current={props.current}
+            hasDescription={!!props.description}
+            lineLength={props.lineLength}
+            afterLength={props.afterLength}
           >
             {props.title}
           </StepTitle>
@@ -205,6 +331,7 @@ const Step = props => {
             size={props.size}
             direction={props.direction}
             current={props.current}
+            seen={props.seen}
           >
             {props.description}
           </StepDescription>

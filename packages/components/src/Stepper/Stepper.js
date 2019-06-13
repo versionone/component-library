@@ -25,6 +25,8 @@ class Stepper extends React.Component {
         isLast: i === count,
         direction: this.props.direction,
         size: this.props.size,
+        lineLength: this.props.lineLength,
+        afterLength: this.props.afterLength,
       }),
     );
     return (
@@ -44,11 +46,21 @@ Stepper.propTypes = {
    * Determine the size of the stepper
    */
   size: PropTypes.oneOf([24, 36]),
+  /**
+   * Determine the length of the line between steps. The length of the line may be longer on horizontal steppers if the description is longer than the title.
+   */
+  lineLength: PropTypes.number,
+  /**
+   * Determine the space after the last step of the stepper, since there is no line after the step to create this space.
+   */
+  afterLength: PropTypes.number,
 };
 
 Stepper.defaultProps = {
   direction: 'horizontal',
   size: 36,
+  lineLength: 24,
+  afterLength: 24,
 };
 
 export { Stepper };

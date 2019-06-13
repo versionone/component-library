@@ -201,21 +201,34 @@ const internalTheme = {
     mainHighlight: '#009ff2',
   },
   Stepper: {
-    active: {
+    current: {
       main: '#1890ff',
       inverse: palette.paper,
+      title: palette.gunmetal,
+      description: palette.shuttle,
+      lineStyle: "dashed",
+      lineColor: palette.dove,
+      lineWidth: 1,
     },
-    inactive: {
+    default: {
       main: palette.paper,
       inverse: palette.dove,
+      title: palette.slate,
+      description: palette.slate,
+      lineStyle: "dashed",
+      lineColor: palette.dove,
+      lineWidth: 1,
     },
     seen: {
       main: palette.paper,
       inverse: '#1890ff',
+      title: palette.slate,
+      description: palette.slate,
+      lineStyle: "solid",
+      lineColor: "#1890ff",
+      lineWidth: 1,
     },
-    title: palette.gunmetal,
-    description: palette.shuttle,
-    fainted: palette.slate,
+    titleWeight: "normal",
   },
   Timeline: {
     main: palette.dove,
