@@ -20,7 +20,11 @@ const getDimensions = size => {
 };
 
 const StepIcon = createComponent(
-  ({ size, seen, current, theme }) => ({
+  ({ size, seen, current, theme }) => {
+
+
+    const unseen = !(current || seen);
+    return {
     width: size,
     height: size,
     'min-width': size,
@@ -41,7 +45,7 @@ const StepIcon = createComponent(
       theme.Stepper.seen.inverse,
     ),
     ...styleUtils.conditionalStyle(
-      !(current || seen),
+      unseen,
       'border-color',
       theme.Stepper.default.inverse,
     ),
@@ -56,7 +60,7 @@ const StepIcon = createComponent(
       theme.Stepper.seen.main,
     ),
     ...styleUtils.conditionalStyle(
-      !(current || seen),
+      unseen,
       'background-color',
       theme.Stepper.default.main,
     ),
@@ -83,7 +87,7 @@ const StepIcon = createComponent(
         'box-sizing': 'border-box',
       }
     ),
-  }),
+  }},
   'div',
 );
 
@@ -126,6 +130,7 @@ const StepTitle = createComponent(
   ({ size, direction, seen, current, isLast, theme, hasDescription, lineLength, afterLength }) => {
     const { topOffset, leftOffset } = getDimensions(size);
 
+    const unseen = !(current || seen);
     const linePosition =
       direction === 'vertical'
         ? {
@@ -155,7 +160,7 @@ const StepTitle = createComponent(
               }
             ),
             ...styleUtils.conditionalStyles(
-              !(current || seen),
+              unseen,
               {
                 'border-left-style': theme.Stepper.default.lineStyle,
                 'border-left-color': theme.Stepper.default.lineColor,
@@ -185,7 +190,7 @@ const StepTitle = createComponent(
               }
             ),
             ...styleUtils.conditionalStyles(
-              !(current || seen),
+              unseen,
               {
                 'border-top-style': theme.Stepper.default.lineStyle,
                 'border-top-color': theme.Stepper.default.lineColor,
@@ -217,7 +222,7 @@ const StepTitle = createComponent(
         theme.Stepper.seen.title,
       ),
       ...styleUtils.conditionalStyle(
-        !(current || seen),
+        unseen,
         'color',
         theme.Stepper.default.title,
       ),
@@ -240,7 +245,9 @@ const StepTitle = createComponent(
 );
 
 const StepDescription = createComponent(
-  ({ size, direction, current, seen, theme }) => ({
+  ({ size, direction, current, seen, theme }) => {
+    const unseen = !(current || seen);
+    return {
     ...styleUtils.conditionalStyle(
       current,
       'color',
@@ -252,7 +259,7 @@ const StepDescription = createComponent(
       theme.Stepper.seen.description,
     ),
     ...styleUtils.conditionalStyle(
-      !(current || seen),
+      unseen,
       'color',
       theme.Stepper.default.description,
     ),
@@ -268,7 +275,7 @@ const StepDescription = createComponent(
     ),
     ...styleUtils.conditionalStyle(direction !== 'vertical', 'max-width', 140),
     ...styleUtils.conditionalStyle(direction !== 'vertical', 'min-width', 0),
-  }),
+  }},
   'div',
 );
 
