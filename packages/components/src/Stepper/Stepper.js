@@ -47,7 +47,7 @@ Stepper.propTypes = {
    */
   size: PropTypes.oneOf([24, 36]),
   /**
-   * Determine the length of the line between steps
+   * Determine the length of the line between steps. The length of the line may be longer on horizontal steppers if the description is longer than the title.
    */
   lineLength: PropTypes.number,
   /**
@@ -59,7 +59,7 @@ Stepper.propTypes = {
 Stepper.defaultProps = {
   direction: 'horizontal',
   size: 36,
-  lineLength: 60,
+  lineLength: 24,
   afterLength: 24,
 };
 

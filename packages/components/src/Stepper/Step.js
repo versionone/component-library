@@ -123,7 +123,7 @@ const StepTextContainer = createComponent(
 );
 
 const StepTitle = createComponent(
-  ({ size, direction, seen, current, isLast, theme, hasDescription }) => {
+  ({ size, direction, seen, current, isLast, theme, hasDescription, lineLength, afterLength }) => {
     const { topOffset, leftOffset } = getDimensions(size);
 
     const linePosition =
@@ -224,7 +224,9 @@ const StepTitle = createComponent(
       'font-weight': theme.Stepper.titleWeight,
       position: 'relative',
       'padding-right': 16,
-      'margin-right': 32,
+      'margin-right': lineLength,
+      ...styleUtils.conditionalStyle(isLast, 'margin-right', afterLength),
+      ...styleUtils.conditionalStyle(!isLast, 'margin-right', lineLength),
       'font-size': size/2,
       'line-height': `${size/2}px`,
       ...line,
@@ -275,7 +277,7 @@ const StepImpl = createComponent(
     display: 'flex',
     'flex-direction': 'row',
     ...styleUtils.conditionalStyle(direction === 'vertical' && isLast, 'height', size + afterLength),
-    ...styleUtils.conditionalStyle(direction === 'vertical' && !isLast, 'height', lineLength),
+    ...styleUtils.conditionalStyle(direction === 'vertical' && !isLast, 'height', size + lineLength),
     ...styleUtils.conditionalStyle(
       direction !== 'vertical',
       'margin-right',
@@ -313,6 +315,8 @@ const Step = props => {
             seen={props.seen}
             current={props.current}
             hasDescription={!!props.description}
+            lineLength={props.lineLength}
+            afterLength={props.afterLength}
           >
             {props.title}
           </StepTitle>
