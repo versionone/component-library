@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { createContext } from 'react';
 import mergeThemes from './mergeThemes';
+import { defaultTheme } from '../defaultTheme';
 
-const { Consumer, Provider } = createContext();
+const { Consumer, Provider } = createContext(defaultTheme());
 
 const ThemeProvider = ({ children, theme }) => (
   <Consumer>

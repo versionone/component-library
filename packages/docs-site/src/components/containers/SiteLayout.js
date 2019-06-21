@@ -78,7 +78,7 @@ class SiteLayout extends React.Component {
     const isCentered = width > mainWidth + asideWidth * 2;
 
     return (
-      <StyleProvider>
+      // <StyleProvider>
         <EventListener
           onResize={this.handleResize}
           target={typeof window !== 'undefined' ? window : 'window'}
@@ -137,7 +137,7 @@ class SiteLayout extends React.Component {
             )}
           />
         </EventListener>
-      </StyleProvider>
+      // </StyleProvider>
     );
   }
 }
