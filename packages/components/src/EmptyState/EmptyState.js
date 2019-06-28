@@ -7,7 +7,7 @@ import { SpacedGroup } from '../SpacedGroup';
 const Impl = createComponent(
   ({ theme }) => {
     return {
-      color: theme.EmptyState.main,
+      fill: theme.EmptyState.iconColor,
     };
   },
   'div',
@@ -15,9 +15,10 @@ const Impl = createComponent(
 );
 
 const Title = createComponent(
-  () => ({
+  ({ theme }) => ({
     'font-size': '1.429em',
     'font-weight': '300',
+    color: theme.EmptyState.main,
   }),
   'h2',
 );
