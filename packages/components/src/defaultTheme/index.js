@@ -183,6 +183,7 @@ const internalTheme = {
   },
   EmptyState: {
     main: palette.heather,
+    iconColor: palette.shuttle,
   },
   Link: {
     main: '#07496b',
