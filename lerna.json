@@ -5,5 +5,5 @@
     "build/*",
     "packages/*"
   ],
-  "version": "3.0.1-alpha.0"
+  "version": "4.0.0"
 }
