@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent, memo } from 'react';
 import { isEmpty, last } from 'underscore';
 import FocusContext from './FocusContext';
 
 const history = [];
 let currentGroupId = null;
 
-class FocusManager extends React.Component {
+const ManagedFocus = memo(({ children, pop }) => children(pop));
+
+class FocusManager extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -18,7 +20,7 @@ class FocusManager extends React.Component {
     const { children } = this.props;
     return (
       <FocusContext.Provider value={{ currentGroupId, onFocus: this.onFocus }}>
-        {children(this.pop)}
+        <ManagedFocus pop={this.pop}>{children}</ManagedFocus>
       </FocusContext.Provider>
     );
   }

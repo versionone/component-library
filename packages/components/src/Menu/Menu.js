@@ -1,57 +1,72 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { noop, isFunction } from 'underscore';
-import { FocusManager } from '../FocusManager';
+import { Manager, Reference, Popper } from 'react-popper';
 import { Paper } from '../Paper';
-import { Popover } from '../Popover';
 import { Scrim } from '../Scrim';
 import { ScrollableContainer } from '../ScrollableContainer';
 import { createComponent, styleUtils } from '../StyleProvider';
+import { PortalContainer } from '../PortalContainer';
+import { DetectExternalEvents } from '../DetectExternalEvents';
 
-const AdjustmentForFocusDisplay = createComponent(
-  () => ({
-    ...styleUtils.margin(1),
+const PositionedMenu = createComponent(
+  ({ style }) => ({
+    ...style,
   }),
   'div',
+  ['data-placement', 'data-component', 'data-test'],
 );
 
 const MenuChildren = ({
+  dataTest,
+  placement,
+  modifiers,
   width,
   height,
   disableContainment,
+  open,
   children,
-  onKeyDown,
+  close,
 }) => {
-  const list = React.Children.toArray(children)[0];
-  const listItems = React.Children.map(list.props.children, (child, i) => {
-    const childProps = {
-      key: i,
-      onKeyDown: evt => {
-        onKeyDown(evt);
-        child.props.onKeyDown(evt);
-      },
-    };
-    return React.cloneElement(child, childProps);
-  });
+  const renderChildren = () => {
+    if (!open) return null;
+    return children;
+  };
 
-  const focusableList = React.cloneElement(list, {
-    children: listItems,
-  });
+  return (
+    <PortalContainer mounted={open}>
+      <Popper placement={placement} positionFixed={true} modifiers={modifiers}>
+        {({ ref, style, placement }) => {
+          const container = (
+            <ScrollableContainer width={width} height={height}>
+              {renderChildren()}
+            </ScrollableContainer>
+          );
 
-  const container = (
-    <ScrollableContainer width={width} height={height}>
-      <AdjustmentForFocusDisplay>{focusableList}</AdjustmentForFocusDisplay>
-    </ScrollableContainer>
+          const positionedMenu = disableContainment ? (
+            container
+          ) : (
+            <Paper>{container}</Paper>
+          );
+
+          return (
+            <PositionedMenu
+              innerRef={ref}
+              style={style}
+              data-placement={placement}
+              data-component="Menu"
+              data-test={dataTest}
+            >
+              {positionedMenu}
+            </PositionedMenu>
+          );
+        }}
+      </Popper>
+    </PortalContainer>
   );
-  const positionedMenu = disableContainment ? (
-    container
-  ) : (
-    <Paper>{container}</Paper>
-  );
-  return positionedMenu;
 };
 
-class Menu extends React.Component {
+class Menu extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -79,16 +94,12 @@ class Menu extends React.Component {
 
   handleKeyDown(event) {
     const isEscape = event.which === 27;
-    if (!isEscape) return;
-    this.close(event);
+    isEscape && this.props && this.props.open && this.close(event);
   }
 
   close(event) {
     const { onClickOutside, open } = this.props;
     if (!open) return;
-    if (isFunction(this.pop)) {
-      this.pop();
-    }
     event.stopPropagation();
     onClickOutside(event);
   }
@@ -107,41 +118,35 @@ class Menu extends React.Component {
       'data-test': dataTest,
     } = this.props;
 
-    const renderMenu = bind => {
-      return (
-        <Fragment>
-          {!disableScrim && (
-            <Scrim open={open} disableVisibility onClick={this.close} />
-          )}
-          <Popover
-            anchor={React.cloneElement(anchor, bind)}
-            modifiers={modifiers}
-            onClickOutside={this.close}
-            open={open}
-            placement={placement}
-          >
-            <div data-test={dataTest} data-component="Menu">
-              <MenuChildren
-                disableContainment={disableContainment}
-                height={height}
-                width={width}
-                onKeyDown={this.handleKeyDown}
-              >
-                {children}
-              </MenuChildren>
-            </div>
-          </Popover>
-        </Fragment>
-      );
-    };
-
-    const renderWithPop = pop => {
-      this.pop = pop;
-
-      return <FocusManager.Group disableLock>{renderMenu}</FocusManager.Group>;
-    };
-
-    return <FocusManager>{renderWithPop}</FocusManager>;
+    return (
+      <DetectExternalEvents
+        domEvents={['click']}
+        reactEvents={['onClick']}
+        onExternalEvent={this.close}
+      >
+        <Manager>
+          <Fragment>
+            <Reference>{({ ref }) => <div ref={ref}>{anchor}</div>}</Reference>
+            {!disableScrim && (
+              <Scrim open={open} disableVisibility onClick={this.close} />
+            )}
+            <MenuChildren
+              open={open}
+              disableContainment={disableContainment}
+              height={height}
+              width={width}
+              placement={placement}
+              onKeyDown={this.handleKeyDown}
+              modifiers={modifiers}
+              dataTest={dataTest}
+              close={this.close}
+            >
+              {children}
+            </MenuChildren>
+          </Fragment>
+        </Manager>
+      </DetectExternalEvents>
+    );
   }
 }
 
