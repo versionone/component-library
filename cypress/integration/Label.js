@@ -12,6 +12,5 @@ context('Label', () => {
     cy.get('@sut')
       .eq(2)
       .should('have.css', 'cursor', 'not-allowed')
-      .should('have.css', 'color', 'rgb(169, 169, 169)');
   });
 });
