@@ -4,7 +4,7 @@ import FocusContext from './FocusContext';
 import uuid from 'uuid/v4';
 import FocusLock from './FocusLock';
 
-class FocusGroup extends React.Component {
+class FocusGroup extends React.PureComponent {
   constructor(props) {
     super(props);
     this.id = uuid();

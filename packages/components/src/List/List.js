@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Children, cloneElement, Fragment } from 'react';
+import React, { PureComponent, Children, cloneElement, Fragment } from 'react';
 import { findLastIndex } from 'underscore';
 import { createComponent } from '../StyleProvider';
 import { Divider } from '../Divider';
@@ -11,7 +11,7 @@ const ListImpl = createComponent(() => ({}), 'div', [
   'role',
 ]);
 
-class List extends React.Component {
+class List extends PureComponent {
   constructor() {
     super();
     this.state = {

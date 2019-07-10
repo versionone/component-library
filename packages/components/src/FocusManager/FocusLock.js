@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import FocusLock from 'react-focus-lock';
 
@@ -35,4 +35,4 @@ FocusLockImpl.defaultProps = {
   is: 'div',
 };
 
-export default FocusLockImpl;
+export default memo(FocusLockImpl);
