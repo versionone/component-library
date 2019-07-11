@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { getComponentDisplayName } from '../utils';
 
-const PsuedoLink = createComponent(
+const PseudoLink = createComponent(
   ({ selected, theme }) => ({
     display: 'flex',
     'align-items': 'center',
@@ -76,30 +76,30 @@ const BreadcrumbItem = props => {
   const coloredChildren = React.Children.toArray(props.children).map(
     (child, i) => {
       return typeof child === 'string' ? (
-        <PsuedoLink key={i} selected={props.selected} onClick={props.onClick}>
+        <PseudoLink key={i} selected={props.selected} onClick={props.onClick}>
           {icon}
           {child}
-        </PsuedoLink>
+        </PseudoLink>
       ) : getComponentDisplayName(child.type) === 'Link' ? (
-        <PsuedoLink key={i} selected={props.selected}>
+        <PseudoLink key={i} selected={props.selected}>
           {icon}
           <a href={child.props.href}>{child.props.children}</a>
-        </PsuedoLink>
+        </PseudoLink>
       ) : (
-        <PsuedoLink key={i} selected={props.selected}>
+        <PseudoLink key={i} selected={props.selected}>
           {icon}
           {child}
-        </PsuedoLink>
+        </PseudoLink>
       );
     },
   );
 
   return props.collapse ? (
-    <PsuedoLink>...</PsuedoLink>
+    <PseudoLink>...</PseudoLink>
   ) : props.children ? (
     coloredChildren
   ) : (
-    <PsuedoLink selected={props.selected}>{icon}</PsuedoLink>
+    <PseudoLink selected={props.selected}>{icon}</PseudoLink>
   );
 };
 

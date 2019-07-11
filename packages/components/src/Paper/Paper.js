@@ -3,9 +3,10 @@ import React from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
 
 const PaperImpl = createComponent(
-  ({ square }) => ({
-    boxShadow: `0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)`,
-    ...styleUtils.conditionalStyle(!square, 'border-radius', 4),
+  ({ square, theme }) => ({
+    boxShadow: theme.Paper.boxShadow,
+    ...styleUtils.conditionalStyle(!square, 'border-radius', theme.Paper.borderRadius),
+    backgroundColor: theme.Paper.backgroundColor,
     width: '100%',
   }),
   'div',
