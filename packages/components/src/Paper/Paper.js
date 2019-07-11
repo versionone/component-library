@@ -6,7 +6,7 @@ const PaperImpl = createComponent(
   ({ square, theme }) => ({
     boxShadow: theme.Paper.boxShadow,
     ...styleUtils.conditionalStyle(!square, 'border-radius', theme.Paper.borderRadius),
-    backgroundColor: theme.Paper.backgroundColor,
+    backgroundColor: theme.Paper.background,
     width: '100%',
   }),
   'div',
