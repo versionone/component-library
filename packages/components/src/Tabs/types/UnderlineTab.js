@@ -47,7 +47,7 @@ const UnderlineTab = props => {
     title,
   } = props;
 
-  const spacing = icon ? 4 : 0;
+  const spacing = 4;
   return (
     <UnderlineTabImpl
       data-component="Tabs.UnderlineTab"
