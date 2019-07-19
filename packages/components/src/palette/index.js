@@ -48,4 +48,8 @@ export const palette = {
   chrome50: '#e6f0f4',
   chrome100: '#c3d8e4',
   chrome200: '#9fc5d5',
+
+  chrome600: '#336275',
+  chrome700: '#244451',
+  chrome800: '#14262e',
 };
