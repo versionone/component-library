@@ -6,7 +6,7 @@ const internalTheme = {
     background: palette.transparent,
     backgroundDark: palette.transparent,
     backgroundLight: palette.transparent,
-    text: palette.obsidian,
+    text: palette.forge,
     textInvert: palette.paper,
     transparent: palette.transparent,
   },
@@ -69,7 +69,7 @@ const internalTheme = {
       mainHighlight: '#c75c02',
     },
     secondary: {
-      invert: palette.paper,
+      invert: palette,
       main: palette.cerulean,
       mainHighlight: '#006e92',
     },
@@ -96,7 +96,7 @@ const internalTheme = {
   Label: {
     disabled: {
       invert: palette.paper,
-      main: 'rgb(169, 169, 169)',
+      main: palette.forge,
     },
     required: {
       main: palette.sunset,
@@ -233,6 +233,9 @@ const internalTheme = {
   Timeline: {
     main: palette.dove,
     border: palette.slate,
+  },
+  Paper: {
+    main: palette.paper,
   },
   Collapse: {
     border: '#d9d9d9',
