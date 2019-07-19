@@ -44,4 +44,8 @@ export const palette = {
   gunmetal: '#31363e',
   midnight: '#272c34',
   obsidian: '#000000',
+
+  chrome50: '#e6f0f4',
+  chrome100: '#c3d8e4',
+  chrome200: '#9fc5d5',
 };
