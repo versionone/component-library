@@ -134,7 +134,10 @@ const internalTheme = {
       busy: palette.sunset,
     },
   },
-  Divider: {},
+  Divider: {
+    lighterBackground: palette.slate,
+    darkerBackground: palette.Forge,
+  },
   Menu: {},
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
@@ -457,6 +460,70 @@ const internalTheme = {
   },
 };
 
+const themeDark = {
+  FieldSet: {
+    size: 4,
+    color: palette.heather,
+  },
+  Label: {
+    disabled: {
+      invert: palette.forge,
+      main: palette.paper,
+    },
+    required: {
+      main: palette.sunset,
+    },
+  },
+  Avatar: {
+    background: palette.chrome800,
+    color: palette.paper,
+    borderColor: palette.chrome800,
+    status: {
+      online: palette.fern,
+      offline: palette.aluminum,
+      focus: palette.eggplant,
+      busy: palette.sunset,
+    },
+  },
+  Chip: {
+    main: palette.chrome700,
+    focused: palette.chrome600,
+  },
+  Lozenge: {
+    warning: {
+      main: palette.sunglow,
+    },
+    error: {
+      main: palette.sunset,
+    },
+    info: {
+      main: palette.dove,
+    },
+    success: {
+      main: palette.shamrock,
+    },
+  },
+  EmptyState: {
+    main: palette.heather,
+  },
+  Link: {
+    main: palette.cerulean,
+    mainHighlight: '#009ff2',
+  },
+  Breadcrumb: {
+    main: palette.dove,
+    selected: palette.paper,
+    mainHighlight: '#009ff2',
+  },
+  Paper: {
+    main: palette.chrome800,
+  },
+};
+
 export const defaultTheme = (parentTheme = internalTheme) => {
   return merge({}, internalTheme, parentTheme);
+};
+
+export const darkTheme = (parentTheme = themeDark) => {
+  return merge({}, internalTheme, themeDark, parentTheme);
 };
