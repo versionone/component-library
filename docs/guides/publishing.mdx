@@ -38,7 +38,7 @@ The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/c
 
 Feature branches should be merged into `master` before publishing from `master`. Upon merging to `master`, create a production build and publish with the following:
 
-```sh
+```bash
 NODE_ENV=production yarn build
 yarn lerna publish {minor|patch}
 ```
@@ -47,7 +47,7 @@ yarn lerna publish {minor|patch}
 
 `next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
 
-```sh
+```bash
 NODE_ENV=production yarn build
 yarn lerna publish major
 ```
@@ -56,7 +56,7 @@ yarn lerna publish major
 
 Occassionaly there may be changes that we want sooner than waiting for a new version publish. These "canary" releases ([read more](https://github.com/lerna/lerna/tree/master/commands/publish#--canary)) may be made for any given version and provide a way to release experimental features to consumers before an official publish. An example of publishing a canary release:
 
-```sh
+```bash
 NODE_ENV=production yarn build
 yarn lerna publish --canary {preminor|prepatch}
 # or for a major version
