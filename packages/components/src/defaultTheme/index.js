@@ -246,9 +246,6 @@ const internalTheme = {
     main: palette.dove,
     border: palette.slate,
   },
-  Paper: {
-    main: palette.paper,
-  },
   Collapse: {
     border: '#d9d9d9',
     main: '#fafafa',

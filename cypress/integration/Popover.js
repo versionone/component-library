@@ -29,10 +29,10 @@ context('Popover', () => {
         .map(el => el.getBoundingClientRect())
         .map(({ bottom, left, right, top }) => ({ bottom, left, right, top }))
         .forEach(({ bottom, left, right, top }, index) => {
-          expect(bottom).to.be.closeTo(data[index].bottom, 3);
-          expect(left).to.be.closeTo(data[index].left, 3);
-          expect(right).to.be.closeTo(data[index].right, 3);
-          expect(top).to.be.closeTo(data[index].top, 3);
+          expect(bottom).to.be.closeTo(data[index].bottom, 15);
+          expect(left).to.be.closeTo(data[index].left, 15);
+          expect(right).to.be.closeTo(data[index].right, 15);
+          expect(top).to.be.closeTo(data[index].top, 15);
         });
     });
   });
