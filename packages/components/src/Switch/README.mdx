@@ -18,11 +18,11 @@ Great for allowing users to turn a setting on or off.
   <SpacedGroup direction="vertical">
     <SpacedGroup xs={2} center>
       <Label>Not Checked</Label>
-      <Switch />
+      <Switch checked={false} />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
       <Label>checked</Label>
-      <Switch checked />
+      <Switch checked={true} />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
       <Label>Disabled</Label>
@@ -50,7 +50,7 @@ Great for allowing users to turn a setting on or off.
         this.toggleGlobally = this.toggleGlobally.bind(this);
       }
       toggleGlobally() {
-        this.setState(state => ({ isCheckedGlobally: !isCheckedGlobally }));
+        this.setState(state => ({ isCheckedGlobally: !state.isCheckedGlobally }));
       }
       toggle() {
         this.setState(state => ({ isChecked: !state.isChecked }));
