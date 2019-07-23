@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WithTheme } from '../../../components/src/StyleProvider';
+import { WithTheme } from '@versionone/components';
 
 const Base = ({ color, icon: Icon, size, ...rest }) => (
   <WithTheme>
