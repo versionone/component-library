@@ -12,7 +12,7 @@ const BOTTOM = 'bottom';
 const RIGHT = 'right';
 
 const Impl = createComponent(
-  ({ open, position, placement, size, shadow, backgroundColor, theme }) => {
+  ({ open, position, placement, size, shadow, theme }) => {
     const offset = size + (shadow ? 30 : 0);
     const layout = (() => {
       if (placement === TOP) {
@@ -81,7 +81,7 @@ const Impl = createComponent(
     return {
       ...layout,
       position,
-      background: backgroundColor,
+      background: theme.Drawer.background,
       transition: 'transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
       ...styleUtils.conditionalStyle(
         shadow,
@@ -166,10 +166,6 @@ Drawer.propTypes = {
    */
   shadow: PropTypes.bool,
   /**
-   * Background color of the drawer
-   */
-  backgroundColor: PropTypes.string,
-  /**
    * Position of the drawer. Fixed unless bounded by a DrawerBoundary
    */
   position: PropTypes.oneOf(['fixed', 'absolute']),
@@ -184,7 +180,6 @@ Drawer.defaultProps = {
   size: 500,
   open: false,
   shadow: true,
-  backgroundColor: palette.paper,
   position: 'fixed',
   handleClickOutside: noop,
 };

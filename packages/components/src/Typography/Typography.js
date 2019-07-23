@@ -5,19 +5,16 @@ import { palette } from '../palette';
 
 const fontStrategyMap = {
   mega: {
-    color: palette.pale,
     fontSize: '56px',
     fontWeight: 800,
     letterSpacing: '-.03em',
   },
   huge: {
-    color: palette.forge,
     fontSize: '24px',
     fontWeight: 300,
     letterSpacing: '-.025em',
   },
   xLarge: {
-    color: palette.forge,
     fontSize: '20px',
     letterSpacing: '-.025em',
     fontWeight: 600,
@@ -35,7 +32,6 @@ const fontStrategyMap = {
   },
   base: {
     fontSize: '14px',
-    color: palette.forge,
     fontWeight: 400,
     lineHeight: '1.15em',
   },

@@ -96,7 +96,7 @@ const buildCommonIconWrapperStyles = ({
         border,
         'backgroundColor',
         border,
-        'white',
+        theme.Avatar.before,
       ),
     },
     ...styleUtils.conditionalStyle(

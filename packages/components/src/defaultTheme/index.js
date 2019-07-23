@@ -92,6 +92,9 @@ const internalTheme = {
       shadow: '0 0 4px 2px',
     },
   },
+  Drawer: {
+    background: palette.paper,
+  },
   FormField: {
     spacing: '0.5rem',
     focusColor: palette.cerulean,
@@ -135,6 +138,7 @@ const internalTheme = {
     background: palette.dove,
     color: palette.gunmetal,
     borderColor: palette.paper,
+    before: palette.dove,
     status: {
       online: palette.fern,
       offline: palette.aluminum,
@@ -195,6 +199,9 @@ const internalTheme = {
   EmptyState: {
     main: palette.heather,
     iconColor: palette.shuttle,
+  },
+  Icon: {
+    main: palette.gunmetal,
   },
   Link: {
     main: '#07496b',
@@ -467,6 +474,9 @@ const internalTheme = {
 };
 
 const themeDark = {
+  Drawer: {
+    background: palette.chrome800,
+  },
   FieldSet: {
     size: 4,
     color: palette.heather,
@@ -484,6 +494,7 @@ const themeDark = {
     background: palette.chrome800,
     color: palette.paper,
     borderColor: palette.chrome800,
+    before: palette.chrome800,
     status: {
       online: palette.fern,
       offline: palette.aluminum,
@@ -512,9 +523,20 @@ const themeDark = {
   EmptyState: {
     main: palette.heather,
   },
+  Icon: {
+    main: palette.pale,
+  },
   Link: {
     main: palette.cerulean,
     mainHighlight: '#009ff2',
+  },
+  ListItem: {
+    selected: 'rgba(0, 169, 224, 0.1)',
+    mainHighlight: 'rgba(221, 226, 233, 0.5)',
+  },
+  ListItemText: {
+    main: palette.paper,
+    secondary: palette.pale,
   },
   Breadcrumb: {
     main: palette.dove,
@@ -552,7 +574,7 @@ const themeDark = {
     titleWeight: "normal",
   },
   Paper: {
-    main: palette.chrome800,
+    background: palette.chrome800,
   },
 };
 
