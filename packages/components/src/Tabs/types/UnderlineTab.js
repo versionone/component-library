@@ -20,14 +20,14 @@ const UnderlineTabImpl = createComponent(
       ...styleUtils.conditionalStyle(
         selected,
         `border-${placement}-color`,
-        palette.obsidian,
-        palette.transparent,
+        theme.UnderlineTab.border.selected,
+        theme.UnderlineTab.border.unselected,
       ),
       ...styleUtils.conditionalStyle(
         selected,
         'color',
-        palette.obsidian,
-        palette.dove,
+        theme.UnderlineTab.color.selected,
+        theme.UnderlineTab.color.unselected,
       ),
       ...(focused ? theme.focused : {}),
     };

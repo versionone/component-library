@@ -253,6 +253,16 @@ const internalTheme = {
     main: palette.dove,
     border: palette.slate,
   },
+  UnderlineTab: {
+    border: {
+      selected: palette.obsidian,
+      unselected: palette.transparent,
+    },
+    color: {
+      selected: palette.obsidian,
+      unselected: palette.dove,
+    }
+  },
   Collapse: {
     border: '#d9d9d9',
     main: '#fafafa',
@@ -489,6 +499,9 @@ const themeDark = {
     required: {
       main: palette.sunset,
     },
+    default: {
+      main: palette.paper,
+    }
   },
   Avatar: {
     background: palette.chrome800,
@@ -573,8 +586,29 @@ const themeDark = {
     },
     titleWeight: "normal",
   },
+  TextField: {
+    borderColor: palette.aluminum,
+    disabled: {
+      invert: palette.paper,
+      main: 'rgb(169, 169, 169)',
+    },
+    focused: {
+      main: palette.cerulean,
+      shadow: '0 0 5px 0',
+    },
+  },
   Paper: {
     background: palette.chrome800,
+  },
+  UnderlineTab: {
+    border: {
+      selected: palette.chrome500,
+      unselected: palette.transparent,
+    },
+    color: {
+      selected: palette.dove,
+      unselected: palette.forge,
+    }
   },
 };
 
