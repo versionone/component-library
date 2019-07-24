@@ -46,7 +46,7 @@ const MenuChildren = ({
           const positionedMenu = disableContainment ? (
             container
           ) : (
-            <Paper>{container}</Paper>
+            <Paper elevation>{container}</Paper>
           );
 
           return (

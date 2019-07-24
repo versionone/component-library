@@ -36,7 +36,7 @@ const internalTheme = {
   },
   Form: {
     borderColor: palette.chrome500,
-    background: palette.paper,
+    background: palette.transparent,
     disabled: {
       invert: palette.paper,
       main: 'rgb(169, 169, 169)',
@@ -67,6 +67,11 @@ const internalTheme = {
     background: palette.paper,
     borderRadius: 4,
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    elevation: {
+      background: palette.chrome100,
+      boxShadow: '6px 6px 24px 0 rgba(30, 170, 189, 0.3)',
+      border: '1px solid #1EAABD'
+    }
   },
   Button: {
     primary: {
@@ -136,7 +141,7 @@ const internalTheme = {
     },
   },
   Avatar: {
-    background: palette.dove,
+    background: palette.paper,
     color: palette.gunmetal,
     borderColor: palette.paper,
     before: palette.dove,
@@ -537,9 +542,6 @@ const themeDark = {
   EmptyState: {
     main: palette.heather,
   },
-  Form: {
-    background: palette.chrome800,
-  },
   Icon: {
     main: palette.pale,
   },
@@ -603,6 +605,9 @@ const themeDark = {
   },
   Paper: {
     background: palette.chrome800,
+    elevation: {
+      background: palette.chrome700,
+    }
   },
   UnderlineTab: {
     border: {
