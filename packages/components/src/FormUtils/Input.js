@@ -1,7 +1,7 @@
 import { createComponent, styleUtils } from '../StyleProvider';
 
 const buildInputStyles = ({ multiline, dirty, disabled, height, theme }) => ({
-  'background-color': dirty ? '#fbeecc' : 'white',
+  'background-color': dirty ? theme.Form.dirty.main : theme.Form.background,
   alignItems: 'center',
   border: 'none',
   borderRadius: '6px',

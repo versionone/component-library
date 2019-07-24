@@ -35,7 +35,8 @@ const internalTheme = {
     boxShadow: `0 0 4px ${palette.cerulean}`,
   },
   Form: {
-    borderColor: palette.aluminum,
+    borderColor: palette.chrome500,
+    background: palette.paper,
     disabled: {
       invert: palette.paper,
       main: 'rgb(169, 169, 169)',
@@ -123,7 +124,7 @@ const internalTheme = {
     },
   },
   TextField: {
-    borderColor: palette.aluminum,
+    borderColor: palette.chrome500,
     padding: 3,
     disabled: {
       invert: palette.paper,
@@ -536,6 +537,9 @@ const themeDark = {
   EmptyState: {
     main: palette.heather,
   },
+  Form: {
+    background: palette.chrome800,
+  },
   Icon: {
     main: palette.pale,
   },
@@ -587,7 +591,7 @@ const themeDark = {
     titleWeight: "normal",
   },
   TextField: {
-    borderColor: palette.aluminum,
+    borderColor: palette.chrome500,
     disabled: {
       invert: palette.paper,
       main: 'rgb(169, 169, 169)',

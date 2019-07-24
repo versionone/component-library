@@ -26,8 +26,8 @@ export default createComponent(
     ...styleUtils.conditionalStyle(
       dirty,
       'background-color',
-      '#fbeecc',
-      'white',
+      theme.Form.dirty.main,
+      theme.Form.background,
     ),
     ...styleUtils.conditionalStyles(disabled, 'cursor', 'not-allowed'),
     ...styleUtils.conditionalStyle(
