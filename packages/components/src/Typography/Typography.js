@@ -52,7 +52,6 @@ class Typography extends Component {
       ({ variant, theme }) => ({
         fontFamily:
           "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
-        margin: 0,
         ...(fontStrategyMap[variant] || fontStrategyMap.base),
       }),
       is,
