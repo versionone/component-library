@@ -196,7 +196,7 @@ const internalTheme = {
       main: palette.sunset,
     },
     info: {
-      main: palette.dove,
+      main: palette.chrome200,
     },
     success: {
       main: palette.shamrock,
@@ -530,17 +530,8 @@ const themeDark = {
     focused: palette.chrome600,
   },
   Lozenge: {
-    warning: {
-      main: palette.sunglow,
-    },
-    error: {
-      main: palette.sunset,
-    },
     info: {
-      main: palette.dove,
-    },
-    success: {
-      main: palette.shamrock,
+      main: palette.chrome700,
     },
   },
   EmptyState: {

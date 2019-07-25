@@ -15,7 +15,7 @@ context('Icons', () => {
     specify('can be colored', () => {
       cy.get('@icons')
         .eq(2)
-        .should('have.css', 'fill', 'rgb(49, 54, 62)');
+        .should('have.css', 'fill', 'rgb(0, 128, 0)');
     });
     specify('can be sized', () => {
       cy.get('@icons')
