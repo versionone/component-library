@@ -144,7 +144,7 @@ const internalTheme = {
     background: palette.paper,
     color: palette.gunmetal,
     borderColor: palette.paper,
-    before: palette.dove,
+    before: palette.paper,
     status: {
       online: palette.fern,
       offline: palette.aluminum,
@@ -210,8 +210,8 @@ const internalTheme = {
     main: palette.gunmetal,
   },
   Link: {
-    main: '#07496b',
-    mainHighlight: '#009ff2',
+    main: palette.primary500,
+    mainHighlight: palette.forge,
   },
   Scrim: {
     main: palette.obsidian,
@@ -546,8 +546,8 @@ const themeDark = {
     main: palette.pale,
   },
   Link: {
-    main: palette.cerulean,
-    mainHighlight: '#009ff2',
+    main: palette.primary500,
+    mainHighlight: palette.dove,
   },
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',

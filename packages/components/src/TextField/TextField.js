@@ -14,7 +14,7 @@ import {
 } from '../FormUtils';
 
 const Root = createComponent(
-  ({ fullWidth, stretch }) => ({
+  ({ fullWidth, stretch, theme }) => ({
     ...styleUtils.conditionalStyle(
       fullWidth || stretch,
       'width',
