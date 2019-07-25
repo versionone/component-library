@@ -144,7 +144,7 @@ const internalTheme = {
     background: palette.paper,
     color: palette.gunmetal,
     borderColor: palette.paper,
-    before: palette.paper,
+    before: palette.transparent,
     status: {
       online: palette.fern,
       offline: palette.aluminum,
@@ -502,18 +502,17 @@ const themeDark = {
       invert: palette.forge,
       main: palette.paper,
     },
+    default: {
+      main: palette.paper,
+    },
     required: {
       main: palette.sunset,
     },
-    default: {
-      main: palette.paper,
-    }
   },
   Avatar: {
     background: palette.chrome800,
     color: palette.paper,
     borderColor: palette.chrome800,
-    before: palette.chrome800,
     status: {
       online: palette.fern,
       offline: palette.aluminum,
