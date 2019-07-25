@@ -490,6 +490,11 @@ const internalTheme = {
 };
 
 const themeDark = {
+  Button: {
+    standard: {
+      invert: palette.paper,
+    },
+  },
   Drawer: {
     background: palette.chrome800,
   },
