@@ -77,17 +77,17 @@ const internalTheme = {
     primary: {
       invert: palette.paper,
       main: palette.mango,
-      mainHighlight: '#c75c02',
+      mainHighlight: 'rgba(67, 128, 152, 0.5)',
     },
     secondary: {
       invert: palette,
       main: palette.cerulean,
-      mainHighlight: '#006e92',
+      mainHighlight: 'rgba(67, 128, 152, 0.5)'
     },
     standard: {
       invert: palette.forge,
       main: palette.paper,
-      mainHighlight: palette.shuttle,
+      mainHighlight: 'rgba(67, 128, 152, 0.5)',
     },
     disabled: {
       invert: palette.paper,
@@ -493,6 +493,7 @@ const themeDark = {
   Button: {
     standard: {
       invert: palette.paper,
+      main: palette.chrome800,
     },
   },
   Drawer: {

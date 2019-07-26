@@ -50,7 +50,7 @@ const ButtonImpl = createComponent(
       theme,
       variant,
     }),
-    borderRadius: 6,
+    borderRadius: 16,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: getBorderColor({
