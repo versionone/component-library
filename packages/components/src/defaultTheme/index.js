@@ -68,7 +68,6 @@ const internalTheme = {
     borderRadius: 4,
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     elevation: {
-      background: palette.chrome100,
       boxShadow: '6px 6px 24px 0 rgba(30, 170, 189, 0.3)',
       border: '1px solid #1EAABD'
     }
@@ -88,6 +87,7 @@ const internalTheme = {
       invert: palette.forge,
       main: palette.paper,
       mainHighlight: 'rgba(67, 128, 152, 0.5)',
+      border: palette.chrome500,
     },
     disabled: {
       invert: palette.paper,
@@ -159,7 +159,7 @@ const internalTheme = {
   Menu: {},
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
-    mainHighlight: 'rgba(221, 226, 233, 0.5)',
+    mainHighlight: 'rgba(67, 128, 152, 0.2)',
   },
   ListItemText: {
     main: palette.gunmetal,
@@ -258,6 +258,10 @@ const internalTheme = {
   Timeline: {
     main: palette.dove,
     border: palette.slate,
+  },
+  Tooltip: {
+    background: palette.paper,
+    color: palette.forge,
   },
   UnderlineTab: {
     border: {
@@ -494,6 +498,7 @@ const themeDark = {
     standard: {
       invert: palette.paper,
       main: palette.chrome800,
+      border: palette.chrome500,
     },
   },
   Drawer: {
@@ -547,7 +552,6 @@ const themeDark = {
   },
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
-    mainHighlight: 'rgba(221, 226, 233, 0.5)',
   },
   ListItemText: {
     main: palette.paper,
@@ -599,11 +603,12 @@ const themeDark = {
       shadow: '0 0 5px 0',
     },
   },
+  Tooltip: {
+    background: palette.chrome700,
+    color: palette.paper,
+  },
   Paper: {
     background: palette.chrome800,
-    elevation: {
-      background: palette.chrome700,
-    }
   },
   UnderlineTab: {
     border: {

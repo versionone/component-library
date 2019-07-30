@@ -25,7 +25,7 @@ const getBorderColor = ({ buttonType, disabled, hovered, theme, variant }) => {
   if (variant === text) return 'transparent';
   if (disabled) return theme.Button.disabled.main;
   if (hovered) return theme.Button[buttonType].mainHighlight;
-  if (buttonType === standard) return theme.Button[buttonType].invert;
+  if (buttonType === standard) return theme.Button[buttonType].border;
   return theme.Button[buttonType].main;
 };
 const getColor = ({ buttonType, disabled, hovered, theme, variant }) => {

@@ -7,7 +7,7 @@ const PaperImpl = createComponent(
     ...styleUtils.conditionalStyle(elevation, 'box-shadow', theme.Paper.elevation.boxShadow, theme.Paper.boxShadow),
     ...styleUtils.conditionalStyle(elevation, 'border', theme.Paper.elevation.border),
     ...styleUtils.conditionalStyle(!square, 'border-radius', theme.Paper.borderRadius),
-    ...styleUtils.conditionalStyle(elevation, 'background-color', theme.Paper.elevation.background, theme.Paper.background),
+    backgroundColor: theme.Paper.background,
     width: '100%',
   }),
   'div',

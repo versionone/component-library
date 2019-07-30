@@ -7,7 +7,7 @@ import { PortalContainer } from '../PortalContainer';
 import { palette } from '../palette';
 
 const PositionedTooltip = createComponent(
-  ({ style, disableContainment }) => ({
+  ({ style, disableContainment, theme }) => ({
     ...style,
     ...styleUtils.conditionalStyle(!disableContainment, 'border-width', 1),
     ...styleUtils.conditionalStyle(
@@ -23,7 +23,12 @@ const PositionedTooltip = createComponent(
     ...styleUtils.conditionalStyle(
       !disableContainment,
       'background-color',
-      palette.paper,
+      theme.Tooltip.background,
+    ),
+    ...styleUtils.conditionalStyle(
+      !disableContainment,
+      'color',
+      theme.Tooltip.color,
     ),
     ...styleUtils.conditionalStyle(!disableContainment, 'border-radius', 6),
   }),
