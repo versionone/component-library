@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
-import { createComponent } from '../StyleProvider';
+import { createComponent, WithTheme } from '../StyleProvider';
 import { palette } from '../palette';
 
 const Root = createComponent(
@@ -67,6 +67,8 @@ class IconSwitch extends Component {
     }
   }
 
+  static contextType = WithTheme;
+
   render() {
     const icon = this.props.checked
       ? this.props.checkedIcon
@@ -80,6 +82,7 @@ class IconSwitch extends Component {
       onClick,
       ...rest
     } = this.props;
+    const theme = this.context;
 
     return (
       <Root
@@ -100,6 +103,7 @@ class IconSwitch extends Component {
         >
           {React.cloneElement(icon, {
             size: size - 16,
+            color: theme.Button.standard.invert,
           })}
         </IconSwitchImpl>
       </Root>

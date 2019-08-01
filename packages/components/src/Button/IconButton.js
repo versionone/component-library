@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { noop } from 'underscore';
 import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
-import { createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 
 const getBackgroundColor = ({ hovered, theme, type }) => {
   if (type === standard) {
@@ -88,7 +88,10 @@ const ButtonImpl = createComponent(
   ],
 );
 
+
 class IconButton extends Component {
+  static contextType = WithTheme;
+
   render() {
     const {
       disabled,
@@ -101,6 +104,7 @@ class IconButton extends Component {
       onBlur,
       ...rest
     } = this.props;
+    const theme = this.context;
 
     return (
       <Focusable focused={focused} onFocus={onFocus} onBlur={onBlur}>
