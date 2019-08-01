@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { isFunction } from 'underscore';
 import { LoadingSpinIcon, BrokenImageIcon } from '@versionone/icons';
-import { createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 import { Tooltip } from '../Tooltip';
 import { SpacedGroup } from '../SpacedGroup';
 import { palette } from '../palette';
@@ -256,9 +256,17 @@ const BrokenImageAvatar = ({ size }) => {
 };
 
 const IconAvatar = props => {
-  return React.cloneElement(props.icon, {
-    size: (props.size * 1.2) / 3,
-  });
+  return <WithTheme>{
+    theme => {
+      const icon = React.cloneElement(props.icon, {
+        size: (props.size * 1.2) / 3,
+        color: theme.Icon.main,
+      });
+      return icon;
+      }
+    }
+  </WithTheme>
+
 };
 
 const LetterAvatar = props => {
