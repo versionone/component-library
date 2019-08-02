@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronIcon } from '@versionone/icons';
-import { createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 import { Rotate } from '../Rotate';
 
 const buildStyles = ({ height }) => ({
@@ -59,15 +59,23 @@ const ArrowIcon = createComponent(buildStyles, 'span', [
 
 const Arrow = props => {
   const { open, is, disabled, tabIndex, 'data-test': dataTest } = props;
-  const arrow = open ? (
-    <Rotate deg={90}>
-      <ChevronIcon size={12} />
-    </Rotate>
-  ) : (
-    <Rotate deg={0}>
-      <ChevronIcon size={12} />
-    </Rotate>
-  );
+  const withTheme = (
+    <WithTheme>{
+      theme => {
+        const arrow = open ? (
+          <Rotate deg={90}>
+            <ChevronIcon size={12} color={theme.Icon.main} />
+          </Rotate>
+        ) : (
+          <Rotate deg={0}>
+            <ChevronIcon size={12} color={theme.Icon.main} />
+          </Rotate>
+        );
+        return arrow;
+      }
+    }
+    </WithTheme>
+  )
 
   const ArrowImpl = is === 'button' ? ArrowButton : ArrowIcon;
 
@@ -80,7 +88,7 @@ const Arrow = props => {
       type="button"
       tabIndex={disabled ? '-1' : tabIndex}
     >
-      {arrow}
+      { withTheme }
     </ArrowImpl>
   );
 };

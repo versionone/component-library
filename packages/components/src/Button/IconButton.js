@@ -88,6 +88,7 @@ const ButtonImpl = createComponent(
   ],
 );
 
+
 class IconButton extends Component {
   render() {
     const {
