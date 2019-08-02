@@ -11,3 +11,4 @@ Tabs.List = List;
 
 export { Tabs };
 export { default as UnderlineTab } from './types/UnderlineTab';
+export { NubTab } from './types/NubTab';

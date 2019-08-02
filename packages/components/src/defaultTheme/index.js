@@ -271,7 +271,13 @@ const internalTheme = {
     color: {
       selected: palette.obsidian,
       unselected: palette.dove,
-    }
+    },
+  },
+  NubTab: {
+    color: {
+      selected: palette.chrome700,
+      unselected: palette.chrome500,
+    },
   },
   Collapse: {
     border: '#d9d9d9',
@@ -618,7 +624,13 @@ const themeDark = {
     color: {
       selected: palette.dove,
       unselected: palette.forge,
-    }
+    },
+  },
+  NubTab: {
+    color: {
+      selected: palette.paper,
+      unselected: palette.chrome200,
+    },
   },
 };
 
