@@ -51,7 +51,7 @@ class Typography extends Component {
     this.TypographyImpl = createComponent(
       ({ variant, theme }) => ({
         fontFamily:
-          "'Proxima Nova','Lucida Sans Unicode','Lucida Grande',sans-serif ",
+          "'Cabin', 'Cabin Local', -apple-system, system-ui, BlinkMacSystemFont, sans-serif",
         ...(fontStrategyMap[variant] || fontStrategyMap.base),
       }),
       is,
