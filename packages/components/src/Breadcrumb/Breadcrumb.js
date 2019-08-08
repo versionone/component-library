@@ -33,7 +33,7 @@ Breadcrumb.propTypes = {
    */
   children: PropTypes.arrayOf(PropTypes.instanceOf(BreadcrumbItem)),
   /**
-   * Separator character
+   * Separator character. Default is '/'
    */
   separator: PropTypes.string,
 };
