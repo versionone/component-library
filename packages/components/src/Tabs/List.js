@@ -100,7 +100,7 @@ class SmartList extends React.Component {
         selected: isSelected,
         handleSelection: props.selectTabByIndex(index),
         selectTabByIndex: props.selectTabByIndex,
-        handleFocus: props.selectTabByIndex(index),
+        handleFocus: props.focusTabByIndex(index),
         handleBlur: props.focusTabByIndex(null),
         focused: isFocused,
         tabIndex: isSelected ? '0' : '-1',
