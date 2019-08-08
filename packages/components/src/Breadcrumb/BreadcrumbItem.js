@@ -24,34 +24,6 @@ const PseudoLink = createComponent(
         theme.Breadcrumb.mainHighlight,
       ),
     },
-    '> a': {
-      'text-decoration': 'none',
-      ...styleUtils.conditionalStyle(selected, 'cursor', 'default', 'pointer'),
-      ...styleUtils.conditionalStyle(
-        selected,
-        'color',
-        theme.Breadcrumb.selected,
-        theme.Breadcrumb.main,
-      ),
-      ':focus': {
-        ...theme.focused,
-      },
-    },
-    '> a:hover:visited': {
-      ...styleUtils.conditionalStyle(
-        !selected,
-        'color',
-        theme.Breadcrumb.mainHighlight,
-      ),
-    },
-    '> a:visited': {
-      ...styleUtils.conditionalStyle(
-        selected,
-        'color',
-        theme.Breadcrumb.selected,
-        theme.Breadcrumb.main,
-      ),
-    },
   }),
   'span',
   ['onClick'],
