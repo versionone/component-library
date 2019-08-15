@@ -1,8 +1,9 @@
 export const primary = 'primary';
 export const secondary = 'secondary';
 export const standard = 'standard';
+export const text = 'text';
 
-export default [primary, secondary, standard];
+export default [primary, secondary, standard, text];
 
 // Deprecated ----
 export const Primary = 'v1-btn-primary';

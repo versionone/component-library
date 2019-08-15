@@ -5,23 +5,16 @@ import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
 import { createComponent, styleUtils } from '../StyleProvider';
 
-const getBackgroundColor = ({ hovered, theme, type }) => {
-  if (type === standard) {
-    if (hovered) return theme.Button[type].invert;
-    return 'transparent';
-  }
-  if (hovered) return theme.Button[type].main;
-  return 'transparent';
-};
-const getColor = ({ disabled, hovered, theme, type }) => {
-  if (disabled) return theme.Button.disabled.main;
-  if (type === standard) {
-    if (hovered) return theme.Button[type].main;
-    return theme.Button[type].invert;
-  }
-  if (hovered) return theme.Button[type].invert;
-  return theme.Button[type].main;
-};
+const getBackgroundColor = ({ disabled, hovered, theme, type }) => {
+    if (disabled) return theme.Button.disabled.background;
+    if (hovered) return theme.Button[type].hover;
+    return theme.Button[type].background;
+  };
+
+const getColor = ({ type, disabled, theme }) => {
+    if (disabled) return theme.Button.disabled.text;
+    return theme.Button[type].text;
+  };
 
 const ButtonImpl = createComponent(
   ({ disabled, buttonType, size, focused, theme }) => ({
@@ -57,6 +50,8 @@ const ButtonImpl = createComponent(
       type: buttonType,
     }),
     ':hover': {
+      borderColor: 'rgba(67, 128, 152, 0.5)',
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)',
       backgroundColor: getBackgroundColor({
         disabled,
         hovered: true,
