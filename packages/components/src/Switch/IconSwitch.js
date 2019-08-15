@@ -23,7 +23,7 @@ const IconSwitchImpl = createComponent(
     alignItems: 'center',
     borderColor: fill ? palette.shuttle : palette.transparent,
     backgroundColor: fill ? palette.shuttle : palette.transparent,
-    color: theme.Button.standard.invert,
+    color: theme.Button.standard.text,
     height: size,
     width: size,
     minWidth: size,
@@ -43,6 +43,11 @@ const IconSwitchImpl = createComponent(
     whiteSpace: 'nowrap',
     ':focus': {
       ...theme.focused,
+    },
+    ':hover': {
+      borderColor: 'rgba(67, 128, 152, 0.5)',
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)',
+      backgroundColor: theme.Button.standard.hover,
     },
   }),
   'button',
@@ -103,7 +108,7 @@ class IconSwitch extends Component {
         >
           {React.cloneElement(icon, {
             size: size - 16,
-            color: theme.Button.standard.invert,
+            color: theme.Button.standard.text,
           })}
         </IconSwitchImpl>
       </Root>
