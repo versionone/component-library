@@ -74,24 +74,37 @@ const internalTheme = {
   },
   Button: {
     primary: {
-      invert: palette.paper,
-      main: palette.mango,
-      mainHighlight: 'rgba(67, 128, 152, 0.5)',
+      background: palette.primary300,
+      text: palette.primary700,
+      hover: palette.primary200,
+      border: palette.transparent,
+      boxShadow: '8px 8px 12px 0 rgba(90, 213, 230, 0.6)' //primary300
     },
     secondary: {
-      invert: palette,
-      main: palette.cerulean,
-      mainHighlight: 'rgba(67, 128, 152, 0.5)'
+      background: palette.DeepOrange500,
+      text: palette.DeepOrange1000,
+      hover: palette.DeepOrange400,
+      border: palette.transparent,
+      boxShadow: '8px 8px 12px 0 rgba(255, 87, 34, 0.6)' //DeepOrange500
     },
     standard: {
-      invert: palette.forge,
-      main: palette.paper,
-      mainHighlight: 'rgba(67, 128, 152, 0.5)',
-      border: palette.chrome500,
+      background: palette.transparent,
+      text: palette.chrome700,
+      hover: 'rgba(67, 128, 152, 0.2)',
+      border: 'rgba(67, 128, 152, 0.5)',
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)'
+    },
+    text: {
+      background: palette.transparent,
+      text: palette.chrome700,
+      hover: 'rgba(67, 128, 152, 0.2)',
+      border: palette.transparent,
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)'
     },
     disabled: {
-      invert: palette.paper,
-      main: 'rgb(169, 169, 169)',
+      background: palette.transparent,
+      border: palette.transparent,
+      text: 'rgb(169, 169, 169)',
     },
     focused: {
       main: palette.cerulean,
@@ -502,10 +515,14 @@ const internalTheme = {
 const themeDark = {
   Button: {
     standard: {
-      invert: palette.paper,
-      main: palette.chrome800,
-      border: palette.chrome500,
+      text: palette.chrome100,
     },
+    text: {
+      text: palette.chrome100,
+    },
+    disabled: {
+      text: 'rgb(255, 255, 255, 0.5)',
+    }
   },
   Drawer: {
     background: palette.chrome800,

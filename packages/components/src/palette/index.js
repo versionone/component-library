@@ -53,5 +53,13 @@ export const palette = {
   chrome700: '#244451',
   chrome800: '#14262e',
 
+  primary200: '#86e0ed',
+  primary300: '#5cd5e5',
+  primary400: '#30cade',
   primary500: '#1eaabd',
+  primary700: '#0f5a65',
+
+  DeepOrange400: '#ff7e55',
+  DeepOrange500: '#FF5722',
+  DeepOrange1000: '#220800',
 };

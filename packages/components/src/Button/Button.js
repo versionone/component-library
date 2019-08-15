@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
 import types, { standard } from './ButtonTypes';
-import variants, { contained, text } from './variants';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { Focusable } from '../Focusable';
 import { Hoverable } from '../Hoverable';
@@ -14,41 +13,28 @@ const getBackgroundColor = ({
   disabled,
   hovered,
   theme,
-  variant,
 }) => {
-  if (disabled) return theme.Button.disabled.invert;
-  if (hovered) return theme.Button[buttonType].mainHighlight;
-  if (variant === text) return 'transparent';
-  return theme.Button[buttonType].main;
+  if (disabled) return theme.Button.disabled.background;
+  if (hovered) return theme.Button[buttonType].hover;
+  return theme.Button[buttonType].background;
 };
-const getBorderColor = ({ buttonType, disabled, hovered, theme, variant }) => {
-  if (variant === text) return 'transparent';
-  if (disabled) return theme.Button.disabled.main;
-  if (hovered) return theme.Button[buttonType].mainHighlight;
-  if (buttonType === standard) return theme.Button[buttonType].border;
-  return theme.Button[buttonType].main;
+const getBorderColor = ({ buttonType, disabled, theme }) => {
+  if (disabled) return theme.Button.disabled.border;
+  return theme.Button[buttonType].border;
 };
-const getColor = ({ buttonType, disabled, hovered, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.main;
-  if (buttonType === standard) {
-    if (hovered) return theme.Button[buttonType].main;
-    return theme.Button[buttonType].invert;
-  }
-  if (variant === text) {
-    if (!hovered) return theme.Button[buttonType].main;
-  }
-  return theme.Button[buttonType].invert;
+const getColor = ({ buttonType, disabled, theme }) => {
+  if (disabled) return theme.Button.disabled.text;
+  return theme.Button[buttonType].text;
 };
 
 const ButtonImpl = createComponent(
-  ({ disabled, buttonType, focused, hovered, theme, variant }) => ({
+  ({ disabled, buttonType, focused, hovered, theme }) => ({
     alignItems: 'center',
     backgroundColor: getBackgroundColor({
       buttonType,
       disabled,
       hovered,
       theme,
-      variant,
     }),
     borderRadius: 16,
     borderWidth: 1,
@@ -56,16 +42,14 @@ const ButtonImpl = createComponent(
     borderColor: getBorderColor({
       buttonType,
       disabled,
-      hovered,
       theme,
-      variant,
     }),
     ...styleUtils.conditionalStyle(
-      focused,
+      hovered && !disabled,
       'box-shadow',
-      theme.FormField.boxShadow,
+      theme.Button[buttonType].boxShadow,
     ),
-    color: getColor({ buttonType, disabled, hovered, theme, variant }),
+    color: getColor({ buttonType, disabled, theme}),
     cursor: disabled ? 'not-allowed' : 'pointer',
     display: 'inline-flex',
     height: 32,
@@ -76,6 +60,7 @@ const ButtonImpl = createComponent(
     whiteSpace: 'nowrap',
     ...styleUtils.conditionalStyles(
       hovered,
+      'background-color',
       getBackgroundColor({
         buttonType,
         disabled,
@@ -109,7 +94,6 @@ class Button extends React.Component {
       onFocus,
       tabIndex,
       type,
-      variant,
       onMouseEnter,
       onMouseLeave,
       'data-trackingid': dataTrackingId,
@@ -133,7 +117,6 @@ class Button extends React.Component {
                 onClick={onClick}
                 tabIndex={tabIndex}
                 type="button"
-                variant={variant}
               >
                 <SpacedGroup center>
                   <Typography is="span" variant="button">
@@ -179,10 +162,6 @@ Button.propTypes = {
    */
   type: PropTypes.oneOf(types),
   /**
-   * Set the variation of the button.
-   */
-  variant: PropTypes.oneOf(variants),
-  /**
    * Attribute used to track user interaction
    */
   'data-trackingid': PropTypes.string,
@@ -196,14 +175,6 @@ Button.defaultProps = {
   onClick: noop,
   tabIndex: '0',
   type: standard,
-  variant: contained,
-};
-Button.themeDefinition = {
-  /** Invert color of when disabled */
-  'disabled.invert': PropTypes.string,
-};
-Button.defaultThemeValues = {
-  'disabled.invert': 'black',
 };
 
 export { Button };
