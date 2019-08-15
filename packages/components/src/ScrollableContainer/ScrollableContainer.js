@@ -6,6 +6,7 @@ import { palette } from '../palette';
 const Container = createComponent(
   ({ height, width }) => ({
     'max-height': height,
+    'border-radius': '4px',
     width,
     'overflow-y': 'auto',
     'overflow-x': 'hidden',
