@@ -16,12 +16,14 @@ Buttons provide a way for the user to take some action. When presented with more
 | :----------- | :------------------------------------------------ |
 | **Primary**  | Primary action within a set of actions.           |
 | **Standard** | A general purpose button with no special emphasis |
-| **Text**     | Typically used for less-pronounced actions        |
+
+## ContainedButton
+
+The `ContainedButton` variant is used for **high-emphasis buttons**.
 
 <Playground>
   <SpacedGroup>
     <Button onClick={() => console.log('Clicked')}>Standard</Button>
-    <Button type="text">Text</Button>
     <Button type="primary">Primary</Button>
     <Button type="secondary">Secondary</Button>
     <Button>
@@ -31,6 +33,36 @@ Buttons provide a way for the user to take some action. When presented with more
       <AssetIcon /> Button with Icon
     </Button>
     <Button disabled>Disabled</Button>
+  </SpacedGroup>
+</Playground>
+
+## TextButton
+
+`TextButton` variants are typically used for **less-pronounced actions**, including those located:
+
+- In dialogs
+- In cards
+
+In cards, text buttons help maintain an emphasis on card content.
+
+<Playground>
+  <SpacedGroup>
+    <Button variant="text">Standard</Button>
+    <Button variant="text" type="primary">
+      Primary
+    </Button>
+    <Button variant="text" type="secondary">
+      Secondary
+    </Button>
+    <Button variant="text">
+      <AssetIcon /> Button with Icon
+    </Button>
+    <Button variant="text" type="primary">
+      <AssetIcon /> Button with Icon
+    </Button>
+    <Button variant="text" disabled>
+      Disabled
+    </Button>
   </SpacedGroup>
 </Playground>
 
