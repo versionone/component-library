@@ -77,29 +77,57 @@ const internalTheme = {
       background: palette.primary300,
       text: palette.primary700,
       hover: palette.primary200,
+      before: 'rgba(134, 224, 237, 0.6)',
+      focusBefore: 'rgb(48,202,222, 0.6)',
+      focus: palette.primary400,
+      focusBorder: '#2196F3',
       border: palette.transparent,
-      boxShadow: '8px 8px 12px 0 rgba(90, 213, 230, 0.6)' //primary300
+      boxShadow: '8px 8px 12px 0 rgba(90, 213, 230, 0.6)', //primary300
+      focusBoxShadow: '3px 3px 12px 0 rgba(30,170,189,0.6)' //primary 500
     },
+    /**
+     * .pco(background-color,@DeepOrange600,1);
+    .bsco(3px,3px,12px,0,@DeepOrange500,0.6);
+    .pco(border-color,red,1);
+    
+    &::before {
+      left: -100%;
+      .pco(background-color,@DeepOrange400,0.6);
+    }
+     */
     secondary: {
       background: palette.DeepOrange500,
       text: palette.DeepOrange1000,
       hover: palette.DeepOrange400,
+      before: 'rgba(255, 126, 85, 0.6)',
+      focusBefore: 'rgba(255, 126, 85, 0.6)', //DeepOrange400
+      focus: '#ee3900',
+      focusBorder: 'red',
       border: palette.transparent,
-      boxShadow: '8px 8px 12px 0 rgba(255, 87, 34, 0.6)' //DeepOrange500
+      boxShadow: '8px 8px 12px 0 rgba(255, 87, 34, 0.6)', //DeepOrange500,
+      focusBoxShadow: '3px 3px 12px 0 rgba(255, 87, 34, 0.6)', 
     },
     standard: {
       background: palette.transparent,
       text: palette.chrome700,
       hover: 'rgba(67, 128, 152, 0.2)',
+      before: 'rgba(67, 128, 152, 0.2)',
+      //add these values
+      // focusBefore: 'rgba(255, 126, 85, 0.6)', //DeepOrange400
+      // focus: '#ee3900',
+      // focusBorder: 'red',
       border: 'rgba(67, 128, 152, 0.5)',
       boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)'
+      //focusBoxShadow: '3px 3px 12px 0 rgba(255, 87, 34, 0.6)',
     },
     text: {
       background: palette.transparent,
-      text: palette.chrome700,
       hover: 'rgba(67, 128, 152, 0.2)',
       border: palette.transparent,
-      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)'
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)',
+      standard: palette.chrome700,
+      primary: palette.primary300,
+      secondary: palette.DeepOrange500,
     },
     disabled: {
       background: palette.transparent,
