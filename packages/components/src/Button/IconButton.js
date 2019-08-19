@@ -5,15 +5,14 @@ import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
 import { createComponent, styleUtils } from '../StyleProvider';
 
-const getBackgroundColor = ({ disabled, hovered, theme, type }) => {
+const getBackgroundColor = ({ disabled, hovered, theme }) => {
     if (disabled) return theme.Button.disabled.background;
-    if (hovered) return theme.Button[type].hover;
-    return theme.Button[type].background;
+    if (hovered) return theme.Button.text.hover;
+    return theme.Button.text.background;
   };
-
 const getColor = ({ type, disabled, theme }) => {
     if (disabled) return theme.Button.disabled.text;
-    return theme.Button[type].text;
+    return theme.Button.text[type];
   };
 
 const ButtonImpl = createComponent(
@@ -34,36 +33,54 @@ const ButtonImpl = createComponent(
     justifyContent: 'center',
     letterSpacing: '0.03rem',
     outline: 'none',
+    overflow: 'hidden',
     padding: 0,
+    position: 'relative',
     transition: '0.5s all linear',
     whiteSpace: 'nowrap',
+    zIndex: 0,
     backgroundColor: getBackgroundColor({
       disabled,
       hovered: false,
       theme,
-      type: buttonType,
     }),
     color: getColor({
-      disabled,
-      hovered: false,
-      theme,
       type: buttonType,
+      disabled,
+      theme,
     }),
     ':hover': {
-      borderColor: 'rgba(67, 128, 152, 0.5)',
-      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)',
+      borderColor: !disabled ? 'rgba(67, 128, 152, 0.5)' : 'transparent',
+      boxShadow: !disabled ? '0 0 7px 0 rgba(67, 128, 152, 0.3)' : 'none',
+      backgroundColor: getBackgroundColor({
+        disabled,
+        hovered: true,
+        theme,
+      }),
+    },
+    ':hover:before': {
+      left: 0,
+      width: '100%',
+    },
+    ':focus': {
+      borderColor: !disabled ? 'rgba(30,170,189,0.7)' : 'transparent',
+      boxShadow: !disabled ? '0 0 7px 0 rgba(30,170,189,0.5)' : 'none',
+    },
+    ':before': {
       backgroundColor: getBackgroundColor({
         disabled,
         hovered: true,
         theme,
         type: buttonType,
       }),
-      color: getColor({
-        disabled,
-        hovered: true,
-        theme,
-        type: buttonType,
-      }),
+      content:'""',
+      width: '0%',
+      height: '100%',
+      top: 0,
+      left: '100%',
+      transition: '0.5s all ease-out',
+      position: 'absolute',
+      zIndex: -1,
     },
     ...styleUtils.conditionalStyles(focused, theme.focused),
   }),
