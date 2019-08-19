@@ -85,16 +85,6 @@ const internalTheme = {
       boxShadow: '8px 8px 12px 0 rgba(90, 213, 230, 0.6)', //primary300
       focusBoxShadow: '3px 3px 12px 0 rgba(30,170,189,0.6)' //primary 500
     },
-    /**
-     * .pco(background-color,@DeepOrange600,1);
-    .bsco(3px,3px,12px,0,@DeepOrange500,0.6);
-    .pco(border-color,red,1);
-    
-    &::before {
-      left: -100%;
-      .pco(background-color,@DeepOrange400,0.6);
-    }
-     */
     secondary: {
       background: palette.DeepOrange500,
       text: palette.DeepOrange1000,
@@ -112,13 +102,12 @@ const internalTheme = {
       text: palette.chrome700,
       hover: 'rgba(67, 128, 152, 0.2)',
       before: 'rgba(67, 128, 152, 0.2)',
-      //add these values
-      // focusBefore: 'rgba(255, 126, 85, 0.6)', //DeepOrange400
-      // focus: '#ee3900',
-      // focusBorder: 'red',
+      focusBefore: 'rgba(30,170,189,0.2)', //primary500
+      focus: palette.transparent,
+      focusBorder: palette.primary500,
       border: 'rgba(67, 128, 152, 0.5)',
-      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)'
-      //focusBoxShadow: '3px 3px 12px 0 rgba(255, 87, 34, 0.6)',
+      boxShadow: '0 0 7px 0 rgba(67, 128, 152, 0.3)',
+      focusBoxShadow: '0 0 7px 0 rgba(30,170,189,0.3)',
     },
     text: {
       background: palette.transparent,
@@ -138,6 +127,10 @@ const internalTheme = {
       main: palette.cerulean,
       shadow: '0 0 4px 2px',
     },
+    icon: {
+      focusBorder: 'rgba(30,170,189,0.7)',
+      focusBoxShadow: '0 0 7px 0 rgba(30,170,189,0.5)'
+    }
   },
   Drawer: {
     background: palette.paper,
