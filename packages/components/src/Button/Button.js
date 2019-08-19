@@ -100,12 +100,20 @@ const ButtonImpl = createComponent(
       left: 0,
       width: '100%'
     },
-    ':focus,:active': {
+    ':focus': {
       backgroundColor: getFocusColor({buttonType, disabled, theme, variant}),
       boxShadow: getFocusBoxShadow({buttonType, disabled, theme, variant}),
       borderColor: getFocusBorderColor({buttonType, disabled, theme, variant})
     },
-    ':focus:before,:active:before': {
+    ':active': {
+      backgroundColor: getFocusColor({buttonType, disabled, theme, variant}),
+      boxShadow: getFocusBoxShadow({buttonType, disabled, theme, variant}),
+      borderColor: getFocusBorderColor({buttonType, disabled, theme, variant})
+    },
+    ':focus:before': {
+      backgroundColor: getFocusBeforeColor({buttonType, disabled, theme, variant}),
+    },
+    ':active:before': {
       backgroundColor: getFocusBeforeColor({buttonType, disabled, theme, variant}),
     },
     ':before': {
