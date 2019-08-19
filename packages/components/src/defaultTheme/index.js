@@ -539,7 +539,7 @@ const themeDark = {
       text: palette.chrome100,
     },
     text: {
-      text: palette.chrome100,
+      standard: palette.chrome100,
     },
     disabled: {
       text: 'rgb(255, 255, 255, 0.5)',

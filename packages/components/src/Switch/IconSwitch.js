@@ -64,7 +64,7 @@ const IconSwitchImpl = createComponent(
       left: '100%',
       transition: '0.5s all ease-out',
       position: 'absolute',
-      zIndex: -1,
+      zIndex: 'auto',
     },
   }),
   'button',
