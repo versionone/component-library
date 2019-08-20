@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Base = ({ color, icon: Icon, size, ...rest }) => (
+const Base = ({ color, icon: Icon, size, title, ...rest }) => (
   <Icon
     style={{
       display: 'inline-flex',
@@ -9,7 +9,7 @@ const Base = ({ color, icon: Icon, size, ...rest }) => (
       height: `${size}px`,
       width: `${size}px`,
     }}
-    title={Icon.displayName}
+    title={title || Icon.displayName}
     {...rest}
     data-component="Icon"
   />
