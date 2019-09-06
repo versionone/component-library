@@ -15,17 +15,12 @@ Version numbers should follow the pattern MAJOR.MINOR.PATCH
 
 ## Branching Strategy
 
-There are 2 main branches, `master` and `next`.
-
-- `master` is the current published version. Minor changes such as feature updates and defect fixes should get merged into `master`.
-- `next` is the candidate branch of the next major version that has not yet been released. Breaking changes should be merged into `next`.
-
-After changes have been made to `master`, `next` should be rebased on `master`.
+There is 1 main branch `master` where changes should be published from.
 
 > Pull Request process:
 >
 > - Open Pull Request in Github
-> - Pull Request passes all the things
+> - Have 2 people review and approve the changes
 > - Use Github to merge Pull Request
 
 ## How to Publish
@@ -34,22 +29,13 @@ The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/c
 
 > Be sure to Login using `npm login` before attempting to publish
 
-### Publishing Minor and Patch Versions
+### Publishing Major, Minor, and Patch Versions
 
 Feature branches should be merged into `master` before publishing from `master`. Upon merging to `master`, create a production build and publish with the following:
 
 ```bash
 NODE_ENV=production yarn build
-yarn lerna publish {minor|patch}
-```
-
-### Publishing Major Versions
-
-`next` should be merged into `master` before publishing a major version, as it will become the new `master` branch after publishing.
-
-```bash
-NODE_ENV=production yarn build
-yarn lerna publish major
+yarn lerna publish {major|minor|patch}
 ```
 
 ### Canary Releases
@@ -64,6 +50,8 @@ yarn lerna publish --canary premajor
 ```
 
 ## Publishing the Site
+
+> This step is currently set to Deploy Automatically
 
 A deployment preview of the docs site gets published on every Pull Request as well as every merge to master and next.
 
@@ -88,7 +76,8 @@ This can only be done within 72 hours. See [this article](https://docs.npmjs.com
 
 ### Netlify site is down
 
-While publishing the site, the current netlify site will be taken down.
+While publishing the site, the current netlify site (https://versionone-components.netlify.com) will be down for approximately 30 minutes.
+
 
 ## Additional Resources
 
