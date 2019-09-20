@@ -55,10 +55,11 @@ updateStatus({
         }
       })
       .catch(error => {
+        console.error(error);
         updateStatus({
           ...status,
           description: error,
-          state: 'error',
+          state: 'cypress error',
         }).then(() => shell.exit(1));
       }),
   )
