@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { CheckIcon, CloseIcon } from '@versionone/icons';
 import { createComponent, WithTheme } from '../StyleProvider';
+import { auto } from 'eol';
 
 const RadioImpl = createComponent(
-  ({ disabled, size, theme }) => ({
+  ({ disabled, selected, size, theme }) => ({
     alignItems: 'center',
     color: theme.Button.standard.text,
     height: size,
@@ -13,6 +14,24 @@ const RadioImpl = createComponent(
     minWidth: size,
     minHeight: size,
     borderRadius: '50%',
+    border: '3px solid',
+    borderColor: selected ? theme.Radio.selected : theme.Radio.main,
+    backgroundColor: 'transparent',
+    position: 'relative',
+    outline: 0,
+    margin: '4px',
+    ':before': {
+      content:'""',
+      width: size/2,
+      height: size/2,
+      borderRadius: '50%',
+      backgroundColor: selected ? theme.Radio.selected : 'transparent', 
+      position: 'absolute',
+      display: 'block',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
   }),
   'button',
   [
@@ -37,9 +56,6 @@ class Radio extends Component {
   static contextType = WithTheme;
 
   render() {
-    const icon = this.props.selected
-      ? this.props.checkedIcon
-      : this.props.uncheckedIcon;
     const {
       disabled,
       checkedIcon,
@@ -66,12 +82,7 @@ class Radio extends Component {
           onClick={handleSelection}
           type="button"
           data-trackingid={this.props['data-trackingid']}
-        >
-          {React.cloneElement(icon, {
-            size: size - 16,
-            color: selected ? theme.Radio.selected : theme.Radio.main,
-          })}
-        </RadioImpl>
+        / >
     );
   }
 }
@@ -86,10 +97,6 @@ Radio.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Icon to be used when switch is checeked.
-   */
-  checkedIcon: PropTypes.node,
-  /**
    * Size of the button
    */
   size: PropTypes.number,
@@ -97,10 +104,6 @@ Radio.propTypes = {
    * Sets the tabindex of the button; used for tab order.
    */
   tabIndex: PropTypes.string,
-  /**
-   * Icon to be used when switch is uncheceked.
-   */
-  uncheckedIcon: PropTypes.node,
   /**
    * Attribute used to track user interaction
    */
@@ -113,8 +116,6 @@ Radio.defaultProps = {
   onClick: noop,
   size: 32,
   tabIndex: '0',
-  checkedIcon: <CheckIcon />,
-  uncheckedIcon: <CloseIcon />, 
 };
 
 export { Radio };
