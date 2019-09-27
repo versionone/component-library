@@ -107,7 +107,7 @@ Label.defaultProps = {
   labelText: "",
   xs: 4,
   center: false,
-  stretch: false,
+  stretch: true,
   disableGutter: false,
   disabled: false,
   required: false,
