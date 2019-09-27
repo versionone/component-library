@@ -135,10 +135,7 @@ const internalTheme = {
   Drawer: {
     background: palette.paper,
   },
-  FormField: {
-    spacing: '0.5rem',
-    focusColor: palette.cerulean,
-    shadow: '0 0 4px 2px',
+  Arrow: {
     boxShadow: `0 0 4px ${palette.cerulean}`,
   },
   Label: {
