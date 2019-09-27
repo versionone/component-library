@@ -6,14 +6,14 @@ import { Focusable } from '../Focusable';
 import { createComponent, styleUtils } from '../StyleProvider';
 
 const getBackgroundColor = ({ disabled, hovered, theme }) => {
-    if (disabled) return theme.Button.disabled.background;
-    if (hovered) return theme.Button.text.hover;
-    return theme.Button.text.background;
-  };
+  if (disabled) return theme.Button.disabled.background;
+  if (hovered) return theme.Button.text.hover;
+  return theme.Button.text.background;
+};
 const getColor = ({ type, disabled, theme }) => {
-    if (disabled) return theme.Button.disabled.text;
-    return theme.Button.text[type];
-  };
+  if (disabled) return theme.Button.disabled.text;
+  return theme.Button.text[type];
+};
 
 const ButtonImpl = createComponent(
   ({ disabled, buttonType, size, focused, theme }) => ({
@@ -73,7 +73,7 @@ const ButtonImpl = createComponent(
         theme,
         type: buttonType,
       }),
-      content:'""',
+      content: '""',
       width: '0%',
       height: '100%',
       top: 0,
@@ -100,7 +100,6 @@ const ButtonImpl = createComponent(
   ],
 );
 
-
 class IconButton extends Component {
   render() {
     const {
@@ -112,6 +111,7 @@ class IconButton extends Component {
       type,
       onFocus,
       onBlur,
+      title,
       ...rest
     } = this.props;
 
@@ -132,7 +132,8 @@ class IconButton extends Component {
             focused={focused}
           >
             {React.createElement(icon, {
-              size: size - 16,
+              size: Math.floor(size / 2),
+              title,
             })}
           </ButtonImpl>
         )}
