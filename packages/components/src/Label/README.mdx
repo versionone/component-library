@@ -12,14 +12,12 @@ A label used to identify a form field. Use within a [FormField](/components/Form
 
 <Playground>
   <SpacedGroup direction="vertical">
-      <Label>label to the left <TextField /></Label>
-      <Label><TextField />label on the right</Label>
-      <Label direction="VERTICAL">label above <TextField /></Label>
-      <Label direction="VERTICAL"><TextField />label below</Label>
-      <Label disabled>disabled field <TextField /></Label>
-      <Label required>required field <TextField /></Label>
-      <Label fullwidth>full width field <TextField /></Label>
-      <TextField />
+      <Label location="left" labelText="label to the left"><TextField /></Label>
+      <Label location="right" labelText="label to the right"><TextField /></Label>
+      <Label location="above" labelText="label above"><TextField /></Label>
+      <Label location="below" labelText="label below"><TextField /></Label>
+      <Label disabled labelText="disabled field"><TextField /></Label>
+      <Label required labelText="required field"><TextField /></Label>
   </SpacedGroup>
 </Playground>
 

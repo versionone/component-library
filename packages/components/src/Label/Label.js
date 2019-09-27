@@ -9,14 +9,16 @@ const RIGHT = 'right';
 const LEFT = 'left';
 const spacingUnits = [0, 2, 4, 8, 16, 24, 32, 40];
 
-const LabelText = createComponent(
+const LabelWrapper = createComponent(
   ({ disabled, theme }) => ({
     color: disabled ? theme.Label.disabled.main : theme.Label.default.main,
     opacity: disabled && .5,
     cursor: disabled && 'not-allowed',
     textTransform: 'uppercase',
+    display: 'flex',
+    alignItems: 'center',
   }),
-  'label',
+  'div',
   ['data-component', 'data-test'],
 );
 
@@ -29,15 +31,19 @@ const RequiredText = createComponent(
 
 const Label = props => {
   const { children, disabled, required, 'data-test': dataTest, labelText, location } = props;
-  const requiredText = <RequiredText>*</RequiredText>;
-  const isBefore = location === (ABOVE || LEFT);
-  const direction = location === (ABOVE || BELOW) ? "verical" : "horizontal";
+  const label = required 
+      ? <label>{labelText}<RequiredText>*</RequiredText></label> 
+      : <label>{labelText}</label>;
+  const content = location === ABOVE || location === LEFT 
+      ? <React.Fragment>{label}{children}</React.Fragment> 
+      : <React.Fragment>{children}{label}</React.Fragment>;
+  const direction = (location === ABOVE || location === BELOW) ? "vertical" : "horizontal";
   return (
-    <SpacedGroup {...props} direction={direction} is="label">
-      <LabelText data-component="Label" data-test={dataTest} disabled={disabled}>
-        {isBefore && label}{children}{!isBefore && label}
-      </LabelText>
-    </SpacedGroup>
+    <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled}>
+      <SpacedGroup {...props} direction={direction} is="label">
+        {content}
+      </SpacedGroup>
+    </LabelWrapper>
   );
 };
 
