@@ -32,7 +32,7 @@ const RequiredText = createComponent(
 const Label = props => {
   const { children, disabled, required, 'data-test': dataTest, labelText, location } = props;
   const label = required 
-      ? <label>{labelText}<RequiredText>*</RequiredText></label> 
+      ? <label>{labelText}<RequiredText> *</RequiredText></label> 
       : <label>{labelText}</label>;
   const content = location === ABOVE || location === LEFT 
       ? <React.Fragment>{label}{children}</React.Fragment> 

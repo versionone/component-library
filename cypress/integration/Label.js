@@ -6,11 +6,11 @@ context('Label', () => {
 
   specify('can be marked as required or disabled', () => {
     cy.get('@sut')
-      .eq(1)
+      .eq(5)
       .should('have.text', 'required label *');
 
     cy.get('@sut')
-      .eq(2)
+      .eq(4)
       .should('have.css', 'cursor', 'not-allowed')
   });
 });
