@@ -63,6 +63,9 @@ class Radio extends Component {
       onClick,
       handleBlur,
       handleFocus,
+      focused,
+      controls,
+      id,
       ...rest
     } = this.props;
 
@@ -70,11 +73,16 @@ class Radio extends Component {
         <RadioImpl
           {...rest}
           data-component="Radio"
+          aria-controls={controls}
           disabled={disabled}
           selected={selected}
+          aria-selected={selected}
           size={size}
           tabIndex={tabIndex}
           onClick={onClick}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          focused={focused}
           type="button"
           data-trackingid={this.props['data-trackingid']}
         / >

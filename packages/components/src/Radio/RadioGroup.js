@@ -3,6 +3,9 @@ import React from 'react';
 import { isNull, isUndefined } from 'underscore';
 import { noop } from 'rxjs';
 
+const ROW = 'row';
+const COLUMN = 'column';
+
 class SmartGroup extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -115,7 +118,7 @@ class SmartGroup extends React.Component {
         handleFocus: this.state.focusRadioByIndex(index),
         handleBlur: this.state.focusRadioByIndex(null),
         focused: isFocused,
-        radioIndex: isSelected ? '0' : '-1',
+        tabIndex: isSelected ? '0' : '-1',
         count,
       };
 
@@ -131,12 +134,15 @@ SmartGroup.propTypes = {
 
 const RadioGroup = props => {
   return (
-    <span
+    <div
       data-component="RadioGroup"
       data-test={props['data-test']}
-    >
+      style={{ 
+        flexDirection: props.direction,
+        display: "flex" }
+      }>
       <SmartGroup {...props}>{props.children}</SmartGroup>
-    </span>
+    </div>
   );
 };
 
@@ -149,6 +155,10 @@ RadioGroup.propTypes = {
    * Collection of Radio instances
    */
   children: PropTypes.node,
+  /**
+   * Collection of Radio instances
+   */
+  direction: PropTypes.oneOf([ROW, COLUMN]),
     /**
    * Index of the active radio before user interaction
    */
@@ -166,6 +176,7 @@ RadioGroup.propTypes = {
 RadioGroup.defaultProps = {
   defaultActiveRadio: 0,
   defaultFocusedRadio: null,
+  direction: ROW,
   handleSelection: noop,
 };
 
