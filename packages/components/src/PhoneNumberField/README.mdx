@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { Label } from '../Label';
+import { FormLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { PhoneNumberField } from './';
 import { HomeIcon } from '@versionone/icons';
@@ -29,9 +29,9 @@ Used to provide a phone number. Uses a number keypad on mobile devices and restr
 <Playground>
   <SpacedGroup direction="vertical">
     <PhoneNumberField prependIcon="item" />
-    <Label stretch labelText="with a label">
+    <FormLabel stretch labelText="with a label">
       <PhoneNumberField prependIcon="item" stretch />
-    </Label>
+    </FormLabel>
     <PhoneNumberField fullWidth prependIcon="item" />
     <PhoneNumberField fullWidth prependIcon={<HomeIcon />} />
     <PhoneNumberField fullWidth prependIcon="item" multiline />
@@ -44,15 +44,15 @@ Used to provide a phone number. Uses a number keypad on mobile devices and restr
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <Label labelText="Label:">
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="default" />
-    </Label>
-    <Label labelText="Label:">
+    </FormLabel>
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="fullWidth" fullWidth />
-    </Label>
-    <Label labelText="Label:">
+    </FormLabel>
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="stretch" stretch />
-    </Label>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 

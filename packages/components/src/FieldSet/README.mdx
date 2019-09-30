@@ -7,7 +7,7 @@ import { Playground, PropsTable } from '@versionone/doc-components';
 import { FieldSet } from './';
 import { Button } from './../Button';
 import { TextField } from './../TextField';
-import { Label } from './../Label';
+import { FormLabel } from './../Label';
 import { Switch } from './../Switch';
 import { SpacedGroup } from './../SpacedGroup';
 
@@ -19,9 +19,9 @@ FieldSet are great to visually group form fields
       <SpacedGroup>
         <span>Account Details</span>
       </SpacedGroup>
-      <Label labelText="My Label"><TextField fullWidth /></Label>
-      <Label labelText="My Label"><TextField stretch /></Label>
-      <Label center stretch labelText="Enabled Feature"><Switch /></Label>
+      <FormLabel labelText="My Label"><TextField fullWidth /></FormLabel>
+      <FormLabel labelText="My Label"><TextField stretch /></FormLabel>
+      <FormLabel center stretch labelText="Enabled Feature"><Switch /></FormLabel>
     </SpacedGroup>
   </FieldSet>
 </Playground>
