@@ -7,8 +7,11 @@ import { Playground, PropsTable } from '@versionone/doc-components';
 import { FormLabel, FormControlLabel } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from '../TextField';
+import { RadioGroup, Radio } from '../Radio'
 
-A label used to identify a form field. 
+A label used to identify a form field.
+
+## FormLabel
 
 <Playground>
   <SpacedGroup direction="vertical">
@@ -21,6 +24,20 @@ A label used to identify a form field.
   </SpacedGroup>
 </Playground>
 
+## FormControlLabel
+
+Used with a single control such as Radio or Checkbox
+
+<Playground>
+  <RadioGroup defaultActiveRadio={0} defaultFocusedRadio={0}>
+    <FormControlLabel location="left" label="label to the left" control={<Radio />} />
+    <FormControlLabel location="right" label="label to the right" control={<Radio />} />
+    <FormControlLabel location="above" label="label above" control={<Radio />} />
+    <FormControlLabel location="below" label="label below" control={<Radio />} />
+  </RadioGroup>
+</Playground>
+
 ## API
 
 <PropsTable of={FormLabel} />
+<PropsTable of={FormControlLabel} />

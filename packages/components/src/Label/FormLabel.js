@@ -59,7 +59,7 @@ FormLabel.propTypes = {
   /**
    * Set the direction elements should be rendered.
    */
-  labelText: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /*
    * Turn on vertical or horizontal centering of items
    */

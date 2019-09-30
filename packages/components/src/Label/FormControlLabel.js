@@ -28,9 +28,10 @@ const FormControlLabel = props => {
     ...props
   };
   const Control = React.cloneElement(control, controlProps);
+  const labelText = <span>{label}</span>;
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
-      ? <React.Fragment>{label} {Control}</React.Fragment> 
-      : <React.Fragment>{Control} {label}</React.Fragment>;
+      ? <React.Fragment>{labelText} {Control}</React.Fragment> 
+      : <React.Fragment>{Control} {labelText}</React.Fragment>;
   const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
     <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled} onClick={onClick}>
