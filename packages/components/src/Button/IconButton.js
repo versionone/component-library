@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { noop } from 'underscore';
 import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
-import { createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 
 const getBackgroundColor = ({ disabled, hovered, theme }) => {
   if (disabled) return theme.Button.disabled.background;
@@ -116,28 +116,35 @@ class IconButton extends Component {
     } = this.props;
 
     return (
-      <Focusable focused={focused} onFocus={onFocus} onBlur={onBlur}>
-        {({ ref, bind, focused }) => (
-          <ButtonImpl
-            data-component="IconButton"
-            data-trackingid={this.props['data-trackingid']}
-            buttonType={type}
-            disabled={disabled}
-            size={size}
-            tabIndex={tabIndex}
-            type="button"
-            {...rest}
-            {...bind}
-            innerRef={ref}
-            focused={focused}
-          >
-            {React.createElement(icon, {
-              size: Math.floor(size / 2),
-              title,
-            })}
-          </ButtonImpl>
-        )}
-      </Focusable>
+      <WithTheme>
+        {theme => {
+          return (
+            <Focusable focused={focused} onFocus={onFocus} onBlur={onBlur}>
+              {({ ref, bind, focused }) => (
+                <ButtonImpl
+                  data-component="IconButton"
+                  data-trackingid={this.props['data-trackingid']}
+                  buttonType={type}
+                  disabled={disabled}
+                  size={size}
+                  tabIndex={tabIndex}
+                  type="button"
+                  {...rest}
+                  {...bind}
+                  innerRef={ref}
+                  focused={focused}
+                >
+                  {React.createElement(icon, {
+                    size: Math.floor(size / 2),
+                    title,
+                    color: theme.Icon.main,
+                  })}
+                </ButtonImpl>
+              )}
+            </Focusable>
+          );
+        }}
+      </WithTheme>
     );
   }
 }
