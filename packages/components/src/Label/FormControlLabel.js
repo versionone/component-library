@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { noop } from 'underscore';
 import { createComponent } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
 
@@ -22,17 +23,17 @@ const LabelWrapper = createComponent(
 );
 
 const FormControlLabel = props => {
-  const { control, checked, disabled, 'data-test': dataTest, labelText, location } = props;
+  const { control, selected, disabled, 'data-test': dataTest, label, location, onClick } = props;
   const controlProps = {
-    selected: checked,
+    ...props
   };
   const Control = React.cloneElement(control, controlProps);
   const content = location === ABOVE || location === LEFT 
-      ? <React.Fragment>{labelText}<Control /></React.Fragment> 
-      : <React.Fragment><Control />{labelText}</React.Fragment>;
+      ? <React.Fragment>{label} {Control}</React.Fragment> 
+      : <React.Fragment>{Control} {label}</React.Fragment>;
   const direction = (location === ABOVE || location === BELOW) ? "vertical" : "horizontal";
   return (
-    <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled}>
+    <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled} onClick={onClick}>
       <SpacedGroup {...props} direction={direction} is="label">
         {content}
       </SpacedGroup>
@@ -52,11 +53,15 @@ FormControlLabel.propTypes = {
   /**
    * Set the direction elements should be rendered.
    */
-  labelText: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
     /**
    * If the element is checked
    */
-  checked: PropTypes.string.isRequired,
+  selected: PropTypes.bool,
+  /**
+   *  Function called when clicked
+   */
+  onClick: PropTypes.func,
   /**
    * Set the amount to space to apply between elements when the screen is phone and up
    */
@@ -93,6 +98,8 @@ FormControlLabel.propTypes = {
 
 FormControlLabel.defaultProps = {
   location: LEFT,
+  selected: false,
+  onClick: noop,
   xs: 4,
   disableGutter: false,
   disabled: false,
