@@ -29,7 +29,7 @@ const RequiredText = createComponent(
   'span',
 );
 
-const Label = props => {
+const FormLabel = props => {
   const { children, disabled, required, 'data-test': dataTest, labelText, location } = props;
   const label = required 
       ? <label>{labelText}<RequiredText> *</RequiredText></label> 
@@ -47,7 +47,7 @@ const Label = props => {
   );
 };
 
-Label.propTypes = {
+FormLabel.propTypes = {
   /**
    * Set components to equally space.
    */
@@ -59,7 +59,7 @@ Label.propTypes = {
   /**
    * Set the direction elements should be rendered.
    */
-  labelText: PropTypes.string,
+  labelText: PropTypes.string.isRequired,
   /*
    * Turn on vertical or horizontal centering of items
    */
@@ -102,9 +102,8 @@ Label.propTypes = {
   required: PropTypes.bool,
 };
 
-Label.defaultProps = {
+FormLabel.defaultProps = {
   location: LEFT,
-  labelText: "",
   xs: 4,
   center: false,
   stretch: true,
@@ -112,4 +111,4 @@ Label.defaultProps = {
   disabled: false,
   required: false,
 };
-export { Label };
+export { FormLabel };
