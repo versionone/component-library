@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
-import { CheckIcon, CloseIcon } from '@versionone/icons';
 import { createComponent, WithTheme } from '../StyleProvider';
 import { auto } from 'eol';
 
@@ -58,18 +57,14 @@ class Radio extends Component {
   render() {
     const {
       disabled,
-      checkedIcon,
-      uncheckedIcon,
       selected,
       size,
       tabIndex,
       onClick,
-      handleSelection,
       handleBlur,
       handleFocus,
       ...rest
     } = this.props;
-    const theme = this.context;
 
     return (
         <RadioImpl
@@ -79,7 +74,7 @@ class Radio extends Component {
           selected={selected}
           size={size}
           tabIndex={tabIndex}
-          onClick={handleSelection}
+          onClick={onClick}
           type="button"
           data-trackingid={this.props['data-trackingid']}
         / >
@@ -101,6 +96,10 @@ Radio.propTypes = {
    */
   size: PropTypes.number,
   /**
+   *  Function called when a radio is clicked
+   */
+  onClick: PropTypes.func,
+  /**
    * Sets the tabindex of the button; used for tab order.
    */
   tabIndex: PropTypes.string,
@@ -111,7 +110,7 @@ Radio.propTypes = {
 };
 
 Radio.defaultProps = {
-  checked: false,
+  selected: false,
   disabled: false,
   onClick: noop,
   size: 32,

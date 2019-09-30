@@ -4,23 +4,24 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormField } from '../FormField';
 import { Label } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { RadioGroup, Radio } from './';
-import { Button } from '../Button';
+import { FormControlLabel } from '../Label';
 
 Allows users to select one option from a set.
 
 ## Basic
 
 <Playground>
-  <RadioGroup defaultActiveRadio={0} defaultFocusedRadio={0}>
-    <Radio />
-    <Radio />
-    <Radio />
-    <Radio />
-  </RadioGroup>
+  <SpacedGroup direction="horizontal">
+    <RadioGroup defaultActiveRadio={0} defaultFocusedRadio={0}>
+      <FormControlLabel label="Option 1" control={<Radio />} />
+      <FormControlLabel label="Option 2" control={<Radio />} />
+      <FormControlLabel label="Option 3" control={<Radio />} />
+      <FormControlLabel label="Option 4" control={<Radio />} />
+    </RadioGroup>
+  </SpacedGroup>
 </Playground>
 
 ## Stateful

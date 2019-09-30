@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { isNull, isUndefined } from 'underscore';
-import GroupContext from './GroupContext';
 import { noop } from 'rxjs';
 
 class SmartGroup extends React.Component {
@@ -111,7 +110,7 @@ class SmartGroup extends React.Component {
         id: `${index  }`,
         controls: `${index}-radio`,
         selected: isSelected,
-        handleSelection: this.state.selectRadioByIndex(index),
+        onClick: this.state.selectRadioByIndex(index),
         selectRadioByIndex: this.state.selectRadioByIndex,
         handleFocus: this.state.focusRadioByIndex(index),
         handleBlur: this.state.focusRadioByIndex(null),
@@ -136,9 +135,7 @@ const RadioGroup = props => {
       data-component="RadioGroup"
       data-test={props['data-test']}
     >
-      <GroupContext.Consumer>
-        {value => <SmartGroup {...props}>{props.children}</SmartGroup>}
-      </GroupContext.Consumer>
+      <SmartGroup {...props}>{props.children}</SmartGroup>
     </span>
   );
 };
