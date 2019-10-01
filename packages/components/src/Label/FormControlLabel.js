@@ -23,15 +23,15 @@ const LabelWrapper = createComponent(
 );
 
 const FormControlLabel = props => {
-  const { control, selected, disabled, 'data-test': dataTest, label, location, onClick } = props;
+  const { control, selected, disabled, 'data-test': dataTest, label, labelPlacement, onClick } = props;
   const controlProps = {
     ...props
   };
   const Control = React.cloneElement(control, controlProps);
-  const content = location === ABOVE || location === LEFT 
+  const content = labelPlacement === ABOVE || labelPlacement === LEFT 
       ? <React.Fragment>{label} {Control}</React.Fragment> 
       : <React.Fragment>{Control} {label}</React.Fragment>;
-  const direction = (location === ABOVE || location === BELOW) ? "vertical" : "horizontal";
+  const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
     <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled} onClick={onClick}>
       <SpacedGroup {...props} direction={direction} is="label">
@@ -49,7 +49,7 @@ FormControlLabel.propTypes = {
   /**
    * Set the direction elements should be rendered.
    */
-  location: PropTypes.oneOf([ABOVE, BELOW, LEFT, RIGHT]),
+  labelPlacement: PropTypes.oneOf([ABOVE, BELOW, LEFT, RIGHT]),
   /**
    * Set the direction elements should be rendered.
    */
@@ -97,7 +97,7 @@ FormControlLabel.propTypes = {
 };
 
 FormControlLabel.defaultProps = {
-  location: LEFT,
+  labelPlacement: LEFT,
   selected: false,
   onClick: noop,
   xs: 4,
