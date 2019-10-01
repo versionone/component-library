@@ -9,12 +9,12 @@ import { SpacedGroup } from '../SpacedGroup';
 import { RadioGroup, Radio } from './';
 import { FormControlLabel } from '../Label';
 
-Allows users to select one option from a set.
+Allows users to select one option from a set. Use RadioGroup to Wrap a set of Radio Inputs.
 
 ## Basic
 
 <Playground>
-  <RadioGroup defaultActiveRadio={0} defaultFocusedRadio={0}>
+  <RadioGroup name="Name" defaultActiveRadio={0} defaultFocusedRadio={0}>
     <FormControlLabel label="Option 1" control={<Radio />} />
     <FormControlLabel label="Option 2" control={<Radio />} />
     <FormControlLabel label="Option 3" control={<Radio />} />
@@ -22,11 +22,9 @@ Allows users to select one option from a set.
   </RadioGroup>
 </Playground>
 
-## Stateful
-
-
 ## API
 
+<PropsTable of={RadioGroup} />
 <PropsTable of={Radio} />
 
 

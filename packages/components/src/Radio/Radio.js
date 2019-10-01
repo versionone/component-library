@@ -2,24 +2,32 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { createComponent, WithTheme } from '../StyleProvider';
-import { auto } from 'eol';
 
 const RadioImpl = createComponent(
   ({ disabled, selected, size, theme }) => ({
-    alignItems: 'center',
-    color: theme.Button.standard.text,
     height: size,
     width: size,
-    minWidth: size,
-    minHeight: size,
-    borderRadius: '50%',
-    border: '3px solid',
-    borderColor: selected ? theme.Radio.selected : theme.Radio.main,
-    backgroundColor: 'transparent',
+    alignItems: 'center',
     position: 'relative',
-    outline: 0,
+    outline: 'none',
     margin: '4px',
     ':before': {
+      content:'""',
+      color: theme.Button.standard.text,
+      height: size,
+      width: size,
+      minWidth: size,
+      minHeight: size,
+      borderRadius: '50%',
+      border: '3px solid transparent',
+      borderColor: selected ? theme.Radio.selected : theme.Radio.main,
+      backgroundColor: theme.Radio.background,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    ':after': {
       content:'""',
       width: size/2,
       height: size/2,
@@ -32,12 +40,14 @@ const RadioImpl = createComponent(
       transform: 'translate(-50%, -50%)',
     },
   }),
-  'button',
+  'input',
   [
     'disabled',
     'onClick',
     'tabIndex',
     'type',
+    'name',
+    'id',
     'data-test',
     'data-component',
     'data-trackingid',
@@ -52,8 +62,6 @@ class Radio extends Component {
     }
   }
 
-  static contextType = WithTheme;
-
   render() {
     const {
       disabled,
@@ -61,11 +69,12 @@ class Radio extends Component {
       size,
       tabIndex,
       onClick,
-      handleBlur,
-      handleFocus,
+      onBlur,
+      onFocus,
       focused,
       controls,
       id,
+      name,
       ...rest
     } = this.props;
 
@@ -80,10 +89,12 @@ class Radio extends Component {
           size={size}
           tabIndex={tabIndex}
           onClick={onClick}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onFocus={onFocus}
+          onBlur={onBlur}
           focused={focused}
-          type="button"
+          type="radio"
+          name={name}
+          id={id}
           data-trackingid={this.props['data-trackingid']}
         / >
     );
