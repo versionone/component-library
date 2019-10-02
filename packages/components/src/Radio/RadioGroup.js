@@ -36,6 +36,7 @@ class SmartGroup extends React.Component {
         controls: `${index}-radio`,
         selected: isSelected,
         onClick: this.state.selectRadioByIndex(index),
+        onChange: props.onChange,
         selectRadioByIndex: this.state.selectRadioByIndex,
         onFocus: this.state.focusRadioByIndex(index),
         onBlur: this.state.focusRadioByIndex(null),
@@ -98,6 +99,10 @@ RadioGroup.propTypes = {
    * Unique Identifier of group
    */
   name: PropTypes.string.isRequired,
+    /**
+   *  Function called when a radio is changed
+   */
+  onChange: PropTypes.func,
 };
 
 RadioGroup.defaultProps = {
@@ -105,6 +110,7 @@ RadioGroup.defaultProps = {
   defaultFocusedRadio: null,
   direction: ROW,
   handleSelection: noop,
+  onChange: noop,
 };
 
 export { RadioGroup };
