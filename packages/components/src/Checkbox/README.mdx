@@ -1,0 +1,31 @@
+---
+name: Checkbox
+menu: Components
+---
+
+import { Playground, PropsTable } from '@versionone/doc-components';
+import { FormLabel } from '../Label';
+import { SpacedGroup } from '../SpacedGroup';
+import { Checkbox } from './';
+import { FormControlLabel } from '../Label'
+
+It's a checkbox
+
+## Basic
+
+<Playground>
+  <FormControlLabel checked={true} id="Checkbox1" control={<Checkbox />} label="Checkbox 1" />
+  <FormControlLabel id="Checkbox2" control={<Checkbox />} label="Checkbox 2" />
+  <FormControlLabel id="Checkbox3" control={<Checkbox />} label="Checkbox 3" />
+</Playground>
+
+<Playground>
+  <input type="checkbox" />
+  <input type="checkbox" />
+  <input type="checkbox" />
+  <input type="checkbox" />
+</Playground>
+
+## API
+
+<PropsTable of={Checkbox} />
