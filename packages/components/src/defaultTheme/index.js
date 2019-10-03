@@ -196,6 +196,9 @@ const internalTheme = {
     main: palette.gunmetal,
     secondary: palette.aluminum,
   },
+  Checkbox: {
+    main: palette.chrome700,
+  },
   Chip: {
     main: '#e0e0e0',
     focused: 'rgb(206, 206, 206)',
@@ -576,6 +579,9 @@ const themeDark = {
       focus: palette.eggplant,
       busy: palette.sunset,
     },
+  },
+  Checkbox: {
+    main: palette.paper,
   },
   Chip: {
     main: palette.chrome700,

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
 import { CheckIcon } from '@versionone/icons';
-import { createComponent } from '../StyleProvider';
+import { createComponent, WithTheme } from '../StyleProvider';
 
 const CheckboxImpl = createComponent(
     ({ checked, size, theme }) => ({
@@ -13,31 +13,6 @@ const CheckboxImpl = createComponent(
       outline: 'none',
       top: 0,
       opacity: 0,
-      // ':before': {
-      //   content:'""',
-      //   color: theme.Button.standard.text,
-      //   height: size,
-      //   width: size,
-      //   minWidth: size,
-      //   minHeight: size,
-      //   borderRadius: '3px',
-      //   border: '2px solid transparent',
-      //   borderColor: theme.Radio.selected,
-      //   backgroundColor: theme.Radio.background,
-      //   cursor: 'pointer',
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      // },
-      // ':after': {
-      //   content:'""',
-      //   color: theme.Button.standard.text,
-      //   height: '6px',
-      //   width: '9px',
-      //   borderLeft: '2px solid',
-      //   borderBottom: '2px solid',
-      //   transform: 'rotate(-45deg)',
-      // },
   }),
   'input',
   ['data-component', 'data-test', 'data-trackingid', 'onClick', 'type', 'id', 'onChange', 'checked'],
@@ -66,44 +41,52 @@ class Checkbox extends React.Component {
     const { checked, toggleCheck } = this.state
 
       return (
-        <span style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative',
-          margin: '4px',
-          width: size,
-          height: size,}}>
-          <CheckboxImpl
-            {...rest}
-            type="checkbox"
-            size={size}
-            id={id}
-            checked={checked}
-            onClick={toggleCheck(checked)}
-            onChange={onChange}
-            data-trackingid={this.props['data-trackingid']}
-          />
-          <span onClick={toggleCheck(checked)}
-          style={{
-            width: size,
-            height: size,
-            borderRadius: '3px',
-            border: '2px solid currentColor',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',}}>
-              {React.cloneElement(<CheckIcon/>, {
-                size,
-                color: checked ? '#000' : 'transparent',
-                display: 'inline-block',
-                position: 'absolute',
-                zIndex: 100,
-                top: 4,
-            })}
-          </span>
-        </span>
+        <WithTheme>
+          {theme => {
+            const color = theme.Checkbox.color;
+
+            return (
+              <span style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                margin: '4px',
+                width: size,
+                height: size,}}>
+                <CheckboxImpl
+                  {...rest}
+                  type="checkbox"
+                  size={size}
+                  id={id}
+                  checked={checked}
+                  onClick={toggleCheck(checked)}
+                  onChange={onChange}
+                  data-trackingid={this.props['data-trackingid']}
+                />
+                <span onClick={toggleCheck(checked)}
+                style={{
+                  width: size,
+                  height: size,
+                  borderRadius: '3px',
+                  border: '2px solid transparent',
+                  borderColor: color,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'absolute',}}>
+                    {React.cloneElement(<CheckIcon/>, {
+                      size,
+                      color: checked ? color : 'transparent',
+                      display: 'inline-block',
+                      position: 'absolute',
+                      top: 4,
+                  })}
+                </span>
+              </span> 
+            )
+          }}
+        </WithTheme>
       )
   }
 }
