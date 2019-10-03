@@ -64,7 +64,8 @@ class Checkbox extends React.Component {
                   onChange={onChange}
                   data-trackingid={this.props['data-trackingid']}
                 />
-                <span onClick={toggleCheck(checked)}
+                <span onChange={onChange}
+                onClick={toggleCheck(checked)}
                 style={{
                   width: size,
                   height: size,
@@ -77,7 +78,7 @@ class Checkbox extends React.Component {
                   position: 'absolute',}}>
                     {React.cloneElement(<CheckIcon/>, {
                       size,
-                      color: checked ? color : 'transparent',
+                      fill: checked ? color : 'transparent',
                       display: 'inline-block',
                       position: 'absolute',
                       top: 4,
