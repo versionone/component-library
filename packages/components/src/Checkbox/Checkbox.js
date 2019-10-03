@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
+import { CheckIcon } from '@versionone/icons';
 import { createComponent } from '../StyleProvider';
 
 const CheckboxImpl = createComponent(
@@ -8,38 +9,38 @@ const CheckboxImpl = createComponent(
       height: size,
       width: size,
       alignItems: 'center',
-      position: 'relative',
+      position: 'absolute',
       outline: 'none',
-      margin: '4px',
-      ':before': {
-        content:'""',
-        color: theme.Button.standard.text,
-        height: size,
-        width: size,
-        minWidth: size,
-        minHeight: size,
-        border: '3px solid transparent',
-        borderColor: checked ? theme.Radio.selected : theme.Radio.main,
-        backgroundColor: theme.Radio.background,
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      },
-      ':after': {
-        content:'""',
-        width: size/2,
-        height: size/2,
-        backgroundColor: checked ? theme.Radio.selected : 'transparent', 
-        position: 'absolute',
-        display: 'block',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-      },
+      top: 0,
+      opacity: 0,
+      // ':before': {
+      //   content:'""',
+      //   color: theme.Button.standard.text,
+      //   height: size,
+      //   width: size,
+      //   minWidth: size,
+      //   minHeight: size,
+      //   borderRadius: '3px',
+      //   border: '2px solid transparent',
+      //   borderColor: theme.Radio.selected,
+      //   backgroundColor: theme.Radio.background,
+      //   cursor: 'pointer',
+      //   display: 'flex',
+      //   justifyContent: 'center',
+      //   alignItems: 'center',
+      // },
+      // ':after': {
+      //   content:'""',
+      //   color: theme.Button.standard.text,
+      //   height: '6px',
+      //   width: '9px',
+      //   borderLeft: '2px solid',
+      //   borderBottom: '2px solid',
+      //   transform: 'rotate(-45deg)',
+      // },
   }),
   'input',
-  ['data-component', 'data-test', 'data-trackingid', 'onClick', 'type'],
+  ['data-component', 'data-test', 'data-trackingid', 'onClick', 'type', 'id', 'onChange', 'checked'],
 );
 
 class Checkbox extends React.Component {
@@ -59,20 +60,50 @@ class Checkbox extends React.Component {
     const {
       size,
       id,
+      onChange,
       ...rest
     } = this.props;
     const { checked, toggleCheck } = this.state
 
       return (
-        <CheckboxImpl
-        {...rest}
-        type="checkbox"
-        size={size}
-        id={id}
-        checked={checked}
-        onClick={toggleCheck(checked)}
-        data-trackingid={this.props['data-trackingid']}
-        />
+        <span style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'relative',
+          margin: '4px',
+          width: size,
+          height: size,}}>
+          <CheckboxImpl
+            {...rest}
+            type="checkbox"
+            size={size}
+            id={id}
+            checked={checked}
+            onClick={toggleCheck(checked)}
+            onChange={onChange}
+            data-trackingid={this.props['data-trackingid']}
+          />
+          <span onClick={toggleCheck(checked)}
+          style={{
+            width: size,
+            height: size,
+            borderRadius: '3px',
+            border: '2px solid currentColor',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',}}>
+              {React.cloneElement(<CheckIcon/>, {
+                size,
+                color: checked ? '#000' : 'transparent',
+                display: 'inline-block',
+                position: 'absolute',
+                zIndex: 100,
+                top: 4,
+            })}
+          </span>
+        </span>
       )
   }
 }
@@ -87,9 +118,13 @@ Checkbox.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Function run when the switch is clicked
+   * Function run when the checkbox is clicked
    */
   onClick: PropTypes.func,
+  /**
+   * Function run when the checkbox is changed
+   */
+  onChange: PropTypes.func,
     /**
    * The size of the checkbox
    */
@@ -124,11 +159,12 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   onClick: noop,
+  onChange: noop,
   size: 32,
   tabIndex: '0',
   onFocus: noop,
   onBlur: noop,
-  id: "form_id",
+  id: "form-id",
 };
 
 export { Checkbox };

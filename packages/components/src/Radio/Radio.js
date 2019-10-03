@@ -11,6 +11,7 @@ const RadioImpl = createComponent(
     position: 'relative',
     outline: 'none',
     margin: '4px',
+    textTransform: 'none',
     ':before': {
       content:'""',
       color: theme.Button.standard.text,
