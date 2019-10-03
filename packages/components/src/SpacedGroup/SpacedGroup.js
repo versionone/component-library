@@ -67,15 +67,12 @@ const buildStyles = ({
   };
 };
 
-const passThroughProps = ['data-component', 'data-test'];
-
-const SpacedGroupDiv = createComponent(buildStyles, 'div', passThroughProps);
-
-const SpacedGroupLabel = createComponent(buildStyles, 'div', passThroughProps);
-
 const SpacedGroup = props => {
-  const SpacedGroupImpl =
-    props.is === 'div' ? SpacedGroupDiv : SpacedGroupLabel;
+  const SpacedGroupImpl = createComponent(
+    buildStyles,
+    props.is,
+    ['data-component', 'data-test', 'data-tracking-id']
+  );
 
   return (
     <WithBreakpoint>
