@@ -6,12 +6,7 @@ import { createComponent, WithTheme } from '../StyleProvider';
 
 const CheckboxImpl = createComponent(
     ({ checked, size, theme }) => ({
-      height: size,
-      width: size,
-      alignItems: 'center',
       position: 'absolute',
-      outline: 'none',
-      top: 0,
       opacity: 0,
   }),
   'input',
@@ -35,56 +30,49 @@ class Checkbox extends React.Component {
     const {
       size,
       id,
-      onChange,
+      onClick,
       ...rest
     } = this.props;
     const { checked, toggleCheck } = this.state
 
+    const onClickOrChange = (ev) => {
+      toggleCheck(checked)();
+      onClick(ev);
+    }
+
       return (
         <WithTheme>
           {theme => {
-            const color = theme.Checkbox.color;
+            const color = theme.Checkbox.main;
 
             return (
-              <span style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'relative',
-                margin: '4px',
-                width: size,
-                height: size,}}>
+              <React.Fragment>
                 <CheckboxImpl
                   {...rest}
+                  onClick={onClickOrChange}
                   type="checkbox"
                   size={size}
-                  id={id}
                   checked={checked}
-                  onClick={toggleCheck(checked)}
-                  onChange={onChange}
-                  data-trackingid={this.props['data-trackingid']}
-                />
-                <span onChange={onChange}
-                onClick={toggleCheck(checked)}
-                style={{
-                  width: size,
-                  height: size,
-                  borderRadius: '3px',
-                  border: '2px solid transparent',
-                  borderColor: color,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'absolute',}}>
-                    {React.cloneElement(<CheckIcon/>, {
-                      size,
-                      fill: checked ? color : 'transparent',
-                      display: 'inline-block',
-                      position: 'absolute',
-                      top: 4,
-                  })}
-                </span>
-              </span> 
+                  data-trackingid={this.props['data-trackingid']}/>
+                  <span style={{
+                      width: size,
+                      height: size,
+                      borderRadius: '3px',
+                      border: '2px solid transparent',
+                      borderColor: color,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      position: 'relative',}}>
+                        {React.cloneElement(<CheckIcon />, {
+                          size,
+                          color: checked ? color : 'transparent',
+                          display: 'inline-block',
+                          position: 'absolute',
+                          top: 4,
+                      })}
+                    </span>
+                  </React.Fragment>
             )
           }}
         </WithTheme>
@@ -105,10 +93,6 @@ Checkbox.propTypes = {
    * Function run when the checkbox is clicked
    */
   onClick: PropTypes.func,
-  /**
-   * Function run when the checkbox is changed
-   */
-  onChange: PropTypes.func,
     /**
    * The size of the checkbox
    */
@@ -144,7 +128,7 @@ Checkbox.defaultProps = {
   disabled: false,
   onClick: noop,
   onChange: noop,
-  size: 32,
+  size: 24,
   tabIndex: '0',
   onFocus: noop,
   onBlur: noop,

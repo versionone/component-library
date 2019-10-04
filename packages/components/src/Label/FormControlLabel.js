@@ -17,28 +17,27 @@ const LabelWrapper = createComponent(
     cursor: disabled && 'not-allowed',
     display: 'flex',
     alignItems: 'center',
+    position: 'relative',
   }),
-  'div',
+  'span',
   ['data-component', 'data-test'],
 );
 
 const FormControlLabel = props => {
-  const { control, disabled, 'data-test': dataTest, label, labelPlacement, onClick, id } = props;
+  const { control, disabled, 'data-test': dataTest, label, labelPlacement, onClick } = props;
   const controlProps = {
-    ...props
+    onClick,
+    disabled,
   };
   const Control = React.cloneElement(control, controlProps);
-  const labelText = <label  htmlFor={id}>{label}</label>;
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
-      ? <React.Fragment>{labelText}{Control}</React.Fragment> 
-      : <React.Fragment>{Control}{labelText}</React.Fragment>;
+      ? <React.Fragment><LabelWrapper>{label}</LabelWrapper>{Control}</React.Fragment>
+      : <React.Fragment>{Control}<LabelWrapper>{label}</LabelWrapper></React.Fragment>;
   const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
-    <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled} onClick={onClick}>
-      <SpacedGroup {...props} direction={direction}>
+    <SpacedGroup {...props} direction={direction} is='label'>
         {content}
-      </SpacedGroup>
-    </LabelWrapper>
+    </SpacedGroup>
   );
 };
 
@@ -91,14 +90,6 @@ FormControlLabel.propTypes = {
    * Indicates a disabled field
    */
   disabled: PropTypes.bool,
-  /**
-   * Indicates a required field
-   *  */
-  required: PropTypes.bool,
-  /**
-   * Identifier to associate label with control
-   *  */
-  id: PropTypes.string,
 };
 
 FormControlLabel.defaultProps = {
@@ -108,7 +99,5 @@ FormControlLabel.defaultProps = {
   xs: 4,
   disableGutter: false,
   disabled: false,
-  required: false,
-  id: "form_id",
 };
 export { FormControlLabel };
