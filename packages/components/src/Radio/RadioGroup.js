@@ -9,11 +9,11 @@ class SmartGroup extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = { 
-      activeRadio: props.defaultActiveRadio,
-      focusedRadio: props.defaultFocusedRadio, 
-      selectRadioByIndex: index => () => {
+      selectedRadioValue: props.selectedValue,
+      focusedRadio: props.defaultFocusedRadio,
+      selectRadio: (index, value) => () => {
         this.setState({
-          activeRadio: index,
+          selectedRadioValue: value,
           focusedRadio: index,
         });
       },
@@ -23,26 +23,19 @@ class SmartGroup extends React.Component {
 
   render() {
     const {props} = this;
-    const count = React.Children.count(props.children);
     
     return React.Children.map(props.children, (child, index) => {
-      const isSelected = parseInt(this.state.activeRadio) === index;
       const isFocused = parseInt(this.state.focusedRadio) === index;
-      const id = props.name.concat('-', index);
+      console.log(index);
 
       const radioProps = {
-        key: index,
-        id,
-        controls: `${index}-radio`,
-        selected: isSelected,
-        onClick: this.state.selectRadioByIndex(index),
+        index,
+        selectedValue: this.state.selectedRadioValue,
+        onClick: this.state.selectRadio,
         onChange: props.onChange,
-        selectRadioByIndex: this.state.selectRadioByIndex,
         onFocus: this.state.focusRadioByIndex(index),
         onBlur: this.state.focusRadioByIndex(null),
         focused: isFocused,
-        tabIndex: isSelected ? '0' : '-1',
-        count,
         name: props.name,
       };
 
@@ -83,7 +76,7 @@ RadioGroup.propTypes = {
    * Collection of Radio instances
    */
   direction: PropTypes.oneOf([ROW, COLUMN]),
-    /**
+  /**
    * Index of the active radio before user interaction
    */
   defaultActiveRadio: PropTypes.number,
@@ -103,10 +96,13 @@ RadioGroup.propTypes = {
    *  Function called when a radio is changed
    */
   onChange: PropTypes.func,
+  /**
+   * Value of selected radio 
+   */
+  selectedValue: PropTypes.string.isRequired,
 };
 
 RadioGroup.defaultProps = {
-  defaultActiveRadio: 0,
   defaultFocusedRadio: null,
   direction: ROW,
   handleSelection: noop,

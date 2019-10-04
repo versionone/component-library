@@ -24,10 +24,29 @@ const LabelWrapper = createComponent(
 );
 
 const FormControlLabel = props => {
-  const { control, disabled, 'data-test': dataTest, label, labelPlacement, onClick } = props;
+  const { 
+  control,
+  disabled,
+  label, 
+  labelPlacement, 
+  onClick,
+  selectedValue,
+  onChange,
+  onFocus,
+  onBlur,
+  focused,
+  name,
+  index, } = props;
   const controlProps = {
     onClick,
     disabled,
+    selectedValue,
+    onChange,
+    onFocus,
+    onBlur,
+    focused,
+    name,
+    index,
   };
   const Control = React.cloneElement(control, controlProps);
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
