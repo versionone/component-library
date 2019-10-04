@@ -18,7 +18,7 @@ class Checkbox extends React.Component {
     super(props, context);
     this.state = { 
       checked: props.checked,
-      toggleCheck: checked => () => {
+      toggleCheck: checked => {
         this.setState({
           checked: !checked,
         });
@@ -36,7 +36,7 @@ class Checkbox extends React.Component {
     const { checked, toggleCheck } = this.state
 
     const onClickOrChange = (ev) => {
-      toggleCheck(checked)();
+      toggleCheck(checked);
       onClick(ev);
     }
 
