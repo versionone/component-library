@@ -30,13 +30,13 @@ const RequiredText = createComponent(
 );
 
 const FormLabel = props => {
-  const { children, disabled, required, 'data-test': dataTest, labelText, labelPlacement } = props;
-  const label = required 
-      ? <label>{labelText}<RequiredText> *</RequiredText></label> 
-      : <label>{labelText}</label>;
+  const { children, disabled, required, 'data-test': dataTest, label, labelPlacement } = props;
+  const labelText = required 
+      ? <label>{label}<RequiredText> *</RequiredText></label> 
+      : <label>{label}</label>;
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
-      ? <React.Fragment>{label}{children}</React.Fragment> 
-      : <React.Fragment>{children}{label}</React.Fragment>;
+      ? <React.Fragment>{labelText}{children}</React.Fragment> 
+      : <React.Fragment>{children}{labelText}</React.Fragment>;
   const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
     <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled}>

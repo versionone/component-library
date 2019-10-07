@@ -1,0 +1,52 @@
+---
+name: Checkbox
+menu: Components
+---
+
+import { Playground, PropsTable } from '@versionone/doc-components';
+import { FormLabel } from '../Label';
+import { SpacedGroup } from '../SpacedGroup';
+import { Checkbox } from './';
+import { CheckIcon } from '@versionone/icons';
+import { FormControlLabel } from '../Label'
+
+It's a checkbox
+
+## Basic
+
+<Playground>
+  <FormControlLabel checked={true} id="Checkbox1" control={<Checkbox />} label="Checkbox 1" />
+  <FormControlLabel id="Checkbox2" control={<Checkbox />} label="Checkbox 2" />
+  <FormControlLabel id="Checkbox3" control={<Checkbox />} label="Checkbox 3" />
+  <CheckIcon color='#fff' />
+</Playground>
+
+## Stateful
+
+<Playground>
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = {
+        };
+        this.toggle = this.toggle.bind(this);
+      }
+      toggle() {
+        console.log("Toggle");
+      }
+      render() {
+        return (
+          <SpacedGroup direction="vertical">
+            <FormControlLabel id="Checkbox1" onClick={this.toggle} control={<Checkbox />} label="Toggle Checkbox:" />
+          </SpacedGroup>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
+</Playground>
+
+## API
+
+<PropsTable of={Checkbox} />

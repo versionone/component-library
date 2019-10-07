@@ -11,6 +11,7 @@ const RadioImpl = createComponent(
     position: 'relative',
     outline: 'none',
     margin: '4px',
+    textTransform: 'none',
     ':before': {
       content:'""',
       color: theme.Button.standard.text,
@@ -44,10 +45,12 @@ const RadioImpl = createComponent(
   [
     'disabled',
     'onClick',
+    'onChange',
     'tabIndex',
     'type',
     'name',
     'id',
+    'value',
     'data-test',
     'data-component',
     'data-trackingid',
@@ -71,9 +74,11 @@ class Radio extends Component {
       onClick,
       onBlur,
       onFocus,
+      onChange,
       focused,
       controls,
       id,
+      value,
       name,
       ...rest
     } = this.props;
@@ -91,10 +96,12 @@ class Radio extends Component {
           onClick={onClick}
           onFocus={onFocus}
           onBlur={onBlur}
+          onChange={onChange}
           focused={focused}
           type="radio"
           name={name}
           id={id}
+          value={value}
           data-trackingid={this.props['data-trackingid']}
         / >
     );
@@ -126,6 +133,14 @@ Radio.propTypes = {
    * Attribute used to track user interaction
    */
   'data-trackingid': PropTypes.string,
+    /**
+   * Identifier to associate Radio with a label
+   *  */
+  id: PropTypes.string,
+      /**
+   * Value of the radio
+   *  */
+  value: PropTypes.string,
 };
 
 Radio.defaultProps = {
@@ -134,6 +149,7 @@ Radio.defaultProps = {
   onClick: noop,
   size: 32,
   tabIndex: '0',
+  id: "form-id"
 };
 
 export { Radio };
