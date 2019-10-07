@@ -65,10 +65,6 @@ const RadioGroup = props => {
 
 RadioGroup.propTypes = {
   /**
-   * data-test attribute
-   */
-  'data-test': PropTypes.string,
-  /**
    * Collection of Radio instances
    */
   children: PropTypes.node,
@@ -96,14 +92,6 @@ RadioGroup.propTypes = {
    * Value of selected radio 
    */
   selectedValue: PropTypes.string.isRequired,
-    /**
-   * Attribute used to track user interaction
-   */
-  'data-trackingid': PropTypes.string,
-  /**
-   * Attribute for test suite
-   */
-  'data-test': PropTypes.string,
 };
 
 RadioGroup.defaultProps = {

@@ -51,9 +51,7 @@ const RadioImpl = createComponent(
     'name',
     'id',
     'value',
-    'data-test',
     'data-component',
-    'data-trackingid',
   ],
 );
 

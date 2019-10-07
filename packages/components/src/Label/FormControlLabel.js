@@ -20,7 +20,7 @@ const LabelWrapper = createComponent(
     position: 'relative',
   }),
   'span',
-  ['data-component', 'data-test'],
+  ['data-component'],
 );
 
 const FormControlLabel = props => {
