@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 import { noop } from 'underscore';
 import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
-import { createComponent, styleUtils } from '../StyleProvider';
+import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 
 const getBackgroundColor = ({ disabled, hovered, theme }) => {
-    if (disabled) return theme.Button.disabled.background;
-    if (hovered) return theme.Button.text.hover;
-    return theme.Button.text.background;
-  };
+  if (disabled) return theme.Button.disabled.background;
+  if (hovered) return theme.Button.text.hover;
+  return theme.Button.text.background;
+};
 const getColor = ({ type, disabled, theme }) => {
-    if (disabled) return theme.Button.disabled.text;
-    return theme.Button.text[type];
-  };
+  if (disabled) return theme.Button.disabled.text;
+  return theme.Button.text[type];
+};
 
 const ButtonImpl = createComponent(
   ({ disabled, buttonType, size, focused, theme }) => ({
@@ -73,7 +73,7 @@ const ButtonImpl = createComponent(
         theme,
         type: buttonType,
       }),
-      content:'""',
+      content: '""',
       width: '0%',
       height: '100%',
       top: 0,
@@ -100,7 +100,6 @@ const ButtonImpl = createComponent(
   ],
 );
 
-
 class IconButton extends Component {
   render() {
     const {
@@ -112,31 +111,40 @@ class IconButton extends Component {
       type,
       onFocus,
       onBlur,
+      title,
       ...rest
     } = this.props;
 
     return (
-      <Focusable focused={focused} onFocus={onFocus} onBlur={onBlur}>
-        {({ ref, bind, focused }) => (
-          <ButtonImpl
-            data-component="IconButton"
-            data-trackingid={this.props['data-trackingid']}
-            buttonType={type}
-            disabled={disabled}
-            size={size}
-            tabIndex={tabIndex}
-            type="button"
-            {...rest}
-            {...bind}
-            innerRef={ref}
-            focused={focused}
-          >
-            {React.createElement(icon, {
-              size: size - 16,
-            })}
-          </ButtonImpl>
-        )}
-      </Focusable>
+      <WithTheme>
+        {theme => {
+          return (
+            <Focusable focused={focused} onFocus={onFocus} onBlur={onBlur}>
+              {({ ref, bind, focused }) => (
+                <ButtonImpl
+                  data-component="IconButton"
+                  data-trackingid={this.props['data-trackingid']}
+                  buttonType={type}
+                  disabled={disabled}
+                  size={size}
+                  tabIndex={tabIndex}
+                  type="button"
+                  {...rest}
+                  {...bind}
+                  innerRef={ref}
+                  focused={focused}
+                >
+                  {React.createElement(icon, {
+                    size: Math.floor(size / 2),
+                    title,
+                    color: theme.Icon.main,
+                  })}
+                </ButtonImpl>
+              )}
+            </Focusable>
+          );
+        }}
+      </WithTheme>
     );
   }
 }
