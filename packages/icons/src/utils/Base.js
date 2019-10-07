@@ -9,7 +9,7 @@ const Base = ({ color, icon: Icon, size, title, ...rest }) => (
       height: `${size}px`,
       width: `${size}px`,
     }}
-    title={title || Icon.displayName}
+    title={title == null ? Icon.displayName : title}
     {...rest}
     data-component="Icon"
   />

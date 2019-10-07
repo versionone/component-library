@@ -596,7 +596,7 @@ const themeDark = {
     main: palette.heather,
   },
   Icon: {
-    main: palette.pale,
+    main: palette.paper,
   },
   Link: {
     main: palette.primary500,
