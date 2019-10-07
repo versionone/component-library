@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/generate-main-icons",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Generate icons package's main `index.js` file.",
   "license": "MIT",
   "bin": "./src/bin/index.js"

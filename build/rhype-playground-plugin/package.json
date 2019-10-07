@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/rehype-playground-plugin",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Rehype plugin used by VersionOne documentation site; powering its Playground",
   "license": "MIT",
   "main": "src/index.js",
