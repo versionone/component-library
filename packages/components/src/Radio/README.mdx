@@ -1,0 +1,29 @@
+---
+name: Radio
+menu: Components
+---
+
+import { Playground, PropsTable } from '@versionone/doc-components';
+import { SpacedGroup } from '../SpacedGroup';
+import { RadioGroup, Radio } from './';
+import { FormControlLabel } from '../Label';
+
+Allows users to select one option from a set. Use RadioGroup to Wrap a set of Radio Inputs.
+
+## Basic
+
+<Playground>
+  <RadioGroup name="Name" defaultActiveRadio={0} defaultFocusedRadio={0}>
+    <FormControlLabel label="Option 1" control={<Radio />} />
+    <FormControlLabel label="Option 2" control={<Radio />} />
+    <FormControlLabel label="Option 3" control={<Radio />} />
+    <FormControlLabel label="Option 4" control={<Radio />} />
+  </RadioGroup>
+</Playground>
+
+## API
+
+<PropsTable of={RadioGroup} />
+<PropsTable of={Radio} />
+
+

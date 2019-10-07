@@ -256,6 +256,11 @@ const internalTheme = {
     selected: palette.gunmetal,
     mainHighlight: '#009ff2',
   },
+  Radio: {
+    main: palette.gunmetal,
+    selected: palette.primary500,
+    background: palette.paper,
+  },
   Stepper: {
     current: {
       main: '#1890ff',
@@ -602,6 +607,11 @@ const themeDark = {
     main: palette.dove,
     selected: palette.paper,
     mainHighlight: '#009ff2',
+  },
+  Radio: {
+    main: palette.paper,
+    selected: palette.primary300,
+    background: palette.chrome800
   },
   Stepper: {
     current: {
