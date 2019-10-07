@@ -241,7 +241,7 @@ const internalTheme = {
     iconColor: palette.shuttle,
   },
   Icon: {
-    main: palette.gunmetal,
+    main: palette.chrome600,
   },
   Link: {
     main: palette.primary500,
@@ -596,7 +596,7 @@ const themeDark = {
     main: palette.heather,
   },
   Icon: {
-    main: palette.paper,
+    main: palette.chrome50,
   },
   Link: {
     main: palette.primary500,

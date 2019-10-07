@@ -13,11 +13,11 @@ Allows users to select one option from a set. Use RadioGroup to Wrap a set of Ra
 ## Basic
 
 <Playground>
-  <RadioGroup name="Name" defaultActiveRadio={0} defaultFocusedRadio={0}>
-    <FormControlLabel label="Option 1" control={<Radio />} />
-    <FormControlLabel label="Option 2" control={<Radio />} />
-    <FormControlLabel label="Option 3" control={<Radio />} />
-    <FormControlLabel label="Option 4" control={<Radio />} />
+  <RadioGroup name="Name" selectedValue="red" defaultFocusedRadio={0}>
+    <FormControlLabel label="Orange" control={<Radio value="orange" />} />
+    <FormControlLabel label="Green" control={<Radio value="green"/>} />
+    <FormControlLabel label="Red" control={<Radio value="red"/>} />
+    <FormControlLabel label="Blue" control={<Radio value="blue"/>} />
   </RadioGroup>
 </Playground>
 
