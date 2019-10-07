@@ -36,7 +36,7 @@ const FormControlLabel = props => {
   onBlur,
   focused,
   name,
-  index, } = props;
+  index,} = props;
   const controlProps = {
     onClick,
     disabled,
@@ -109,6 +109,14 @@ FormControlLabel.propTypes = {
    * Indicates a disabled field
    */
   disabled: PropTypes.bool,
+    /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
 };
 
 FormControlLabel.defaultProps = {

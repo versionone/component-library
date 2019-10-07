@@ -100,7 +100,6 @@ class Radio extends Component {
           type="radio"
           name={name}
           value={value}
-          data-trackingid={this.props['data-trackingid']}
         / >
     );
   }
@@ -123,10 +122,6 @@ Radio.propTypes = {
    * Sets the tabindex of the button; used for tab order.
    */
   tabIndex: PropTypes.string,
-  /**
-   * Attribute used to track user interaction
-   */
-  'data-trackingid': PropTypes.string,
       /**
    * Value of the radio
    *  */

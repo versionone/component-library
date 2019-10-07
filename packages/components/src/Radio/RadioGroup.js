@@ -51,6 +51,7 @@ const RadioGroup = props => {
     <div
       data-component="RadioGroup"
       data-test={props['data-test']}
+      data-trackingid={props[dataTrackingId]}
       role="radiogroup"
       name={props.name}
       style={{ 
@@ -95,6 +96,14 @@ RadioGroup.propTypes = {
    * Value of selected radio 
    */
   selectedValue: PropTypes.string.isRequired,
+    /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
 };
 
 RadioGroup.defaultProps = {
