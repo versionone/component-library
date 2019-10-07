@@ -5,14 +5,14 @@ import types, { standard } from './ButtonTypes';
 import { Focusable } from '../Focusable';
 import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
 
-const getBackgroundColor = ({ disabled, hovered, theme }) => {
+const getBackgroundColor = ({ disabled, type, hovered, theme }) => {
   if (disabled) return theme.Button.disabled.background;
-  if (hovered) return theme.Button.text.hover;
-  return theme.Button.text.background;
+  if (hovered) return theme.Button[type].hover;
+  return theme.Button[type].background;
 };
 const getColor = ({ type, disabled, theme }) => {
   if (disabled) return theme.Button.disabled.text;
-  return theme.Button.text[type];
+  return theme.Button[type].text;
 };
 
 const ButtonImpl = createComponent(
@@ -41,6 +41,7 @@ const ButtonImpl = createComponent(
     zIndex: 0,
     backgroundColor: getBackgroundColor({
       disabled,
+      type: buttonType,
       hovered: false,
       theme,
     }),
@@ -54,6 +55,7 @@ const ButtonImpl = createComponent(
       boxShadow: !disabled ? '0 0 7px 0 rgba(67, 128, 152, 0.3)' : 'none',
       backgroundColor: getBackgroundColor({
         disabled,
+        type: buttonType,
         hovered: true,
         theme,
       }),
@@ -137,7 +139,7 @@ class IconButton extends Component {
                   {React.createElement(icon, {
                     size: Math.floor(size / 2),
                     title,
-                    color: theme.Icon.main,
+                    color: theme.Button[type].text,
                   })}
                 </ButtonImpl>
               )}
