@@ -51,7 +51,7 @@ const RadioGroup = props => {
     <div
       data-component="RadioGroup"
       data-test={props['data-test']}
-      data-trackingid={props[dataTrackingId]}
+      data-trackingid={props['data-trackingid']}
       role="radiogroup"
       name={props.name}
       style={{ 
