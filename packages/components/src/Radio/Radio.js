@@ -82,7 +82,6 @@ class Radio extends Component {
     } = this.props;
 
     const isSelected = selectedValue === value;
-    console.log(isSelected);
 
     return (
         <RadioImpl

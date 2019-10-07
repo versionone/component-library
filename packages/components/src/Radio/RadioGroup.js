@@ -26,7 +26,6 @@ class SmartGroup extends React.Component {
     
     return React.Children.map(props.children, (child, index) => {
       const isFocused = parseInt(this.state.focusedRadio) === index;
-      console.log(index);
 
       const radioProps = {
         index,
