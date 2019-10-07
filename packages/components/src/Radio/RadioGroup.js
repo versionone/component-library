@@ -76,10 +76,6 @@ RadioGroup.propTypes = {
    */
   direction: PropTypes.oneOf([ROW, COLUMN]),
   /**
-   * Index of the active radio before user interaction
-   */
-  defaultActiveRadio: PropTypes.number,
-  /**
    * Index of the focused radio before user interaction
    */
   defaultFocusedRadio: PropTypes.number,
