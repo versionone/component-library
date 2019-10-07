@@ -20,14 +20,33 @@ const LabelWrapper = createComponent(
     position: 'relative',
   }),
   'span',
-  ['data-component', 'data-test'],
+  ['data-component'],
 );
 
 const FormControlLabel = props => {
-  const { control, disabled, 'data-test': dataTest, label, labelPlacement, onClick } = props;
+  const { 
+  control,
+  disabled,
+  label, 
+  labelPlacement, 
+  onClick,
+  selectedValue,
+  onChange,
+  onFocus,
+  onBlur,
+  focused,
+  name,
+  index,} = props;
   const controlProps = {
     onClick,
     disabled,
+    selectedValue,
+    onChange,
+    onFocus,
+    onBlur,
+    focused,
+    name,
+    index,
   };
   const Control = React.cloneElement(control, controlProps);
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
@@ -90,6 +109,14 @@ FormControlLabel.propTypes = {
    * Indicates a disabled field
    */
   disabled: PropTypes.bool,
+    /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
 };
 
 FormControlLabel.defaultProps = {

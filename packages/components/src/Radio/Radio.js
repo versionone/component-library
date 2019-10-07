@@ -4,7 +4,7 @@ import { noop } from 'underscore';
 import { createComponent, WithTheme } from '../StyleProvider';
 
 const RadioImpl = createComponent(
-  ({ disabled, selected, size, theme }) => ({
+  ({ disabled, checked, size, theme }) => ({
     height: size,
     width: size,
     alignItems: 'center',
@@ -21,7 +21,7 @@ const RadioImpl = createComponent(
       minHeight: size,
       borderRadius: '50%',
       border: '3px solid transparent',
-      borderColor: selected ? theme.Radio.selected : theme.Radio.main,
+      borderColor: checked ? theme.Radio.selected : theme.Radio.main,
       backgroundColor: theme.Radio.background,
       position: 'absolute',
       top: '50%',
@@ -33,7 +33,7 @@ const RadioImpl = createComponent(
       width: size/2,
       height: size/2,
       borderRadius: '50%',
-      backgroundColor: selected ? theme.Radio.selected : 'transparent', 
+      backgroundColor: checked ? theme.Radio.selected : 'transparent', 
       position: 'absolute',
       display: 'block',
       top: '50%',
@@ -51,9 +51,7 @@ const RadioImpl = createComponent(
     'name',
     'id',
     'value',
-    'data-test',
     'data-component',
-    'data-trackingid',
   ],
 );
 
@@ -68,51 +66,44 @@ class Radio extends Component {
   render() {
     const {
       disabled,
-      selected,
-      size,
-      tabIndex,
+      selectedValue,
       onClick,
-      onBlur,
-      onFocus,
       onChange,
+      onFocus,
+      onBlur,
       focused,
-      controls,
-      id,
-      value,
       name,
+      index,
+      size,
+      value,
       ...rest
     } = this.props;
+
+    const isSelected = selectedValue === value;
 
     return (
         <RadioImpl
           {...rest}
           data-component="Radio"
-          aria-controls={controls}
           disabled={disabled}
-          selected={selected}
-          aria-selected={selected}
+          checked={isSelected}
+          aria-selected={isSelected}
           size={size}
-          tabIndex={tabIndex}
-          onClick={onClick}
+          tabIndex={isSelected ? '0' : '-1'}
+          onClick={onClick(index, value)}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}
           focused={focused}
           type="radio"
           name={name}
-          id={id}
           value={value}
-          data-trackingid={this.props['data-trackingid']}
         / >
     );
   }
 }
 
 Radio.propTypes = {
-  /**
-   * If true, the switch shows the checkedIcon
-   */
-  selected: PropTypes.bool,
   /**
    * When true, does not respond to click events.
    */
@@ -129,27 +120,17 @@ Radio.propTypes = {
    * Sets the tabindex of the button; used for tab order.
    */
   tabIndex: PropTypes.string,
-  /**
-   * Attribute used to track user interaction
-   */
-  'data-trackingid': PropTypes.string,
-    /**
-   * Identifier to associate Radio with a label
-   *  */
-  id: PropTypes.string,
       /**
    * Value of the radio
    *  */
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };
 
 Radio.defaultProps = {
-  selected: false,
   disabled: false,
   onClick: noop,
   size: 32,
   tabIndex: '0',
-  id: "form-id"
 };
 
 export { Radio };

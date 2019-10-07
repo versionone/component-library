@@ -14,7 +14,6 @@ const LabelWrapper = createComponent(
     color: disabled ? theme.Label.disabled.main : theme.Label.default.main,
     opacity: disabled && .5,
     cursor: disabled && 'not-allowed',
-    textTransform: 'uppercase',
     display: 'flex',
     alignItems: 'center',
   }),
