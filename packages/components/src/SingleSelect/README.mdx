@@ -13,8 +13,7 @@ import { Avatar } from '../Avatar';
 import { List } from '../List';
 import { Border } from '../Border';
 import { Paper } from '../Paper';
-import { Label } from '../Label';
-import { FormField } from '../FormField';
+import { FormLabel } from '../Label';
 import { Link } from '../Link';
 import { Button } from '../Button';
 import items from './demoState';
@@ -303,18 +302,15 @@ In the abscense of a `selection` prop it will use the `value` of the `selectedIt
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <FormField center>
-      <Label>My Label</Label>
+    <FormLabel center labelText="My Label">
       <SingleSelect hintText="Default" />
-    </FormField>
-    <FormField center>
-      <Label>My Label</Label>
+    </FormLabel>
+    <FormLabel labelText="My Label">
       <SingleSelect hintText="fullWidth" fullWidth />
-    </FormField>
-    <FormField center>
-      <Label>My Label</Label>
+    </FormLabel>
+    <FormLabel labelText="My Label">
       <SingleSelect hintText="stretch" stretch />
-    </FormField>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 

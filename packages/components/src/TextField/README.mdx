@@ -4,8 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormField } from '../FormField';
-import { Label } from '../Label';
+import { FormLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from './';
 import { Lozenge } from '../Lozenge';
@@ -35,10 +34,9 @@ Used to provide free-form textual input.
     <TextField hintText="Dirty" multiline dirty />
     <TextField hintText="Error" multiline error="Error" />
     <TextField hintText="Prepend Icon" multiline prependIcon="item" />
-    <FormField>
-      <Label>with a label</Label>
+    <FormLabel labelText="with a label">
       <TextField multiline stretch />
-    </FormField>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 
@@ -47,10 +45,9 @@ Used to provide free-form textual input.
 <Playground>
   <SpacedGroup direction="vertical">
     <TextField prependIcon="item" />
-    <FormField>
-      <Label>with a label</Label>
+    <FormLabel labelText="with a label">
       <TextField prependIcon="item" stretch />
-    </FormField>
+    </FormLabel>
     <TextField fullWidth prependIcon="item" />
     <TextField fullWidth prependIcon={<HomeIcon />} />
     <TextField fullWidth prependIcon="item" multiline />
@@ -73,18 +70,15 @@ Used to provide free-form textual input.
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <FormField>
-      <Label>Label:</Label>
+    <FormLabel labelText="Label">
       <TextField hintText="default" />
-    </FormField>
-    <FormField>
-      <Label>Label:</Label>
+    </FormLabel>
+    <FormLabel labelText="Label">
       <TextField hintText="fullWidth" fullWidth />
-    </FormField>
-    <FormField>
-      <Label>Label:</Label>
+    </FormLabel>
+    <FormLabel labelText="Label">
       <TextField hintText="stretch" stretch />
-    </FormField>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 

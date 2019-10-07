@@ -13,8 +13,7 @@ import { Avatar } from '../Avatar';
 import { List } from '../List';
 import { Border } from '../Border';
 import { Paper } from '../Paper';
-import { Label } from '../Label';
-import { FormField } from '../FormField';
+import { FormLabel } from '../Label';
 import { Tag } from '../Tag';
 import items from './demoState';
 
@@ -246,18 +245,15 @@ To learn more about how to handle rendering the options, the selection head to t
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <FormField center>
-      <Label>My Label</Label>
+    <FormLabel center labelText="My Label">
       <MultiSelect hintText="Default" />
-    </FormField>
-    <FormField center>
-      <Label>My Label</Label>
+    </FormLabel>
+    <FormLabel center labelText="My Label">
       <MultiSelect hintText="fullWidth" fullWidth />
-    </FormField>
-    <FormField center>
-      <Label>My Label</Label>
+    </FormLabel>
+    <FormLabel center labelText="My Label">
       <MultiSelect hintText="stretch" stretch />
-    </FormField>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 

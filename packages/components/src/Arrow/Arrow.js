@@ -21,7 +21,7 @@ const ArrowButton = createComponent(
       ...buildStyles({ disabled, height, theme }),
       ':focus': {
         outline: 'none',
-        boxShadow: theme.FormField.boxShadow,
+        boxShadow: theme.Arrow.boxShadow,
       },
       ...styleUtils.conditionalStyle(
         disabled,

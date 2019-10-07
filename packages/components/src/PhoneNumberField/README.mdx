@@ -4,8 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormField } from '../FormField';
-import { Label } from '../Label';
+import { FormLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { PhoneNumberField } from './';
 import { HomeIcon } from '@versionone/icons';
@@ -30,10 +29,9 @@ Used to provide a phone number. Uses a number keypad on mobile devices and restr
 <Playground>
   <SpacedGroup direction="vertical">
     <PhoneNumberField prependIcon="item" />
-    <FormField>
-      <Label>with a label</Label>
+    <FormLabel stretch labelText="with a label">
       <PhoneNumberField prependIcon="item" stretch />
-    </FormField>
+    </FormLabel>
     <PhoneNumberField fullWidth prependIcon="item" />
     <PhoneNumberField fullWidth prependIcon={<HomeIcon />} />
     <PhoneNumberField fullWidth prependIcon="item" multiline />
@@ -46,18 +44,15 @@ Used to provide a phone number. Uses a number keypad on mobile devices and restr
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <FormField>
-      <Label>Label:</Label>
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="default" />
-    </FormField>
-    <FormField>
-      <Label>Label:</Label>
+    </FormLabel>
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="fullWidth" fullWidth />
-    </FormField>
-    <FormField>
-      <Label>Label:</Label>
+    </FormLabel>
+    <FormLabel labelText="Label:">
       <PhoneNumberField hintText="stretch" stretch />
-    </FormField>
+    </FormLabel>
   </SpacedGroup>
 </Playground>
 

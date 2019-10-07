@@ -4,19 +4,23 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { Label } from './';
+import { FormLabel, FormControlLabel } from './';
 import { SpacedGroup } from '../SpacedGroup';
+import { TextField } from '../TextField';
 
-A label used to identify a form field. Use within a [FormField](/components/FormField) in conjection with a field.
+A label used to identify a form field. 
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <Label>basic label</Label>
-    <Label required>required label</Label>
-    <Label disabled>disabled label</Label>
+      <FormLabel labelPlacement="left" labelText="label to the left"><TextField /></FormLabel>
+      <FormLabel labelPlacement="right" labelText="label to the right"><TextField /></FormLabel>
+      <FormLabel labelPlacement="above" labelText="label above"><TextField /></FormLabel>
+      <FormLabel labelPlacement="below" labelText="label below"><TextField /></FormLabel>
+      <FormLabel disabled labelText="disabled label"><TextField /></FormLabel>
+      <FormLabel required labelText="required label"><TextField /></FormLabel>
   </SpacedGroup>
 </Playground>
 
 ## API
 
-<PropsTable of={Label} />
+<PropsTable of={FormLabel} />

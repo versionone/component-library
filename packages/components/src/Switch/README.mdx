@@ -4,8 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormField } from '../FormField';
-import { Label } from '../Label';
+import { FormLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { Switch } from './';
 import { Button } from '../Button';
@@ -17,19 +16,19 @@ Great for allowing users to turn a setting on or off.
 <Playground>
   <SpacedGroup direction="vertical">
     <SpacedGroup xs={2} center>
-      <Label>Not Checked</Label>
+      <FormLabel>Not Checked</FormLabel>
       <Switch />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
-      <Label>checked</Label>
+      <FormLabel>checked</FormLabel>
       <Switch checked />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
-      <Label>Disabled</Label>
+      <FormLabel>Disabled</FormLabel>
       <Switch disabled />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
-      <Label>Focused</Label>
+      <FormLabel>Focused</FormLabel>
       <Switch focused />
     </SpacedGroup>
   </SpacedGroup>
