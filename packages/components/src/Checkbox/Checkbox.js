@@ -5,78 +5,87 @@ import { CheckIcon } from '@versionone/icons';
 import { createComponent, WithTheme } from '../StyleProvider';
 
 const CheckboxImpl = createComponent(
-    ({ checked, size, theme }) => ({
-      position: 'absolute',
-      opacity: 0,
+  ({ size, theme }) => ({
+    position: 'absolute',
+    opacity: 0,
   }),
   'input',
-  ['data-component', 'data-test', 'data-trackingid', 'onClick', 'type', 'id', 'onChange', 'checked'],
+  [
+    'data-component',
+    'data-test',
+    'data-trackingid',
+    'onClick',
+    'type',
+    'id',
+    'onChange',
+    'checked',
+    'name',
+  ],
 );
 
 class Checkbox extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { 
+    this.state = {
       checked: props.checked,
-      toggleCheck: checked => {
-        this.setState({
-          checked: !checked,
-        });
-      },
     };
+    this.toggleCheck = this.toggleCheck.bind(this);
+  }
+
+  toggleCheck(ev) {
+    this.setState(prevState => ({
+      checked: !prevState.checked,
+    }));
+    this.props.onClick(ev);
   }
 
   render() {
-    const {
-      size,
-      id,
-      onClick,
-      ...rest
-    } = this.props;
-    const { checked, toggleCheck } = this.state
+    const { size, id, onClick, disabled, ...rest } = this.props;
+    const { checked } = this.state;
 
-    const onClickOrChange = (ev) => {
-      toggleCheck(checked);
-      onClick(ev);
-    }
+    return (
+      <WithTheme>
+        {theme => {
+          const color = theme.Checkbox.main;
 
-      return (
-        <WithTheme>
-          {theme => {
-            const color = theme.Checkbox.main;
-
-            return (
-              <React.Fragment>
-                <CheckboxImpl
-                  {...rest}
-                  onClick={onClickOrChange}
-                  type="checkbox"
-                  size={size}
-                  checked={checked}
-                  data-trackingid={this.props['data-trackingid']}/>
-                  <span style={{
-                      width: size,
-                      height: size,
-                      borderRadius: '3px',
-                      border: '2px solid transparent',
-                      borderColor: color,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      position: 'relative',}}>
-                        {React.cloneElement(<CheckIcon />, {
-                          size,
-                          color: checked ? color : 'transparent',
-                          display: 'inline-block',
-                          position: 'absolute',
-                          top: 4,
-                      })}
-                    </span>
-                  </React.Fragment>
-            )
-          }}
-        </WithTheme>
-      )
+          return (
+            <React.Fragment>
+              <CheckboxImpl
+                {...rest}
+                onChange={this.toggleCheck}
+                type="checkbox"
+                size={size}
+                checked={checked}
+                id={id}
+                data-trackingid={this.props['data-trackingid']}
+              />
+              <span
+                style={{
+                  width: size,
+                  height: size,
+                  borderRadius: '3px',
+                  border: '2px solid transparent',
+                  borderColor: color,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative',
+                  cursor: disabled ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {React.cloneElement(<CheckIcon />, {
+                  size,
+                  color: checked ? color : 'transparent',
+                  display: 'inline-block',
+                  position: 'absolute',
+                  top: 4,
+                })}
+              </span>
+            </React.Fragment>
+          );
+        }}
+      </WithTheme>
+    );
   }
 }
 
@@ -93,7 +102,7 @@ Checkbox.propTypes = {
    * Function run when the checkbox is clicked
    */
   onClick: PropTypes.func,
-    /**
+  /**
    * The size of the checkbox
    */
   size: PropTypes.number,
@@ -117,7 +126,7 @@ Checkbox.propTypes = {
    * Attribute for test suite
    */
   'data-test': PropTypes.string,
-    /**
+  /**
    * Identifier to associate label with control
    *  */
   id: PropTypes.string,
@@ -127,12 +136,10 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   onClick: noop,
-  onChange: noop,
   size: 24,
   tabIndex: '0',
   onFocus: noop,
   onBlur: noop,
-  id: "form-id",
 };
 
 export { Checkbox };

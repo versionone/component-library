@@ -36,25 +36,27 @@ const FormControlLabel = props => {
   onBlur,
   focused,
   name,
+  id,
   index,} = props;
   const controlProps = {
     onClick,
     disabled,
     selectedValue,
+    name,
+    id, 
     onChange,
     onFocus,
     onBlur,
     focused,
-    name,
     index,
   };
-  const Control = React.cloneElement(control, controlProps);
+  const newControl = React.cloneElement(control, controlProps);
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
-      ? <React.Fragment><LabelWrapper>{label}</LabelWrapper>{Control}</React.Fragment>
-      : <React.Fragment>{Control}<LabelWrapper>{label}</LabelWrapper></React.Fragment>;
+      ? <React.Fragment><LabelWrapper>{label}</LabelWrapper>{newControl}</React.Fragment>
+      : <React.Fragment>{newControl}<LabelWrapper>{label}</LabelWrapper></React.Fragment>;
   const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
-    <SpacedGroup {...props} direction={direction} is='label'>
+    <SpacedGroup {...props} direction={direction} is='label' htmlFor={id}>
         {content}
     </SpacedGroup>
   );
@@ -74,13 +76,29 @@ FormControlLabel.propTypes = {
    */
   label: PropTypes.string.isRequired,
     /**
-   * If the element is checked
+   * Value to associate label with input
    */
-  selected: PropTypes.bool,
+  id: PropTypes.string,
   /**
    *  Function called when clicked
    */
   onClick: PropTypes.func,
+  /**
+   *  Function called when changed
+   */
+  onChange: PropTypes.func,
+  /**
+   *  Function called when focused
+   */
+  onFocus: PropTypes.func,
+  /**
+   *  Function called when blured
+   */
+  onBlur: PropTypes.func,
+  /**
+   * If it is focused
+   */
+  focused: PropTypes.bool,
   /**
    * Set the amount to space to apply between elements when the screen is phone and up
    */
@@ -121,7 +139,7 @@ FormControlLabel.propTypes = {
 
 FormControlLabel.defaultProps = {
   labelPlacement: LEFT,
-  selected: false,
+  id: null,
   onClick: noop,
   xs: 4,
   disableGutter: false,
