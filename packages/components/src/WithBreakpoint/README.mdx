@@ -8,7 +8,7 @@ import {
   PropsTable,
   ThemeDefinitionTable,
 } from '@versionone/doc-components';
-import { WithBreakpoint } from './';
+import { WithBreakpoint, isBreakpointUp, isBreakpointDown } from './';
 
 ## Usage
 
@@ -40,13 +40,13 @@ Functions that aid in determining if a provided breakpoint is equal to or above/
         <p>
           Current breakpoint above md:{' '}
           <strong>
-            {WithBreakpoint.isBreakpointUp('md', breakpoint).toString()}
+            {isBreakpointUp('md', breakpoint).toString()}
           </strong>
         </p>
         <p>
           Current breakpoint below md:{' '}
           <strong>
-            {WithBreakpoint.isBreakpointDown('md', breakpoint).toString()}
+            {isBreakpointDown('md', breakpoint).toString()}
           </strong>
         </p>
       </div>

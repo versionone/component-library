@@ -65,5 +65,6 @@
     "tiny-invariant": "^1.0.3",
     "underscore": "^1.9.1",
     "uuid": "^3.3.2"
-  }
+  },
+  "sideEffects": false
 }

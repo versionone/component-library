@@ -6,9 +6,4 @@ import {
   isBreakpointUp,
 } from './breakpointUtils';
 
-WithBreakpoint.getBreakpointValue = getBreakpointValue;
-WithBreakpoint.isBreakpointDown = isBreakpointDown;
-WithBreakpoint.isBreakpointUp = isBreakpointUp;
-WithBreakpoint.breakpointKeys = breakpointKeys;
-
-export { WithBreakpoint };
+export { WithBreakpoint, isBreakpointDown, isBreakpointUp, breakpointKeys }
