@@ -2,7 +2,7 @@
   "private": true,
   "name": "@versionone/doc-components",
   "description": "Documentation components and helpers.",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "license": "MIT",
   "homepage": "https://versionone-components.netlify.com/",
   "repository": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@mdx-js/tag": "^0.17.5",
-    "@versionone/components": "^6.0.0",
+    "@versionone/components": "^6.0.1",
     "capitalize": "^2.0.0"
   }
 }
