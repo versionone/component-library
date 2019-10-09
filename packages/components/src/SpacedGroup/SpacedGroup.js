@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
-import { WithBreakpoint } from '../WithBreakpoint';
+import { WithBreakpoint, isBreakpointUp } from '../WithBreakpoint';
 
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
 
 const getMargin = ({ breakpoint, xs, sm, md, lg, xl }) => {
-  if (WithBreakpoint.isBreakpointUp('xl', breakpoint) && xl) return xl;
-  if (WithBreakpoint.isBreakpointUp('lg', breakpoint) && lg) return lg;
-  if (WithBreakpoint.isBreakpointUp('md', breakpoint) && md) return md;
-  if (WithBreakpoint.isBreakpointUp('sm', breakpoint) && sm) return sm;
+  if (isBreakpointUp('xl', breakpoint) && xl) return xl;
+  if (isBreakpointUp('lg', breakpoint) && lg) return lg;
+  if (isBreakpointUp('md', breakpoint) && md) return md;
+  if (isBreakpointUp('sm', breakpoint) && sm) return sm;
   return xs;
 };
 
