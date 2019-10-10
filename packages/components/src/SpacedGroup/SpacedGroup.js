@@ -67,15 +67,17 @@ const buildStyles = ({
   };
 };
 
-const passThroughProps = ['data-component', 'data-test', 'htmlFor'];
-
-const SpacedGroupDiv = createComponent(buildStyles, 'div', passThroughProps);
-
-const SpacedGroupLabel = createComponent(buildStyles, 'label', passThroughProps);
+const passThroughProps = [
+  'data-component',
+  'data-test',
+  'data-trackingid',
+  'htmlFor',
+];
 
 const SpacedGroup = props => {
-  const SpacedGroupImpl =
-    props.is === 'div' ? SpacedGroupDiv : SpacedGroupLabel;
+  const { is } = props;
+
+  const SpacedGroupImpl = createComponent(buildStyles, is, passThroughProps);
 
   return (
     <WithBreakpoint>
@@ -94,8 +96,11 @@ const SpacedGroup = props => {
           breakpoint={breakpoint}
           data-component="SpacedGroup"
           data-test={props['data-test']}
+          data-trackingid={props['data-trackingid']}
           htmlFor={props.htmlFor}
-        >{props.children}</SpacedGroupImpl>
+        >
+          {props.children}
+        </SpacedGroupImpl>
       )}
     </WithBreakpoint>
   );
@@ -148,7 +153,7 @@ SpacedGroup.propTypes = {
    * The underlying DOM element
    */
   is: PropTypes.oneOf(['div', 'label']),
-    /**
+  /**
    * For element
    */
   htmlFor: PropTypes.string,

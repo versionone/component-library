@@ -1,48 +1,21 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { noop } from 'underscore';
-import { createComponent, WithTheme } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 
-const RadioImpl = createComponent(
-  ({ disabled, checked, size, theme }) => ({
-    height: size,
-    width: size,
+const InvisibleInput = createComponent(
+  () => ({
+    height: 0,
+    width: 0,
     alignItems: 'center',
     position: 'relative',
     outline: 'none',
     margin: '4px',
     textTransform: 'none',
-    ':before': {
-      content:'""',
-      color: theme.Button.standard.text,
-      height: size,
-      width: size,
-      minWidth: size,
-      minHeight: size,
-      borderRadius: '50%',
-      border: '3px solid transparent',
-      borderColor: checked ? theme.Radio.selected : theme.Radio.main,
-      backgroundColor: theme.Radio.background,
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    ':after': {
-      content:'""',
-      width: size/2,
-      height: size/2,
-      borderRadius: '50%',
-      backgroundColor: checked ? theme.Radio.selected : 'transparent', 
-      position: 'absolute',
-      display: 'block',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
   }),
   'input',
   [
+    'checked',
     'disabled',
     'onClick',
     'onChange',
@@ -53,6 +26,41 @@ const RadioImpl = createComponent(
     'value',
     'data-component',
   ],
+);
+
+const Circle = createComponent(
+  ({ checked, disabled, size, theme }) => {
+    const innerCircle = {
+      ':before': {
+        content: '""',
+        width: size / 2,
+        height: size / 2,
+        borderRadius: '50%',
+        backgroundColor: checked ? theme.Radio.selected : 'transparent',
+        position: 'absolute',
+        display: 'block',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
+    return {
+      position: 'relative',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      color: theme.Button.standard.text,
+      height: size,
+      width: size,
+      minWidth: size,
+      minHeight: size,
+      borderRadius: '50%',
+      border: '1px solid transparent',
+      borderColor: checked ? theme.Radio.selected : theme.Radio.main,
+      backgroundColor: 'transparent',
+      ...innerCircle,
+    };
+  },
+  'span',
+  ['onClick'],
 );
 
 class Radio extends Component {
@@ -82,7 +90,8 @@ class Radio extends Component {
     const isSelected = selectedValue === value;
 
     return (
-        <RadioImpl
+      <Fragment>
+        <InvisibleInput
           {...rest}
           data-component="Radio"
           disabled={disabled}
@@ -90,7 +99,6 @@ class Radio extends Component {
           aria-selected={isSelected}
           size={size}
           tabIndex={isSelected ? '0' : '-1'}
-          onClick={onClick(index, value)}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}
@@ -98,7 +106,14 @@ class Radio extends Component {
           type="radio"
           name={name}
           value={value}
-        / >
+        />
+        <Circle
+          disabled={disabled}
+          checked={isSelected}
+          onClick={onClick(index, value)}
+          size={size}
+        />
+      </Fragment>
     );
   }
 }
@@ -120,7 +135,7 @@ Radio.propTypes = {
    * Sets the tabindex of the button; used for tab order.
    */
   tabIndex: PropTypes.string,
-      /**
+  /**
    * Value of the radio
    *  */
   value: PropTypes.string.isRequired,
