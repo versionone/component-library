@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { noop } from 'underscore';
 import { CheckIcon } from '@versionone/icons';
 import { createComponent, WithTheme } from '../StyleProvider';
 
-const CheckboxImpl = createComponent(
-  ({ size, theme }) => ({
+const InvisibleInput = createComponent(
+  () => ({
     position: 'absolute',
     opacity: 0,
   }),
@@ -23,7 +23,22 @@ const CheckboxImpl = createComponent(
   ],
 );
 
-class Checkbox extends React.Component {
+const CheckboxImpl = createComponent(({ size, disabled, color }) => {
+  return {
+    width: size,
+    height: size,
+    borderRadius: '3px',
+    border: '2px solid transparent',
+    borderColor: color,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  };
+}, 'span');
+
+class Checkbox extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -33,14 +48,22 @@ class Checkbox extends React.Component {
   }
 
   toggleCheck(ev) {
+    const { onClick } = this.props;
     this.setState(prevState => ({
       checked: !prevState.checked,
     }));
-    this.props.onClick(ev);
+    onClick(ev);
   }
 
   render() {
-    const { size, id, onClick, disabled, ...rest } = this.props;
+    const {
+      size,
+      id,
+      onClick,
+      disabled,
+      'data-trackingid': trackingId,
+      ...rest
+    } = this.props;
     const { checked } = this.state;
 
     return (
@@ -49,30 +72,17 @@ class Checkbox extends React.Component {
           const color = theme.Checkbox.main;
 
           return (
-            <React.Fragment>
-              <CheckboxImpl
+            <Fragment>
+              <InvisibleInput
                 {...rest}
                 onChange={this.toggleCheck}
                 type="checkbox"
                 size={size}
                 checked={checked}
                 id={id}
-                data-trackingid={this.props['data-trackingid']}
+                data-trackingid={trackingId}
               />
-              <span
-                style={{
-                  width: size,
-                  height: size,
-                  borderRadius: '3px',
-                  border: '2px solid transparent',
-                  borderColor: color,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  position: 'relative',
-                  cursor: disabled ? 'not-allowed' : 'pointer'
-                }}
-              >
+              <CheckboxImpl color={color} disabled={disabled} size={size}>
                 {React.cloneElement(<CheckIcon />, {
                   size,
                   color: checked ? color : 'transparent',
@@ -80,8 +90,8 @@ class Checkbox extends React.Component {
                   position: 'absolute',
                   top: 4,
                 })}
-              </span>
-            </React.Fragment>
+              </CheckboxImpl>
+            </Fragment>
           );
         }}
       </WithTheme>
