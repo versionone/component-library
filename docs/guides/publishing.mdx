@@ -27,7 +27,7 @@ There is 1 main branch `master` where changes should be published from.
 
 The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/components). Login is required, either with the VersionOne account or with an existing account that is linked to our org.
 
-> Be sure to Login using `npm login` before attempting to publish
+> Be sure to Login using `npm login` before attempting to publish.
 
 ### Publishing Major, Minor, and Patch Versions
 
@@ -36,6 +36,12 @@ Feature branches should be merged into `master` before publishing from `master`.
 ```bash
 NODE_ENV=production yarn build
 yarn lerna publish {major|minor|patch}
+```
+
+> If you forget to Login using `npm login` before the above, you can publish directly from the current commit.
+
+```bash
+yarn lerna publish from-git
 ```
 
 ### Canary Releases
