@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "prestart": "lerna run --scope @versionone/icons generate:main && lerna run --scope @versionone/icons build && lerna run --scope @versionone/components generate:main",
+    "prestart": "lerna run --scope @versionone/icons build && lerna run --scope @versionone/components generate:main",
     "start": "lerna run --scope @versionone/docs-site --stream start",
     "verify": "concurrently \"yarn lint\" \"yarn test:e2e:cli\"",
     "lint": "yarn lint:eslint",
