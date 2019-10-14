@@ -74,7 +74,11 @@ However, to publish a new release of the site, instead of a preview deployment, 
 
 ### Unsucessful Publish to NPM
 
-If you are not logged into NPM via `npm login` before attempting to publish, then the publish will fail (half-way). In these cases, the package is **not** published to NPM, but is tagged in the source code and the version in bumped. To undo this, please remove the git tag and remove the commit bumping the version. This can be done with either a revert of the commit or rebase it out (which will require a force push).
+> If you forget to Login using `npm login` before the above, you can publish directly from the current commit.
+
+```bash
+yarn lerna publish from-git
+```
 
 ### Remove git tag
 
