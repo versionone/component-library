@@ -13,7 +13,14 @@ Allows users to select one option from a set. Use RadioGroup to Wrap a set of Ra
 ## Basic
 
 <Playground>
-  <RadioGroup name="Name" selectedValue="red" defaultFocusedRadio={0}>
+  <RadioGroup
+    name="Name"
+    selectedValue="red"
+    defaultFocusedRadio={0}
+    onChange={() => {
+      console.log('toggled');
+    }}
+  >
     <FormControlLabel label="Orange" control={<Radio value="orange" />} />
     <FormControlLabel label="Green" control={<Radio value="green" />} />
     <FormControlLabel label="Red" control={<Radio value="red" />} />
