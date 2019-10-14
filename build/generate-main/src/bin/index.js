@@ -2,6 +2,7 @@
 
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
+/* eslint-disable no-global-assign */
 const path = require('path');
 const fs = require('fs').promises;
 
