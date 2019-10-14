@@ -4,5 +4,10 @@
   "version": "6.0.0",
   "description": "Generate component package's main `index.js` file.",
   "license": "MIT",
-  "bin": "./src/bin/index.js"
+  "bin": "./src/bin/index.js",
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/register": "^7.6.2",
+    "esm": "^3.2.25"
+  }
 }

@@ -2,6 +2,7 @@
 
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
+/* eslint-disable no-global-assign */
 const path = require('path');
 const fs = require('fs').promises;
 
@@ -11,12 +12,23 @@ const mainFile = pkg['main:src'];
 const [mainFileName, ...reversedPath] = mainFile.split('/').reverse();
 const mainFilePath = reversedPath.reverse();
 const inputDirectory = path.join(cwd, ...mainFilePath);
+require("@babel/register")({
+  plugins: [
+      ["@babel/plugin-transform-react-jsx"],
+      ['@babel/plugin-proposal-class-properties'],
+  ]
+});
+require = require("esm")(module)
 
 fs.readdir(inputDirectory)
   .then(items =>
     items
       .filter(item => item !== mainFileName)
-      .map(dirName => `export * from './${dirName}';`),
+      .map(dirName => {
+        const moduleToExport = require(path.join(inputDirectory, dirName));
+        const moduleExports = Object.keys(moduleToExport);
+        return `export { ${moduleExports.join(', ')} } from './${dirName}';`
+      }),
   )
   .then(componentExportDeclarations =>
     fs.writeFile(
