@@ -2,7 +2,7 @@
   "private": false,
   "name": "@versionone/components",
   "description": "Collection of components and accompanying documentation site VersionOne and Continuum.",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "license": "MIT",
   "homepage": "https://versionone-components.netlify.com/",
   "repository": {
@@ -34,8 +34,8 @@
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
-    "@versionone/doc-components": "^6.0.4",
-    "@versionone/generate-main": "^6.0.0"
+    "@versionone/doc-components": "^6.0.5",
+    "@versionone/generate-main": "^6.0.5"
   },
   "dependencies": {
     "@andrew-codes/color-functions": "^1.4.2",
