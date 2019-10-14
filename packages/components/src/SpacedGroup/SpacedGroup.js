@@ -74,10 +74,18 @@ const passThroughProps = [
   'htmlFor',
 ];
 
+const SpacedGroupDiv = createComponent(buildStyles, 'div', passThroughProps);
+
+const SpacedGroupLabel = createComponent(
+  buildStyles,
+  'label',
+  passThroughProps,
+);
+
 const SpacedGroup = props => {
   const { is } = props;
 
-  const SpacedGroupImpl = createComponent(buildStyles, is, passThroughProps);
+  const SpacedGroupImpl = is === 'div' ? SpacedGroupDiv : SpacedGroupLabel;
 
   return (
     <WithBreakpoint>
