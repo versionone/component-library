@@ -53,7 +53,7 @@ const Circle = createComponent(
       minWidth: size,
       minHeight: size,
       borderRadius: '50%',
-      border: '1px solid transparent',
+      border: '1px solid',
       borderColor: checked ? theme.Radio.selected : theme.Radio.main,
       backgroundColor: 'transparent',
       ...innerCircle,
@@ -102,17 +102,13 @@ class Radio extends Component {
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}
+          onClick={onClick(index, value)}
           focused={focused}
           type="radio"
           name={name}
           value={value}
         />
-        <Circle
-          disabled={disabled}
-          checked={isSelected}
-          onClick={onClick(index, value)}
-          size={size}
-        />
+        <Circle disabled={disabled} checked={isSelected} size={size} />
       </Fragment>
     );
   }
