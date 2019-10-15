@@ -7,6 +7,7 @@ const InvisibleInput = createComponent(
   () => ({
     height: 0,
     width: 0,
+    opacity: 0,
     alignItems: 'center',
     position: 'relative',
     outline: 'none',
@@ -140,7 +141,7 @@ Radio.propTypes = {
 Radio.defaultProps = {
   disabled: false,
   onClick: noop,
-  size: 32,
+  size: 24,
   tabIndex: '0',
 };
 

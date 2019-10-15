@@ -144,7 +144,7 @@ const internalTheme = {
       main: palette.forge,
     },
     default: {
-      main: 'rgb(99, 76, 71)',
+      main: palette.chrome50,
     },
     required: {
       main: palette.sunset,
