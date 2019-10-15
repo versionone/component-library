@@ -105,6 +105,7 @@ const ButtonImpl = createComponent(
 class IconButton extends Component {
   render() {
     const {
+      rotate,
       disabled,
       icon,
       focused,
@@ -139,7 +140,8 @@ class IconButton extends Component {
                   {React.createElement(icon, {
                     size: Math.floor(size / 2),
                     title,
-                    color: getColor({type, disabled, theme}),
+                    color: theme.Button[type].text,
+                    rotate
                   })}
                 </ButtonImpl>
               )}
@@ -193,6 +195,10 @@ IconButton.propTypes = {
    * Attribute used to track user interaction
    */
   'data-trackingid': PropTypes.string,
+  /**
+   * Number of degrees to rotate the icon
+   */
+  rotate: PropTypes.number,
 };
 IconButton.defaultProps = {
   disabled: false,
