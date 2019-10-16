@@ -5,7 +5,7 @@ import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
-import { HoverIntersection } from '../HoverIntersection';
+import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
 import ListContext from './ListValueContext';
 
 const Row = createComponent(
@@ -96,7 +96,7 @@ const LeftGroup = createComponent(
 const AncillaryAction = ({ children }) => (
   <EventBoundary onClick={noop} onFocus={noop} onKeyDown={noop}>
     {({ onClick, onFocus, onKeyDown }) => (
-      <HoverIntersection.Exclude>
+      <HoverIntersectionExclude>
         {({ bind, hovered }) => (
           <div
             {...bind}
@@ -107,7 +107,7 @@ const AncillaryAction = ({ children }) => (
             {cloneElement(children, { hovered })}
           </div>
         )}
-      </HoverIntersection.Exclude>
+      </HoverIntersectionExclude>
     )}
   </EventBoundary>
 );

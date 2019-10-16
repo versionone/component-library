@@ -148,7 +148,7 @@ const Header = ({
           status={status}
           disabled={disabled}
           role="heading"
-          data-component="Accordion.Header"
+          data-component="AccordionHeader"
           data-test={dataTest}
         >
           <HeaderButton

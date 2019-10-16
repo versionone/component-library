@@ -5,7 +5,7 @@ import { CloseIcon } from '@versionone/icons';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { IconButton } from '../Button';
 import { EventBoundary } from '../EventBoundary';
-import { HoverIntersection } from '../HoverIntersection';
+import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
 
 const buildStyles = ({ hovered, onClick, size, clamped, outlined, theme }) => {
   const activityStyles = onClick
@@ -93,7 +93,7 @@ const InternalChip = props => {
     <DismissWrapper>
       <EventBoundary onClick={props.onDismiss}>
         {({ onClick }) => (
-          <HoverIntersection.Exclude>
+          <HoverIntersectionExclude>
             {({ bind }) => (
               <IconButton
                 {...bind}
@@ -103,7 +103,7 @@ const InternalChip = props => {
                 title="dismiss"
               />
             )}
-          </HoverIntersection.Exclude>
+          </HoverIntersectionExclude>
         )}
       </EventBoundary>
     </DismissWrapper>

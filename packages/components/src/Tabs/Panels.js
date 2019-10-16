@@ -18,7 +18,7 @@ const Panels = props => {
 
 Panels.propTypes = {
   /**
-   * Collection of Tabs.Panel that contain content
+   * Collection of TabsPanel that contain content
    */
   children: PropTypes.node,
 };

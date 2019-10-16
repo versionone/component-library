@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { Tabs, UnderlineTab } from './';
+import { Tabs, TabsList, TabsPanel, TabsPanels, Tab, UnderlineTab } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TeamIcon } from '@versionone/icons';
 import { Grid } from '../Grid';
@@ -17,158 +17,158 @@ Only one Tab can be active at a time and there is a visual treatment applied.
     <SpacedGroup xs={16}>
       <Tabs defaultActiveTab={0} defaultFocusedTab={0} data-test="Tabs">
         <Grid>
-          <Tabs.List data-test="Tabs.List">
-            <Tabs.Tab data-test="Tabs.Tab.1">
+          <TabsList data-test="TabsList">
+            <Tab data-test="Tab.1">
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab data-test="Tabs.Tab.2">
+            </Tab>
+            <Tab data-test="Tab.2">
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab data-test="Tabs.Tab.3">
+            </Tab>
+            <Tab data-test="Tab.3">
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel data-test="Tabs.Panel.1">
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel data-test="TabsPanel.1">
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel data-test="Tabs.Panel.2">
+            </TabsPanel>
+            <TabsPanel data-test="TabsPanel.2">
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel data-test="Tabs.Panel.3">
+            </TabsPanel>
+            <TabsPanel data-test="TabsPanel.3">
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
       <Tabs defaultActiveTab={2}>
         <Grid>
-          <Tabs.List>
-            <Tabs.Tab>
+          <TabsList>
+            <Tab>
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab>
+            </Tab>
+            <Tab>
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel>
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel>
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
       <Tabs defaultActiveTab={2}>
         <Grid>
-          <Tabs.List>
-            <Tabs.Tab disabled>
+          <TabsList>
+            <Tab disabled>
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab>
+            </Tab>
+            <Tab>
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel>
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel>
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
       <Tabs defaultActiveTab={0}>
         <Grid>
-          <Tabs.List>
-            <Tabs.Tab>
+          <TabsList>
+            <Tab>
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel>
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel>
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
       <Tabs defaultActiveTab={1}>
         <Grid>
-          <Tabs.List>
-            <Tabs.Tab disabled>
+          <TabsList>
+            <Tab disabled>
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab>
+            </Tab>
+            <Tab>
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel>
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel>
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
       <Tabs defaultActiveTab={0}>
         <Grid>
-          <Tabs.List>
-            <Tabs.Tab disabled>
+          <TabsList>
+            <Tab disabled>
               <UnderlineTab title="Tab 1" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 2" icon={<TeamIcon />} />
-            </Tabs.Tab>
-            <Tabs.Tab disabled>
+            </Tab>
+            <Tab disabled>
               <UnderlineTab title="Tab 3" icon={<TeamIcon />} />
-            </Tabs.Tab>
-          </Tabs.List>
-          <Tabs.Panels>
-            <Tabs.Panel>
+            </Tab>
+          </TabsList>
+          <TabsPanels>
+            <TabsPanel>
               <p>Content of panel 1</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </Grid>
       </Tabs>
     </SpacedGroup>
@@ -181,57 +181,57 @@ Tab will accept a render prop or a Component, like UnderlineTab used above to pr
 The playground below will use render props and the following code block highlights its usage:
 
 ```jsx
-<Tabs.Tab>
+<Tab>
   {({ selected, disabled, focused }) => (
     <SpacedGroup center xs={4}>
       <TeamIcon />
       <span>Tab 1</span>
     </SpacedGroup>
   )}
-</Tabs.Tab>
+</Tab>
 ```
 
 <Playground>
   <SpacedGroup>
     <Tabs defaultActiveTab={0}>
       <Grid>
-        <Tabs.List>
-          <Tabs.Tab>
+        <TabsList>
+          <Tab>
             {({ selected, disabled, focused }) => (
               <SpacedGroup center xs={4}>
                 <TeamIcon />
                 <span>Tab 1</span>
               </SpacedGroup>
             )}
-          </Tabs.Tab>
-          <Tabs.Tab disabled>
+          </Tab>
+          <Tab disabled>
             {({ selected, disabled, focused }) => (
               <SpacedGroup center xs={4}>
                 <TeamIcon />
                 <span>Tab 2</span>
               </SpacedGroup>
             )}
-          </Tabs.Tab>
-          <Tabs.Tab>
+          </Tab>
+          <Tab>
             {({ selected, disabled, focused }) => (
               <SpacedGroup center xs={4}>
                 <TeamIcon />
                 <span>Tab 3</span>
               </SpacedGroup>
             )}
-          </Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panels>
-          <Tabs.Panel>
+          </Tab>
+        </TabsList>
+        <TabsPanels>
+          <TabsPanel>
             <p>Content of panel 1</p>
-          </Tabs.Panel>
-          <Tabs.Panel>
+          </TabsPanel>
+          <TabsPanel>
             <p>Content of panel 2</p>
-          </Tabs.Panel>
-          <Tabs.Panel>
+          </TabsPanel>
+          <TabsPanel>
             <p>Content of panel 3</p>
-          </Tabs.Panel>
-        </Tabs.Panels>
+          </TabsPanel>
+        </TabsPanels>
       </Grid>
     </Tabs>
   </SpacedGroup>
@@ -243,32 +243,32 @@ The playground below will use render props and the following code block highligh
   <SpacedGroup>
     <Tabs defaultActiveTab={0}>
       <Grid>
-        <Tabs.List>
-          <Tabs.Tab>
+        <TabsList>
+          <Tab>
             <UnderlineTab placement="right" title="Tab 1" icon={<TeamIcon />} />
-          </Tabs.Tab>
-          <Tabs.Tab>
+          </Tab>
+          <Tab>
             <UnderlineTab placement="right" title="Tab 2" icon={<TeamIcon />} />
-          </Tabs.Tab>
-          <Tabs.Tab>
+          </Tab>
+          <Tab>
             <UnderlineTab placement="right" title="Tab 3" icon={<TeamIcon />} />
-          </Tabs.Tab>
-        </Tabs.List>
+          </Tab>
+        </TabsList>
         <SpacedGroup>
-          <Tabs.Panels>
-            <Tabs.Panel>
+          <TabsPanels>
+            <TabsPanel>
               <p>
                 Tabs don't control the layout of its tabs and content. Instead
                 it allows the consumer to use its own Layout components!
               </p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 2</p>
-            </Tabs.Panel>
-            <Tabs.Panel>
+            </TabsPanel>
+            <TabsPanel>
               <p>Content of panel 3</p>
-            </Tabs.Panel>
-          </Tabs.Panels>
+            </TabsPanel>
+          </TabsPanels>
         </SpacedGroup>
       </Grid>
     </Tabs>
@@ -281,18 +281,18 @@ The playground below will use render props and the following code block highligh
 
 <PropsTable of={Tabs} />
 
-### Tabs.List
+### TabsList
 
-<PropsTable of={Tabs.List} />
+<PropsTable of={TabsList} />
 
-### Tabs.Tab
+### Tab
 
-<PropsTable of={Tabs.Tab} />
+<PropsTable of={Tab} />
 
-### Tabs.Panels
+### TabsPanels
 
-<PropsTable of={Tabs.Panels} />
+<PropsTable of={TabsPanels} />
 
-### Tabs.Panel
+### TabsPanel
 
-<PropsTable of={Tabs.Panel} />
+<PropsTable of={TabsPanel} />

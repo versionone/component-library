@@ -4,11 +4,6 @@ import Panels from './Panels';
 import Tab from './Tab';
 import { Tabs } from './Tabs';
 
-Tabs.Panel = Panel;
-Tabs.Panels = Panels;
-Tabs.Tab = Tab;
-Tabs.List = List;
-
-export { Tabs };
+export { Tabs, List as TabsList, Panel as TabsPanel, Panels as TabsPanels, Tab };
 export { default as UnderlineTab } from './types/UnderlineTab';
 export { NubTab } from './types/NubTab';

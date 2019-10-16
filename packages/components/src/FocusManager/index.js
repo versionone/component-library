@@ -1,6 +1,2 @@
-import FocusGroup from './FocusGroup';
-import { FocusManager } from './FocusManager';
-
-FocusManager.Group = FocusGroup;
-
-export { FocusManager };
+export { default as FocusGroup } from './FocusGroup';
+export { FocusManager } from './FocusManager';
