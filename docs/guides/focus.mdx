@@ -12,6 +12,8 @@ import {
   FocusGroup,
   IconButton,
   List,
+  ListItem,
+  ListItemText,
   Menu,
   Paper,
   SpacedGroup,
@@ -156,20 +158,20 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
               onClickOutside={this.close}
             >
               <List bordered>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 1" />
+                </ListItem>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 2" />
+                </ListItem>
               </List>
             </Menu>
           );
         };
         const ListItems = this.state.items.map((item, index) => (
-          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
-            <List.ItemText primary={item.name} secondary={item.project} />
-          </List.Item>
+          <ListItem key={index} secondaryAction={getMenuForItemAt(index)}>
+            <ListItemText primary={item.name} secondary={item.project} />
+          </ListItem>
         ));
         return (
           <SpacedGroup xs={24}>
@@ -244,20 +246,20 @@ In some cases, a drawer may open in response to a menu item's primary action; in
               onClickOutside={this.close}
             >
               <List bordered>
-                <List.Item onClick={this.openDrawer} focused={isOpen}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={this.openDrawer}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
+                <ListItem onClick={this.openDrawer} focused={isOpen}>
+                  <ListItemText primary="Action 1" />
+                </ListItem>
+                <ListItem onClick={this.openDrawer}>
+                  <ListItemText primary="Action 2" />
+                </ListItem>
               </List>
             </Menu>
           );
         };
         const ListItems = this.state.items.map((item, index) => (
-          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
-            <List.ItemText primary={item.name} secondary={item.project} />
-          </List.Item>
+          <ListItem key={index} secondaryAction={getMenuForItemAt(index)}>
+            <ListItemText primary={item.name} secondary={item.project} />
+          </ListItem>
         ));
         return (
           <SpacedGroup xs={24}>

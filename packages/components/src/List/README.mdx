@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { List } from './';
+import { List, ListItem, ListItemText } from './';
 import { Switch } from '../Switch';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
@@ -19,18 +19,18 @@ import { Menu } from '../Menu';
 
 <Playground>
   <List data-test="list-item-selection">
-    <List.Item selected>
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item>
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item selected>
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item>
-      <List.ItemText primary="First line of content" />
-    </List.Item>
+    <ListItem selected>
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem>
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem selected>
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem>
+      <ListItemText primary="First line of content" />
+    </ListItem>
   </List>
 </Playground>
 
@@ -40,7 +40,7 @@ A list item may optionally contain a supporting visual. These are not limited to
 
 <Playground>
   <List data-test="list-supporting-visual">
-    <List.Item
+    <ListItem
       supportingVisual={
         <Avatar
           size={36}
@@ -48,9 +48,9 @@ A list item may optionally contain a supporting visual. These are not limited to
         />
       }
     >
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem
       supportingVisual={
         <Avatar
           size={36}
@@ -58,12 +58,12 @@ A list item may optionally contain a supporting visual. These are not limited to
         />
       }
     >
-      <List.ItemText
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
       />
-    </List.Item>
-    <List.Item
+    </ListItem>
+    <ListItem
       supportingVisual={
         <Avatar
           size={36}
@@ -71,23 +71,23 @@ A list item may optionally contain a supporting visual. These are not limited to
         />
       }
     >
-      <List.ItemText
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="Third line of content"
       />
-    </List.Item>
-    <List.Item
+    </ListItem>
+    <ListItem
       supportingVisual={
         <IconButton
           icon={AssetIcon}
           onClick={() => console.log('Supporting visual click')}
         />
       }
-      onClick={() => console.log('List.Item click')}
+      onClick={() => console.log('ListItem click')}
     >
-      <List.ItemText primary="Action-able (onClick) supporting visual" />
-    </List.Item>
+      <ListItemText primary="Action-able (onClick) supporting visual" />
+    </ListItem>
   </List>
 </Playground>
 
@@ -99,98 +99,98 @@ List items are clickable; which represents the primary action. Items may also co
 
 <Playground>
   <List data-test="list-item-actions">
-    <List.Item
-      onClick={() => console.log('List.Item click')}
+    <ListItem
+      onClick={() => console.log('ListItem click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action click')}>
           Secondary Action
         </Button>
       }
     >
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action click')}>
           Secondary Action
         </Button>
       }
     >
-      <List.ItemText
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
       />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action click')}>
           Secondary Action
         </Button>
       }
     >
-      <List.ItemText
-        primary="First line of content"
-        secondary="Second line of content"
-        tertiary="Third line of content"
-      />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      secondaryAction={
-        <Button onClick={() => console.log('Secondary action click')}>
-          Secondary Action
-        </Button>
-      }
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      secondaryAction={
-        <Button onClick={() => console.log('Secondary action click')}>
-          Secondary Action
-        </Button>
-      }
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText
-        primary="First line of content"
-        secondary="Second line of content"
-      />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      secondaryAction={
-        <Button onClick={() => console.log('Secondary action click')}>
-          Secondary Action
-        </Button>
-      }
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="Third line of content"
       />
-    </List.Item>
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      secondaryAction={
+        <Button onClick={() => console.log('Secondary action click')}>
+          Secondary Action
+        </Button>
+      }
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </ListItem>
   </List>
 </Playground>
 
@@ -202,8 +202,8 @@ List items with primary actions are focus-able. When a list item is focused, the
 
 <Playground>
   <List data-test="list-focusable">
-    <List.Item
-      onClick={() => console.log('List.Item 1 click')}
+    <ListItem
+      onClick={() => console.log('ListItem 1 click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action 1 click')}>
           Secondary Action 1
@@ -216,10 +216,10 @@ List items with primary actions are focus-able. When a list item is focused, the
         />
       }
     >
-      <List.ItemText primary="1" />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item 2 click')}
+      <ListItemText primary="1" />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem 2 click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action 2 click')}>
           Secondary Action 2
@@ -232,9 +232,9 @@ List items with primary actions are focus-able. When a list item is focused, the
         />
       }
     >
-      <List.ItemText primary="2" />
-    </List.Item>
-    <List.Item
+      <ListItemText primary="2" />
+    </ListItem>
+    <ListItem
       secondaryAction={
         <Button onClick={() => console.log('Secondary action click')}>
           Secondary Action
@@ -247,10 +247,10 @@ List items with primary actions are focus-able. When a list item is focused, the
         />
       }
     >
-      <List.ItemText primary="3 (not focusable)" />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item 4 click')}
+      <ListItemText primary="3 (not focusable)" />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem 4 click')}
       secondaryAction={
         <Button onClick={() => console.log('Secondary action click')}>
           Secondary Action
@@ -263,8 +263,8 @@ List items with primary actions are focus-able. When a list item is focused, the
         />
       }
     >
-      <List.ItemText primary="4" />
-    </List.Item>
+      <ListItemText primary="4" />
+    </ListItem>
   </List>
 </Playground>
 
@@ -276,7 +276,7 @@ A `ListItem` may have up to 3 distinct content values; `primary`, `secondary`, `
 
 <Playground>
   <List data-test="list-content-too-long">
-    <List.Item
+    <ListItem
       supportingVisual={
         <Avatar
           size={36}
@@ -289,13 +289,13 @@ A `ListItem` may have up to 3 distinct content values; `primary`, `secondary`, `
         </Button>
       }
     >
-      <List.ItemText
+      <ListItemText
         primary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
         secondary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
         tertiary="Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text."
       />
-    </List.Item>
-    <List.Item
+    </ListItem>
+    <ListItem
       supportingVisual={
         <Avatar
           size={36}
@@ -308,12 +308,12 @@ A `ListItem` may have up to 3 distinct content values; `primary`, `secondary`, `
         </Button>
       }
     >
-      <List.ItemText
+      <ListItemText
         primary="Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext."
         secondary="Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext.Longsecondlineoftext."
         tertiary="Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext.Longthirdlineoftext."
       />
-    </List.Item>
+    </ListItem>
   </List>
 </Playground>
 
@@ -323,62 +323,62 @@ A dense list is suited for Lists with items that contain only a primary action. 
 
 <Playground>
   <List dense>
-    <List.Item onClick={() => console.log('List.Item click')}>
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item onClick={() => console.log('List.Item click')}>
-      <List.ItemText
+    <ListItem onClick={() => console.log('ListItem click')}>
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem onClick={() => console.log('ListItem click')}>
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
       />
-    </List.Item>
-    <List.Item onClick={() => console.log('List.Item click')}>
-      <List.ItemText
-        primary="First line of content"
-        secondary="Second line of content"
-        tertiary="Third line of content"
-      />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText primary="First line of content" />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText
-        primary="First line of content"
-        secondary="Second line of content"
-      />
-    </List.Item>
-    <List.Item
-      onClick={() => console.log('List.Item click')}
-      supportingVisual={
-        <Avatar
-          size={36}
-          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
-        />
-      }
-    >
-      <List.ItemText
+    </ListItem>
+    <ListItem onClick={() => console.log('ListItem click')}>
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="Third line of content"
       />
-    </List.Item>
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText primary="First line of content" />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText
+        primary="First line of content"
+        secondary="Second line of content"
+      />
+    </ListItem>
+    <ListItem
+      onClick={() => console.log('ListItem click')}
+      supportingVisual={
+        <Avatar
+          size={36}
+          src={'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'}
+        />
+      }
+    >
+      <ListItemText
+        primary="First line of content"
+        secondary="Second line of content"
+        tertiary="Third line of content"
+      />
+    </ListItem>
   </List>
 </Playground>
 
@@ -386,27 +386,27 @@ A dense list is suited for Lists with items that contain only a primary action. 
 
 <Playground>
   <List noBorder>
-    <List.Item>
-      <List.ItemText
+    <ListItem>
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="third line of content"
       />
-    </List.Item>
-    <List.Item>
-      <List.ItemText
+    </ListItem>
+    <ListItem>
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="third line of content"
       />
-    </List.Item>
-    <List.Item>
-      <List.ItemText
+    </ListItem>
+    <ListItem>
+      <ListItemText
         primary="First line of content"
         secondary="Second line of content"
         tertiary="third line of content"
       />
-    </List.Item>
+    </ListItem>
   </List>
 </Playground>
 
@@ -416,7 +416,7 @@ A dense list is suited for Lists with items that contain only a primary action. 
   <div style={{ width: '300px' }}>
     <SpacedGroup direction="vertical">
       <List data-test="list-parent-width">
-        <List.Item
+        <ListItem
           supportingVisual={
             <Avatar
               size={36}
@@ -425,19 +425,19 @@ A dense list is suited for Lists with items that contain only a primary action. 
           }
           secondaryAction={<AssetIcon />}
         >
-          <List.ItemText
+          <ListItemText
             primary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
             secondary="Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text. Long second line of text."
             tertiary="Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text. Long third line of text."
           />
-        </List.Item>
-        <List.Item>
-          <List.ItemText
+        </ListItem>
+        <ListItem>
+          <ListItemText
             primary="First line of content"
             secondary="Second line of content"
             tertiary="third line of content"
           />
-        </List.Item>
+        </ListItem>
       </List>
     </SpacedGroup>
   </div>
@@ -447,17 +447,17 @@ A dense list is suited for Lists with items that contain only a primary action. 
 
 ```jsx
 <List>
-  <List.Item data-trackingid="edit" onClick={() => {}}>
-    <List.ItemText primary="title" />
-  </List.Item>
+  <ListItem data-trackingid="edit" onClick={() => {}}>
+    <ListItemText primary="title" />
+  </ListItem>
 </List>
 ```
 
 <Playground>
   <List>
-    <List.Item data-trackingid="edit" onClick={() => {}}>
-      <List.ItemText primary="title" />
-    </List.Item>
+    <ListItem data-trackingid="edit" onClick={() => {}}>
+      <ListItemText primary="title" />
+    </ListItem>
   </List>
 </Playground>
 
@@ -467,10 +467,10 @@ A dense list is suited for Lists with items that contain only a primary action. 
 
 <PropsTable of={List} />
 
-### List.Item
+### ListItem
 
-<PropsTable of={List.Item} />
+<PropsTable of={ListItem} />
 
-### List.ItemText
+### ListItemText
 
-<PropsTable of={List.ItemText} />
+<PropsTable of={ListItemText} />

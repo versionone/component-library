@@ -10,7 +10,7 @@ import { SpacedGroup } from './../SpacedGroup';
 import { Divider } from '../Divider';
 import { Chip } from '../Chip';
 import { Avatar } from '../Avatar';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Border } from '../Border';
 import { Paper } from '../Paper';
 import { FormLabel } from '../Label';
@@ -67,13 +67,13 @@ In the abscense of a `selection` prop it will use the `value` of the `selectedIt
             const itemProps = getItemProps({ item, index: id });
             return (
               <Fragment key={item.id}>
-                <List.Item
+                <ListItem
                   {...itemProps}
                   selected={itemProps.isSelected || itemProps.isActive}
                   //icon={<Avatar size={36} src={item.href} />}
                 >
-                  <List.ItemText primary={item.value} secondary={item.email} />
-                </List.Item>
+                  <ListItemText primary={item.value} secondary={item.email} />
+                </ListItem>
                 <Divider />
               </Fragment>
             );
@@ -146,13 +146,13 @@ In the abscense of a `selection` prop it will use the `value` of the `selectedIt
             const itemProps = getItemProps({ item, index: id });
             return (
               <Fragment key={id}>
-                <List.Item
+                <ListItem
                   {...itemProps}
                   selected={itemProps.isSelected || itemProps.isActive}
                   icon={<Avatar size={36} src={item.href} />}
                 >
-                  <List.ItemText primary={item.value} secondary={item.email} />
-                </List.Item>
+                  <ListItemText primary={item.value} secondary={item.email} />
+                </ListItem>
                 <Divider />
               </Fragment>
             );
@@ -252,12 +252,12 @@ In the abscense of a `selection` prop it will use the `value` of the `selectedIt
             const itemProps = getItemProps({ item, index: id });
             return (
               <Fragment key={id}>
-                <List.Item
+                <ListItem
                   {...itemProps}
                   selected={itemProps.isSelected || itemProps.isActive}
                 >
-                  <List.ItemText primary={item.value} secondary={item.email} />
-                </List.Item>
+                  <ListItemText primary={item.value} secondary={item.email} />
+                </ListItem>
                 <Divider />
               </Fragment>
             );

@@ -10,7 +10,7 @@ import { createComponent } from '../StyleProvider';
 import { Divider } from '../Divider';
 import { IconButton } from '../Button';
 import { InfoIcon } from '@versionone/icons';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Lozenge } from '../Lozenge';
 import { Menu } from './';
 import { Paper } from '../Paper';
@@ -67,20 +67,20 @@ and the items in the `Menu` are verbs and themselves are actions.
               onClickOutside={this.close}
             >
               <List bordered>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 1" />
+                </ListItem>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 2" />
+                </ListItem>
               </List>
             </Menu>
           );
         };
         const ListItems = this.state.items.map((item, index) => (
-          <List.Item key={index} secondaryAction={getMenuForItemAt(index)}>
-            <List.ItemText primary={item.name} secondary={item.project} />
-          </List.Item>
+          <ListItem key={index} secondaryAction={getMenuForItemAt(index)}>
+            <ListItemText primary={item.name} secondary={item.project} />
+          </ListItem>
         ));
         return (
           <SpacedGroup xs={24}>
@@ -137,12 +137,12 @@ and the items in the `Menu` are verbs and themselves are actions.
                 placement="bottom-end"
               >
                 <List bordered>
-                  <List.Item onClick={() => {}}>
-                    <List.ItemText primary="Action 1" />
-                  </List.Item>
-                  <List.Item onClick={() => {}}>
-                    <List.ItemText primary="Action 2" />
-                  </List.Item>
+                  <ListItem onClick={() => {}}>
+                    <ListItemText primary="Action 1" />
+                  </ListItem>
+                  <ListItem onClick={() => {}}>
+                    <ListItemText primary="Action 2" />
+                  </ListItem>
                 </List>
               </Menu>
             </InlineContainer>
@@ -156,12 +156,12 @@ and the items in the `Menu` are verbs and themselves are actions.
                 placement="bottom-end"
               >
                 <List bordered>
-                  <List.Item onClick={() => {}}>
-                    <List.ItemText primary="Action 1" />
-                  </List.Item>
-                  <List.Item onClick={() => {}}>
-                    <List.ItemText primary="Action 2" />
-                  </List.Item>
+                  <ListItem onClick={() => {}}>
+                    <ListItemText primary="Action 1" />
+                  </ListItem>
+                  <ListItem onClick={() => {}}>
+                    <ListItemText primary="Action 2" />
+                  </ListItem>
                 </List>
               </Menu>
             </InlineContainer>

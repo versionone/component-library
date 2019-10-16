@@ -3,12 +3,12 @@ context('List', () => {
     cy.navigate([/^Components$/, 'List']);
   });
 
-  context('List.Item actions', () => {
-    specify('1 or more List.Items can be selected', () => {
+  context('ListItem actions', () => {
+    specify('1 or more ListItems can be selected', () => {
       const cerulean = 'rgba(0, 169, 224, 0.1)';
 
       cy.get('[data-test="list-item-selection"]')
-        .find('[data-component="List.Item"]')
+        .find('[data-component="ListItem"]')
         .then(els =>
           cy.window().then(win => {
             const selectedCount = els
@@ -26,37 +26,37 @@ context('List', () => {
     });
 
     specify(
-      "List.Item's onClick handler is invoked when the list item is clicked",
+      "ListItem's onClick handler is invoked when the list item is clicked",
       () => {
         cy.get('[data-test="list-item-actions"]')
-          .find('[data-component="List.Item"]')
+          .find('[data-component="ListItem"]')
           .first()
           .click();
         cy.window().then(win =>
-          expect(win.console.log).to.be.calledWith('List.Item click'),
+          expect(win.console.log).to.be.calledWith('ListItem click'),
         );
       },
     );
 
     specify(
-      'Clicking on a secondary action or supporting visual element will not trigger the onClick handler for the List.Item',
+      'Clicking on a secondary action or supporting visual element will not trigger the onClick handler for the ListItem',
       () => {
         cy.get('[data-test="list-item-actions"]')
-          .find('[data-component="List.Item"]')
+          .find('[data-component="ListItem"]')
           .first()
           .contains('Secondary Action')
           .click();
         cy.window().then(win => {
-          expect(win.console.log).to.not.be.calledWith('List.Item click');
+          expect(win.console.log).to.not.be.calledWith('ListItem click');
           expect(win.console.log).to.be.calledWith('Secondary action click');
         });
         cy.get('[data-test="list-supporting-visual"]')
-          .find('[data-component="List.Item"]')
+          .find('[data-component="ListItem"]')
           .find('[data-component="IconButton"]')
           .first()
           .click();
         cy.window().then(win => {
-          expect(win.console.log).to.not.be.calledWith('List.Item click');
+          expect(win.console.log).to.not.be.calledWith('ListItem click');
           expect(win.console.log).to.be.calledWith('Supporting visual click');
         });
       },
@@ -64,9 +64,9 @@ context('List', () => {
   });
 
   context('Content lines', () => {
-    specify('List.ItemText can contain up to 3 lines of content', () => {
+    specify('ListItemText can contain up to 3 lines of content', () => {
       cy.get('[data-test="list-supporting-visual"]')
-        .find('[data-component="List.Item"]')
+        .find('[data-component="ListItem"]')
         .eq(2)
         .as('contentListItem');
       cy.get('@contentListItem')
@@ -81,7 +81,7 @@ context('List', () => {
     });
 
     specify(
-      'When providing a List.ItemText with content that is too long, then the content is clamped to a single line',
+      'When providing a ListItemText with content that is too long, then the content is clamped to a single line',
       () => {
         cy.get('[data-test="list-content-too-long"]')
           .contains('span', 'Long second line of text.')
@@ -100,7 +100,7 @@ context('List', () => {
   context('keyboard', () => {
     beforeEach(() => {
       cy.get('[data-test="list-focusable"]')
-        .find('[data-component="List.Item"]')
+        .find('[data-component="ListItem"]')
         .as('listItems');
     });
 
@@ -129,7 +129,7 @@ context('List', () => {
           .focus()
           .trigger('keydown', { key: 'Enter' });
         cy.window().then(win => {
-          expect(win.console.log).to.be.calledWith('List.Item 1 click');
+          expect(win.console.log).to.be.calledWith('ListItem 1 click');
         });
 
         cy.get('@listItems')
@@ -137,7 +137,7 @@ context('List', () => {
           .focus()
           .trigger('keydown', { key: ' ' });
         cy.window().then(win => {
-          expect(win.console.log).to.be.calledWith('List.Item 2 click');
+          expect(win.console.log).to.be.calledWith('ListItem 2 click');
         });
       },
     );
@@ -166,8 +166,8 @@ context('List', () => {
           .focus()
           .trigger('keydown', { key: 'Space' });
         cy.window().then(win => {
-          expect(win.console.log).to.not.be.calledWith('List.Item 1 click');
-          expect(win.console.log).to.not.be.calledWith('List.Item 2 click');
+          expect(win.console.log).to.not.be.calledWith('ListItem 1 click');
+          expect(win.console.log).to.not.be.calledWith('ListItem 2 click');
         });
       },
     );
@@ -180,7 +180,7 @@ context('List', () => {
         .should('have.attr', 'role', 'list');
 
       cy.get('@list')
-        .find('[data-component="List.Item"]')
+        .find('[data-component="ListItem"]')
         .should('have.attr', 'role', 'listitem');
     });
   });

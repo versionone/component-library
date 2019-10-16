@@ -19,13 +19,13 @@ In the following example we might want to know the frequency of items beinging e
 ```jsx
 <List>
   {items.map(item => (
-    <List.Item
+    <ListItem
       key={item.id}
       onClick={handleEdit}
       data-trackingid="edit-item<Type>"
     >
-      <List.ItemText primary={item.title} />
-    </List.Item>
+      <ListItemText primary={item.title} />
+    </ListItem>
   ))}
 </List>
 ```

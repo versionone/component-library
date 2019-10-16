@@ -46,7 +46,7 @@ context('Menu', () => {
       .click();
     cy.get('#REACT_PORTAL')
       .find('[data-component="Menu"]')
-      .find('[data-component="List.Item"]')
+      .find('[data-component="ListItem"]')
       .eq(1)
       .click();
 
