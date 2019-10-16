@@ -29,37 +29,120 @@ class SingleSelect extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      height: '100px',
+      lastSelected: null,
     };
     this.handleSelection = this.handleSelection.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.addItem = this.addItem.bind(this);
     this.stateReducer = this.stateReducer.bind(this);
+    this.clearHistory = this.clearHistory.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.getItems = this.getItems.bind(this);
+    this.handleArrowDown = this.handleArrowDown.bind(this);
+    this.handleArrowUp = this.handleArrowUp.bind(this);
   }
 
-  handleSelection(selectedItem) {
-    const alreadySelected =
-      this.props.selectedItem !== null &&
-      this.props.selectedItem.id === selectedItem.id;
-    const action = alreadySelected ? this.removeItem : this.addItem;
-
-    action(selectedItem);
+  getItems(inputValue) {
+    const { items, filter } = this.props;
+    const filterByInputValue = filter(inputValue);
+    return items.filter(filterByInputValue);
   }
 
-  removeItem(item) {
-    const onRemove = this.props.onRemove;
-    isFunction(onRemove) && onRemove(item.id);
+  handleSelection(item) {
+    const { onSelect } = this.props;
+    this.setState({
+      lastSelected: item,
+    });
+    if (isFunction(onSelect)) {
+      onSelect(item);
+    }
   }
 
-  addItem(item) {
-    const onSelect = this.props.onSelect;
-    isFunction(onSelect) && onSelect(item.id);
+  clearHistory() {
+    this.setState({ lastSelected: null });
+  }
+
+  handleBlur(state) {
+    const { lastSelected } = this.state;
+    //const { items } = this.props;
+    const items = this.getItems(state.inputValue);
+
+    const getExactMatch = () =>
+      items.find(item => item.label === state.inputValue);
+
+    const getLastMatch = () =>
+      lastSelected != null && lastSelected.label.includes(state.inputValue)
+        ? lastSelected
+        : null;
+    const getPartialMatch = () =>
+      items.find(item => item.label.includes(state.inputValue));
+
+    const match = (() => {
+      const exactMatch = getExactMatch();
+      if (exactMatch) return exactMatch;
+      const lastMatch = getLastMatch();
+      if (lastMatch) return lastMatch;
+      const partialMatch = getPartialMatch();
+      if (partialMatch) return partialMatch;
+      return null;
+    })();
+    if (match) {
+      this.handleSelection(match);
+    } else {
+      this.clearHistory();
+    }
+    return {
+      isOpen: false,
+      inputValue: match ? match.label : '',
+    };
+  }
+
+  handleArrowDown(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex + 1 >= max ? 0 : currentIndex + 1;
+      for (let i = start; i < max; i++) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
+  }
+
+  handleArrowUp(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex - 1 < 0 ? max - 1 : currentIndex - 1;
+      for (let i = start; i >= 0; i--) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
   }
 
   stateReducer(state, changes) {
     switch (changes.type) {
       case Downshift.stateChangeTypes.keyDownEnter:
+      case Downshift.stateChangeTypes.clickItem:
         this.handleSelection(changes.selectedItem);
+        return {
+          isOpen: false,
+          inputValue: changes.selectedItem.label,
+        };
+      case Downshift.stateChangeTypes.blurInput:
+        return this.handleBlur(state);
+      case Downshift.stateChangeTypes.keyDownArrowUp:
+        return this.handleArrowUp(state);
+      case Downshift.stateChangeTypes.keyDownArrowDown:
+        return this.handleArrowDown(state);
+      case Downshift.stateChangeTypes.keyDownEscape:
         return {
           isOpen: false,
         };
@@ -70,6 +153,13 @@ class SingleSelect extends React.Component {
 
   render() {
     const {
+      dropdownWidth: providedDropdownWidth,
+      dropdownHeight: providedDropdownHeight,
+      dropdownMaxHeight: providedDropdownMaxHeight,
+      hovered: providedHovered,
+      focused: providedFocused,
+      onFocus: providedOnFocus,
+      onBlur: providedOnBlur,
       hintText,
       fullWidth,
       height,
@@ -106,6 +196,7 @@ class SingleSelect extends React.Component {
         getRootProps,
         getMenuProps,
         isOpen,
+        inputValue,
         highlightedIndex,
         openMenu,
         closeMenu,
@@ -116,22 +207,17 @@ class SingleSelect extends React.Component {
           openMenu();
         };
 
-        const handleBlurWrapper = evt => {
-          onBlur(evt);
-          closeMenu();
-        };
-
         const overrideGetItemProps = args => {
           const { item, index } = args;
+          const { lastSelected } = this.state;
           const origialItemProps = getItemProps(args);
+          const zeroBasedIndex = index;
           return {
             ...origialItemProps,
-            onClick: () => {
-              this.handleSelection(item);
-              closeMenu();
-            },
-            isActive: highlightedIndex === index,
-            isSelected: selectedItem && selectedItem.id === item.id,
+            isActive: highlightedIndex === zeroBasedIndex,
+            isSelected: selectedItem && selectedItem.value === item.value,
+            isPreviousSelection:
+              lastSelected && lastSelected.value === item.value,
           };
         };
 
@@ -140,6 +226,7 @@ class SingleSelect extends React.Component {
           isFunction(renderOptions) &&
           renderOptions({
             getItemProps: overrideGetItemProps,
+            items: this.getItems(inputValue),
           });
 
         const menuProps = getMenuProps({}, { suppressRefError: true });
@@ -154,43 +241,38 @@ class SingleSelect extends React.Component {
         );
 
         const handleKeyDown = event => {
-          if (event.key === 'Enter') {
-            const value = event.target.value;
+          const { value } = event.target;
 
-            const canCreate =
-              value !== '' && highlightedIndex === null && isFunction(onCreate);
-            if (canCreate) {
-              const newItem = {
-                id: value,
-                value,
-              };
-              this.handleSelection(newItem);
-              onCreate(newItem);
-              closeMenu();
-            }
+          if (event.key === 'Escape') {
+            // prevent `Escape` from closing a Drawer
+            event.stopPropagation();
+          }
+
+          if (!event.key === 'Enter') return;
+
+          const canCreate =
+            value !== '' && highlightedIndex === null && isFunction(onCreate);
+
+          if (canCreate) {
+            const newItem = {
+              label: value,
+              value,
+            };
+            this.handleSelection(newItem);
+            onCreate(newItem);
+            closeMenu();
           }
         };
 
-        const extensions = isFunction(onCreate)
-          ? {
-              innerRef: inputRef,
-              onKeyDown: handleKeyDown,
-            }
-          : {
-              innerRef: inputRef,
-            };
-
-        const inputProps = getInputProps(extensions);
-        if (selectedItem) {
-          inputProps.value = selectedItem.value;
-        }
-
+        const inputProps = getInputProps({
+          onKeyDown: handleKeyDown,
+          value: inputValue,
+          innerRef: inputRef,
+        });
         const shouldRenderSelection =
           selectedItem && isFunction(renderSelection);
 
-        const selection =
-          shouldRenderSelection &&
-          renderSelection({ removeItem: this.removeItem });
+        const selection = shouldRenderSelection && renderSelection();
 
         const input = (
           <InputFieldContainer
@@ -217,7 +299,14 @@ class SingleSelect extends React.Component {
                 disabled={disabled}
                 placeholder={hintText}
                 onFocus={handleFocusWrapper}
-                onBlur={handleBlurWrapper}
+                onBlur={event => {
+                  inputProps.onBlur(event);
+                  closeMenu();
+                  onBlur(event);
+                  if (isFunction(providedOnBlur)) {
+                    providedOnBlur(event);
+                  }
+                }}
                 fullWidth={fullWidth}
                 stretch={stretch}
               />
@@ -239,9 +328,9 @@ class SingleSelect extends React.Component {
         );
 
         const dropdownHeight = menuContents
-          ? this.props.dropdownHeight || dropdownMaxHeight
+          ? providedDropdownHeight || dropdownMaxHeight
           : 0;
-        const width = this.props.dropdownWidth || dropdownWidth;
+        const width = providedDropdownWidth || dropdownWidth;
 
         return (
           <ComboBox
@@ -268,6 +357,7 @@ class SingleSelect extends React.Component {
           onChange={this.handleSelection}
           stateReducer={this.stateReducer}
           itemToString={noop}
+          initialInputValue=""
         >
           {renderWithSelection}
         </Downshift>
@@ -276,13 +366,13 @@ class SingleSelect extends React.Component {
 
     return (
       <WithFormFieldState
-        inlineEdit={this.props.inlineEdit}
-        focused={this.props.focused}
-        hovered={this.props.hovered}
-        dropdownMaxHeight={this.props.dropdownMaxHeight}
+        inlineEdit={inlineEdit}
+        focused={providedFocused}
+        hovered={providedHovered}
+        dropdownMaxHeight={providedDropdownMaxHeight}
         dropdownWidth={this.dropdownWidth}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
+        onFocus={providedOnFocus}
+        onBlur={providedOnBlur}
       >
         {renderChildrenWithFormState}
       </WithFormFieldState>
@@ -290,11 +380,20 @@ class SingleSelect extends React.Component {
   }
 }
 
+const ItemPropType = PropTypes.shape({
+  label: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+});
+
 SingleSelect.propTypes = {
+  /**
+   * Set of items that can be selected
+   */
+  items: PropTypes.arrayOf(ItemPropType),
   /**
    * Currently selected item
    */
-  selectedItem: PropTypes.any,
+  selectedItem: ItemPropType,
   /**
    * Function called when item is unselected
    */
@@ -324,9 +423,19 @@ SingleSelect.propTypes = {
    */
   dropdownWidth: PropTypes.string,
   /**
+   * Explicit height of the dropdown
+   */
+  dropdownHeight: PropTypes.number,
+  /**
    * Maxium height of the dropdown
    */
   dropdownMaxHeight: PropTypes.number,
+  /**
+    * Filter predicate to apply when input changes occur
+    * inputValue => item =>
+    item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
+  */
+  filter: PropTypes.func,
 
   /**********************
   Common InputField Props
@@ -340,6 +449,14 @@ SingleSelect.propTypes = {
    * Inline Editable
    */
   inlineEdit: PropTypes.bool,
+  /**
+   * Indicated if the inline editable field's persistence was successful
+   */
+  success: PropTypes.bool,
+  /**
+   * Indicates if the inline editable field is attempting to persist a change
+   */
+  loading: PropTypes.bool,
   /**
    * Indicates if the field's value has changed
    */
@@ -357,9 +474,13 @@ SingleSelect.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Indicates the page focus is this text field.
+   * Indicates the page focus is on this control.
    */
   focused: PropTypes.bool,
+  /**
+   * Indicates the control is hovered.
+   */
+  hovered: PropTypes.bool,
   /**
    * Indicates the input to take the full width of its parent.
    * See stretch, (when strech is true this fullWidth is overriden)
@@ -393,11 +514,12 @@ SingleSelect.defaultProps = {
   onRemove: noop,
   onSelect: noop,
   onCreate: null,
-  renderOptions: noop,
   renderSelection: null,
   disableContainment: false,
   dropdownWidth: null,
   dropdownMaxHeight: 600,
+  filter: inputValue => item =>
+    item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
 
   /**********************
    Common InputField Props

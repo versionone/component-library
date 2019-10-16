@@ -7,24 +7,29 @@ import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
 import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
 import ListContext from './ListValueContext';
+import { palette } from '../palette';
 
 const Row = createComponent(
-  ({ dense, hovered, selected, theme }) => ({
-    display: 'flex',
-    'flex-direction': 'row',
-    flexWrap: 'nowrap',
-    'justify-content': 'space-between',
-    'align-items': 'center',
-    ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
-    ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
-    cursor: 'pointer',
-    'background-color':
-      !hovered && selected
-        ? theme.ListItem.selected
-        : hovered
-        ? theme.ListItem.mainHighlight
-        : 'transparent',
-  }),
+  ({ dense, hovered, selected, isPreviousSelection, theme }) => {
+    const backgroundColor = (() => {
+      if (hovered) return theme.ListItem.mainHighlight;
+      if (selected) return theme.ListItem.selected;
+      if (isPreviousSelection) return theme.ListItem.lastSelected;
+      return palette.transparent;
+    })();
+
+    return {
+      display: 'flex',
+      'flex-direction': 'row',
+      flexWrap: 'nowrap',
+      'justify-content': 'space-between',
+      'align-items': 'center',
+      ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
+      ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
+      cursor: 'pointer',
+      'background-color': backgroundColor,
+    };
+  },
   'div',
   [
     'data-component',
