@@ -34,12 +34,12 @@ export { default as MainComponent } from './MainComponent';
 export { default as SecondaryComponent } from './SecondaryComponent';
 ```
 
-Occassionally there will be a group of components that work together and are only relevant when used with each other (example: a list and list items). In these cases, ensure the primary component is a named export and namespace secondary components off the primary one. Prefix those items with primary component name. As an example, in the case of `List`:
+Occassionally there will be a group of components that work together and are only relevant when used with each other (example: a list and list items). In these cases, ensure the primary component is a named export. Prefix secondary components with primary component name. As an example, in the case of `List`:
 
 ```js
 export { List } from './List';
-export { Item as ListItem } from './Item';
-export { ItemText as ListItemText } from './ItemText';
+export { default as ListItem } from './Item';
+export { default as ListItemText } from './ItemText';
 ```
 
 ## Styling
