@@ -5,9 +5,6 @@ import { List } from '../List';
 export const renderOptions = ({ getItemProps, items }) => {
   const group = items.map((item, index) => {
     const itemProps = getItemProps({ item, index });
-    if (itemProps.isSelected) {
-      console.log('item', item, itemProps);
-    }
     return (
       <List.Item
         {...itemProps}
