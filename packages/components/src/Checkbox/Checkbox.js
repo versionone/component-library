@@ -146,7 +146,7 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   onClick: noop,
-  size: 24,
+  size: 16,
   tabIndex: '0',
   onFocus: noop,
   onBlur: noop,
