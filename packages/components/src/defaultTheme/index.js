@@ -144,7 +144,7 @@ const internalTheme = {
       main: palette.forge,
     },
     default: {
-      main: palette.chrome50,
+      main: palette.chrome700,
     },
     required: {
       main: palette.sunset,
@@ -563,7 +563,7 @@ const themeDark = {
       main: palette.paper,
     },
     default: {
-      main: palette.paper,
+      main: palette.chrome50,
     },
     required: {
       main: palette.sunset,
