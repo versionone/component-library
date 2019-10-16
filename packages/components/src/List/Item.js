@@ -152,7 +152,7 @@ class ListItemImpl extends React.Component {
                       data-test={dataTest}
                       data-trackingid={trackingId}
                       role="listitem"
-                      data-component="List.Item"
+                      data-component="ListItem"
                       dense={dense}
                       focused={isFocused}
                       hovered={hovered}

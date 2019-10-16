@@ -10,7 +10,7 @@ import { Button } from '../Button';
 import { Divider } from '../Divider';
 import { IconButton } from '../Button';
 import { InfoIcon } from '@versionone/icons';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Lozenge } from '../Lozenge';
 import { Paper } from '../Paper';
 import { Popover } from './';
@@ -99,12 +99,12 @@ A container positioned relative to an anchor; outside the flow of the document.
               placement="bottom-end"
             >
               <List bordered>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 1" />
-                </List.Item>
-                <List.Item onClick={() => {}}>
-                  <List.ItemText primary="Action 2" />
-                </List.Item>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 1" />
+                </ListItem>
+                <ListItem onClick={() => {}}>
+                  <ListItemText primary="Action 2" />
+                </ListItem>
               </List>
             </Popover>
           </SpacedGroup>

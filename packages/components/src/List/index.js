@@ -1,8 +1,3 @@
-import { List } from './List';
-import Item from './Item';
-import ItemText from './ItemText';
-
-List.Item = Item;
-List.ItemText = ItemText;
-
-export { List };
+export { List } from './List';
+export { default as ListItem } from './Item';
+export { default as ListItemText } from './ItemText';

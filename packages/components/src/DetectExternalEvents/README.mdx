@@ -7,7 +7,7 @@ import { Playground, PropsTable } from '@versionone/doc-components';
 import { DetectExternalEvents } from './';
 import { Drawer } from '../Drawer';
 import { SingleSelect } from '../SingleSelect';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Border } from '../Border';
 import { Paper } from '../Paper';
 import { SpacedGroup } from '../SpacedGroup';
@@ -47,15 +47,15 @@ import { Button } from '../Button';
           const group = this.state.items.map((item, index) => {
             const itemProps = getItemProps({ item, index });
             return (
-              <List.Item
+              <ListItem
                 onClick={itemProps.onClick}
                 onMouseDown={itemProps.onMouseDown}
                 id={itemProps.id}
                 selected={itemProps.isSelected || itemProps.isActive}
                 key={index}
               >
-                <List.ItemText primary={item.value} />
-              </List.Item>
+                <ListItemText primary={item.value} />
+              </ListItem>
             );
           });
           return <List bordered>{group}</List>;

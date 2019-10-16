@@ -10,7 +10,7 @@ import { SpacedGroup } from './../SpacedGroup';
 import { Divider } from '../Divider';
 import { Chip } from '../Chip';
 import { Avatar } from '../Avatar';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Border } from '../Border';
 import { Paper } from '../Paper';
 import { FormLabel } from '../Label';
@@ -67,14 +67,14 @@ To learn more about how to handle rendering the options, the selection head to t
             const item = this.state.items[id];
             const itemProps = getItemProps({ item, index });
             return (
-              <List.Item
+              <ListItem
                 key={id}
                 {...itemProps}
                 selected={itemProps.isSelected || itemProps.isActive}
                 icon={<Avatar size={36} src={item.href} />}
               >
-                <List.ItemText primary={item.value} secondary={item.email} />
-              </List.Item>
+                <ListItemText primary={item.value} secondary={item.email} />
+              </ListItem>
             );
           });
           return (
@@ -186,7 +186,7 @@ To learn more about how to handle rendering the options, the selection head to t
             const item = this.state.items[id];
             const itemProps = getItemProps({ item, index });
             return (
-              <List.Item
+              <ListItem
                 key={id}
                 id={itemProps.id}
                 role={itemProps.role}
@@ -195,8 +195,8 @@ To learn more about how to handle rendering the options, the selection head to t
                 icon={<Avatar size={36} src={item.href} />}
                 onClick={itemProps.onClick}
               >
-                <List.ItemText primary={item.value} secondary={item.email} />
-              </List.Item>
+                <ListItemText primary={item.value} secondary={item.email} />
+              </ListItem>
             );
           });
           return (
@@ -279,7 +279,7 @@ The MultiSelect tracks its `selectedItems` as an array of ids.
 ### Render options
 
 When rendering options in the list use the `({ getItemProps }) => {}` render prop. `getItemProps` is a function to help make your items smarter without imposing UI.
-Provide `getItemProps` with the `id` and the `index` of each item and it will return props that can be appliedto your List.Item UI.
+Provide `getItemProps` with the `id` and the `index` of each item and it will return props that can be appliedto your ListItem UI.
 
 ```js
 const options = [] // manage your own list of items

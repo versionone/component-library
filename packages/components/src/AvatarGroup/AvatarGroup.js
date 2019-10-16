@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { createComponent } from '../StyleProvider';
 import { Avatar } from '../Avatar';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 import { Menu } from '../Menu';
 import { OnClickOutside } from '../OnClickOutside';
 
@@ -112,7 +112,7 @@ class AvatarGroup extends React.Component {
 
     const moreAvatarListItems = hiddenAvatars.map((a, i) => {
       return (
-        <List.Item
+        <ListItem
           key={i}
           onClick={a.props.onClick}
           tabIndex={0}
@@ -120,8 +120,8 @@ class AvatarGroup extends React.Component {
             <Avatar src={a.props.src} title={a.props.title} size={props.size} />
           }
         >
-          <List.ItemText primary={a.props.title} />
-        </List.Item>
+          <ListItemText primary={a.props.title} />
+        </ListItem>
       );
     });
 
