@@ -18,7 +18,7 @@ const Panel = props => {
     <PanelImpl
       visible={visible}
       data-test={dataTest}
-      data-component="Tabs.Panel"
+      data-component="TabsPanel"
       tabIndex="-1"
       role="tabpanel"
       aria-labelledby={index}

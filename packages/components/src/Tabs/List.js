@@ -121,7 +121,7 @@ const List = props => {
   return (
     <span
       role="tablist"
-      data-component="Tabs.List"
+      data-component="TabsList"
       data-test={props['data-test']}
     >
       <TabContext.Consumer>

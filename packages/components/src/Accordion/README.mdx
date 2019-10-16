@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { Accordion, StatefulAccordion, BasicHeader } from './';
+import { Accordion, AccordionItem, AccordionHeader, StatefulAccordion, BasicHeader, AccordionPanel } from './';
 import { SpacedGroup } from './../SpacedGroup';
 import { Button } from './../Button';
 
@@ -14,18 +14,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion data-test="Accordion-default">
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item focused>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem focused>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2 (initially focused)" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -96,18 +96,18 @@ Content area that can be collapsed and expanded.
           <SpacedGroup direction="vertical">
             {toggleAllButton}
             <Accordion data-test="Accordion-controlled" onSelect={this.toggle}>
-              <Accordion.Item open={this.state.isOpenByIndex[0]}>
-                <Accordion.Header data-test="Accordion-Header-1">
+              <AccordionItem open={this.state.isOpenByIndex[0]}>
+                <AccordionHeader data-test="Accordion-Header-1">
                   <BasicHeader title="Title 1" />
-                </Accordion.Header>
-                <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-              </Accordion.Item>
-              <Accordion.Item open={this.state.isOpenByIndex[1]}>
-                <Accordion.Header data-test="Accordion-Header-2">
+                </AccordionHeader>
+                <AccordionPanel>Content of the panel 1.</AccordionPanel>
+              </AccordionItem>
+              <AccordionItem open={this.state.isOpenByIndex[1]}>
+                <AccordionHeader data-test="Accordion-Header-2">
                   <BasicHeader title="Title 2" />
-                </Accordion.Header>
-                <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-              </Accordion.Item>
+                </AccordionHeader>
+                <AccordionPanel>Content of the panel 2.</AccordionPanel>
+              </AccordionItem>
             </Accordion>
           </SpacedGroup>
         );
@@ -121,20 +121,20 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion data-test="Accordion-default">
-    <Accordion.Item open={true}>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem open={true}>
+      <AccordionHeader data-test="Accordion-Header-1">
         {({ arrow }) => {
           return <SpacedGroup center>{arrow} Title 1</SpacedGroup>;
         }}
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -142,18 +142,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion manyExpandable={true} data-test="Accordion-manyexpandable">
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -161,18 +161,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion allCollapsable={true} data-test="Accordion-allcollapsable">
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -180,18 +180,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion disableBorder={true}>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -199,18 +199,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion>
-    <Accordion.Item disabled>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem disabled>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item disabled>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem disabled>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -218,18 +218,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion disableDividers={true}>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -237,33 +237,33 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion>
-    <Accordion.Item status="success">
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem status="success">
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item status="failure">
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem status="failure">
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>
+      </AccordionHeader>
+      <AccordionPanel>
         <StatefulAccordion>
-          <Accordion.Item status="success">
-            <Accordion.Header data-test="Accordion-Header-1">
+          <AccordionItem status="success">
+            <AccordionHeader data-test="Accordion-Header-1">
               <BasicHeader title="Title 1" />
-            </Accordion.Header>
-            <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-          </Accordion.Item>
-          <Accordion.Item status="failure">
-            <Accordion.Header data-test="Accordion-Header-2">
+            </AccordionHeader>
+            <AccordionPanel>Content of the panel 1.</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem status="failure">
+            <AccordionHeader data-test="Accordion-Header-2">
               <BasicHeader title="Title 2" />
-            </Accordion.Header>
-            <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-          </Accordion.Item>
+            </AccordionHeader>
+            <AccordionPanel>Content of the panel 2.</AccordionPanel>
+          </AccordionItem>
         </StatefulAccordion>
-      </Accordion.Panel>
-    </Accordion.Item>
+      </AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -271,18 +271,18 @@ Content area that can be collapsed and expanded.
 
 <Playground>
   <StatefulAccordion>
-    <Accordion.Item disablePadding>
-      <Accordion.Header data-test="Accordion-Header-1">
+    <AccordionItem disablePadding>
+      <AccordionHeader data-test="Accordion-Header-1">
         <BasicHeader title="Title 1" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 1.</Accordion.Panel>
-    </Accordion.Item>
-    <Accordion.Item disablePadding>
-      <Accordion.Header data-test="Accordion-Header-2">
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 1.</AccordionPanel>
+    </AccordionItem>
+    <AccordionItem disablePadding>
+      <AccordionHeader data-test="Accordion-Header-2">
         <BasicHeader title="Title 2" />
-      </Accordion.Header>
-      <Accordion.Panel>Content of the panel 2.</Accordion.Panel>
-    </Accordion.Item>
+      </AccordionHeader>
+      <AccordionPanel>Content of the panel 2.</AccordionPanel>
+    </AccordionItem>
   </StatefulAccordion>
 </Playground>
 
@@ -294,12 +294,12 @@ Content area that can be collapsed and expanded.
       const title = 'Title ' + index;
       const content = 'Content of Panel ' + index;
       return (
-        <Accordion.Item key={index}>
-          <Accordion.Header>
+        <AccordionItem key={index}>
+          <AccordionHeader>
             <BasicHeader title={title} />
-          </Accordion.Header>
-          <Accordion.Panel>{content}</Accordion.Panel>
-        </Accordion.Item>
+          </AccordionHeader>
+          <AccordionPanel>{content}</AccordionPanel>
+        </AccordionItem>
       );
     });
     return <StatefulAccordion>{items}</StatefulAccordion>;
@@ -316,14 +316,14 @@ Content area that can be collapsed and expanded.
 
 <PropsTable of={Accordion} />
 
-### Accordion.Item
+### AccordionItem
 
-<PropsTable of={Accordion.Item} />
+<PropsTable of={AccordionItem} />
 
-### Accordion.Header
+### AccordionHeader
 
-<PropsTable of={Accordion.Header} />
+<PropsTable of={AccordionHeader} />
 
-### Accordion.Panel
+### AccordionPanel
 
-<PropsTable of={Accordion.Panel} />
+<PropsTable of={AccordionPanel} />

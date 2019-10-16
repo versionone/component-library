@@ -5,7 +5,7 @@ menu: Components
 
 import { Fragment } from 'react';
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FocusManager } from './';
+import { FocusManager, FocusGroup } from './';
 import { Border } from '../Border';
 import { Button } from '../Button';
 import { SpacedGroup } from '../SpacedGroup';
@@ -23,12 +23,12 @@ A `FocusGroup` is a group of focusable items. It provides the proper event handl
 <Playground>
   <FocusManager>
     {pop => (
-      <FocusManager.Group>
+      <FocusGroup>
         {bind => (
           <Fragment>
             Not In Focus Group
             <TextField focused {...bind} />
-            <FocusManager.Group>
+            <FocusGroup>
               {bind => (
                 <Border>
                   In Focus Group
@@ -40,10 +40,10 @@ A `FocusGroup` is a group of focusable items. It provides the proper event handl
                   </SpacedGroup>
                 </Border>
               )}
-            </FocusManager.Group>
+            </FocusGroup>
           </Fragment>
         )}
-      </FocusManager.Group>
+      </FocusGroup>
     )}
   </FocusManager>
 </Playground>
@@ -54,6 +54,6 @@ A `FocusGroup` is a group of focusable items. It provides the proper event handl
 
 <PropsTable of={FocusManager} />
 
-### FocusManager.Group
+### FocusGroup
 
-<PropsTable of={FocusManager.Group} />
+<PropsTable of={FocusGroup} />

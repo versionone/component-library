@@ -1,6 +1,2 @@
-import HoverIntersection from './HoverIntersection';
-import Exclude from './Exclude';
-
-HoverIntersection.Exclude = Exclude;
-
-export { HoverIntersection };
+export { default as HoverIntersection } from './HoverIntersection';
+export { default as HoverIntersectionExclude } from './Exclude';

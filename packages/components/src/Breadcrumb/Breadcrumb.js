@@ -29,7 +29,7 @@ class Breadcrumb extends React.Component {
 }
 Breadcrumb.propTypes = {
   /**
-   * Collection Breadcrumb.Items
+   * Collection BreadcrumbItem
    */
   children: PropTypes.arrayOf(PropTypes.instanceOf(BreadcrumbItem)),
   /**

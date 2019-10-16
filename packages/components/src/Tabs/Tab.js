@@ -58,7 +58,7 @@ const Tab = props => {
       {...props}
       aria-controls={controls}
       aria-selected={selected}
-      data-component="Tabs.Tab"
+      data-component="Tab"
       disabled={disabled}
       focused={focused}
       id={id}

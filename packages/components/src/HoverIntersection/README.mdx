@@ -8,7 +8,7 @@ import { Playground, PropsTable } from '@versionone/doc-components';
 import { SpacedGroup } from '../SpacedGroup';
 import { createComponent } from '../StyleProvider';
 import { Hoverable } from '../Hoverable';
-import { HoverIntersection } from './';
+import { HoverIntersection, HoverIntersectionExclude } from './';
 
 Tracks hover state for a component; remove hover state from child intesection regions.
 
@@ -29,13 +29,13 @@ Tracks hover state for a component; remove hover state from child intesection re
         {({ bind, hovered }) => (
           <ColorDiv {...bind} hovered={hovered}>
             <p>parent div</p>
-            <HoverIntersection.Exclude>
+            <HoverIntersectionExclude>
               {({ bind, hovered }) => (
                 <ColorDiv {...bind} hovered={hovered}>
                   child div
                 </ColorDiv>
               )}
-            </HoverIntersection.Exclude>
+            </HoverIntersectionExclude>
           </ColorDiv>
         )}
       </HoverIntersection>
@@ -51,4 +51,4 @@ Tracks hover state for a component; remove hover state from child intesection re
 
 ### IntersectionHover.Exclude
 
-<PropsTable of={HoverIntersection.Exclude} />
+<PropsTable of={HoverIntersectionExclude} />

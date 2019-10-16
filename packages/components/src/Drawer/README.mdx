@@ -9,7 +9,7 @@ import { Drawer } from './';
 import { Button } from '../Button';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from '../TextField';
-import { FocusManager } from '../FocusManager';
+import { FocusManager, FocusGroup } from '../FocusManager';
 
 Drawers are used when you need to augment or switch a user's context. It may be combined with focus groups (see [FocusManager](/components/FocusManager)), to ensure that the consumer can switch focus to the drawer and then return it once the drawer closes.
 
@@ -150,7 +150,7 @@ When opening a drawer, the focus is given and scoped to the contents of the draw
             {pop => {
               this.pop = pop;
               return (
-                <FocusManager.Group>
+                <FocusGroup>
                   {bind => (
                     <Fragment>
                       <Button {...bind} onClick={this.open}>
@@ -161,7 +161,7 @@ When opening a drawer, the focus is given and scoped to the contents of the draw
                         handleClickOutside={this.handleClose}
                         placement="right"
                       >
-                        <FocusManager.Group>
+                        <FocusGroup>
                           {bind => (
                             <SpacedGroup direction="vertical">
                               <TextField {...bind} focused={this.state.open} />
@@ -171,11 +171,11 @@ When opening a drawer, the focus is given and scoped to the contents of the draw
                               <Button onClick={this.handleClose}>Close</Button>
                             </SpacedGroup>
                           )}
-                        </FocusManager.Group>
+                        </FocusGroup>
                       </Drawer>
                     </Fragment>
                   )}
-                </FocusManager.Group>
+                </FocusGroup>
               );
             }}
           </FocusManager>

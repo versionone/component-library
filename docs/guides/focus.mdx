@@ -9,6 +9,7 @@ import {
   Button,
   Drawer,
   FocusManager,
+  FocusGroup,
   IconButton,
   List,
   Menu,
@@ -21,7 +22,7 @@ import { AlertIcon } from '../../packages/icons/src';
 ### Relevant components
 
 1. [Focusable](/components/Focusable)
-2. [FocusManager and FocusManager.Group](/components/FocusManager)
+2. [FocusManager and FocusGroup](/components/FocusManager)
 3. [FocusLock](/components/FocusLock)
 
 ## Changing Focus Context
@@ -69,19 +70,19 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
               this.pop = pop;
               return (
                 <Fragment>
-                  <FocusManager.Group disableLock={true}>
+                  <FocusGroup disableLock={true}>
                     {bind => (
                       <Button {...bind} onClick={this.open}>
                         Open Drawer
                       </Button>
                     )}
-                  </FocusManager.Group>
+                  </FocusGroup>
                   <Drawer
                     {...this.state}
                     handleClickOutside={this.handleClose}
                     placement="right"
                   >
-                    <FocusManager.Group>
+                    <FocusGroup>
                       {bind => (
                         <SpacedGroup direction="vertical">
                           <TextField {...bind} focused={this.state.open} />
@@ -93,7 +94,7 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
                           </Button>
                         </SpacedGroup>
                       )}
-                    </FocusManager.Group>
+                    </FocusGroup>
                   </Drawer>
                 </Fragment>
               );
@@ -272,7 +273,7 @@ In some cases, a drawer may open in response to a menu item's primary action; in
                         handleClickOutside={this.closeDrawer}
                         placement="right"
                       >
-                        <FocusManager.Group>
+                        <FocusGroup>
                           {bind => (
                             <SpacedGroup direction="vertical">
                               <TextField {...bind} focused={this.state.open} />
@@ -284,7 +285,7 @@ In some cases, a drawer may open in response to a menu item's primary action; in
                               </Button>
                             </SpacedGroup>
                           )}
-                        </FocusManager.Group>
+                        </FocusGroup>
                       </Drawer>
                     </Fragment>
                   );

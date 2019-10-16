@@ -1,6 +1,2 @@
-import { Breadcrumb } from './Breadcrumb';
-import { BreadcrumbItem } from './BreadcrumbItem';
-
-Breadcrumb.Item = BreadcrumbItem;
-
-export { Breadcrumb };
+export { Breadcrumb } from './Breadcrumb';
+export { BreadcrumbItem } from './BreadcrumbItem';

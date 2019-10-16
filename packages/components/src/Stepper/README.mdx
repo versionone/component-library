@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { Stepper } from './';
+import { Stepper, Step } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { CheckIcon, LoadingSpinIcon } from '@versionone/icons';
 import { ThemeProvider } from "../StyleProvider";
@@ -16,62 +16,62 @@ import { ThemeProvider } from "../StyleProvider";
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper>
-      <Stepper.Step title="Finished" seen />
-      <Stepper.Step
+      <Step title="Finished" seen />
+      <Step
         title="In Progress"
         current
       />
-      <Stepper.Step
+      <Step
         title="Needs Action"
       />
-      <Stepper.Step
+      <Step
         title="Finish Line"
       />
     </Stepper>
     <Stepper>
-      <Stepper.Step title="Finished" description="Phone number verified" seen />
-      <Stepper.Step
+      <Step title="Finished" description="Phone number verified" seen />
+      <Step
         title="In Progress"
         description="Step is in progress and needs action"
         current
       />
-      <Stepper.Step
+      <Step
         title="Needs Action"
         description="Step was completed, but we went back to step 2"
       />
-      <Stepper.Step
+      <Step
         title="Finish Line"
         description="Step has not been seen yet."
       />
     </Stepper>
     <Stepper>
-      <Stepper.Step title="Step 1" description="Additional information" seen />
-      <Stepper.Step
+      <Step title="Step 1" description="Additional information" seen />
+      <Step
         title="Step 2"
         description="Step is in progress and needs action"
         current
       />
-      <Stepper.Step
+      <Step
         title="Step 3"
         description="Step was completed, but we went back to step 2"
         seen
       />
-      <Stepper.Step title="Step 4" description="Step has not been seen yet." />
+      <Step title="Step 4" description="Step has not been seen yet." />
     </Stepper>
     <Stepper>
-      <Stepper.Step
+      <Step
         title="Step 1"
         description="Additional information"
         icon={CheckIcon}
         seen
       />
-      <Stepper.Step
+      <Step
         title="Step 2"
         description="Step is in progress and needs action"
         icon={LoadingSpinIcon}
         current
       />
-      <Stepper.Step
+      <Step
         title="Step 3"
         description="Step was completed, but we went back to step 2"
       />
@@ -84,30 +84,30 @@ import { ThemeProvider } from "../StyleProvider";
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper direction="vertical">
-      <Stepper.Step title="Finished" seen />
-      <Stepper.Step
+      <Step title="Finished" seen />
+      <Step
         title="In Progress"
         current
       />
-      <Stepper.Step
+      <Step
         title="Needs Action"
       />
-      <Stepper.Step
+      <Step
         title="Finish Line"
       />
     </Stepper>
     <Stepper direction="vertical">
-      <Stepper.Step title="Finished" description="Phone number verified" seen />
-      <Stepper.Step
+      <Step title="Finished" description="Phone number verified" seen />
+      <Step
         title="In Progress"
         description="Step is in progress and needs action"
         current
       />
-      <Stepper.Step
+      <Step
         title="Needs Action"
         description="Step was completed, but we went back to step 2"
       />
-      <Stepper.Step
+      <Step
         title="Finish Line"
         description="Step has not been seen yet."
       />
@@ -120,35 +120,35 @@ import { ThemeProvider } from "../StyleProvider";
 <Playground>
   <SpacedGroup direction="vertical" xs={40}>
     <Stepper size={24}>
-      <Stepper.Step title="Finished" description="Phone number verified" seen />
-      <Stepper.Step
+      <Step title="Finished" description="Phone number verified" seen />
+      <Step
         title="In Progress"
         description="Step is in progress and needs action"
         current
       />
-      <Stepper.Step
+      <Step
         title="Needs Action"
         description="Step was completed, but we went back to step 2"
       />
-      <Stepper.Step
+      <Step
         title="Finish Line"
         description="Step has not been seen yet."
       />
     </Stepper>
     <Stepper size={24} direction="vertical">
-      <Stepper.Step
+      <Step
         title="Finished"
         description="Phone number verified"
         icon={CheckIcon}
         seen
       />
-      <Stepper.Step
+      <Step
         title="Finished"
         description="Organization created"
         icon={CheckIcon}
         seen
       />
-      <Stepper.Step
+      <Step
         title="Building workspace"
         description="Setting up workspace in the background"
         icon={LoadingSpinIcon}
@@ -157,17 +157,17 @@ import { ThemeProvider } from "../StyleProvider";
     </Stepper>
     <ThemeProvider theme={{ Stepper: { titleWeight: "bold"} }}>
       <Stepper size={24} direction="vertical">
-        <Stepper.Step
+        <Step
           title="Finished"
           icon={CheckIcon}
           seen
         />
-        <Stepper.Step
+        <Step
           title="Finished"
           icon={CheckIcon}
           seen
         />
-        <Stepper.Step
+        <Step
           title="Building workspace"
           icon={LoadingSpinIcon}
           current
@@ -175,17 +175,17 @@ import { ThemeProvider } from "../StyleProvider";
       </Stepper>
     </ThemeProvider>
      <Stepper size={24} direction="vertical" lineLength={90} afterLength={0}>
-        <Stepper.Step
+        <Step
           title="Finished"
           icon={CheckIcon}
           seen
         />
-        <Stepper.Step
+        <Step
           title="Finished"
           icon={CheckIcon}
           seen
         />
-        <Stepper.Step
+        <Step
           title="Building workspace"
           icon={LoadingSpinIcon}
           current
@@ -202,4 +202,4 @@ import { ThemeProvider } from "../StyleProvider";
 
 ### Step
 
-<PropsTable of={Stepper.Step} />
+<PropsTable of={Step} />
