@@ -119,9 +119,9 @@ const internalTheme = {
       secondary: palette.DeepOrange500,
     },
     disabled: {
-      background: palette.transparent,
+      background: 'rgba(67, 128, 152, 0.2)', //chrome500
       border: palette.transparent,
-      text: 'rgb(169, 169, 169)',
+      text: 'rgba(67, 128, 152, 0.6)',
     },
     focused: {
       main: palette.cerulean,
