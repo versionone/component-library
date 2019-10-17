@@ -262,28 +262,24 @@ class SingleSelect extends React.Component {
   }
 }
 
+const ItemValuePropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+]);
 const ItemPropType = PropTypes.shape({
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: ItemValuePropType,
 });
 
 SingleSelect.propTypes = {
   /**
    * Set of items that can be selected
    */
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.number,
-    }),
-  ),
+  items: PropTypes.arrayOf(ItemPropType),
   /**
    * Currently selected item
    */
-  selectedItem: PropTypes.shape({
-    label: PropTypes.string,
-    value: PropTypes.number,
-  }),
+  selectedItem: ItemPropType,
   /**
    * Function called when item is unselected
    */
@@ -358,7 +354,7 @@ SingleSelect.propTypes = {
   /**
    * Default value to be applied when using as an uncontrolled input.
    */
-  defaultValue: PropTypes.string,
+  defaultValue: ItemValuePropType,
   /**
    * Indicates field is disabled from user input; no events will fire.
    */
