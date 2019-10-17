@@ -75,7 +75,7 @@ const ButtonImpl = createComponent(
         theme,
         type: buttonType,
       }),
-      content: '""',
+      content: disabled ? '' : '""',
       width: '0%',
       height: '100%',
       top: 0,
@@ -139,7 +139,7 @@ class IconButton extends Component {
                   {React.createElement(icon, {
                     size: Math.floor(size / 2),
                     title,
-                    color: theme.Button[type].text,
+                    color: getColor({type, disabled, theme}),
                   })}
                 </ButtonImpl>
               )}
