@@ -170,15 +170,38 @@ class SingleSelect extends React.Component {
         onFocus={onFocus}
         onBlur={onBlur}
       >
-        {formStateProps => {
+        {({
+          dropdownMaxHeight: calculatedDropdownMaxHeight,
+          dropdownWidth: calculatedDropdownWidth,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          calculateDropdownDimensions,
+          focused: calculatedFocused,
+          onMouseEnter,
+          onMouseLeave,
+          hovered: calculatedHovered,
+          inputContainerRef,
+          inputRef,
+        }) => {
           return (
             <Downshift
               onChange={this.handleSelection}
               stateReducer={this.stateReducer}
               itemToString={noop}
+              initialInputValue={defaultValueText}
               initialInputValue=""
             >
-              {downshift =>
+              {({
+                getItemProps,
+                getInputProps,
+                getRootProps,
+                getMenuProps,
+                isOpen,
+                inputValue,
+                highlightedIndex,
+                openMenu,
+                closeMenu,
+              }) =>
                 renderField({
                   fullWidth,
                   stretch,
@@ -197,14 +220,31 @@ class SingleSelect extends React.Component {
                   onCreate,
                   providedDropdownWidth: dropdownWidth,
                   providedDropdownHeight: dropdownHeight,
-                  providedOnBlur: onBlur,
                   renderOptions,
                   renderSelection,
-                  ...formStateProps,
-                  ...this.state,
+                  dropdownMaxHeight: calculatedDropdownMaxHeight,
+                  dropdownWidth: calculatedDropdownWidth,
+                  onBlur: handleBlur,
+                  onFocus: handleFocus,
+                  calculateDropdownDimensions,
+                  focused: calculatedFocused,
+                  onMouseEnter,
+                  onMouseLeave,
+                  hovered: calculatedHovered,
+                  inputContainerRef,
+                  inputRef,
+                  lastSelected,
                   getItems: this.getItems,
                   handleSelection: this.handleSelection,
-                  ...downshift,
+                  getItemProps,
+                  getInputProps,
+                  getRootProps,
+                  getMenuProps,
+                  isOpen,
+                  inputValue,
+                  highlightedIndex,
+                  openMenu,
+                  closeMenu,
                 })
               }
             </Downshift>

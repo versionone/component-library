@@ -32,7 +32,6 @@ export const renderField = props => {
     closeMenu,
     providedDropdownWidth,
     providedDropdownHeight,
-    providedOnBlur,
     hintText,
     fullWidth,
     height,
@@ -173,9 +172,6 @@ export const renderField = props => {
             inputProps.onBlur(event);
             closeMenu();
             onBlur(event);
-            if (isFunction(providedOnBlur)) {
-              providedOnBlur(event);
-            }
           }}
           fullWidth={fullWidth}
           stretch={stretch}
@@ -283,10 +279,6 @@ renderField.propTypes = {
      item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
    */
   filter: PropTypes.func,
-  /**
-   * consumer's blur handler
-   */
-  providedOnBlur: PropTypes.func,
   /**
    * Width of the dropdown (includes units pxs, %, rems, etc) before calculation
    */

@@ -71,13 +71,15 @@ class WithFormFieldState extends React.Component {
 
   render() {
     const { children, focused, onBlur, onFocus } = this.props;
+    const { dropdownMaxHeight, dropdownWidth } = this.state;
     return (
       <Hoverable>
         {({ bind: { onMouseEnter, onMouseLeave }, hovered }) => (
           <Focusable focused={focused} onBlur={onBlur} onFocus={onFocus}>
             {({ focused, bind: bindFocusable, ref }) =>
               children({
-                ...this.state,
+                dropdownMaxHeight,
+                dropdownWidth,
                 onBlur: bindFocusable.onBlur,
                 onFocus: bindFocusable.onFocus,
                 calculateDropdownDimensions: this.calculateDropdownDimensions,
@@ -125,6 +127,10 @@ WithFormFieldState.propTypes = {
    * blur event handler.
    */
   onBlur: PropTypes.func,
+  /**
+   * Render prop
+   */
+  children: PropTypes.func,
 };
 
 WithFormFieldState.defaultProps = {
