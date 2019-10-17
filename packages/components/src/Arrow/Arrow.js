@@ -91,6 +91,10 @@ const Arrow = props => {
 
 Arrow.propTypes = {
   /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
+  /**
    * If true the arrow is roated to indicate the related content is visible
    */
   open: PropTypes.bool,

@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { isFunction } from 'underscore';
-import { LoadingSpinIcon, BrokenImageIcon } from '@versionone/icons';
-import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
+import { createComponent } from '../StyleProvider';
 import { Tooltip } from '../Tooltip';
 import { SpacedGroup } from '../SpacedGroup';
-import { palette } from '../palette';
+import { BrokenImageAvatar } from './BrokenImageAvatar';
+import { IconAvatar } from './IconAvatar';
+import { ImageAvatar } from './ImageAvatar';
+import { LetterAvatar } from './LetterAvatar';
+import { IconWrapper, IconButtonWrapper } from './IconWrapper';
+import { AvatarStatus, AvatarCount } from './Adornments';
 
 const AvatarWithStatus = createComponent(
   ({ size }) => ({
@@ -16,270 +20,24 @@ const AvatarWithStatus = createComponent(
   'span',
 );
 
-const buildBadgeStyles = ({ border, size }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'absolute',
-  width: size,
-  height: size,
-  minWidth: size,
-  minHeight: size,
-  borderRadius: '50%',
-  borderWidth: 2,
-  borderStyle: 'solid',
-  ...styleUtils.conditionalStyle(
-    Boolean(border),
-    'border-color',
-    border,
-    'white',
-  ),
-});
-
-const AvatarStatus = createComponent(
-  ({ border, size, status, theme }) => ({
-    ...buildBadgeStyles({ border, size }),
-    bottom: 0,
-    right: 0,
-    background: theme.Avatar.status[status] || border,
-  }),
-  'span',
-);
-
-const AvatarCount = createComponent(
-  ({ border, size }) => ({
-    ...buildBadgeStyles({ border, size }),
-    top: 0,
-    right: -1 * (size / 2),
-    background: palette.dove,
-    fontSize: 10,
-    'user-select': 'all',
-    cursor: 'default',
-  }),
-  'span',
-);
-
-const buildCommonIconWrapperStyles = ({
-  backgroundColor,
-  color,
-  border,
-  size,
-  onClick,
-  theme,
-}) => {
-  return {
-    alignItems: 'center',
-    borderRadius: '50%',
-    display: 'flex',
-    height: size - 2,
-    justifyContent: 'center',
-    overflow: 'hidden',
-    position: 'relative',
-    userSelect: 'none',
-    width: size - 2,
-    ...styleUtils.conditionalStyle(
-      backgroundColor,
-      'background',
-      backgroundColor,
-      theme.Avatar.background,
-    ),
-    ...styleUtils.conditionalStyle(color, 'color', color, theme.Avatar.color),
-    ':before': {
-      borderRadius: '50%',
-      content: '""',
-      height: size,
-      position: 'absolute',
-      top: -1,
-      width: size,
-      zIndex: '-1',
-      ...styleUtils.conditionalStyle(
-        border,
-        'backgroundColor',
-        border,
-        theme.Avatar.before,
-      ),
-    },
-    ...styleUtils.conditionalStyle(
-      isFunction(onClick),
-      'cursor',
-      'pointer',
-      'default',
-    ),
-  };
-};
-
-const IconWrapper = createComponent(buildCommonIconWrapperStyles, 'span', [
-  'data-component',
-  'data-test',
-]);
-
-const IconButtonWrapper = createComponent(
-  ({ border, size, onClick, theme }) => {
-    return {
-      ...buildCommonIconWrapperStyles({ border, size, onClick, theme }),
-      padding: 0,
-      border: 0,
-      outline: 'none',
-      ':focus': {
-        ...theme.focused,
-      },
-      ':active': {
-        width: size - 4,
-        height: size - 4,
-      },
-    };
-  },
-  'button',
-  ['onClick', 'tabIndex', 'data-component', 'data-test'],
-);
-
-const Img = createComponent(
-  () => ({
-    'border-radius': '50%',
-  }),
-  'img',
-  ['src', 'srcSet', 'sizes', 'alt', 'onLoad', 'onError', 'height', 'width'],
-);
-
-const ERROR = -1;
-const LOADING = 0;
-const LOADED = 1;
-
-class ImageAvatar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imageStatus: LOADING,
-    };
-    this.handleImageLoaded = this.handleImageLoaded.bind(this);
-    this.handleImageErrored = this.handleImageErrored.bind(this);
-  }
-
-  handleImageLoaded() {
-    const { shouldSimulateSlowLoad, shouldSimulateError } = this.props;
-
-    const imageStatus = shouldSimulateError ? ERROR : LOADED;
-
-    if (shouldSimulateSlowLoad) {
-      setTimeout(() => this.setState({ imageStatus }), 2500);
-    } else {
-      this.setState({ imageStatus });
-    }
-  }
-
-  handleImageErrored() {
-    this.setState({ imageStatus: ERROR });
-  }
-
-  render() {
-    const {
-      size,
-      Container,
-      border,
-      backgroundColor,
-      color,
-      onClick,
-      tabIndex,
-      'data-test': dataTest,
-      src,
-      srcSet,
-      sizes,
-      alt,
-    } = this.props;
-    const { imageStatus } = this.state;
-
-    const isLoading = imageStatus === LOADING;
-    const hasErrored = imageStatus === ERROR;
-    const hasLoaded = imageStatus === LOADED;
-
-    const imageWrapperSize = hasLoaded ? size : 0;
-    const shouldHide = isLoading || hasErrored;
-    const imageSize = shouldHide ? 0 : '100%';
-
-    const image = (
-      <Container
-        size={imageWrapperSize}
-        backgroundColor={backgroundColor}
-        color={color}
-        border={border}
-        onClick={onClick}
-        tabIndex={tabIndex}
-        data-component="Avatar"
-        data-test={dataTest}
-      >
-        <Img
-          src={src}
-          srcSet={srcSet}
-          sizes={sizes}
-          alt={alt}
-          height={imageSize}
-          width={imageSize}
-          onLoad={this.handleImageLoaded}
-          onError={this.handleImageErrored}
-        />
-      </Container>
-    );
-
-    const loading = isLoading && (
-      <IconWrapper size={size} border={border}>
-        <LoadingSpinIcon size={size} />
-      </IconWrapper>
-    );
-
-    const brokenImageProps = {
-      size,
-      border,
-      backgroundColor,
-      color,
-      'data-component': 'Avatar',
-      'data-test': dataTest,
-    };
-
-    const error = hasErrored && (
-      <Container {...brokenImageProps}>
-        <BrokenImageAvatar {...brokenImageProps} />
-      </Container>
-    );
-
-    return (
-      <span>
-        {image}
-        {loading}
-        {error}
-      </span>
-    );
-  }
-}
-
-const BrokenImageAvatar = ({ size }) => {
-  return <BrokenImageIcon size={size / 2} />;
-};
-
-const IconAvatar = props => {
-  return <WithTheme>{
-    theme => {
-      const icon = React.cloneElement(props.icon, {
-        size: (props.size * 1.2) / 3,
-        color: theme.Icon.main,
-      });
-      return icon;
-      }
-    }
-  </WithTheme>
-
-};
-
-const LetterAvatar = props => {
-  const firstLetter = props.text.length > 0 ? props.text[0] : '';
-  return firstLetter;
-};
-
 const Avatar = props => {
-  const Container = isFunction(props.onClick) ? IconButtonWrapper : IconWrapper;
+  const {
+    onClick,
+    src,
+    icon,
+    size,
+    title,
+    border,
+    status,
+    count,
+    showTooltip,
+  } = props;
+
+  const Container = isFunction(onClick) ? IconButtonWrapper : IconWrapper;
 
   const avatar = (() => {
     // image avatars must manage their own Container size based on loading states
-    if (props.src)
+    if (src)
       return (
         <ImageAvatar
           {...props}
@@ -288,13 +46,15 @@ const Avatar = props => {
         />
       );
 
-    const avatarType = props.icon ? (
-      <IconAvatar icon={props.icon} size={props.size} />
-    ) : props.title ? (
-      <LetterAvatar text={props.title} />
-    ) : (
-      <BrokenImageAvatar size={props.size} />
-    );
+    const avatarType = (() => {
+      if (icon) {
+        return <IconAvatar icon={icon} size={size} />;
+      }
+      if (title) {
+        return <LetterAvatar text={title} />;
+      }
+      return <BrokenImageAvatar size={size} />;
+    })();
 
     return (
       <Container {...props} data-component="Avatar">
@@ -303,38 +63,33 @@ const Avatar = props => {
     );
   })();
 
-  const status = props.status && (
-    <AvatarStatus
-      size={Math.floor(props.size / 3)}
-      border={props.border}
-      status={props.status}
-    />
+  const avatarStatus = status && (
+    <AvatarStatus size={Math.floor(size / 3)} border={border} status={status} />
   );
 
-  const count = props.count > 0 && (
-    <AvatarCount size={Math.floor(props.size / 2)} border={props.border}>
-      {props.count}
+  const avatarCount = count > 0 && (
+    <AvatarCount size={Math.floor(size / 2)} border={border}>
+      {count}
     </AvatarCount>
   );
 
   const avatarWithStatus = (
-    <AvatarWithStatus size={props.size}>
+    <AvatarWithStatus size={size}>
       {avatar}
-      {status}
-      {count}
+      {avatarStatus}
+      {avatarCount}
     </AvatarWithStatus>
   );
 
-  const child =
-    Boolean(props.title) && props.showTooltip ? (
+  if (title && showTooltip) {
+    return (
       <Tooltip anchor={avatarWithStatus}>
-        <SpacedGroup xs={2}>{props.title}</SpacedGroup>
+        <SpacedGroup xs={2}>{title}</SpacedGroup>
       </Tooltip>
-    ) : (
-      avatarWithStatus
     );
+  }
 
-  return child;
+  return avatarWithStatus;
 };
 
 Avatar.propTypes = {
@@ -382,6 +137,10 @@ Avatar.propTypes = {
    * tabIndex of the avatar
    */
   tabIndex: PropTypes.string,
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
 };
 
 Avatar.defaultProps = {
