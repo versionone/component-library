@@ -47,16 +47,6 @@ export class Basic extends React.Component {
           dropdownMaxHeight={50}
           items={itemsInState}
         />
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </SpacedGroup>
     );
   }

@@ -45,15 +45,6 @@ export class CreateableExample extends React.Component {
           renderOptions={renderOptions}
           items={itemsInState}
         />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </SpacedGroup>
     );
   }

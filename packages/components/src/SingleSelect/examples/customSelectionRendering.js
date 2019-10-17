@@ -60,15 +60,6 @@ export class CustomSelectionRendering extends React.Component {
           renderSelection={renderChip}
           items={itemsInState}
         />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </SpacedGroup>
     );
   }
