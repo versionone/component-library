@@ -2,28 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { noop, isFunction } from 'underscore';
-import { createComponent, styleUtils } from '../StyleProvider';
-import { Arrow } from '../Arrow';
-import {
-  InputFieldContainer,
-  InputStateIcon,
-  InputField,
-  WithFormFieldState,
-} from '../FormUtils';
-import { Menu } from '../Menu';
-import { ComboBox } from '../ComboBox';
-
-const HideOnSelection = createComponent(
-  ({ shrink, height }) => ({
-    height: height - 2,
-    display: 'flex',
-    alignItems: 'center',
-    flex: 'auto',
-    overflow: 'hidden',
-    ...styleUtils.conditionalStyle(shrink, 'width', 0),
-  }),
-  'span',
-);
+import { WithFormFieldState } from '../FormUtils';
+import { renderField } from './renderField';
 
 class SingleSelect extends React.Component {
   constructor(props, context) {
@@ -153,247 +133,110 @@ class SingleSelect extends React.Component {
 
   render() {
     const {
-      dropdownWidth: providedDropdownWidth,
-      dropdownHeight: providedDropdownHeight,
-      dropdownMaxHeight: providedDropdownMaxHeight,
-      hovered: providedHovered,
-      focused: providedFocused,
-      onFocus: providedOnFocus,
-      onBlur: providedOnBlur,
-      hintText,
       fullWidth,
-      height,
       stretch,
+      height,
+      hintText,
       dirty,
-      disabled,
       error,
+      defaultValue,
+      tabIndex,
+      disableContainment,
+      selectedItem,
+      inlineEdit,
       success,
       loading,
-      inlineEdit,
+      disabled,
+      focused,
+      hovered,
+      dropdownHeight,
+      dropdownWidth,
+      dropdownMaxHeight,
+      onFocus,
+      onBlur,
+      onRemove,
       onCreate,
       renderOptions,
       renderSelection,
-      selectedItem,
-      disableContainment,
     } = this.props;
-
-    const renderChildrenWithFormState = ({
-      onFocus,
-      onBlur,
-      onMouseEnter,
-      onMouseLeave,
-      calculateDropdownDimensions,
-      inputRef,
-      inputContainerRef,
-      focused,
-      hovered,
-      dropdownMaxHeight,
-      dropdownWidth,
-    }) => {
-      const renderWithSelection = ({
-        getInputProps,
-        getItemProps,
-        getRootProps,
-        getMenuProps,
-        isOpen,
-        inputValue,
-        highlightedIndex,
-        openMenu,
-        closeMenu,
-      }) => {
-        const handleFocusWrapper = evt => {
-          onFocus(evt);
-          calculateDropdownDimensions();
-          openMenu();
-        };
-
-        const overrideGetItemProps = args => {
-          const { item, index } = args;
-          const { lastSelected } = this.state;
-          const origialItemProps = getItemProps(args);
-          const zeroBasedIndex = index;
-          return {
-            ...origialItemProps,
-            isActive: highlightedIndex === zeroBasedIndex,
-            isSelected: selectedItem && selectedItem.value === item.value,
-            isPreviousSelection:
-              lastSelected && lastSelected.value === item.value,
-          };
-        };
-
-        const menuContents =
-          isOpen &&
-          isFunction(renderOptions) &&
-          renderOptions({
-            getItemProps: overrideGetItemProps,
-            items: this.getItems(inputValue),
-          });
-
-        const menuProps = getMenuProps({}, { suppressRefError: true });
-
-        const menu = (
-          <div
-            role={menuProps.role}
-            aria-labelledby={menuProps['aria-labelledby']}
-          >
-            {menuContents}
-          </div>
-        );
-
-        const handleKeyDown = event => {
-          const { value } = event.target;
-
-          if (event.key === 'Escape') {
-            // prevent `Escape` from closing a Drawer
-            event.stopPropagation();
-          }
-
-          if (!event.key === 'Enter') return;
-
-          const canCreate =
-            value !== '' && highlightedIndex === null && isFunction(onCreate);
-
-          if (canCreate) {
-            const newItem = {
-              label: value,
-              value,
-            };
-            this.handleSelection(newItem);
-            onCreate(newItem);
-            closeMenu();
-          }
-        };
-
-        const inputProps = getInputProps({
-          onKeyDown: handleKeyDown,
-          value: inputValue,
-          innerRef: inputRef,
-        });
-        const shouldRenderSelection =
-          selectedItem && isFunction(renderSelection);
-
-        const selection = shouldRenderSelection && renderSelection();
-
-        const input = (
-          <InputFieldContainer
-            innerRef={inputContainerRef}
-            height={height}
-            isHeightCapped
-            fullWidth={fullWidth}
-            stretch={stretch}
-            dirty={dirty}
-            disabled={disabled}
-            error={error}
-            success={success}
-            inlineEdit={inlineEdit}
-            focused={focused}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            {selection}
-            <HideOnSelection shrink={shouldRenderSelection} height={height}>
-              <InputField
-                {...inputProps}
-                height={height}
-                dirty={dirty}
-                disabled={disabled}
-                placeholder={hintText}
-                onFocus={handleFocusWrapper}
-                onBlur={event => {
-                  inputProps.onBlur(event);
-                  closeMenu();
-                  onBlur(event);
-                  if (isFunction(providedOnBlur)) {
-                    providedOnBlur(event);
-                  }
-                }}
-                fullWidth={fullWidth}
-                stretch={stretch}
-              />
-            </HideOnSelection>
-            <InputStateIcon
-              inlineEdit={inlineEdit}
-              success={success}
-              loading={loading}
-              error={error}
-              hovered={hovered}
-            />
-            <Arrow
-              disabled={disabled}
-              open={isOpen}
-              height={height}
-              onClick={isOpen ? closeMenu : () => inputRef.current.focus()}
-            />
-          </InputFieldContainer>
-        );
-
-        const dropdownHeight = menuContents
-          ? providedDropdownHeight || dropdownMaxHeight
-          : 0;
-        const width = providedDropdownWidth || dropdownWidth;
-
-        return (
-          <ComboBox
-            {...getRootProps({ refKey: 'innerRef' })}
-            fullWidth={fullWidth}
-            stretch={stretch}
-          >
-            <Menu
-              placement="bottom-start"
-              open={isOpen}
-              anchor={input}
-              width={width}
-              height={dropdownHeight}
-              disableContainment={disableContainment}
-            >
-              {menu}
-            </Menu>
-          </ComboBox>
-        );
-      };
-
-      return (
-        <Downshift
-          onChange={this.handleSelection}
-          stateReducer={this.stateReducer}
-          itemToString={noop}
-          initialInputValue=""
-        >
-          {renderWithSelection}
-        </Downshift>
-      );
-    };
 
     return (
       <WithFormFieldState
         inlineEdit={inlineEdit}
-        focused={providedFocused}
-        hovered={providedHovered}
-        dropdownMaxHeight={providedDropdownMaxHeight}
-        dropdownWidth={this.dropdownWidth}
-        onFocus={providedOnFocus}
-        onBlur={providedOnBlur}
+        focused={focused}
+        hovered={hovered}
+        dropdownMaxHeight={dropdownMaxHeight}
+        dropdownWidth={dropdownWidth}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
-        {renderChildrenWithFormState}
+        {formStateProps => {
+          return (
+            <Downshift
+              onChange={this.handleSelection}
+              stateReducer={this.stateReducer}
+              itemToString={noop}
+              initialInputValue=""
+            >
+              {downshift =>
+                renderField({
+                  fullWidth,
+                  stretch,
+                  height,
+                  hintText,
+                  tabIndex,
+                  success,
+                  loading,
+                  dirty,
+                  error,
+                  defaultValue,
+                  disableContainment,
+                  selectedItem,
+                  disabled,
+                  onRemove,
+                  onCreate,
+                  providedDropdownWidth: dropdownWidth,
+                  providedDropdownHeight: dropdownHeight,
+                  providedOnBlur: onBlur,
+                  renderOptions,
+                  renderSelection,
+                  ...formStateProps,
+                  ...this.state,
+                  getItems: this.getItems,
+                  handleSelection: this.handleSelection,
+                  ...downshift,
+                })
+              }
+            </Downshift>
+          );
+        }}
       </WithFormFieldState>
     );
   }
 }
 
 const ItemPropType = PropTypes.shape({
-  label: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  label: PropTypes.string,
+  value: PropTypes.string,
 });
 
 SingleSelect.propTypes = {
   /**
    * Set of items that can be selected
    */
-  items: PropTypes.arrayOf(ItemPropType),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.number,
+    }),
+  ),
   /**
    * Currently selected item
    */
-  selectedItem: ItemPropType,
+  selectedItem: PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.number,
+  }),
   /**
    * Function called when item is unselected
    */

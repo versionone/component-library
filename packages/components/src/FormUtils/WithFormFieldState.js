@@ -116,7 +116,7 @@ WithFormFieldState.propTypes = {
   /**
    * dropdown's width
    */
-  dropdownWidth: PropTypes.number,
+  dropdownWidth: PropTypes.string,
   /**
    * focus event handler.
    */

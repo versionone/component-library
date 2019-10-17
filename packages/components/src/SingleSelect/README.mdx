@@ -4,6 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
+import { noop } from 'underscore';
 import { SingleSelect } from '.';
 import { SpacedGroup } from '../SpacedGroup';
 import { Basic } from './examples/basic';
@@ -40,11 +41,16 @@ In the abscense of a `selection` prop it will use the `label` of the `selectedIt
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <SingleSelect fullWidth hintText="Default" />
-    <SingleSelect fullWidth disabled hintText="Disabled" />
-    <SingleSelect fullWidth dirty hintText="Dirty" />
-    <SingleSelect fullWidth hintText="Focused" />
-    <SingleSelect fullWidth error="snikes" hintText="Error" />
+    <SingleSelect renderOptions={noop} fullWidth hintText="Default" />
+    <SingleSelect renderOptions={noop} fullWidth disabled hintText="Disabled" />
+    <SingleSelect renderOptions={noop} fullWidth dirty hintText="Dirty" />
+    <SingleSelect renderOptions={noop} fullWidth hintText="Focused" />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      error="snikes"
+      hintText="Error"
+    />
   </SpacedGroup>
 </Playground>
 
@@ -52,12 +58,47 @@ In the abscense of a `selection` prop it will use the `label` of the `selectedIt
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <SingleSelect fullWidth inlineEdit hintText="Default" />
-    <SingleSelect fullWidth inlineEdit disabled hintText="Disabled" />
-    <SingleSelect fullWidth inlineEdit dirty hintText="Dirty" />
-    <SingleSelect fullWidth inlineEdit error="snikes" hintText="Error" />
-    <SingleSelect fullWidth inlineEdit loading hintText="Loading" />
-    <SingleSelect fullWidth inlineEdit success hintText="Success" />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      hintText="Default"
+    />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      disabled
+      hintText="Disabled"
+    />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      dirty
+      hintText="Dirty"
+    />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      error="snikes"
+      hintText="Error"
+    />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      loading
+      hintText="Loading"
+    />
+    <SingleSelect
+      renderOptions={noop}
+      fullWidth
+      inlineEdit
+      success
+      hintText="Success"
+    />
   </SpacedGroup>
 </Playground>
 

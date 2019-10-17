@@ -191,7 +191,6 @@ const internalTheme = {
   Menu: {},
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
-    lastSelected: 'red',
     mainHighlight: 'rgba(67, 128, 152, 0.2)',
   },
   ListItemText: {
@@ -606,7 +605,6 @@ const themeDark = {
   },
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
-    lastSelected: 'red',
     mainHighlight: 'rgba(67, 128, 152, 0.2)',
   },
   ListItemText: {
