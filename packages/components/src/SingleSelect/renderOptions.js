@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from '../List';
+import { List, ListItem, ListItemText } from '../List';
 
 export const renderOptions = ({ getItemProps, items }) => {
   const group = items.map((item, index) => {
     const itemProps = getItemProps({ item, index });
     return (
-      <List.Item
+      <ListItem
         {...itemProps}
         key={item.value}
         selected={itemProps.isSelected || itemProps.isActive}
         isPreviousSelection={itemProps.isPreviousSelection}
       >
-        <List.ItemText primary={item.label} secondary={item.email} />
-      </List.Item>
+        <ListItemText primary={item.label} secondary={item.email} />
+      </ListItem>
     );
   });
 
