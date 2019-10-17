@@ -46,6 +46,7 @@ export class Basic extends React.Component {
           dropdownWidth="500px"
           dropdownMaxHeight={50}
           items={itemsInState}
+          defaultValue={0}
         />
       </SpacedGroup>
     );

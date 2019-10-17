@@ -8,8 +8,14 @@ import { renderField } from './renderField';
 class SingleSelect extends React.Component {
   constructor(props, context) {
     super(props, context);
+    const lastSelected =
+      props.defaultValue !== null
+        ? props.items.find(item => item.value === props.defaultValue)
+        : null;
+    const defaultValueText = lastSelected ? lastSelected.label : '';
     this.state = {
-      lastSelected: null,
+      lastSelected,
+      defaultValueText,
     };
     this.handleSelection = this.handleSelection.bind(this);
     this.stateReducer = this.stateReducer.bind(this);
@@ -160,6 +166,8 @@ class SingleSelect extends React.Component {
       renderSelection,
     } = this.props;
 
+    const { lastSelected, defaultValueText } = this.state;
+
     return (
       <WithFormFieldState
         inlineEdit={inlineEdit}
@@ -189,7 +197,6 @@ class SingleSelect extends React.Component {
               stateReducer={this.stateReducer}
               itemToString={noop}
               initialInputValue={defaultValueText}
-              initialInputValue=""
             >
               {({
                 getItemProps,
@@ -393,6 +400,7 @@ SingleSelect.propTypes = {
 };
 
 SingleSelect.defaultProps = {
+  defaultValue: null,
   selectedItem: null,
   onRemove: noop,
   onSelect: noop,
