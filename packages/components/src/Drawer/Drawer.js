@@ -1,8 +1,7 @@
-import { noop, isFunction } from 'underscore';
+import { noop } from 'underscore';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
-import { palette } from '../palette';
 import { Scrim } from '../Scrim';
 import { PortalContainer } from '../PortalContainer';
 
@@ -117,21 +116,30 @@ class Drawer extends React.Component {
   }
 
   render() {
-    const props = {
-      ...this.props,
-    };
+    const {
+      open,
+      position,
+      placement,
+      size,
+      shadow,
+      handleClickOutside,
+      children,
+    } = this.props;
 
-    if (!props.open) {
-      props['aria-hidden'] = true;
-    }
-
-    const scrim = (
-      <Scrim open={props.open} onClick={props.handleClickOutside} />
-    );
+    const scrim = <Scrim open={open} onClick={handleClickOutside} />;
 
     const drawer = (
-      <PortalContainer mounted={props.open}>
-        <Impl {...props} data-component="Drawer" />
+      <PortalContainer mounted={open}>
+        <Impl
+          data-component="Drawer"
+          position={position}
+          size={size}
+          placement={placement}
+          shadow={shadow}
+          aria-hidden={!open}
+        >
+          {children}
+        </Impl>
       </PortalContainer>
     );
 

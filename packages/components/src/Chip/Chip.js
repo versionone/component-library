@@ -5,7 +5,10 @@ import { CloseIcon } from '@versionone/icons';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { IconButton } from '../Button';
 import { EventBoundary } from '../EventBoundary';
-import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
+import {
+  HoverIntersection,
+  HoverIntersectionExclude,
+} from '../HoverIntersection';
 
 const buildStyles = ({ hovered, onClick, size, clamped, outlined, theme }) => {
   const activityStyles = onClick
@@ -82,23 +85,33 @@ const DismissWrapper = createComponent(
   'div',
 );
 
-const InternalChip = props => {
-  const avatar =
-    Boolean(props.avatar) &&
-    React.cloneElement(props.avatar, {
-      size: props.size,
+const Chip = props => {
+  const {
+    avatar,
+    size,
+    onDismiss,
+    onClick,
+    clamped,
+    children,
+    outlined,
+  } = props;
+
+  const sizedAvatar =
+    avatar &&
+    React.cloneElement(avatar, {
+      size,
     });
 
-  const dismiss = props.onDismiss && (
+  const dismiss = onDismiss && (
     <DismissWrapper>
-      <EventBoundary onClick={props.onDismiss}>
-        {({ onClick }) => (
+      <EventBoundary onClick={onDismiss}>
+        {({ onClick: handleClick }) => (
           <HoverIntersectionExclude>
-            {({ bind }) => (
+            {({ bind: hoverBind }) => (
               <IconButton
-                {...bind}
-                onClick={onClick}
-                size={props.size - 6}
+                {...hoverBind}
+                onClick={handleClick}
+                size={size - 6}
                 icon={CloseIcon}
                 title="dismiss"
               />
@@ -109,25 +122,30 @@ const InternalChip = props => {
     </DismissWrapper>
   );
 
-  const Impl = isFunction(props.onClick) ? ActionImpl : ActionlessImpl;
-
-  return (
-    <Impl {...props} data-component="Chip">
-      {avatar}
-      <ChipTextContainer clamped={props.clamped}>
-        {props.children}
-      </ChipTextContainer>
-      {dismiss}
-    </Impl>
+  const chipText = (
+    <ChipTextContainer clamped={clamped}>{children}</ChipTextContainer>
   );
-};
+  const Impl = isFunction(onClick) ? ActionImpl : ActionlessImpl;
 
-const Chip = props => {
   return (
     <HoverIntersection>
-      {({ bind, hovered }) => (
-        <InternalChip {...props} {...bind} hovered={hovered} />
-      )}
+      {({ bind, hovered }) => {
+        return (
+          <Impl
+            {...bind}
+            data-component="Chip"
+            hovered={hovered}
+            onClick={onClick}
+            size={size}
+            clamped={clamped}
+            outlined={outlined}
+          >
+            {sizedAvatar}
+            {chipText}
+            {dismiss}
+          </Impl>
+        );
+      }}
     </HoverIntersection>
   );
 };

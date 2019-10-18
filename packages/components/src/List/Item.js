@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { cloneElement } from 'react';
+import React from 'react';
 import { isFunction, noop } from 'underscore';
-import { WithBreakpoint } from '../WithBreakpoint';
 import { createComponent, styleUtils } from '../StyleProvider';
-import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
-import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
+import { HoverIntersection } from '../HoverIntersection';
 import ListContext from './ListValueContext';
 import { palette } from '../palette';
+import { AncillaryAction } from './AncillaryAction';
 
 const Row = createComponent(
   ({ dense, hovered, selected, theme }) => {
@@ -30,16 +29,7 @@ const Row = createComponent(
     };
   },
   'div',
-  [
-    'data-component',
-    'data-test',
-    'role',
-    'aria-selected',
-    'id',
-    'onMouseEnter',
-    'onMouseLeave',
-    'role',
-  ],
+  ['data-component', 'data-test', 'role', 'id', 'onMouseEnter', 'onMouseLeave'],
 );
 
 const ClickableRow = createComponent(
@@ -70,7 +60,6 @@ const ClickableRow = createComponent(
   'div',
   [
     'role',
-    'aria-selected',
     'data-component',
     'data-test',
     'data-trackingid',
@@ -83,7 +72,6 @@ const ClickableRow = createComponent(
     'onMouseEnter',
     'onMouseLeave',
     'onMouseMove',
-    'role',
     'tabIndex',
   ],
 );
@@ -100,26 +88,7 @@ const LeftGroup = createComponent(
   'div',
 );
 
-const AncillaryAction = ({ children }) => (
-  <EventBoundary onClick={noop} onFocus={noop} onKeyDown={noop}>
-    {({ onClick, onFocus, onKeyDown }) => (
-      <HoverIntersectionExclude>
-        {({ bind, hovered }) => (
-          <div
-            {...bind}
-            onClick={onClick}
-            onFocus={onFocus}
-            onKeyDown={onKeyDown}
-          >
-            {cloneElement(children, { hovered })}
-          </div>
-        )}
-      </HoverIntersectionExclude>
-    )}
-  </EventBoundary>
-);
-
-class ListItemImpl extends React.Component {
+class ListItem extends React.Component {
   constructor() {
     super();
 
@@ -132,15 +101,17 @@ class ListItemImpl extends React.Component {
       'data-trackingid': trackingId,
       children,
       focused,
-      index,
       onClick,
       onFocus,
       onBlur,
-      onKeyDown,
+      onMouseDown,
+      onMouseEnter,
+      onMouseLeave,
+      onMouseMove,
       secondaryAction,
       supportingVisual,
       isPreviousSelection,
-      ...otherProps
+      tabIndex,
     } = this.props;
 
     const listItemText = isPreviousSelection
@@ -160,7 +131,11 @@ class ListItemImpl extends React.Component {
                 <HoverIntersection>
                   {({ bind, hovered }) => (
                     <RowImpl
-                      {...otherProps}
+                      onMouseDown={onMouseDown}
+                      onMouseEnter={onMouseEnter}
+                      onMouseLeave={onMouseLeave}
+                      onMouseMove={onMouseMove}
+                      tabIndex={tabIndex}
                       {...bind}
                       {...bindFocusable}
                       data-test={dataTest}
@@ -195,15 +170,10 @@ class ListItemImpl extends React.Component {
   }
 
   handleKeyDown(evt) {
-    this.props.onKeyDown(evt, this);
+    const { onKeyDown } = this.props;
+    onKeyDown(evt, this);
   }
 }
-
-const ListItem = props => (
-  <WithBreakpoint>
-    {breakpoint => <ListItemImpl {...props} breakpoint={breakpoint} />}
-  </WithBreakpoint>
-);
 
 ListItem.propTypes = {
   /**
@@ -212,6 +182,30 @@ ListItem.propTypes = {
   children: PropTypes.node,
   /** indicates the list item is focused */
   focused: PropTypes.bool,
+  /**
+   * blur handler
+   */
+  onBlur: PropTypes.func,
+  /**
+   * focus handler
+   */
+  onFocus: PropTypes.func,
+  /**
+   * mouse down handler
+   */
+  onMouseDown: PropTypes.func,
+  /**
+   * mouse enter handler
+   */
+  onMouseEnter: PropTypes.func,
+  /**
+   * mouse leave handler
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * mouse move handler
+   */
+  onMouseMove: PropTypes.func,
   /**
    * handle the primary action
    */
@@ -242,6 +236,10 @@ ListItem.propTypes = {
    * Attribute for test suite
    */
   'data-test': PropTypes.string,
+  /**
+   * Reserved for List used withing Single and MultiSelection options rendering
+   */
+  isPreviousSelection: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
@@ -252,6 +250,13 @@ ListItem.defaultProps = {
   secondaryAction: null,
   supportingVisual: null,
   tabIndex: '0',
+  isPreviousSelection: false,
+  onFocus: noop,
+  onBlur: noop,
+  onMouseDown: noop,
+  onMouseEnter: noop,
+  onMouseLeave: noop,
+  onMouseMove: noop,
 };
 
 export default ListItem;

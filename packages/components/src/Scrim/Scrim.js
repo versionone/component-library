@@ -64,17 +64,28 @@ class Scrim extends React.Component {
   }
 
   render() {
-    const { props } = this;
+    const {
+      open,
+      disableVisibility,
+      disableScrollLock,
+      onClick,
+      'data-test': dataTest,
+      children,
+    } = this.props;
 
     return (
-      <PortalContainer mounted={props.open}>
+      <PortalContainer mounted={open}>
         <ScrimImpl
-          {...props}
-          open={props.open}
+          onClick={onClick}
+          disableVisibility={disableVisibility}
+          open={open}
           data-component="Scrim"
-          data-open={`${props.open}`}
-          data-scroll-lock={`${!props.disableScrollLock}`}
-        />
+          data-test={dataTest}
+          data-open={`${open}`}
+          data-scroll-lock={`${!disableScrollLock}`}
+        >
+          {children}
+        </ScrimImpl>
       </PortalContainer>
     );
   }
@@ -97,6 +108,14 @@ Scrim.propTypes = {
    * If true then the scrim does not lock the scroll
    */
   disableScrollLock: PropTypes.bool,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
+  /**
+   * Content above scrim
+   */
+  children: PropTypes.node,
 };
 
 Scrim.defaultProps = {

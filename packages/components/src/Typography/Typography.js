@@ -1,7 +1,6 @@
-import React, { Component, Children, Fragment } from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import { createComponent, styleUtils } from '../StyleProvider';
-import { palette } from '../palette';
 
 const fontStrategyMap = {
   mega: {
@@ -50,8 +49,6 @@ class Typography extends Component {
 
     this.TypographyImpl = createComponent(
       ({ variant, emphasize }) => ({
-        fontFamily:
-          "'Cabin', 'Cabin Local', -apple-system, system-ui, BlinkMacSystemFont, sans-serif",
         ...(fontStrategyMap[variant] || fontStrategyMap.base),
         ...styleUtils.conditionalStyle(
           variant === 'base' && emphasize,

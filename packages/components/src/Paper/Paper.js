@@ -4,9 +4,22 @@ import { createComponent, styleUtils } from '../StyleProvider';
 
 const PaperImpl = createComponent(
   ({ square, elevation, theme }) => ({
-    ...styleUtils.conditionalStyle(elevation, 'box-shadow', theme.Paper.elevation.boxShadow, theme.Paper.boxShadow),
-    ...styleUtils.conditionalStyle(elevation, 'border', theme.Paper.elevation.border),
-    ...styleUtils.conditionalStyle(!square, 'border-radius', theme.Paper.borderRadius),
+    ...styleUtils.conditionalStyle(
+      elevation,
+      'box-shadow',
+      theme.Paper.elevation.boxShadow,
+      theme.Paper.boxShadow,
+    ),
+    ...styleUtils.conditionalStyle(
+      elevation,
+      'border',
+      theme.Paper.elevation.border,
+    ),
+    ...styleUtils.conditionalStyle(
+      !square,
+      'border-radius',
+      theme.Paper.borderRadius,
+    ),
     backgroundColor: theme.Paper.background,
     width: '100%',
   }),

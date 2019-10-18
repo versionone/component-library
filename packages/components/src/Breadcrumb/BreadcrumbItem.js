@@ -38,41 +38,47 @@ const Space = createComponent(
 );
 
 const BreadcrumbItem = props => {
-  const icon = props.icon && (
+  const { icon, children, selected, onClick, collapse } = props;
+
+  const positionedIcon = icon && (
     <Fragment>
-      {React.createElement(props.icon, { size: 12 })}
-      {props.children && <Space />}
+      {React.createElement(icon, { size: 12 })}
+      {children && <Space />}
     </Fragment>
   );
 
-  const coloredChildren = React.Children.toArray(props.children).map(
-    (child, i) => {
-      return typeof child === 'string' ? (
-        <PseudoLink key={i} selected={props.selected} onClick={props.onClick}>
-          {icon}
-          {child}
-        </PseudoLink>
-      ) : getComponentDisplayName(child.type) === 'Link' ? (
-        <PseudoLink key={i} selected={props.selected}>
-          {icon}
-          <a href={child.props.href}>{child.props.children}</a>
-        </PseudoLink>
-      ) : (
-        <PseudoLink key={i} selected={props.selected}>
-          {icon}
+  const coloredChildren = React.Children.toArray(children).map((child, i) => {
+    if (typeof child === 'string') {
+      return (
+        <PseudoLink key={i} selected={selected} onClick={onClick}>
+          {positionedIcon}
           {child}
         </PseudoLink>
       );
-    },
-  );
+    }
+    if (getComponentDisplayName(child.type) === 'Link') {
+      return (
+        <PseudoLink key={i} selected={selected}>
+          {positionedIcon}
+          <a href={child.props.href}>{child.props.children}</a>
+        </PseudoLink>
+      );
+    }
+    return (
+      <PseudoLink key={i} selected={selected}>
+        {positionedIcon}
+        {child}
+      </PseudoLink>
+    );
+  });
 
-  return props.collapse ? (
-    <PseudoLink>...</PseudoLink>
-  ) : props.children ? (
-    coloredChildren
-  ) : (
-    <PseudoLink selected={props.selected}>{icon}</PseudoLink>
-  );
+  if (collapse) {
+    return <PseudoLink>...</PseudoLink>;
+  }
+  if (children) {
+    return coloredChildren;
+  }
+  return <PseudoLink selected={selected}>{positionedIcon}</PseudoLink>;
 };
 
 BreadcrumbItem.propTypes = {
@@ -92,12 +98,17 @@ BreadcrumbItem.propTypes = {
    * Function that is called when breadcrumb is clicked
    */
   onClick: PropTypes.func,
+  /**
+   * Icon to display next to the breadcrumb
+   */
+  icon: PropTypes.node,
 };
 
 BreadcrumbItem.defaultProps = {
   selected: false,
   collapse: false,
   onClick: () => {},
+  icon: null,
 };
 
 export { BreadcrumbItem };

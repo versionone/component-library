@@ -59,14 +59,27 @@ const DismissWrapper = createComponent(
     },
   }),
   'button',
-  ['onClick', 'tabIndex'],
+  ['data-trackingid', 'onClick', 'tabIndex'],
 );
 
-const InternalTag = props => {
-  const dismiss = props.onDismiss && (
-    <EventBoundary onClick={props.onDismiss}>
+const Tag = ({
+  onDismiss,
+  size,
+  href,
+  children,
+  clamped,
+  'data-test': dataTest,
+  'data-trackingid': dataTrackingid,
+}) => {
+  const dismiss = onDismiss && (
+    <EventBoundary onClick={onDismiss}>
       {bind => (
-        <DismissWrapper {...bind} tabIndex="0" size={props.size - 8}>
+        <DismissWrapper
+          {...bind}
+          tabIndex="0"
+          size={size - 8}
+          data-trackingid={dataTrackingid}
+        >
           <CloseIcon size={8} title="dismiss" color="currentColor" />
         </DismissWrapper>
       )}
@@ -76,15 +89,15 @@ const InternalTag = props => {
   const boundText = (
     <WithTheme>
       {theme => {
-        const text = props.href ? (
-          <Link href={props.href} color={theme.Tag.color}>
-            {props.children}
+        const text = href ? (
+          <Link href={href} color={theme.Tag.color}>
+            {children}
           </Link>
         ) : (
-          props.children
+          children
         );
         return (
-          <TagTextContainer clamped={props.clamped} color={theme.Tag.color}>
+          <TagTextContainer clamped={clamped} color={theme.Tag.color}>
             {text}
           </TagTextContainer>
         );
@@ -93,14 +106,12 @@ const InternalTag = props => {
   );
 
   return (
-    <Impl {...props}>
+    <Impl size={size} data-test={dataTest} data-component="Tag">
       {boundText}
       {dismiss}
     </Impl>
   );
 };
-
-const Tag = props => <InternalTag {...props} data-component="Tag" />;
 
 Tag.propTypes = {
   /**
@@ -123,6 +134,14 @@ Tag.propTypes = {
    * Ensure the chip has a fixed width
    */
   clamped: PropTypes.bool,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
+  /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
 };
 
 Tag.defaultProps = {

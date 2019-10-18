@@ -13,7 +13,7 @@ const spacingUnits = [0, 2, 4, 8, 16, 24, 32, 40];
 const LabelWrapper = createComponent(
   ({ disabled, theme }) => ({
     color: disabled ? theme.Label.disabled.main : theme.Label.default.main,
-    opacity: disabled && .5,
+    opacity: disabled && 0.5,
     cursor: disabled && 'not-allowed',
     display: 'flex',
     alignItems: 'center',
@@ -24,26 +24,27 @@ const LabelWrapper = createComponent(
 );
 
 const FormControlLabel = props => {
-  const { 
-  control,
-  disabled,
-  label, 
-  labelPlacement, 
-  onClick,
-  selectedValue,
-  onChange,
-  onFocus,
-  onBlur,
-  focused,
-  name,
-  id,
-  index,} = props;
+  const {
+    control,
+    disabled,
+    label,
+    labelPlacement,
+    onClick,
+    selectedValue,
+    onChange,
+    onFocus,
+    onBlur,
+    focused,
+    name,
+    id,
+    index,
+  } = props;
   const controlProps = {
     onClick,
     disabled,
     selectedValue,
     name,
-    id, 
+    id,
     onChange,
     onFocus,
     onBlur,
@@ -51,18 +52,38 @@ const FormControlLabel = props => {
     index,
   };
   const newControl = React.cloneElement(control, controlProps);
-  const content = labelPlacement === ABOVE || labelPlacement === LEFT 
-      ? <React.Fragment><LabelWrapper>{label}</LabelWrapper>{newControl}</React.Fragment>
-      : <React.Fragment>{newControl}<LabelWrapper>{label}</LabelWrapper></React.Fragment>;
-  const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
+  const content =
+    labelPlacement === ABOVE || labelPlacement === LEFT ? (
+      <React.Fragment>
+        <LabelWrapper>{label}</LabelWrapper>
+        {newControl}
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        {newControl}
+        <LabelWrapper>{label}</LabelWrapper>
+      </React.Fragment>
+    );
+  const direction =
+    labelPlacement === ABOVE || labelPlacement === BELOW
+      ? 'vertical'
+      : 'horizontal';
   return (
-    <SpacedGroup {...props} direction={direction} is='label' htmlFor={id}>
-        {content}
+    <SpacedGroup {...props} direction={direction} is="label" htmlFor={id}>
+      {content}
     </SpacedGroup>
   );
 };
 
 FormControlLabel.propTypes = {
+  /**
+   * Optional name attribute
+   */
+  name: PropTypes.string,
+  /**
+   * Reserved for RadioGroups
+   */
+  selectedValue: PropTypes.string,
   /**
    * Set components to equally space.
    */
@@ -75,7 +96,7 @@ FormControlLabel.propTypes = {
    * Set the direction elements should be rendered.
    */
   label: PropTypes.string.isRequired,
-    /**
+  /**
    * Value to associate label with input
    */
   id: PropTypes.string,
@@ -123,11 +144,11 @@ FormControlLabel.propTypes = {
    * Removes the margin from the frist and last child
    */
   disableGutter: PropTypes.bool,
-    /**
+  /**
    * Indicates a disabled field
    */
   disabled: PropTypes.bool,
-    /**
+  /**
    * Attribute used to track user interaction
    */
   'data-trackingid': PropTypes.string,

@@ -29,11 +29,27 @@ const Container = createComponent(
   ['data-component', 'data-test'],
 );
 
-const ScrollableContainer = props => (
-  <Container {...props} data-component="ScrollableContainer" />
+const ScrollableContainer = ({
+  height,
+  width,
+  'data-test': dataTest,
+  children,
+}) => (
+  <Container
+    data-component="ScrollableContainer"
+    height={height}
+    width={width}
+    data-test={dataTest}
+  >
+    {children}
+  </Container>
 );
 
 ScrollableContainer.propTypes = {
+  /**
+   * Content to scroll
+   */
+  children: PropTypes.node,
   /**
    * Height of the container. If the content is shorter than the height then no scrollbar is applied
    */
@@ -42,6 +58,10 @@ ScrollableContainer.propTypes = {
    * Width of the container
    */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 ScrollableContainer.defaultProps = {

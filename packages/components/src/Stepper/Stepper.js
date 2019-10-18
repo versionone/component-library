@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Children, Component } from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
 
 const StepperImpl = createComponent(
@@ -15,29 +15,44 @@ const StepperImpl = createComponent(
   'div',
 );
 
-class Stepper extends React.Component {
+class Stepper extends Component {
   render() {
-    const count = React.Children.count(this.props.children) - 1;
+    const {
+      children,
+      direction,
+      size,
+      lineLength,
+      afterLength,
+      'data-test': dataTest,
+    } = this.props;
+    const count = Children.count(children) - 1;
 
-    const children = React.Children.map(this.props.children, (child, i) =>
+    const steps = Children.map(children, (child, i) =>
       React.cloneElement(child, {
         index: i + 1,
         isLast: i === count,
-        direction: this.props.direction,
-        size: this.props.size,
-        lineLength: this.props.lineLength,
-        afterLength: this.props.afterLength,
+        direction,
+        size,
+        lineLength,
+        afterLength,
       }),
     );
     return (
-      <div data-component="Stepper" data-test={this.props['data-test']}>
-        <StepperImpl direction={this.props.direction}>{children}</StepperImpl>
+      <div data-component="Stepper" data-test={dataTest}>
+        <StepperImpl direction={direction}>{steps}</StepperImpl>
       </div>
     );
   }
 }
 
 Stepper.propTypes = {
+  /**
+   * collection of one or more StepperStep components
+   */
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   /**
    * Render the stepper vertically or horizontally
    */
@@ -54,6 +69,10 @@ Stepper.propTypes = {
    * Determine the space after the last step of the stepper, since there is no line after the step to create this space.
    */
   afterLength: PropTypes.number,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 Stepper.defaultProps = {

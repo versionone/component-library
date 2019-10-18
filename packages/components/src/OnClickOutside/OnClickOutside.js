@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { noop } from 'underscore';
 import { DetectExternalEvents } from '../DetectExternalEvents';
 
-const OnClickOutside = props => {
+const OnClickOutside = ({ handleClickOutside, children }) => {
   return (
     <DetectExternalEvents
       domEvents={['click']}
       reactEvents={['onClick']}
-      onExternalEvent={props.handleClickOutside}
+      onExternalEvent={handleClickOutside}
     >
-      {props.children}
+      {children}
     </DetectExternalEvents>
   );
 };

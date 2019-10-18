@@ -30,13 +30,11 @@ const iconByVariant = {
   success: CheckIcon,
 };
 
-const Toast = props => {
-  const { variant, message, action } = props;
-
+const Toast = ({ variant, message, action, 'data-test': dataTest }) => {
   const Icon = iconByVariant[variant] || InfoIcon;
 
   return (
-    <ToastImpl {...props} data-component="Toast">
+    <ToastImpl variant={variant} data-test={dataTest} data-component="Toast">
       <SpacedGroup>
         <Icon />
         <Typography variant="large">{message}</Typography>
@@ -59,6 +57,10 @@ Toast.propTypes = {
    * Action to resolve the toast
    */
   action: PropTypes.node,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 Toast.defaultProps = {

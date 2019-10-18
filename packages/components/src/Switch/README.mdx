@@ -49,7 +49,9 @@ Great for allowing users to turn a setting on or off.
         this.toggleGlobally = this.toggleGlobally.bind(this);
       }
       toggleGlobally() {
-        this.setState(state => ({ isCheckedGlobally: !isCheckedGlobally }));
+        this.setState(state => ({
+          isCheckedGlobally: !state.isCheckedGlobally,
+        }));
       }
       toggle() {
         this.setState(state => ({ isChecked: !state.isChecked }));
