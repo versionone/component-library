@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronIcon } from '@versionone/icons';
 import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
-import { Rotate } from '../Rotate';
 
 const buildStyles = ({ height }) => ({
   background: 'none',
@@ -60,22 +59,19 @@ const ArrowIcon = createComponent(buildStyles, 'span', [
 const Arrow = props => {
   const { open, is, disabled, tabIndex, 'data-test': dataTest } = props;
   const withTheme = (
-    <WithTheme>{
-      theme => {
-        const arrow = open ? (
-          <Rotate deg={90}>
-            <ChevronIcon size={12} color={theme.Icon.main} />
-          </Rotate>
-        ) : (
-          <Rotate deg={0}>
-            <ChevronIcon size={12} color={theme.Icon.main} />
-          </Rotate>
+    <WithTheme>
+      {theme => {
+        const arrow = (
+          <ChevronIcon
+            color={theme.Icon.main}
+            size={12}
+            rotate={open ? 90 : 0}
+          />
         );
         return arrow;
-      }
-    }
+      }}
     </WithTheme>
-  )
+  );
 
   const ArrowImpl = is === 'button' ? ArrowButton : ArrowIcon;
 
@@ -88,12 +84,16 @@ const Arrow = props => {
       type="button"
       tabIndex={disabled ? '-1' : tabIndex}
     >
-      { withTheme }
+      {withTheme}
     </ArrowImpl>
   );
 };
 
 Arrow.propTypes = {
+  /**
+   * Attribute for test suite
+   */
+  'data-test': PropTypes.string,
   /**
    * If true the arrow is roated to indicate the related content is visible
    */

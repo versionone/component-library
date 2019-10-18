@@ -2,64 +2,133 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { noop, isFunction } from 'underscore';
-import { createComponent, styleUtils } from '../StyleProvider';
-import { Arrow } from '../Arrow';
-import {
-  InputFieldContainer,
-  InputStateIcon,
-  InputField,
-  WithFormFieldState,
-} from '../FormUtils';
-import { Menu } from '../Menu';
-import { ComboBox } from '../ComboBox';
-
-const HideOnSelection = createComponent(
-  ({ shrink, height }) => ({
-    height: height - 2,
-    display: 'flex',
-    alignItems: 'center',
-    flex: 'auto',
-    overflow: 'hidden',
-    ...styleUtils.conditionalStyle(shrink, 'width', 0),
-  }),
-  'span',
-);
+import { WithFormFieldState } from '../FormUtils';
+import { renderField } from './renderField';
 
 class SingleSelect extends React.Component {
   constructor(props, context) {
     super(props, context);
+    const lastSelected =
+      props.defaultValue !== null
+        ? props.items.find(item => item.value === props.defaultValue)
+        : null;
+    const defaultValueText = lastSelected ? lastSelected.label : '';
     this.state = {
-      height: '100px',
+      lastSelected,
+      defaultValueText,
     };
     this.handleSelection = this.handleSelection.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.addItem = this.addItem.bind(this);
     this.stateReducer = this.stateReducer.bind(this);
+    this.clearHistory = this.clearHistory.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.getItems = this.getItems.bind(this);
+    this.handleArrowDown = this.handleArrowDown.bind(this);
+    this.handleArrowUp = this.handleArrowUp.bind(this);
   }
 
-  handleSelection(selectedItem) {
-    const alreadySelected =
-      this.props.selectedItem !== null &&
-      this.props.selectedItem.id === selectedItem.id;
-    const action = alreadySelected ? this.removeItem : this.addItem;
-
-    action(selectedItem);
+  getItems(inputValue) {
+    const { items, filter } = this.props;
+    const filterByInputValue = filter(inputValue);
+    return items.filter(filterByInputValue);
   }
 
-  removeItem(item) {
-    const onRemove = this.props.onRemove;
-    isFunction(onRemove) && onRemove(item.id);
+  handleSelection(item) {
+    const { onSelect } = this.props;
+    this.setState({
+      lastSelected: item,
+    });
+    if (isFunction(onSelect)) {
+      onSelect(item);
+    }
   }
 
-  addItem(item) {
-    const onSelect = this.props.onSelect;
-    isFunction(onSelect) && onSelect(item.id);
+  clearHistory() {
+    this.setState({ lastSelected: null });
+  }
+
+  handleBlur(state) {
+    const { lastSelected } = this.state;
+    //const { items } = this.props;
+    const items = this.getItems(state.inputValue);
+
+    const getExactMatch = () =>
+      items.find(item => item.label === state.inputValue);
+
+    const getLastMatch = () =>
+      lastSelected != null && lastSelected.label.includes(state.inputValue)
+        ? lastSelected
+        : null;
+    const getPartialMatch = () =>
+      items.find(item => item.label.includes(state.inputValue));
+
+    const match = (() => {
+      const exactMatch = getExactMatch();
+      if (exactMatch) return exactMatch;
+      const lastMatch = getLastMatch();
+      if (lastMatch) return lastMatch;
+      const partialMatch = getPartialMatch();
+      if (partialMatch) return partialMatch;
+      return null;
+    })();
+    if (match) {
+      this.handleSelection(match);
+    } else {
+      this.clearHistory();
+    }
+    return {
+      isOpen: false,
+      inputValue: match ? match.label : '',
+    };
+  }
+
+  handleArrowDown(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex + 1 >= max ? 0 : currentIndex + 1;
+      for (let i = start; i < max; i++) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
+  }
+
+  handleArrowUp(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex - 1 < 0 ? max - 1 : currentIndex - 1;
+      for (let i = start; i >= 0; i--) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
   }
 
   stateReducer(state, changes) {
     switch (changes.type) {
       case Downshift.stateChangeTypes.keyDownEnter:
+      case Downshift.stateChangeTypes.clickItem:
         this.handleSelection(changes.selectedItem);
+        return {
+          isOpen: false,
+          inputValue: changes.selectedItem.label,
+        };
+      case Downshift.stateChangeTypes.blurInput:
+        return this.handleBlur(state);
+      case Downshift.stateChangeTypes.keyDownArrowUp:
+        return this.handleArrowUp(state);
+      case Downshift.stateChangeTypes.keyDownArrowDown:
+        return this.handleArrowDown(state);
+      case Downshift.stateChangeTypes.keyDownEscape:
         return {
           isOpen: false,
         };
@@ -70,231 +139,147 @@ class SingleSelect extends React.Component {
 
   render() {
     const {
-      hintText,
       fullWidth,
-      height,
       stretch,
+      height,
+      hintText,
       dirty,
-      disabled,
       error,
+      defaultValue,
+      tabIndex,
+      disableContainment,
+      selectedItem,
+      inlineEdit,
       success,
       loading,
-      inlineEdit,
+      disabled,
+      focused,
+      hovered,
+      dropdownHeight,
+      dropdownWidth,
+      dropdownMaxHeight,
+      onFocus,
+      onBlur,
+      onRemove,
       onCreate,
       renderOptions,
       renderSelection,
-      selectedItem,
-      disableContainment,
     } = this.props;
 
-    const renderChildrenWithFormState = ({
-      onFocus,
-      onBlur,
-      onMouseEnter,
-      onMouseLeave,
-      calculateDropdownDimensions,
-      inputRef,
-      inputContainerRef,
-      focused,
-      hovered,
-      dropdownMaxHeight,
-      dropdownWidth,
-    }) => {
-      const renderWithSelection = ({
-        getInputProps,
-        getItemProps,
-        getRootProps,
-        getMenuProps,
-        isOpen,
-        highlightedIndex,
-        openMenu,
-        closeMenu,
-      }) => {
-        const handleFocusWrapper = evt => {
-          onFocus(evt);
-          calculateDropdownDimensions();
-          openMenu();
-        };
-
-        const handleBlurWrapper = evt => {
-          onBlur(evt);
-          closeMenu();
-        };
-
-        const overrideGetItemProps = args => {
-          const { item, index } = args;
-          const origialItemProps = getItemProps(args);
-          return {
-            ...origialItemProps,
-            onClick: () => {
-              this.handleSelection(item);
-              closeMenu();
-            },
-            isActive: highlightedIndex === index,
-            isSelected: selectedItem && selectedItem.id === item.id,
-          };
-        };
-
-        const menuContents =
-          isOpen &&
-          isFunction(renderOptions) &&
-          renderOptions({
-            getItemProps: overrideGetItemProps,
-          });
-
-        const menuProps = getMenuProps({}, { suppressRefError: true });
-
-        const menu = (
-          <div
-            role={menuProps.role}
-            aria-labelledby={menuProps['aria-labelledby']}
-          >
-            {menuContents}
-          </div>
-        );
-
-        const handleKeyDown = event => {
-          if (event.key === 'Enter') {
-            const value = event.target.value;
-
-            const canCreate =
-              value !== '' && highlightedIndex === null && isFunction(onCreate);
-            if (canCreate) {
-              const newItem = {
-                id: value,
-                value,
-              };
-              this.handleSelection(newItem);
-              onCreate(newItem);
-              closeMenu();
-            }
-          }
-        };
-
-        const extensions = isFunction(onCreate)
-          ? {
-              innerRef: inputRef,
-              onKeyDown: handleKeyDown,
-            }
-          : {
-              innerRef: inputRef,
-            };
-
-        const inputProps = getInputProps(extensions);
-        if (selectedItem) {
-          inputProps.value = selectedItem.value;
-        }
-
-        const shouldRenderSelection =
-          selectedItem && isFunction(renderSelection);
-
-        const selection =
-          shouldRenderSelection &&
-          renderSelection({ removeItem: this.removeItem });
-
-        const input = (
-          <InputFieldContainer
-            innerRef={inputContainerRef}
-            height={height}
-            isHeightCapped
-            fullWidth={fullWidth}
-            stretch={stretch}
-            dirty={dirty}
-            disabled={disabled}
-            error={error}
-            success={success}
-            inlineEdit={inlineEdit}
-            focused={focused}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            {selection}
-            <HideOnSelection shrink={shouldRenderSelection} height={height}>
-              <InputField
-                {...inputProps}
-                height={height}
-                dirty={dirty}
-                disabled={disabled}
-                placeholder={hintText}
-                onFocus={handleFocusWrapper}
-                onBlur={handleBlurWrapper}
-                fullWidth={fullWidth}
-                stretch={stretch}
-              />
-            </HideOnSelection>
-            <InputStateIcon
-              inlineEdit={inlineEdit}
-              success={success}
-              loading={loading}
-              error={error}
-              hovered={hovered}
-            />
-            <Arrow
-              disabled={disabled}
-              open={isOpen}
-              height={height}
-              onClick={isOpen ? closeMenu : () => inputRef.current.focus()}
-            />
-          </InputFieldContainer>
-        );
-
-        const dropdownHeight = menuContents
-          ? this.props.dropdownHeight || dropdownMaxHeight
-          : 0;
-        const width = this.props.dropdownWidth || dropdownWidth;
-
-        return (
-          <ComboBox
-            {...getRootProps({ refKey: 'innerRef' })}
-            fullWidth={fullWidth}
-            stretch={stretch}
-          >
-            <Menu
-              placement="bottom-start"
-              open={isOpen}
-              anchor={input}
-              width={width}
-              height={dropdownHeight}
-              disableContainment={disableContainment}
-            >
-              {menu}
-            </Menu>
-          </ComboBox>
-        );
-      };
-
-      return (
-        <Downshift
-          onChange={this.handleSelection}
-          stateReducer={this.stateReducer}
-          itemToString={noop}
-        >
-          {renderWithSelection}
-        </Downshift>
-      );
-    };
+    const { lastSelected, defaultValueText } = this.state;
 
     return (
       <WithFormFieldState
-        inlineEdit={this.props.inlineEdit}
-        focused={this.props.focused}
-        hovered={this.props.hovered}
-        dropdownMaxHeight={this.props.dropdownMaxHeight}
-        dropdownWidth={this.dropdownWidth}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
+        inlineEdit={inlineEdit}
+        focused={focused}
+        hovered={hovered}
+        dropdownMaxHeight={dropdownMaxHeight}
+        dropdownWidth={dropdownWidth}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
-        {renderChildrenWithFormState}
+        {({
+          dropdownMaxHeight: calculatedDropdownMaxHeight,
+          dropdownWidth: calculatedDropdownWidth,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          calculateDropdownDimensions,
+          focused: calculatedFocused,
+          onMouseEnter,
+          onMouseLeave,
+          hovered: calculatedHovered,
+          inputContainerRef,
+          inputRef,
+        }) => {
+          return (
+            <Downshift
+              onChange={this.handleSelection}
+              stateReducer={this.stateReducer}
+              itemToString={noop}
+              initialInputValue={defaultValueText}
+            >
+              {({
+                getItemProps,
+                getInputProps,
+                getRootProps,
+                getMenuProps,
+                isOpen,
+                inputValue,
+                highlightedIndex,
+                openMenu,
+                closeMenu,
+              }) =>
+                renderField({
+                  fullWidth,
+                  stretch,
+                  height,
+                  hintText,
+                  tabIndex,
+                  success,
+                  loading,
+                  dirty,
+                  error,
+                  defaultValue,
+                  disableContainment,
+                  selectedItem,
+                  disabled,
+                  onRemove,
+                  onCreate,
+                  providedDropdownWidth: dropdownWidth,
+                  providedDropdownHeight: dropdownHeight,
+                  renderOptions,
+                  renderSelection,
+                  dropdownMaxHeight: calculatedDropdownMaxHeight,
+                  dropdownWidth: calculatedDropdownWidth,
+                  onBlur: handleBlur,
+                  onFocus: handleFocus,
+                  calculateDropdownDimensions,
+                  focused: calculatedFocused,
+                  onMouseEnter,
+                  onMouseLeave,
+                  hovered: calculatedHovered,
+                  inputContainerRef,
+                  inputRef,
+                  lastSelected,
+                  getItems: this.getItems,
+                  handleSelection: this.handleSelection,
+                  getItemProps,
+                  getInputProps,
+                  getRootProps,
+                  getMenuProps,
+                  isOpen,
+                  inputValue,
+                  highlightedIndex,
+                  openMenu,
+                  closeMenu,
+                })
+              }
+            </Downshift>
+          );
+        }}
       </WithFormFieldState>
     );
   }
 }
 
+const ItemValuePropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+]);
+const ItemPropType = PropTypes.shape({
+  label: PropTypes.string,
+  value: ItemValuePropType,
+});
+
 SingleSelect.propTypes = {
+  /**
+   * Set of items that can be selected
+   */
+  items: PropTypes.arrayOf(ItemPropType),
   /**
    * Currently selected item
    */
-  selectedItem: PropTypes.any,
+  selectedItem: ItemPropType,
   /**
    * Function called when item is unselected
    */
@@ -324,9 +309,19 @@ SingleSelect.propTypes = {
    */
   dropdownWidth: PropTypes.string,
   /**
+   * Explicit height of the dropdown
+   */
+  dropdownHeight: PropTypes.number,
+  /**
    * Maxium height of the dropdown
    */
   dropdownMaxHeight: PropTypes.number,
+  /**
+    * Filter predicate to apply when input changes occur
+    * inputValue => item =>
+    item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
+  */
+  filter: PropTypes.func,
 
   /**********************
   Common InputField Props
@@ -341,6 +336,14 @@ SingleSelect.propTypes = {
    */
   inlineEdit: PropTypes.bool,
   /**
+   * Indicated if the inline editable field's persistence was successful
+   */
+  success: PropTypes.bool,
+  /**
+   * Indicates if the inline editable field is attempting to persist a change
+   */
+  loading: PropTypes.bool,
+  /**
    * Indicates if the field's value has changed
    */
   dirty: PropTypes.bool,
@@ -351,15 +354,19 @@ SingleSelect.propTypes = {
   /**
    * Default value to be applied when using as an uncontrolled input.
    */
-  defaultValue: PropTypes.string,
+  defaultValue: ItemValuePropType,
   /**
    * Indicates field is disabled from user input; no events will fire.
    */
   disabled: PropTypes.bool,
   /**
-   * Indicates the page focus is this text field.
+   * Indicates the page focus is on this control.
    */
   focused: PropTypes.bool,
+  /**
+   * Indicates the control is hovered.
+   */
+  hovered: PropTypes.bool,
   /**
    * Indicates the input to take the full width of its parent.
    * See stretch, (when strech is true this fullWidth is overriden)
@@ -389,15 +396,17 @@ SingleSelect.propTypes = {
 };
 
 SingleSelect.defaultProps = {
+  defaultValue: null,
   selectedItem: null,
   onRemove: noop,
   onSelect: noop,
   onCreate: null,
-  renderOptions: noop,
   renderSelection: null,
   disableContainment: false,
   dropdownWidth: null,
   dropdownMaxHeight: 600,
+  filter: inputValue => item =>
+    item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
 
   /**********************
    Common InputField Props

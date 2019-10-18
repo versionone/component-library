@@ -34,12 +34,12 @@ const stopClickPropagationOnChildren = children => {
   });
 };
 
-const ListItemText = ({ primary, secondary, tertiary }) => {
+const ListItemText = ({ primary, secondary, tertiary, emphasize }) => {
   return (
     <Root>
       <Clamp>
         <PrimaryContent>
-          <Typography is="span" variant="base">
+          <Typography is="span" variant="base" emphasize={emphasize}>
             {stopClickPropagationOnChildren(primary)}
           </Typography>
         </PrimaryContent>
@@ -69,11 +69,14 @@ ListItemText.propTypes = {
   secondary: PropTypes.node,
   /** Third line of content */
   tertiary: PropTypes.node,
+  /** If true emphasize the primary text */
+  emphasize: PropTypes.bool,
 };
 
 ListItemText.defaultProps = {
   secondary: null,
   tertiary: null,
+  emphasize: false,
 };
 
 export default ListItemText;

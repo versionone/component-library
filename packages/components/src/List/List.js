@@ -21,17 +21,20 @@ class List extends PureComponent {
   }
 
   render() {
-    const { bordered, dense, children } = this.props;
+    const { bordered, dense, children, ignoreKeyDown } = this.props;
+    const { focusedIndex } = this.state;
 
     const childrenCount = Children.count(children) - 1;
     const items = Children.map(children, (child, i) => {
       const clone = cloneElement(child, {
-        focused: child.props.focused || this.state.focusedIndex === i,
+        focused: child.props.focused || focusedIndex === i,
         key: child.props.id || i,
         index: i,
         onKeyDown: (evt, listItem) => {
-          this.handleKeyDown(evt, listItem);
-          child.props.onKeyDown(evt);
+          if (!ignoreKeyDown) {
+            this.handleKeyDown(evt, listItem);
+            child.props.onKeyDown(evt);
+          }
         },
       });
       if (!bordered) {
@@ -176,11 +179,17 @@ List.propTypes = {
    * Reduce the whitespace surrounding list items' content
    */
   dense: PropTypes.bool,
+  /*
+   * If true then the List defers Up,Down arrow navigation to someone else
+   * i.e. Allow SingleSelect to make this decision
+   */
+  ignoreKeyDown: PropTypes.bool,
 };
 
 List.defaultProps = {
   bordered: false,
   dense: false,
+  ignoreKeyDown: false,
 };
 
 export { List };

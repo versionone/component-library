@@ -66,11 +66,12 @@ const internalTheme = {
   Paper: {
     background: palette.paper,
     borderRadius: 4,
-    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+    boxShadow:
+      '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
     elevation: {
       boxShadow: '6px 6px 24px 0 rgba(30, 170, 189, 0.3)',
-      border: '1px solid #1EAABD'
-    }
+      border: `1px solid ${palette.primary500}`,
+    },
   },
   Button: {
     primary: {
@@ -83,7 +84,7 @@ const internalTheme = {
       focusBorder: '#2196F3',
       border: palette.transparent,
       boxShadow: '8px 8px 12px 0 rgba(90, 213, 230, 0.6)', //primary300
-      focusBoxShadow: '3px 3px 12px 0 rgba(30,170,189,0.6)' //primary 500
+      focusBoxShadow: '3px 3px 12px 0 rgba(30,170,189,0.6)', //primary 500
     },
     secondary: {
       background: palette.DeepOrange500,
@@ -95,7 +96,7 @@ const internalTheme = {
       focusBorder: 'red',
       border: palette.transparent,
       boxShadow: '8px 8px 12px 0 rgba(255, 87, 34, 0.6)', //DeepOrange500,
-      focusBoxShadow: '3px 3px 12px 0 rgba(255, 87, 34, 0.6)', 
+      focusBoxShadow: '3px 3px 12px 0 rgba(255, 87, 34, 0.6)',
     },
     standard: {
       background: palette.transparent,
@@ -129,8 +130,8 @@ const internalTheme = {
     },
     icon: {
       focusBorder: 'rgba(30,170,189,0.7)',
-      focusBoxShadow: '0 0 7px 0 rgba(30,170,189,0.5)'
-    }
+      focusBoxShadow: '0 0 7px 0 rgba(30,170,189,0.5)',
+    },
   },
   Drawer: {
     background: palette.paper,
@@ -270,7 +271,7 @@ const internalTheme = {
       inverse: palette.paper,
       title: palette.gunmetal,
       description: palette.shuttle,
-      lineStyle: "dashed",
+      lineStyle: 'dashed',
       lineColor: palette.dove,
       lineWidth: 1,
     },
@@ -279,7 +280,7 @@ const internalTheme = {
       inverse: palette.dove,
       title: palette.slate,
       description: palette.slate,
-      lineStyle: "dashed",
+      lineStyle: 'dashed',
       lineColor: palette.dove,
       lineWidth: 1,
     },
@@ -288,11 +289,11 @@ const internalTheme = {
       inverse: '#1890ff',
       title: palette.slate,
       description: palette.slate,
-      lineStyle: "solid",
-      lineColor: "#1890ff",
+      lineStyle: 'solid',
+      lineColor: '#1890ff',
       lineWidth: 1,
     },
-    titleWeight: "normal",
+    titleWeight: 'normal',
   },
   Timeline: {
     main: palette.dove,
@@ -548,7 +549,7 @@ const themeDark = {
     },
     disabled: {
       text: 'rgb(255, 255, 255, 0.5)',
-    }
+    },
   },
   Drawer: {
     background: palette.chrome800,
@@ -604,6 +605,7 @@ const themeDark = {
   },
   ListItem: {
     selected: 'rgba(0, 169, 224, 0.1)',
+    mainHighlight: 'rgba(67, 128, 152, 0.2)',
   },
   ListItemText: {
     main: palette.paper,
@@ -617,7 +619,7 @@ const themeDark = {
   Radio: {
     main: palette.paper,
     selected: palette.primary300,
-    background: palette.chrome800
+    background: palette.chrome800,
   },
   Stepper: {
     current: {
@@ -625,7 +627,7 @@ const themeDark = {
       inverse: palette.paper,
       title: palette.chrome50,
       description: palette.chrome100,
-      lineStyle: "dashed",
+      lineStyle: 'dashed',
       lineColor: palette.chrome200,
       lineWidth: 1,
     },
@@ -634,7 +636,7 @@ const themeDark = {
       inverse: palette.chrome200,
       title: palette.chrome200,
       description: palette.chrome200,
-      lineStyle: "dashed",
+      lineStyle: 'dashed',
       lineColor: palette.chrome200,
       lineWidth: 1,
     },
@@ -643,11 +645,11 @@ const themeDark = {
       inverse: '#1890ff',
       title: palette.chrome200,
       description: palette.chrome200,
-      lineStyle: "solid",
-      lineColor: "#1890ff",
+      lineStyle: 'solid',
+      lineColor: '#1890ff',
       lineWidth: 1,
     },
-    titleWeight: "normal",
+    titleWeight: 'normal',
   },
   TextField: {
     borderColor: palette.chrome500,

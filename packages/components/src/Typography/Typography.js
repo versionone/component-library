@@ -1,6 +1,6 @@
 import React, { Component, Children, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent } from '../StyleProvider';
+import { createComponent, styleUtils } from '../StyleProvider';
 import { palette } from '../palette';
 
 const fontStrategyMap = {
@@ -49,22 +49,29 @@ class Typography extends Component {
     const { is } = props;
 
     this.TypographyImpl = createComponent(
-      ({ variant, theme }) => ({
+      ({ variant, emphasize }) => ({
         fontFamily:
           "'Cabin', 'Cabin Local', -apple-system, system-ui, BlinkMacSystemFont, sans-serif",
         ...(fontStrategyMap[variant] || fontStrategyMap.base),
+        ...styleUtils.conditionalStyle(
+          variant === 'base' && emphasize,
+          'font-weight',
+          500,
+        ),
       }),
       is,
     );
   }
 
   render() {
-    const { children, variant } = this.props;
+    const { children, variant, emphasize } = this.props;
 
     const childrenWithTypography = Children.map(children, child => {
       if (typeof child === 'string' || typeof child === 'number') {
         return (
-          <this.TypographyImpl variant={variant}>{child}</this.TypographyImpl>
+          <this.TypographyImpl variant={variant} emphasize={emphasize}>
+            {child}
+          </this.TypographyImpl>
         );
       }
 
@@ -91,11 +98,14 @@ Typography.propTypes = {
     'xSmall',
     'button',
   ]),
+  /** If true apply a slighty greater font weight than the base */
+  emphasize: PropTypes.bool,
 };
 
 Typography.defaultProps = {
   is: 'span',
   variant: 'base',
+  emphasize: false,
 };
 
 export { Typography };

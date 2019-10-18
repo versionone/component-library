@@ -7,24 +7,28 @@ import { EventBoundary } from '../EventBoundary';
 import { Focusable } from '../Focusable';
 import { HoverIntersection, HoverIntersectionExclude } from '../HoverIntersection';
 import ListContext from './ListValueContext';
+import { palette } from '../palette';
 
 const Row = createComponent(
-  ({ dense, hovered, selected, theme }) => ({
-    display: 'flex',
-    'flex-direction': 'row',
-    flexWrap: 'nowrap',
-    'justify-content': 'space-between',
-    'align-items': 'center',
-    ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
-    ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
-    cursor: 'pointer',
-    'background-color':
-      !hovered && selected
-        ? theme.ListItem.selected
-        : hovered
-        ? theme.ListItem.mainHighlight
-        : 'transparent',
-  }),
+  ({ dense, hovered, selected, theme }) => {
+    const backgroundColor = (() => {
+      if (hovered) return theme.ListItem.mainHighlight;
+      if (selected) return theme.ListItem.selected;
+      return palette.transparent;
+    })();
+
+    return {
+      display: 'flex',
+      'flex-direction': 'row',
+      flexWrap: 'nowrap',
+      'justify-content': 'space-between',
+      'align-items': 'center',
+      ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
+      ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
+      cursor: 'pointer',
+      'background-color': backgroundColor,
+    };
+  },
   'div',
   [
     'data-component',
@@ -39,27 +43,30 @@ const Row = createComponent(
 );
 
 const ClickableRow = createComponent(
-  ({ dense, focused, hovered, selected, theme }) => ({
-    display: 'flex',
-    'flex-direction': 'row',
-    flexWrap: 'nowrap',
-    'justify-content': 'space-between',
-    'align-items': 'center',
-    ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
-    ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
-    border: 0,
-    boxSizing: 'border-box',
-    cursor: 'pointer',
-    textAlign: 'left',
-    width: '100%',
-    'background-color':
-      !hovered && selected
-        ? theme.ListItem.selected
-        : hovered
-        ? theme.ListItem.mainHighlight
-        : 'transparent',
-    ...styleUtils.conditionalStyles(focused, theme.focused),
-  }),
+  ({ dense, focused, hovered, selected, theme }) => {
+    const backgroundColor = (() => {
+      if (hovered) return theme.ListItem.mainHighlight;
+      if (selected) return theme.ListItem.selected;
+      return palette.transparent;
+    })();
+
+    return {
+      display: 'flex',
+      'flex-direction': 'row',
+      flexWrap: 'nowrap',
+      'justify-content': 'space-between',
+      'align-items': 'center',
+      ...styleUtils.conditionalStyles(dense, styleUtils.padding(2)),
+      ...styleUtils.conditionalStyles(!dense, styleUtils.padding(10)),
+      border: 0,
+      boxSizing: 'border-box',
+      cursor: 'pointer',
+      textAlign: 'left',
+      width: '100%',
+      'background-color': backgroundColor,
+      ...styleUtils.conditionalStyles(focused, theme.focused),
+    };
+  },
   'div',
   [
     'role',
@@ -132,8 +139,15 @@ class ListItemImpl extends React.Component {
       onKeyDown,
       secondaryAction,
       supportingVisual,
+      isPreviousSelection,
       ...otherProps
     } = this.props;
+
+    const listItemText = isPreviousSelection
+      ? React.cloneElement(children, {
+          emphasize: isPreviousSelection,
+        })
+      : children;
 
     return (
       <ListContext.Consumer>
@@ -164,7 +178,7 @@ class ListItemImpl extends React.Component {
                         {Boolean(supportingVisual) && (
                           <AncillaryAction>{supportingVisual}</AncillaryAction>
                         )}
-                        {children}
+                        {listItemText}
                       </LeftGroup>
                       {Boolean(secondaryAction) && (
                         <AncillaryAction>{secondaryAction}</AncillaryAction>

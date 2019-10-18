@@ -1,33 +1,39 @@
-export default {
-  1: {
-    id: 1,
+export const items = [
+  {
+    value: 0,
     href: 'https://bit.ly/2Twz2Rq',
     email: 'andrew@collab.net',
-    value: 'andrew smith',
+    label: 'james andrew smith',
   },
-  2: {
-    id: 2,
+  {
+    value: 1,
+    href: 'https://bit.ly/2Twz2Rq',
+    email: 'andrew@collab.net',
+    label: 'andrew smith',
+  },
+  {
+    value: 2,
     href: 'https://bit.ly/2Twz2Rq',
     email: 'letyze@collab.net',
-    value: 'andrew letyze',
+    label: 'andrew letyze',
   },
-  3: {
-    id: 3,
+  {
+    value: 3,
     href: 'https://bit.ly/2Twz2Rq',
     email: 'tadaboy@collab.net',
-    value: 'Tosin',
+    label: 'Tosin',
   },
-  4: {
-    id: 4,
+  {
+    value: 4,
     href: 'https://bit.ly/2Twz2Rq',
     email: 'kmarsh@collab.net',
-    value: 'Kristen',
+    label: 'Kristen',
   },
-  5: {
-    id: 5,
+  {
+    value: 5,
     href: 'https://bit.ly/2Twz2Rq',
     email: 'wsmith@collab.net',
-    value:
+    label:
       "Name so very very long that I can't event begin to render the entire name without clamping with a dot dot dot",
   },
-};
+];

@@ -92,5 +92,5 @@ export default createComponent(
     },
   }),
   'div',
-  ['innerRef', 'onMouseEnter', 'onMouseLeave', 'onClick'],
+  ['onMouseEnter', 'onMouseLeave', 'onClick'],
 );
