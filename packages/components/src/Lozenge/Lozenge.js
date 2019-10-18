@@ -11,14 +11,14 @@ const Impl = createComponent(
     ...styleUtils.conditionalStyle(
       bold,
       'background-color',
-      theme.Lozenge[variant].main,
+      color || theme.Lozenge[variant].main,
       'white',
     ),
     ...styleUtils.conditionalStyle(
       bold,
       'color',
       'white',
-      theme.Lozenge[variant].main,
+      color || theme.Lozenge[variant].main,
     ),
     'border-color': color || theme.Lozenge[variant].main,
     'border-style': 'solid',
