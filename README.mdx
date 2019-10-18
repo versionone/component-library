@@ -31,3 +31,37 @@ Clone the repo and `cd` into the repo's directory.
 - [Developer Guide](getting-started/developer-guide)
 - [Implement Components](getting-started/implement-components)
 - [Document Components](getting-started/document-components)
+
+
+## Linking 
+In some cases we need to enhance the component library and receive quick feedback of the changes in a consuming applicaiton like VersionOne or Continuum.
+
+### Working locally with VersionOne (Core)
+Here is a small snippet that can be added to your `~/.bash_profile` that provides aliases for linking the component library:
+
+```
+DEV_HOME="C:/development"
+CORE_DIR="$DEV_HOME/core"
+CL_DIR="$DEV_HOME/component-library"
+
+function link() {
+    cd "$CL_DIR/packages/components"
+    yarn link
+    cd "$CORE_DIR/VersionOne.Web"
+    yarn link "@versionone/components"
+    cd $CL_DIR
+    yarn build
+    cd $CORE_DIR
+    ./gulp watch
+}
+
+function buildLink() {
+    cd $CL_DIR
+    yarn build
+    cd $CORE_DIR
+    ./gulp watch
+}
+
+alias blink="buildLink"
+alias link="link"
+```
