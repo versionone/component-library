@@ -21,7 +21,13 @@ class List extends PureComponent {
   }
 
   render() {
-    const { bordered, dense, children, ignoreKeyDown } = this.props;
+    const {
+      bordered,
+      dense,
+      children,
+      ignoreKeyDown,
+      'data-test': dataTest,
+    } = this.props;
     const { focusedIndex } = this.state;
 
     const childrenCount = Children.count(children) - 1;
@@ -51,17 +57,14 @@ class List extends PureComponent {
     });
 
     return (
-      <ListImpl
-        data-component="List"
-        data-test={this.props['data-test']}
-        role="list"
-      >
+      <ListImpl data-component="List" data-test={dataTest} role="list">
         <ListContext.Provider value={{ dense }}>{items}</ListContext.Provider>
       </ListImpl>
     );
   }
 
   handleKeyDown(evt, listItem) {
+    const { children } = this.props;
     const isSelection = evt.key === 'Enter' || evt.key === ' ';
     if (evt.key === 'Tab' || isSelection) {
       if (isSelection) {
@@ -72,9 +75,8 @@ class List extends PureComponent {
     } else if (evt.key === 'ArrowUp') {
       evt.preventDefault();
 
-      const hasPrimaryActionByIndex = React.Children.map(
-        this.props.children,
-        child => Boolean(child.props.onClick),
+      const hasPrimaryActionByIndex = Children.map(children, child =>
+        Boolean(child.props.onClick),
       );
 
       const currentIndex = listItem.props.index;
@@ -82,13 +84,13 @@ class List extends PureComponent {
 
       const focusedIndex = (() => {
         const start = currentIndex - 1 < 0 ? max - 1 : currentIndex - 1;
-        for (var i = start; i >= 0; i--) {
+        for (let i = start; i >= 0; i--) {
           if (hasPrimaryActionByIndex[i]) {
             return i;
           }
         }
 
-        for (var i = max; i >= start; i--) {
+        for (let i = max; i >= start; i--) {
           if (hasPrimaryActionByIndex[i]) {
             return i;
           }
@@ -103,9 +105,8 @@ class List extends PureComponent {
     } else if (evt.key === 'ArrowDown') {
       evt.preventDefault();
 
-      const hasPrimaryActionByIndex = React.Children.map(
-        this.props.children,
-        child => Boolean(child.props.onClick),
+      const hasPrimaryActionByIndex = Children.map(children, child =>
+        Boolean(child.props.onClick),
       );
 
       const currentIndex = listItem.props.index;
@@ -113,13 +114,13 @@ class List extends PureComponent {
 
       const focusedIndex = (() => {
         const start = currentIndex + 1 >= max ? 0 : currentIndex + 1;
-        for (var i = start; i < max; i++) {
+        for (let i = start; i < max; i++) {
           if (hasPrimaryActionByIndex[i]) {
             return i;
           }
         }
 
-        for (var i = 0; i <= currentIndex; i++) {
+        for (let i = 0; i <= currentIndex; i++) {
           if (hasPrimaryActionByIndex[i]) {
             return i;
           }
@@ -134,9 +135,8 @@ class List extends PureComponent {
     } else if (evt.key === 'Home') {
       evt.preventDefault();
 
-      const hasPrimaryActionByIndex = React.Children.map(
-        this.props.children,
-        child => Boolean(child.props.onClick),
+      const hasPrimaryActionByIndex = Children.map(children, child =>
+        Boolean(child.props.onClick),
       );
 
       const focusedIndex = hasPrimaryActionByIndex.findIndex(
@@ -149,9 +149,8 @@ class List extends PureComponent {
     } else if (evt.key === 'End') {
       evt.preventDefault();
 
-      const hasPrimaryActionByIndex = React.Children.map(
-        this.props.children,
-        child => Boolean(child.props.onClick),
+      const hasPrimaryActionByIndex = Children.map(children, child =>
+        Boolean(child.props.onClick),
       );
 
       const focusedIndex = findLastIndex(
@@ -184,6 +183,10 @@ List.propTypes = {
    * i.e. Allow SingleSelect to make this decision
    */
   ignoreKeyDown: PropTypes.bool,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 List.defaultProps = {

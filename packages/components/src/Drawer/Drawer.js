@@ -137,6 +137,7 @@ class Drawer extends React.Component {
           placement={placement}
           shadow={shadow}
           aria-hidden={!open}
+          open={open}
         >
           {children}
         </Impl>

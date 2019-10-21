@@ -97,6 +97,7 @@ class ListItem extends React.Component {
 
   render() {
     const {
+      selected,
       'data-test': dataTest,
       'data-trackingid': trackingId,
       children,
@@ -131,6 +132,7 @@ class ListItem extends React.Component {
                 <HoverIntersection>
                   {({ bind, hovered }) => (
                     <RowImpl
+                      selected={selected}
                       onMouseDown={onMouseDown}
                       onMouseEnter={onMouseEnter}
                       onMouseLeave={onMouseLeave}

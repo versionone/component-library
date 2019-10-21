@@ -37,7 +37,7 @@ const Link = props => {
   } = props;
 
   const rel = newWindow ? 'noopener noreferrer' : null;
-  const target = newWindow ? 'blank' : null;
+  const target = newWindow ? '_blank' : null;
 
   return (
     <LinkImpl
