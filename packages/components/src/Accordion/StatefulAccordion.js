@@ -40,13 +40,15 @@ class StatefulAccordion extends React.Component {
   }
 
   toggle(index) {
-    const isOpen = this.state.isOpenByIndex[index];
+    const { isOpenByIndex } = this.state;
+    const { allCollapsable, manyExpandable, onSelect } = this.props;
+    const isOpen = isOpenByIndex[index];
     const isClosing = isOpen;
 
     let finalOpenState = {};
 
     const newOpenState = {
-      ...this.state.isOpenByIndex,
+      ...isOpenByIndex,
       [index]: !isOpen,
     };
 
@@ -54,11 +56,11 @@ class StatefulAccordion extends React.Component {
 
     finalOpenState = newOpenState;
 
-    if (!this.props.allCollapsable && willAllBeClosed) {
-      finalOpenState = this.state.isOpenByIndex;
+    if (!allCollapsable && willAllBeClosed) {
+      finalOpenState = isOpenByIndex;
     }
 
-    if (!this.props.manyExpandable && !isClosing) {
+    if (!manyExpandable && !isClosing) {
       finalOpenState = Object.keys(newOpenState).reduce(
         (acc, _, i) => ({
           ...acc,
@@ -73,17 +75,18 @@ class StatefulAccordion extends React.Component {
       isOpenByIndex: finalOpenState,
     });
 
-    this.props.onSelect(index);
+    onSelect(index);
   }
 
   render() {
+    const { isOpenByIndex } = this.state;
     const accordion = <Accordion {...this.props} onSelect={this.toggle} />;
 
     const clonedChildren = React.Children.map(
       accordion.props.children,
       (child, index) => {
         return React.cloneElement(child, {
-          open: this.state.isOpenByIndex[index],
+          open: isOpenByIndex[index],
         });
       },
     );

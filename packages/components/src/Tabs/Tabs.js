@@ -19,15 +19,17 @@ class Tabs extends React.Component {
   }
 
   render() {
+    const { handleSelection } = this.props;
+    const { activeTab, focusedTab } = this.state;
     const context = {
-      activeTab: this.state.activeTab,
-      focusedTab: this.state.focusedTab,
+      activeTab,
+      focusedTab,
       selectTabByIndex: index => () => {
         this.setState({
           activeTab: index,
           focusedTab: index,
         });
-        this.props.handleSelection(index);
+        handleSelection(index);
       },
       focusTabByIndex: index => () => this.setState({ focusedTab: index }),
     };

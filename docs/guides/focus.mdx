@@ -53,13 +53,13 @@ The contents of a [drawer](/components/Drawer) should be contained withing a foc
         this.handleClose = this.handleClose.bind(this);
       }
       open() {
-        this.setState(({ open }) => ({
+        this.setState({
           open: true,
-        }));
+        });
       }
       handleClose() {
         this.setState(
-          ({ open }) => ({
+          () => ({
             open: false,
           }),
           this.pop,

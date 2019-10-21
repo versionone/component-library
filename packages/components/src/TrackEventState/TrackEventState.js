@@ -19,32 +19,22 @@ class TrackEventState extends Component {
   }
 
   componentDidMount() {
-    if (this.state.eventState) {
-      this.triggerEvent(this.props.onTrigger);
+    const { eventState } = this.state;
+    const { onTrigger, offTrigger } = this.props;
+    if (eventState) {
+      this.triggerEvent(onTrigger);
     } else {
-      this.triggerEvent(this.props.offTrigger);
+      this.triggerEvent(offTrigger);
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      !prevProps.eventState &&
-      this.props.eventState &&
-      !this.state.eventState
-    ) {
-      this.setState(
-        { eventState: this.props.eventState },
-        this.triggerEvent(this.props.onTrigger),
-      );
-    } else if (
-      prevProps.eventState &&
-      !this.props.eventState &&
-      this.state.eventState
-    ) {
-      this.setState(
-        { eventState: this.props.eventState },
-        this.triggerEvent(this.props.offTrigger),
-      );
+    const { eventState, onTrigger, offTrigger } = this.props;
+    const { eventState: computedEventState } = this.state;
+    if (!prevProps.eventState && eventState && !computedEventState) {
+      this.setState({ eventState }, this.triggerEvent(onTrigger));
+    } else if (prevProps.eventState && !eventState && computedEventState) {
+      this.setState({ eventState }, this.triggerEvent(offTrigger));
     }
   }
 
