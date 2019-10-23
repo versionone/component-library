@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
-import { ErrorBoundary } from '..';
+import React from 'react';
 
-const Fallback = () => <div>We ran out of mice</div>;
+export const Fallback = () => <div>We ran out of mice</div>;
 
 export class Example extends React.Component {
   constructor() {
@@ -16,19 +15,22 @@ export class Example extends React.Component {
     this.setState(state => ({ count: state.count + 1 }));
   }
 
-  componentDidCatch() {
-    debugger;
-  }
-
   render() {
     const { count } = this.state;
-    return (
-      <ErrorBoundary Fallback={Fallback} onError={console.error}>
-        <button onClick={this.handleClick} type="button">
-          <div>Click me until I produce error </div>
-        </button>
-        <div>{count < 2 ? count : count.iWillThrow()}</div>
-      </ErrorBoundary>
-    );
+    return <Child count={count} handleClick={this.handleClick} />;
   }
 }
+
+const Child = ({ count, handleClick }) => {
+  if (count > 2) {
+    throw new Error(count);
+  } else
+    return (
+      <div>
+        <button onClick={handleClick} type="button">
+          <div>Click me until I produce error </div>
+        </button>
+        <div>{count}</div>
+      </div>
+    );
+};

@@ -5,12 +5,32 @@ menu: Components
 
 import { Playground, PropsTable } from '@versionone/doc-components';
 import { ErrorBoundary } from './';
-import { Example } from './examples/Example.js';
+import { Fallback, Example } from './examples/Example.js';
 
 Error boundaries catch unexpected errors and enable presenting the user with a user interface that indicates something went unexpectedly wrong.
 
+## Default
+
 <Playground>
-  <Example />
+  <ErrorBoundary>
+    <Example />
+  </ErrorBoundary>
+</Playground>
+
+## Log to external service
+
+<Playground>
+  <ErrorBoundary onError={alert}>
+    <Example />
+  </ErrorBoundary>
+</Playground>
+
+## Custom fallback user interface
+
+<Playground>
+  <ErrorBoundary Fallback={Fallback} onError={alert}>
+    <Example />
+  </ErrorBoundary>
 </Playground>
 
 ## API

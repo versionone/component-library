@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { noop } from 'underscore';
 
-const DefaultFallback = ({ error, info }) => {
-  return (
-    <div>
-      {error}
-      {info}
-    </div>
-  );
+const DefaultFallback = ({ error }) => {
+  return <div>{error}</div>;
+};
+
+DefaultFallback.propTypes = {
+  /**
+   * error.toString()
+   */
+  error: PropTypes.string.isRequired,
 };
 
 class ErrorBoundary extends React.Component {
@@ -21,14 +23,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    debugger;
-    return { hasError: true, error };
+    return { hasError: true, error: error.toString() };
   }
 
   componentDidCatch(error, info) {
     const { onError } = this.props;
-    debugger;
-    onError('walker', error, info);
+    onError(error, info);
   }
 
   render() {
