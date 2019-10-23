@@ -447,7 +447,7 @@ renderField.defaultProps = {
   disableContainment: false,
   dropdownWidth: null,
   dropdownMaxHeight: 600,
-  filter: inputValue => item =>
+  filter: (inputValue = '') => item =>
     item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
 
   /**********************

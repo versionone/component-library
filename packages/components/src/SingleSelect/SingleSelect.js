@@ -195,8 +195,9 @@ class SingleSelect extends React.Component {
             <Downshift
               onChange={this.handleSelection}
               stateReducer={this.stateReducer}
-              itemToString={noop}
+              itemToString={item => (item ? item.label : '')}
               initialInputValue={defaultValueText}
+              selectedItem={selectedItem}
             >
               {({
                 getItemProps,
@@ -405,7 +406,7 @@ SingleSelect.defaultProps = {
   disableContainment: false,
   dropdownWidth: null,
   dropdownMaxHeight: 600,
-  filter: inputValue => item =>
+  filter: (inputValue = '') => item =>
     item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
 
   /**********************
