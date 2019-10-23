@@ -169,16 +169,22 @@ class TextField extends Component {
   }
 
   handleChange(evt) {
-    const {value} = evt.target;
-    this.props.onChange(evt, value);
+    const { value } = evt.target;
+    const { onChange } = this.props;
+    onChange(evt, value);
   }
 
   handleTogglePassword() {
-    if (this.props.password)
-      this.setState({ showPassword: !this.state.showPassword });
+    const { password } = this.props;
+    if (password)
+      this.setState(state => ({ showPassword: !state.showPassword }));
   }
 }
 TextField.propTypes = {
+  /**
+   * If `true` then the field contains a sensitive information
+   */
+  password: PropTypes.bool,
   /**
    * change event handler.
    */
@@ -265,6 +271,7 @@ TextField.propTypes = {
 };
 
 TextField.defaultProps = {
+  password: false,
   onChange: noop,
   onKeyDown: noop,
   innerRef: noop,

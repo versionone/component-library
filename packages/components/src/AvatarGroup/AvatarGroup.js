@@ -17,8 +17,6 @@ const OverlapedGroup = createComponent(
     '> *:first-child': {
       'margin-left': 0,
     },
-
-    //'margin-left': 12,
   }),
   'div',
   ['data-component', 'data-test'],
@@ -78,37 +76,42 @@ class AvatarGroup extends React.Component {
   }
 
   toggleMoreMenu() {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState(state => ({ isOpen: !state.isOpen }));
   }
 
   render() {
-    const {props} = this;
-    const avatarCount = React.Children.count(props.children);
-    const exceedsThreshold =
-      props.maxCount !== null && avatarCount > props.maxCount;
-    const moreCount = exceedsThreshold
-      ? `${avatarCount - props.maxCount}`
-      : null;
+    const {
+      children,
+      maxCount,
+      size,
+      border,
+      disableOverlap,
+      showTooltip,
+    } = this.props;
+    const { isOpen } = this.state;
+    const avatarCount = React.Children.count(children);
+    const exceedsThreshold = maxCount !== null && avatarCount > maxCount;
+    const moreCount = exceedsThreshold ? `${avatarCount - maxCount}` : null;
 
     const moreAvatar = (
-      <AvatarWrapper zIndex={0} size={props.size}>
+      <AvatarWrapper zIndex={0} size={size}>
         <Avatar
-          size={props.size}
-          border={props.border}
+          size={size}
+          border={border}
           title={moreCount}
           onClick={this.toggleMoreMenu}
         />
       </AvatarWrapper>
     );
 
-    const allAvatars = React.Children.toArray(props.children);
+    const allAvatars = React.Children.toArray(children);
 
     const visibleAvatars = allAvatars.slice(
       0,
-      exceedsThreshold ? props.maxCount : avatarCount,
+      exceedsThreshold ? maxCount : avatarCount,
     );
 
-    const hiddenAvatars = allAvatars.slice(props.maxCount, avatarCount + 1);
+    const hiddenAvatars = allAvatars.slice(maxCount, avatarCount + 1);
 
     const moreAvatarListItems = hiddenAvatars.map((a, i) => {
       return (
@@ -116,9 +119,7 @@ class AvatarGroup extends React.Component {
           key={i}
           onClick={a.props.onClick}
           tabIndex={0}
-          icon={
-            <Avatar src={a.props.src} title={a.props.title} size={props.size} />
-          }
+          icon={<Avatar src={a.props.src} title={a.props.title} size={size} />}
         >
           <ListItemText primary={a.props.title} />
         </ListItem>
@@ -128,7 +129,7 @@ class AvatarGroup extends React.Component {
     const avatarMenu = exceedsThreshold && (
       <Menu
         anchor={moreAvatar}
-        open={this.state.isOpen}
+        open={isOpen}
         onClickOutside={this.closeMoreMenu}
         height="200"
       >
@@ -136,14 +137,14 @@ class AvatarGroup extends React.Component {
       </Menu>
     );
 
-    const Grouping = props.disableOverlap ? GridGroup : OverlapedGroup;
+    const Grouping = disableOverlap ? GridGroup : OverlapedGroup;
 
     const avatars = visibleAvatars.map((child, i) => (
-      <AvatarWrapper key={i} zIndex={avatarCount - i} size={props.size}>
+      <AvatarWrapper key={i} zIndex={avatarCount - i} size={size}>
         {React.cloneElement(child, {
-          size: props.size,
-          border: props.border,
-          showTooltip: props.showTooltip,
+          size,
+          border,
+          showTooltip,
         })}
       </AvatarWrapper>
     ));
@@ -154,7 +155,7 @@ class AvatarGroup extends React.Component {
           direction="horizontal"
           disableGutter
           xs={4}
-          data-component={props.disableOverlap ? 'GridGroup' : 'OverlapedGroup'}
+          data-component={disableOverlap ? 'GridGroup' : 'OverlapedGroup'}
         >
           {avatars}
           {avatarMenu}

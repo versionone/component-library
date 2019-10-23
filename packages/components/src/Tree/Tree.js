@@ -59,6 +59,7 @@ const Tree = props => {
     handleSelection,
     selected,
     title,
+    handleExpand,
   } = props;
 
   const updatedDepth = depth || 0;
@@ -69,7 +70,7 @@ const Tree = props => {
       open={expanded}
       onClick={event => {
         event.stopPropagation();
-        props.handleExpand(event);
+        handleExpand(event);
       }}
     />
   ) : (
@@ -125,6 +126,10 @@ Tree.propTypes = {
    * Title of the node
    */
   title: PropTypes.node,
+  /**
+   * Reserved for parent Tree to inform child of level of nesting
+   */
+  depth: PropTypes.number,
 };
 
 Tree.defaultProps = {
@@ -133,6 +138,7 @@ Tree.defaultProps = {
   handleSelection: null,
   handleExpand: noop,
   title: '',
+  depth: 0,
 };
 
 export { Tree };

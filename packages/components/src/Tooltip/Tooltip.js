@@ -41,27 +41,29 @@ const TooltipImpl = createComponent(() => ({}), 'span', [
   'data-test',
 ]);
 
-const Tooltip = props => {
+const Tooltip = ({
+  'data-test': dataTest,
+  disableContainment,
+  placement,
+  children,
+  anchor,
+}) => {
   return (
-    <TooltipImpl data-component="Tooltip" data-test={props['data-test']}>
+    <TooltipImpl data-component="Tooltip" data-test={dataTest}>
       <Hoverable>
         {({ hovered, bind }) => {
           const popper = (
             <PortalContainer mounted={hovered}>
-              <Popper
-                placement={props.placement}
-                positionFixed
-                modifiers={{}}
-              >
-                {({ ref, style, placement }) => {
+              <Popper placement={placement} positionFixed modifiers={{}}>
+                {({ ref, style, placement: dataPlacement }) => {
                   return (
                     <PositionedTooltip
                       innerRef={ref}
                       style={style}
-                      data-placement={placement}
-                      disableContainment={props.disableContainment}
+                      data-placement={dataPlacement}
+                      disableContainment={disableContainment}
                     >
-                      {props.children}
+                      {children}
                     </PositionedTooltip>
                   );
                 }}
@@ -75,7 +77,7 @@ const Tooltip = props => {
                 <Reference>
                   {({ ref }) => (
                     <div ref={ref} {...bind}>
-                      {props.anchor}
+                      {anchor}
                     </div>
                   )}
                 </Reference>

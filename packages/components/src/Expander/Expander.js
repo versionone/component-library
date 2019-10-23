@@ -1,10 +1,9 @@
 import { noop } from 'underscore';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { createComponent, styleUtils } from '../StyleProvider';
 import { Arrow } from '../Arrow';
 import { SpacedGroup } from '../SpacedGroup';
-import { palette } from '../palette';
 
 const Header = createComponent(
   ({ theme }) => ({
@@ -21,7 +20,14 @@ const Header = createComponent(
     },
   }),
   'button',
-  ['onClick', 'onKeyDown', 'onKeyUp', 'aria-expanded', 'tabIndex'],
+  [
+    'onClick',
+    'onKeyDown',
+    'onKeyUp',
+    'aria-expanded',
+    'tabIndex',
+    'data-trackingid',
+  ],
 );
 
 const Container = createComponent(
@@ -34,21 +40,31 @@ const Container = createComponent(
 );
 
 const Expander = props => {
-  const title = props.expanded ? props.expandedTitle : props.title;
+  const {
+    expanded,
+    expandedTitle,
+    title,
+    'data-test': dataTest,
+    'data-trackingid': dataTrackingid,
+    onToggle,
+    children,
+  } = props;
+  const text = expanded ? expandedTitle : title;
 
   return (
-    <div data-component="Expander" data-test={props['data-test']}>
+    <div data-component="Expander" data-test={dataTest}>
       <Header
-        aria-expanded={props.expanded}
+        aria-expanded={expanded}
         tabIndex="0"
-        onClick={props.onToggle}
+        onClick={onToggle}
+        data-trackingid={dataTrackingid}
       >
         <SpacedGroup center xs={2}>
-          <Arrow open={props.expanded} is="span" />
-          <span>{title}</span>
+          <Arrow open={expanded} is="span" />
+          <span>{text}</span>
         </SpacedGroup>
       </Header>
-      <Container open={props.expanded}>{props.children}</Container>
+      <Container open={expanded}>{children}</Container>
     </div>
   );
 };
@@ -74,6 +90,14 @@ Expander.propTypes = {
    * Function called when toggling expansion
    */
   onToggle: PropTypes.func,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
+  /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
 };
 
 Expander.defaultProps = {

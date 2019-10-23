@@ -96,7 +96,7 @@ const Input = createComponent(
 );
 
 const Ripple = createComponent(
-  ({ disabled, checked, focused, type }) => ({
+  ({ disabled, checked, focused }) => ({
     top: 0,
     left: 0,
     width: '100%',
@@ -158,51 +158,76 @@ const Bar = createComponent(
 class Switch extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { focused: props.focused };
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   handleKeyDown(event) {
+    const { onClick } = this.props;
     const isEnter = event.which === 13;
-    isEnter && isFunction(this.props.onClick) && this.props.onClick(event);
+    if (isEnter && isFunction(onClick)) {
+      onClick(event);
+    }
   }
 
   render() {
-    const renderChildrenWithFormState = ({ onBlur, onFocus, focused }) => {
+    const {
+      'data-test': dataTest,
+      'data-trackingid': dataTrackingid,
+      checked,
+      tabIndex,
+      disabled,
+      value,
+      inlineEdit,
+      onFocus,
+      onBlur,
+      onClick,
+      focused,
+    } = this.props;
+    const renderChildrenWithFormState = ({
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+      focused: isFocused,
+    }) => {
       return (
         <Root
           data-component="Switch"
-          data-test={this.props['data-test']}
-          data-trackingid={this.props['data-trackingid']}
+          data-test={dataTest}
+          data-trackingid={dataTrackingid}
           onKeyDown={this.handleKeyDown}
+          onClick={onClick}
         >
-          <ButtonBase {...this.props}>
-            <Button {...this.props}>
-              <Ball {...this.props} />
+          <ButtonBase checked={checked} disabled={disabled}>
+            <Button>
+              <Ball checked={checked} />
               <Input
-                checked={this.props.checked}
-                tabIndex={this.props.tabIndex}
-                disabled={this.props.disabled}
-                value={this.props.value}
-                onClick={this.props.onClick}
-                onBlur={onBlur}
-                onFocus={onFocus}
+                checked={checked}
+                tabIndex={tabIndex}
+                disabled={disabled}
+                value={value}
+                onClick={this.handleKeyDown}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
                 type="checkbox"
               />
             </Button>
-            <Ripple {...this.props} focused={focused} />
+            <Ripple
+              focused={isFocused}
+              disabled={disabled}
+              checked={checked}
+              onClick={onClick}
+            />
           </ButtonBase>
-          <Bar {...this.props} />
+          <Bar disabled={disabled} checked={checked} />
         </Root>
       );
     };
 
     return (
       <WithFormFieldState
-        inlineEdit={this.props.inlineEdit}
-        focused={this.props.focused}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
+        inlineEdit={inlineEdit}
+        focused={focused}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
         {renderChildrenWithFormState}
       </WithFormFieldState>
@@ -251,6 +276,14 @@ Switch.propTypes = {
    * Attribute for test suite
    */
   'data-test': PropTypes.string,
+  /**
+   * If `true` the control is inline editable
+   */
+  inlineEdit: PropTypes.bool,
+  /**
+   * If `true` the control is focused
+   */
+  focused: PropTypes.bool,
 };
 
 Switch.defaultProps = {
@@ -262,6 +295,8 @@ Switch.defaultProps = {
   type: 'default',
   onFocus: noop,
   onBlur: noop,
+  inlineEdit: false,
+  focused: false,
 };
 
 export { Switch };

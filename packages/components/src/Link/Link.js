@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { noop } from 'underscore';
 import { createComponent, styleUtils } from '../StyleProvider';
 
 const LinkImpl = createComponent(
@@ -24,16 +25,33 @@ const LinkImpl = createComponent(
 );
 
 const Link = props => {
-  const targetProps = props.newWindow
-    ? {
-        rel: 'noopener noreferrer',
-        target: '_blank',
-      }
-    : {};
+  const {
+    newWindow,
+    color,
+    disableUnderline,
+    'data-test': dataTest,
+    'data-trackingid': dataTrackingId,
+    href,
+    onClick,
+    children,
+  } = props;
+
+  const rel = newWindow ? 'noopener noreferrer' : null;
+  const target = newWindow ? '_blank' : null;
 
   return (
-    <LinkImpl {...props} {...targetProps} data-component="Link">
-      {props.children}
+    <LinkImpl
+      data-component="Link"
+      data-trackingid={dataTrackingId}
+      data-test={dataTest}
+      color={color}
+      disableUnderline={disableUnderline}
+      href={href}
+      onClick={onClick}
+      rel={rel}
+      target={target}
+    >
+      {children}
     </LinkImpl>
   );
 };
@@ -59,12 +77,25 @@ Link.propTypes = {
    * Reserved for Tags. Color of the link
    */
   color: PropTypes.string,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
+  /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
+  /**
+   * handle click event
+   */
+  onClick: PropTypes.func,
 };
 
 Link.defaultProps = {
   disableUnderline: false,
   newWindow: false,
   color: null,
+  onClick: noop,
 };
 
 export { Link };

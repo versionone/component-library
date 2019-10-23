@@ -17,7 +17,6 @@ const Counter = createComponent(
     height: 20,
     minWidth: 20,
     borderRadius: 10,
-    //fontSize: 12,
     lineHeight: 22,
     whiteSpace: 'nowrap',
     padding: `0px 8px`,
@@ -30,7 +29,6 @@ const Counter = createComponent(
     borderColor: bordered ? color : palette.transparent,
     backgroundColor,
     color,
-
     ...styleUtils.conditionalStyle(hasChildren, 'position', 'absolute'),
     ...styleUtils.conditionalStyle(hasChildren, 'top', -10),
     ...styleUtils.conditionalStyle(hasChildren, 'right', -10),

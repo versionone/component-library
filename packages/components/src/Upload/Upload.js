@@ -1,61 +1,18 @@
-import React, { Fragment, Component, createRef } from 'react';
+import React, { Component, createRef } from 'react';
 import { noop } from 'underscore';
 import { PropTypes } from 'prop-types';
-import { UploadIcon } from '@versionone/icons';
 import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
-import { Button } from '../Button';
+import { UploadButton } from './UploadButton';
+import { DropZoneLarge } from './DropZoneLarge';
+import { DropZoneSmall } from './DropZoneSmall';
 
 const Root = createComponent(
   ({ width, height }) => ({
     ...styleUtils.conditionalStyle(width, 'width', width),
     ...styleUtils.conditionalStyle(height, 'height', height),
   }),
-  'span',
-  ['data-component', 'data-test'],
-);
-
-const InputFieldContainer = createComponent(
-  ({ disabled, focused, theme }) => ({
-    'background-color': theme.Upload.main,
-    borderWidth: '1px',
-    borderStyle: 'dashed',
-    ...styleUtils.conditionalStyle(
-      focused,
-      'border-color',
-      theme.Form.focused.main,
-    ),
-    ...styleUtils.conditionalStyle(
-      disabled,
-      'border-color',
-      theme.Form.disabled.main,
-    ),
-    ':hover': {
-      ...styleUtils.conditionalStyle(
-        !disabled,
-        'border-color',
-        theme.Form.focused.main,
-      ),
-    },
-    ...styleUtils.conditionalStyle(
-      focused,
-      'box-shadow',
-      theme.focused.boxShadow,
-    ),
-    ...styleUtils.conditionalStyle(focused, 'outline', 'none', 'inherit'),
-    borderRadius: 6,
-    boxSizing: 'border-box',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-    display: 'flex',
-    'flex-direction': 'column',
-    'justify-content': 'center',
-    'align-items': 'center',
-    '> *': {
-      height: '100%',
-      'margin-top': 8,
-      'margin-bottom': 8,
-    },
-  }),
   'div',
+  ['data-component', 'data-test'],
 );
 
 const InputField = createComponent(
@@ -82,63 +39,11 @@ const InputField = createComponent(
   ],
 );
 
-const DropZoneLarge = props => {
-  const {
-    primaryText,
-    secondaryText,
-    children,
-    disabled,
-    focused,
-    theme,
-  } = props;
-
-  return (
-    <InputFieldContainer
-      disabled={disabled}
-      focused={focused}
-      color={theme.Upload.main}
-    >
-      <UploadIcon size={32} title="upload" color={theme.Upload.iconColor} />
-      <span>{primaryText}</span>
-      <span>{secondaryText}</span>
-      {children}
-    </InputFieldContainer>
-  );
-};
-
-const DropZoneSmall = props => {
-  const { children, disabled, focused, theme } = props;
-
-  return (
-    <InputFieldContainer
-      disabled={disabled}
-      focused={focused}
-      color={theme.Upload.main}
-    >
-      <UploadIcon size={32} title="upload" color={theme.Upload.iconColor} />
-      <span>Upload</span>
-      {children}
-    </InputFieldContainer>
-  );
-};
-
-const UploadButton = props => (
-  <Fragment>
-    <Button onClick={props.onClick} disabled={props.disabled}>
-      <UploadIcon />
-      Upload
-    </Button>
-    {React.cloneElement(props.children, {
-      tabIndex: -1,
-    })}
-  </Fragment>
-);
-
 class Upload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value,
+      value: props.defaultValue,
       hovered: false,
     };
     this.handleBlur = this.handleBlur.bind(this);
@@ -148,93 +53,115 @@ class Upload extends Component {
     this.inputEl = createRef();
   }
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props) {
     return {
       value: props.value,
     };
   }
 
   componentDidMount() {
-    if (this.state.focused) {
+    const { innerRef } = this.props;
+    const { focused } = this.state;
+    if (focused) {
       this.inputEl.current.focus();
     }
-    this.props.innerRef(this.inputEl);
+    innerRef(this.inputEl);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!prevState.focused && this.state.focused) {
+    const { focused } = this.state;
+    if (!prevState.focused && focused) {
       this.inputEl.current.focus();
     }
   }
 
   render() {
-    const Component =
-      this.props.variant === 'button'
-        ? UploadButton
-        : this.props.primaryText
-        ? DropZoneLarge
-        : DropZoneSmall;
+    const {
+      primaryText,
+      variant,
+      accept,
+      multiple,
+      tabIndex,
+      disabled,
+      'data-test': dataTest,
+      'data-trackingid': dataTrackingId,
+    } = this.props;
 
-    const dimensions =
-      this.props.variant === 'button'
-        ? {}
-        : this.props.primaryText
-        ? { width: 320, height: 200 }
-        : { width: 100, height: 100 };
+    const isButton = variant === 'button';
+
+    const UploadImpl = (() => {
+      if (isButton) {
+        return UploadButton;
+      }
+      if (primaryText) {
+        return DropZoneLarge;
+      }
+      return DropZoneSmall;
+    })();
+
+    const dimensions = (() => {
+      if (isButton) {
+        return {};
+      }
+      if (primaryText) {
+        return { width: 320, height: 200 };
+      }
+      return { width: 100, height: 100 };
+    })();
 
     const input = (
       <InputField
         type="file"
-        accept={this.props.accept}
-        multiple={this.props.multiple}
+        accept={accept}
+        multiple={multiple}
         innerRef={this.inputEl}
-        tabIndex={this.props.tabIndex}
+        tabIndex={tabIndex}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        disabled={this.props.disabled}
+        disabled={disabled}
       />
     );
 
-    const buildComponent = theme => {
-      return (
-        <label>
-          <Component
-            {...this.props}
-            {...this.state}
-            theme={theme}
-            onClick={this.simulateClick}
-          >
-            {input}
-          </Component>
-        </label>
-      );
-    };
-
     return (
-      <Root
-        data-component="Upload"
-        data-test={this.props['data-test']}
-        {...dimensions}
-      >
-        <WithTheme>{buildComponent}</WithTheme>
+      <Root data-component="Upload" data-test={dataTest} {...dimensions}>
+        <WithTheme>
+          {theme => {
+            return (
+              <label data-trackingid={dataTrackingId}>
+                <UploadImpl
+                  {...this.props}
+                  {...this.state}
+                  color={theme.Upload.main}
+                  iconColor={theme.Upload.iconColor}
+                  onClick={this.simulateClick}
+                >
+                  {input}
+                </UploadImpl>
+              </label>
+            );
+          }}
+        </WithTheme>
       </Root>
     );
   }
 
   handleBlur(evt) {
+    const { onBlur } = this.props;
     this.setState({ focused: false });
-    this.props.onBlur(evt);
+    onBlur(evt);
   }
 
   handleChange(evt) {
+    const { onChange } = this.props;
     const value = evt.target.files;
-    this.props.onChange(evt, value);
+    onChange(evt, value);
   }
 
   handleFocus(evt) {
+    const { onFocus } = this.props;
     this.setState({ focused: true });
-    this.props.onFocus(evt);
+    onFocus(evt);
   }
 
   simulateClick() {
@@ -250,10 +177,6 @@ Upload.propTypes = {
    * Details including restrictions and upload constraints
    */
   secondaryText: PropTypes.string,
-  /**
-   * If true the upload can accept multiple files
-   */
-  multi: PropTypes.bool,
   /**
    * If true the user can not upload files
    */
@@ -294,6 +217,26 @@ Upload.propTypes = {
    * Variants of upload inputs
    */
   variant: PropTypes.oneOf(['button', 'dropzone']),
+  /**
+   * If `true` multiple files can be uploaded
+   */
+  multiple: PropTypes.bool,
+  /**
+   * Accept
+   */
+  accept: PropTypes.string,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
+  /**
+   * Attribute used to track user interaction
+   */
+  'data-trackingid': PropTypes.string,
+  /**
+   * Intial value of the contorl
+   */
+  defaultValue: PropTypes.object,
 };
 
 Upload.defaultProps = {
@@ -309,7 +252,7 @@ Upload.defaultProps = {
   onKeyDown: noop,
   innerRef: noop,
   tabIndex: '0',
-  multi: false,
+  multiple: false,
 };
 
 export { Upload };

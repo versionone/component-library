@@ -66,7 +66,7 @@ class SmartColorPalette extends React.Component {
   }
 
   toggle() {
-    this.setState({ on: !this.state.on });
+    this.setState(state => ({ on: !state.on }));
   }
 
   handleCopy(message) {
@@ -79,13 +79,14 @@ class SmartColorPalette extends React.Component {
   }
 
   render() {
+    const { on, message } = this.state;
     return (
       <SpacedGroup direction="vertical">
         <SpacedGroup center>
-          <Switch onClick={this.toggle} checked={this.state.on} />
-          {this.state.message && <span>{this.state.message}</span>}
+          <Switch onClick={this.toggle} checked={on} />
+          {message && <span>{message}</span>}
         </SpacedGroup>
-        <ColorPalette showNames={this.state.on} handleCopy={this.handleCopy} />
+        <ColorPalette showNames={on} handleCopy={this.handleCopy} />
       </SpacedGroup>
     );
   }

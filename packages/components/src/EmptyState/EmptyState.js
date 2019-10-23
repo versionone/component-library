@@ -72,6 +72,10 @@ EmptyState.propTypes = {
    * Icon that explains the empty state
    */
   icon: PropTypes.element,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
 };
 
 EmptyState.defaultProps = {};
