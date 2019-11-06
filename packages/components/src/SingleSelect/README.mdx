@@ -3,10 +3,14 @@ name: SingleSelect
 menu: Components
 ---
 
+import { Fragment } from 'react';
 import { Playground, PropsTable } from '@versionone/doc-components';
 import { noop } from 'underscore';
 import { SingleSelect } from '.';
+import { Drawer } from '../Drawer';
+import { Button } from '../Button';
 import { SpacedGroup } from '../SpacedGroup';
+import { FocusManager, FocusGroup } from '../FocusManager';
 import { Basic } from './examples/basic';
 import { CustomSelectionRendering } from './examples/customSelectionRendering';
 import { CreateableExample } from './examples/creatable';
@@ -100,6 +104,72 @@ In the abscense of a `selection` prop it will use the `label` of the `selectedIt
       hintText="Success"
     />
   </SpacedGroup>
+</Playground>
+
+## In a Drawer
+
+Clikcking `Escape` to close the `SingleSelect` should not close the `Drawer`
+
+<Playground>
+  {() => {
+    class StateManager extends React.Component {
+      constructor(props, context) {
+        super(props, context);
+        this.state = {
+          open: false,
+        };
+        this.open = this.open.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+      }
+      open() {
+        this.setState(({ open }) => ({
+          open: true,
+        }));
+      }
+      handleClose() {
+        this.setState(
+          ({ open }) => ({
+            open: false,
+          }),
+          this.pop,
+        );
+      }
+      render() {
+        return (
+          <FocusManager>
+            {pop => {
+              this.pop = pop;
+              return (
+                <FocusGroup>
+                  {bind => (
+                    <Fragment>
+                      <Button {...bind} onClick={this.open}>
+                        Open Drawer
+                      </Button>
+                      <Drawer
+                        {...this.state}
+                        handleClickOutside={this.handleClose}
+                        placement="right"
+                      >
+                        <FocusGroup>
+                          {bind => (
+                            <SpacedGroup direction="vertical">
+                              <Basic {...bind} />
+                            </SpacedGroup>
+                          )}
+                        </FocusGroup>
+                      </Drawer>
+                    </Fragment>
+                  )}
+                </FocusGroup>
+              );
+            }}
+          </FocusManager>
+        );
+      }
+    }
+    return <StateManager />;
+  }}
 </Playground>
 
 ## API
