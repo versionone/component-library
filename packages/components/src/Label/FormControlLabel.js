@@ -37,13 +37,7 @@ const FormControlLabel = props => {
     focused,
     name,
     id,
-    index,
-    disableGutter,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
+    index
   } = props;
   const controlProps = {
     onClick,
@@ -56,15 +50,6 @@ const FormControlLabel = props => {
     onBlur,
     focused,
     index,
-  };
-  const groupProps = {
-    direction,
-    disableGutter,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
   };
   const newControl = React.cloneElement(control, controlProps);
   const content =
@@ -84,7 +69,7 @@ const FormControlLabel = props => {
       ? 'vertical'
       : 'horizontal';
   return (
-    <SpacedGroup {...groupProps} is="label" htmlFor={id}>
+    <SpacedGroup {...props} direction={direction} is="label" htmlFor={id}>
       {content}
     </SpacedGroup>
   );
