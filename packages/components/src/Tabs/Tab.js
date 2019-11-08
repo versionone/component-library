@@ -41,6 +41,7 @@ const Tab = props => {
     handleSelection,
     handleBlur,
     handleFocus,
+    'data-test': dataTest,
   } = props;
 
   const inheritedProps = {
@@ -58,6 +59,7 @@ const Tab = props => {
       aria-controls={controls}
       aria-selected={selected}
       data-component="Tab"
+      data-test={dataTest}
       disabled={disabled}
       focused={focused}
       id={id}
