@@ -85,10 +85,9 @@ class MultiDownshift extends React.Component {
 
   render() {
     const { children, ...props } = this.props;
-    var newProps = delete props.onSelect;
     return (
       <Downshift
-        {...newProps}
+        {...delete props.onSelect}
         stateReducer={this.stateReducer}
         selectedItem={null}
         itemToString={noop}
