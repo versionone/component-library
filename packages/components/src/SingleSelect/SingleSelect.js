@@ -37,6 +37,7 @@ class SingleSelect extends React.Component {
     this.setState({
       lastSelected: item,
     });
+    console.log("1");
     if (isFunction(onSelect)) {
       onSelect(item);
     }
@@ -64,14 +65,13 @@ class SingleSelect extends React.Component {
     const match = (() => {
       const exactMatch = getExactMatch();
       if (exactMatch) return exactMatch;
-      const lastMatch = getLastMatch();
-      if (lastMatch) return lastMatch;
-      const partialMatch = getPartialMatch();
-      if (partialMatch) return partialMatch;
+      // const lastMatch = getLastMatch();
+      // if (lastMatch) return lastMatch;
+      // const partialMatch = getPartialMatch();
+      // if (partialMatch) return partialMatch;
       return null;
     })();
     if (match) {
-      this.handleSelection(match);
     } else {
       this.clearHistory();
     }

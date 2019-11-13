@@ -10,12 +10,9 @@ const calculateDropdownDimensions = (
   maxHeight,
 ) => {
   const remainingHeightBelowInput = viewportHeight - inputDimensions.bottom;
-  const remainingHeightAboveInput = viewportHeight - inputDimensions.top;
+  const remainingHeightAboveInput = inputDimensions.top;
 
-  const remainingHeight =
-    remainingHeightBelowInput >= 0
-      ? remainingHeightBelowInput
-      : remainingHeightAboveInput;
+  const remainingHeight = Math.max(remainingHeightBelowInput, remainingHeightAboveInput);
 
   const halfOfScreen = viewportHeight * 0.5;
 
