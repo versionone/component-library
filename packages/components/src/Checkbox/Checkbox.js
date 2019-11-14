@@ -1,42 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import { noop } from 'underscore';
-import { CheckIcon } from '@versionone/icons';
-import { createComponent, WithTheme } from '../StyleProvider';
-
-const InvisibleInput = createComponent(
-  () => ({
-    position: 'absolute',
-    opacity: 0,
-  }),
-  'input',
-  [
-    'data-component',
-    'data-test',
-    'data-trackingid',
-    'onClick',
-    'type',
-    'id',
-    'onChange',
-    'checked',
-    'name',
-  ],
-);
-
-const CheckboxImpl = createComponent(({ size, disabled, color }) => {
-  return {
-    width: size,
-    height: size,
-    borderRadius: '3px',
-    border: '2px solid transparent',
-    borderColor: color,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    cursor: disabled ? 'not-allowed' : 'pointer',
-  };
-}, 'span');
+import { ControlledCheckbox } from './ControlledCheckbox';
 
 class Checkbox extends Component {
   constructor(props, context) {
@@ -67,34 +32,15 @@ class Checkbox extends Component {
     const { checked } = this.state;
 
     return (
-      <WithTheme>
-        {theme => {
-          const color = theme.Checkbox.main;
-
-          return (
-            <Fragment>
-              <InvisibleInput
-                {...rest}
-                onChange={this.toggleCheck}
-                type="checkbox"
-                size={size}
-                checked={checked}
-                id={id}
-                data-trackingid={trackingId}
-              />
-              <CheckboxImpl color={color} disabled={disabled} size={size}>
-                {React.cloneElement(<CheckIcon />, {
-                  size,
-                  color: checked ? color : 'transparent',
-                  display: 'inline-block',
-                  position: 'absolute',
-                  top: 4,
-                })}
-              </CheckboxImpl>
-            </Fragment>
-          );
-        }}
-      </WithTheme>
+      <ControlledCheckbox
+        {...rest}
+        size={size}
+        checked={checked}
+        id={id}
+        trackingId={trackingId}
+        disabled={disabled}
+        onChange={this.toggleCheck}
+      />
     );
   }
 }

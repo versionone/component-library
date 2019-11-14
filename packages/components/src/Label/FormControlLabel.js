@@ -38,6 +38,7 @@ const FormControlLabel = props => {
     name,
     id,
     index,
+    checked,
   } = props;
   const controlProps = {
     onClick,
@@ -50,6 +51,7 @@ const FormControlLabel = props => {
     onBlur,
     focused,
     index,
+    checked,
   };
   const newControl = React.cloneElement(control, controlProps);
   const content =
@@ -156,6 +158,7 @@ FormControlLabel.propTypes = {
    * Attribute for test suite
    */
   'data-test': PropTypes.string,
+  checked: PropTypes.bool,
 };
 
 FormControlLabel.defaultProps = {
