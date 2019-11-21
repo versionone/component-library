@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@versionone/custom-proptype-handler",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Custom proptype handler for react docgen.",
   "license": "MIT",
   "main": "./src/index.js",
