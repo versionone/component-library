@@ -6,6 +6,8 @@ cache:
   yarn: true
   directories:
     - ~/.cache
+    - ~/Library/Caches
+    - ~/Library/Caches/Cypress
   override:
     - yarn install --frozen-lockfile
 
