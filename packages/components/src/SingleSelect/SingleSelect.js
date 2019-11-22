@@ -397,6 +397,7 @@ SingleSelect.propTypes = {
 };
 
 SingleSelect.defaultProps = {
+  items: [],
   defaultValue: null,
   selectedItem: null,
   onRemove: noop,
