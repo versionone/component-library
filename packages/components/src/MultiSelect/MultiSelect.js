@@ -84,7 +84,7 @@ class MultiDownshift extends React.Component {
   }
 
   render() {
-    const { children, disabled, ...props } = this.props;
+    const { children, disabled } = this.props;
     return (
       <Downshift
         disabled={disabled}
