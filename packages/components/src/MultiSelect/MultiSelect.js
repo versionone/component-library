@@ -84,10 +84,10 @@ class MultiDownshift extends React.Component {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, disabled } = this.props;
     return (
       <Downshift
-        {...props}
+        disabled={disabled}
         stateReducer={this.stateReducer}
         selectedItem={null}
         itemToString={noop}

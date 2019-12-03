@@ -112,7 +112,7 @@ class Drawer extends React.Component {
     const { handleClickOutside, open } = this.props;
     if (!open) return;
     const isEscape = event.which === 27;
-    if (isEscape) handleClickOutside();
+    if (isEscape && !event.defaultPrevented) handleClickOutside();
   }
 
   render() {
