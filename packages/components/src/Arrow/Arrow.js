@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { noop } from 'underscore';
 import { ChevronIcon } from '@versionone/icons';
 import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
-import { noop } from 'rxjs';
+
 
 const buildStyles = ({ height }) => ({
   background: 'none',
