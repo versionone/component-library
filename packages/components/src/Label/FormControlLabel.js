@@ -37,7 +37,7 @@ const FormControlLabel = props => {
     focused,
     name,
     id,
-    index,
+    index
   } = props;
   const controlProps = {
     onClick,

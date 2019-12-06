@@ -24,13 +24,19 @@ const Avatar = props => {
   const {
     onClick,
     src,
+    srcSet,
     icon,
     size,
+    sizes,
     title,
     border,
     status,
+    color,
+    backgroundColor,
     count,
     showTooltip,
+    tabIndex,
+    alt,
   } = props;
 
   const Container = isFunction(onClick) ? IconButtonWrapper : IconWrapper;
@@ -40,7 +46,17 @@ const Avatar = props => {
     if (src)
       return (
         <ImageAvatar
-          {...props}
+          color={color}
+          backgroundColor={backgroundColor}
+          size={size}
+          title={title}
+          src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          alt={alt}
+          tabIndex={tabIndex}
+          onClick={onClick}
+          border={border}
           Container={Container}
           data-component="ImageAvatar"
         />
@@ -48,7 +64,7 @@ const Avatar = props => {
 
     const avatarType = (() => {
       if (icon) {
-        return <IconAvatar icon={icon} size={size} />;
+        return <IconAvatar icon={icon} size={size} color={color} />;
       }
       if (title) {
         return <LetterAvatar text={title} />;
@@ -57,7 +73,13 @@ const Avatar = props => {
     })();
 
     return (
-      <Container {...props} data-component="Avatar">
+      <Container
+        border={border}
+        size={size}
+        onClick={onClick}
+        backgroundColor={backgroundColor}
+        color={color}
+        data-component="Avatar">
         {avatarType}
       </Container>
     );
@@ -125,6 +147,14 @@ Avatar.propTypes = {
    * Reserved for AvatarGroups. Apply border color
    */
   border: PropTypes.string,
+    /**
+   * Background Color 
+   */
+  backgroundColor: PropTypes.string,
+    /**
+   * Color for IconAvatar
+   */
+  color: PropTypes.string,
   /**
    * Function called when the avatar is selected
    */

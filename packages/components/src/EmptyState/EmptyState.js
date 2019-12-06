@@ -26,7 +26,7 @@ const Title = createComponent(
 const EmptyState = props => {
   const { icon, title, children, primaryAction, 'data-test': dataTest } = props;
   const supportingVisual = Boolean(icon) && (
-    <Impl {...props}>
+    <Impl>
       {React.createElement(icon, {
         size: 72,
       })}

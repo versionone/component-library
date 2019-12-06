@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { noop } from 'underscore';
 import { ChevronIcon } from '@versionone/icons';
 import { createComponent, styleUtils, WithTheme } from '../StyleProvider';
+
 
 const buildStyles = ({ height }) => ({
   background: 'none',
@@ -57,7 +59,7 @@ const ArrowIcon = createComponent(buildStyles, 'span', [
 ]);
 
 const Arrow = props => {
-  const { open, is, disabled, tabIndex, 'data-test': dataTest } = props;
+  const { open, is, disabled, tabIndex, 'data-test': dataTest, height, onClick } = props;
   const withTheme = (
     <WithTheme>
       {theme => {
@@ -77,12 +79,13 @@ const Arrow = props => {
 
   return (
     <ArrowImpl
-      {...props}
       disabled={disabled}
       data-component="Arrow"
       data-test={dataTest}
       type="button"
       tabIndex={disabled ? '-1' : tabIndex}
+      height={height}
+      onClick={onClick}
     >
       {withTheme}
     </ArrowImpl>
@@ -98,6 +101,10 @@ Arrow.propTypes = {
    * If true the arrow is roated to indicate the related content is visible
    */
   open: PropTypes.bool,
+  /**
+   * If true the arrow is roated to indicate the related content is visible
+   */
+  onClick: PropTypes.func,
   /**
    * If true the control is disabled
    */
@@ -118,6 +125,7 @@ Arrow.propTypes = {
 
 Arrow.defaultProps = {
   open: false,
+  onClick: noop, 
   disabled: false,
   height: 28,
   tabIndex: '0',
