@@ -34,7 +34,6 @@ export const renderField = props => {
 
     dropdownMaxHeight,
     dropdownWidth,
-    onBlur,
     onFocus,
     calculateDropdownDimensions,
     focused,
@@ -56,8 +55,9 @@ export const renderField = props => {
     inputValue,
 
     getItems,
-    clearInput,
   } = props;
+
+  console.log('render field', selectedItems, inputValue, isOpen);
 
   const handleFocusWrapper = evt => {
     onFocus(evt);
@@ -95,6 +95,18 @@ export const renderField = props => {
       removeItem(selectedItems[selectedItems.length - 1]);
     }
 
+    if (
+      (event.key === 'ArrowDown' || event.key === 'ArrowUp') &&
+      event.altKey
+    ) {
+      closeMenu();
+      return;
+    }
+
+    if (event.key === 'ArrowDown' && !isOpen) {
+      openMenu();
+    }
+
     if (event.key === 'Enter') {
       const { value } = event.target;
       const canCreate =
@@ -106,7 +118,6 @@ export const renderField = props => {
         label: value,
       };
       handleSelection(newItem.value, event);
-      clearInput();
       const existed = Boolean(selectedItems.find(id => id === value));
       if (!existed) {
         onCreate(newItem);
@@ -118,7 +129,7 @@ export const renderField = props => {
     innerRef: inputRef,
     onKeyDown: handleKeyDown,
     onFocus: handleFocusWrapper,
-    onBlur,
+    value: inputValue,
   });
 
   const menuContents =
@@ -157,7 +168,6 @@ export const renderField = props => {
         <InputField
           {...inputProps}
           height={height}
-          value={inputValue}
           placeholder={placeholder}
           dirty={dirty}
           disabled={disabled}
@@ -270,10 +280,6 @@ renderField.propTypes = {
        item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
      */
   filter: PropTypes.func,
-  /*
-   * Remove all text from the text field
-   */
-  clearInput: PropTypes.func,
   /**********************
       WithFormState Props
       **********************/
@@ -418,4 +424,8 @@ renderField.propTypes = {
    * Placeholder (hint) text.
    */
   hintText: PropTypes.string,
+};
+
+renderField.defaultProps = {
+  inputValue: '',
 };

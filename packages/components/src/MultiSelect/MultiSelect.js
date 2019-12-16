@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
-import { isFunction, noop } from 'underscore';
+import { isFunction, noop, isEmpty } from 'underscore';
 import { WithFormFieldState } from '../FormUtils';
 import { renderField } from './renderField';
 
@@ -17,19 +17,13 @@ class MultiSelect extends Component {
     this.handleArrowDown = this.handleArrowDown.bind(this);
     this.handleArrowUp = this.handleArrowUp.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.handleInputValueChange = this.handleInputValueChange.bind(this);
-    this.clearInput = this.clearInput.bind(this);
   }
 
   stateReducer(state, changes) {
     switch (changes.type) {
       case Downshift.stateChangeTypes.clickItem:
       case Downshift.stateChangeTypes.keyDownEnter:
-        this.handleSelection(changes.selectedItem.value, null);
-        return {
-          isOpen: false,
-          inputValue: changes.selectedItem.label,
-        };
+        return this.handleSelection(changes.selectedItem.value, null);
       case Downshift.stateChangeTypes.blurInput:
         return this.handleBlur(state);
       case Downshift.stateChangeTypes.keyDownArrowUp:
@@ -58,8 +52,16 @@ class MultiSelect extends Component {
 
     action(selectedId, event);
 
-    this.clearInput();
+    return {
+      isOpen: false,
+      inputValue: '',
+    };
   }
+
+  handleChanger = (...rest) => {
+    console.log('handlerChanger', rest);
+    debugger;
+  };
 
   removeItem(itemId, event) {
     const { onRemove } = this.props;
@@ -76,28 +78,23 @@ class MultiSelect extends Component {
   }
 
   handleBlur(state) {
+    const newState = {
+      isOpen: false,
+      inputValue: '',
+    };
+
+    if (isEmpty(state.inputValue)) {
+      return newState;
+    }
+
     const items = this.getItems(state.inputValue);
 
-    const getExactMatch = () =>
-      items.find(item => item.label === state.inputValue);
+    const match = items[0];
 
-    const getPartialMatch = () =>
-      items.find(item => item.label.includes(state.inputValue));
-
-    const match = (() => {
-      const exactMatch = getExactMatch();
-      if (exactMatch) return exactMatch;
-      const partialMatch = getPartialMatch();
-      if (partialMatch) return partialMatch;
-      return null;
-    })();
     if (match) {
-      this.handleSelection(match);
+      return this.handleSelection(match.value, null);
     }
-    return {
-      isOpen: false,
-      inputValue: match ? match.label : '',
-    };
+    return newState;
   }
 
   handleArrowDown(state) {
@@ -154,16 +151,6 @@ class MultiSelect extends Component {
     };
   }
 
-  handleInputValueChange(event) {
-    if (event || event === '') {
-      this.setState({ inputValue: event });
-    }
-  }
-
-  clearInput() {
-    this.setState({ inputValue: '' });
-  }
-
   render() {
     const {
       'data-test': dataTest,
@@ -218,15 +205,17 @@ class MultiSelect extends Component {
         }) => {
           return (
             <Downshift
+              onChange={this.handleChanger}
               disabled={disabled}
               stateReducer={this.stateReducer}
               selectedItem={selectedItems}
-              itemToString={noop}
+              itemToString={item => (item ? item.label : '')}
+              initialInputValue=""
             >
               {downshift => {
+                console.log('inputValue', downshift.inputValue);
                 return renderField({
                   ...this.getStateAndHelpers(downshift),
-
                   'data-test': dataTest,
                   inlineEdit,
                   fullWidth,
@@ -259,7 +248,6 @@ class MultiSelect extends Component {
                   inputContainerRef,
                   inputRef,
                   getItems: this.getItems,
-                  clearInput: this.clearInput,
                 });
               }}
             </Downshift>
