@@ -11,53 +11,48 @@ import { Menu } from '../Menu';
 
 export const renderField = props => {
   const {
+    calculateDropdownDimensions,
+    closeMenu,
     'data-test': dataTest,
-    inlineEdit,
-    fullWidth,
-    stretch,
-    error,
-    loading,
     dirty,
-    success,
-    hovered,
-    tabIndex,
+    disableContainment,
     disabled,
     dropdownHeight,
-    disableContainment,
-    height,
-    hintText,
-    selectedItems,
-    renderSelection,
-    renderOptions,
-    onClear,
-    onCreate,
-
     dropdownMaxHeight,
     dropdownWidth,
-    onFocus,
-    calculateDropdownDimensions,
+    error,
     focused,
-    onMouseEnter,
-    onMouseLeave,
-    inputContainerRef,
-    inputRef,
-
+    fullWidth,
     getInputProps,
+    getItemProps,
+    getItems,
     getMenuProps,
     getRootProps,
-    removeItem,
     handleSelection,
-    isOpen,
-    getItemProps,
+    height,
     highlightedIndex,
-    openMenu,
-    closeMenu,
+    hintText,
+    hovered,
+    inlineEdit,
+    inputContainerRef,
+    inputRef,
     inputValue,
-
-    getItems,
+    isOpen,
+    loading,
+    onClear,
+    onCreate,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    openMenu,
+    removeItem,
+    renderOptions,
+    renderSelection,
+    selectedItems,
+    stretch,
+    success,
+    tabIndex,
   } = props;
-
-  console.log('render field', selectedItems, inputValue, isOpen);
 
   const handleFocusWrapper = evt => {
     onFocus(evt);
@@ -275,15 +270,14 @@ renderField.propTypes = {
    */
   disableContainment: PropTypes.bool,
   /**
-       * Filter predicate to apply when input changes occur
-       * inputValue => item =>
-       item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
-     */
+   * Filter predicate to apply when input changes occur
+   * inputValue => item =>
+   item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
+  */
   filter: PropTypes.func,
-  /**********************
-      WithFormState Props
-      **********************/
-
+  /**
+   * Indicates the control is focused.
+   */
   focused: PropTypes.bool,
   /**
    * Indicates the control is hovered.
@@ -318,6 +312,10 @@ renderField.propTypes = {
    */
   inputContainerRef: PropTypes.string,
   /**
+   * Height of the dropdown (includes units pxs, %, rems, etc)
+   */
+  dropdownHeight: PropTypes.string,
+  /**
    * Max height of the dropdown's height
    */
   dropdownMaxHeight: PropTypes.number,
@@ -325,11 +323,6 @@ renderField.propTypes = {
    * dropdown's width
    */
   dropdownWidth: PropTypes.number,
-
-  /**********************
-      Downshift Props
-      **********************/
-
   /**
    *  returns the props you should apply to any menu item elements you render.
    */
@@ -366,11 +359,6 @@ renderField.propTypes = {
    * Function that closes the menu
    */
   closeMenu: PropTypes.func,
-
-  /**********************
-      Common InputField Props
-      **********************/
-
   /**
    * Indicates the tab order within the document.
    */

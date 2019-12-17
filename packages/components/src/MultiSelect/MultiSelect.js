@@ -58,11 +58,6 @@ class MultiSelect extends Component {
     };
   }
 
-  handleChanger = (...rest) => {
-    console.log('handlerChanger', rest);
-    debugger;
-  };
-
   removeItem(itemId, event) {
     const { onRemove } = this.props;
     if (isFunction(onRemove)) {
@@ -154,30 +149,30 @@ class MultiSelect extends Component {
   render() {
     const {
       'data-test': dataTest,
-      inlineEdit,
-      fullWidth,
-      stretch,
-      error,
-      loading,
-      dirty,
-      success,
-      focused,
-      hovered,
-      tabIndex,
       disabled,
+      dropdownHeight,
       dropdownMaxHeight,
       dropdownWidth,
-      dropdownHeight,
+      dirty,
       disableContainment,
-      onFocus,
-      onBlur,
+      error,
+      focused,
+      fullWidth,
       height,
       hintText,
-      selectedItems,
-      renderSelection,
-      renderOptions,
+      hovered,
+      inlineEdit,
+      loading,
+      onBlur,
       onClear,
       onCreate,
+      onFocus,
+      renderOptions,
+      renderSelection,
+      selectedItems,
+      stretch,
+      success,
+      tabIndex,
     } = this.props;
 
     return (
@@ -205,7 +200,6 @@ class MultiSelect extends Component {
         }) => {
           return (
             <Downshift
-              onChange={this.handleChanger}
               disabled={disabled}
               stateReducer={this.stateReducer}
               selectedItem={selectedItems}
@@ -213,7 +207,6 @@ class MultiSelect extends Component {
               initialInputValue=""
             >
               {downshift => {
-                console.log('inputValue', downshift.inputValue);
                 return renderField({
                   ...this.getStateAndHelpers(downshift),
                   'data-test': dataTest,
@@ -319,14 +312,13 @@ MultiSelect.propTypes = {
    */
   dropdownWidth: PropTypes.string,
   /**
+   * Height of the dropdown (includes units pxs, %, rems, etc)
+   */
+  dropdownHeight: PropTypes.string,
+  /**
    * Maxium height of the dropdown
    */
   dropdownMaxHeight: PropTypes.number,
-
-  /**********************
-  Common InputField Props
-  **********************/
-
   /**
    * Indicates the tab order within the document.
    */

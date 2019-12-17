@@ -57,7 +57,6 @@ class Typography extends Component {
         ),
       }),
       is,
-      ['children'],
     );
   }
 
