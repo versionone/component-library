@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { cloneElement } from 'react';
-import { isFunction, isString } from 'underscore';
+import { isFunction, isString, isNumber } from 'underscore';
 import { Clamp } from '../Clamp';
 import { Typography } from '../Typography';
 import { createComponent } from '../StyleProvider';
@@ -21,7 +21,7 @@ const Root = createComponent(
 );
 
 const stopClickPropagationOnChildren = children => {
-  if (isString(children)) {
+  if (isString(children) || isNumber(children)) {
     return children;
   }
   return cloneElement(children, {

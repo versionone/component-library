@@ -65,10 +65,11 @@ class Typography extends Component {
 
     const childrenWithTypography = Children.map(children, child => {
       if (typeof child === 'string' || typeof child === 'number') {
+        const Container = this.TypographyImpl;
         return (
-          <this.TypographyImpl variant={variant} emphasize={emphasize}>
+          <Container variant={variant} emphasize={emphasize}>
             {child}
-          </this.TypographyImpl>
+          </Container>
         );
       }
 

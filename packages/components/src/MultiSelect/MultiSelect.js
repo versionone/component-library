@@ -1,74 +1,138 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
-import { isFunction, noop } from 'underscore';
-import { CloseIcon } from '@versionone/icons';
-import { Arrow } from '../Arrow';
-import {
-  InputFieldContainer,
-  InputStateIcon,
-  InputField,
-  WithFormFieldState,
-} from '../FormUtils';
-import { SpacedGroup } from '../SpacedGroup';
-import { ComboBox } from '../ComboBox';
-import { IconButton } from '../Button';
-import { Menu } from '../Menu';
+import { isFunction, noop, isEmpty } from 'underscore';
+import { WithFormFieldState } from '../FormUtils';
+import { renderField } from './renderField';
 
-class MultiDownshift extends React.Component {
+class MultiSelect extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {};
     this.stateReducer = this.stateReducer.bind(this);
+    this.getItems = this.getItems.bind(this);
     this.handleSelection = this.handleSelection.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.addItem = this.addItem.bind(this);
-    this.removeAll = this.removeAll.bind(this);
+    this.handleArrowDown = this.handleArrowDown.bind(this);
+    this.handleArrowUp = this.handleArrowUp.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   stateReducer(state, changes) {
     switch (changes.type) {
+      case Downshift.stateChangeTypes.clickItem:
       case Downshift.stateChangeTypes.keyDownEnter:
-        this.handleSelection(changes.selectedItem.id, null);
-        return {};
+        return this.handleSelection(changes.selectedItem.value, null);
+      case Downshift.stateChangeTypes.blurInput:
+        return this.handleBlur(state);
+      case Downshift.stateChangeTypes.keyDownArrowUp:
+        return this.handleArrowUp(state);
+      case Downshift.stateChangeTypes.keyDownArrowDown:
+        return this.handleArrowDown(state);
+      case Downshift.stateChangeTypes.keyDownEscape:
+        return {
+          isOpen: false,
+        };
       default:
         return changes;
     }
   }
 
+  getItems(inputValue) {
+    const { items, filter } = this.props;
+    const filterByInputValue = filter(inputValue);
+    return items.filter(filterByInputValue);
+  }
+
   handleSelection(selectedId, event) {
-    const alreadySelected = this.props.selectedItems.includes(selectedId);
+    const { selectedItems } = this.props;
+    const alreadySelected = selectedItems.includes(selectedId);
     const action = alreadySelected ? this.removeItem : this.addItem;
 
     action(selectedId, event);
 
-    this.props.clearInput();
+    return {
+      isOpen: false,
+      inputValue: '',
+    };
   }
 
   removeItem(itemId, event) {
     const { onRemove } = this.props;
-    isFunction(onRemove) && onRemove(itemId, event);
+    if (isFunction(onRemove)) {
+      onRemove(itemId, event);
+    }
   }
 
   addItem(itemId, event) {
     const { onSelect } = this.props;
-    isFunction(onSelect) && onSelect(itemId, event);
+    if (isFunction(onSelect)) {
+      onSelect(itemId, event);
+    }
   }
 
-  removeAll(event) {
-    const { onClear } = this.props;
-    const ids = this.props.selectedItems;
-    isFunction(onClear) && onClear(ids, event);
+  handleBlur(state) {
+    const newState = {
+      isOpen: false,
+      inputValue: '',
+    };
+
+    if (isEmpty(state.inputValue)) {
+      return newState;
+    }
+
+    const items = this.getItems(state.inputValue);
+
+    const match = items[0];
+
+    if (match) {
+      return this.handleSelection(match.value, null);
+    }
+    return newState;
+  }
+
+  handleArrowDown(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex + 1 >= max ? 0 : currentIndex + 1;
+      for (let i = start; i < max; i++) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
+  }
+
+  handleArrowUp(state) {
+    const items = this.getItems(state.inputValue);
+    const currentIndex = state.highlightedIndex;
+    const max = items.length;
+    const nextIndex = (() => {
+      const start = currentIndex - 1 < 0 ? max - 1 : currentIndex - 1;
+      for (let i = start; i >= 0; i--) {
+        return i;
+      }
+      return null;
+    })();
+    return {
+      highlightedIndex: nextIndex,
+    };
   }
 
   getStateAndHelpers(downshift) {
+    const { selectedItems } = this.props;
     const getItemProps = args => {
       const { item, index } = args;
-
       return {
         ...downshift.getItemProps(args),
-        onClick: event => this.handleSelection(item.id, event),
-        isActive: downshift.highlightedIndex == index,
-        isSelected: this.props.selectedItems.includes(item.id),
+        onClick: event => this.handleSelection(item.value, event),
+        isActive: downshift.highlightedIndex === index,
+        isSelected: selectedItems.includes(item.value),
       };
     };
 
@@ -79,287 +143,142 @@ class MultiDownshift extends React.Component {
       handleSelection: this.handleSelection,
       removeItem: this.removeItem,
       addItem: this.addItem,
-      removeAll: this.removeAll,
     };
-  }
-
-  render() {
-    const { children, disabled } = this.props;
-    return (
-      <Downshift
-        disabled={disabled}
-        stateReducer={this.stateReducer}
-        selectedItem={null}
-        itemToString={noop}
-      >
-        {downshift => children(this.getStateAndHelpers(downshift))}
-      </Downshift>
-    );
-  }
-}
-
-class MultiSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '',
-    };
-    this.handleInputValueChange = this.handleInputValueChange.bind(this);
-    this.clearInput = this.clearInput.bind(this);
-  }
-
-  handleInputValueChange(event) {
-    if (event || event === '') this.setState({ inputValue: event });
-  }
-
-  clearInput() {
-    this.setState({ inputValue: '' });
   }
 
   render() {
     const {
       'data-test': dataTest,
-      selectedItems,
-      renderSelection,
-      renderOptions,
-      hintText,
-      height,
-      fullWidth,
-      stretch,
-      dirty,
       disabled,
-      error,
-      success,
-      loading,
-      inlineEdit,
-      tabIndex,
-      onCreate,
-      onSelect,
-      onRemove,
-      onClear,
-      disableContainment,
-    } = this.props;
-
-    const { inputValue } = this.state;
-
-    const renderChildrenWithFormState = ({
-      onBlur,
-      onFocus,
-      onMouseEnter,
-      onMouseLeave,
-      calculateDropdownDimensions,
-      inputRef,
-      inputContainerRef,
-      focused,
-      hovered,
+      dropdownHeight,
       dropdownMaxHeight,
       dropdownWidth,
-    }) => {
-      const renderChildrenWithSelection = ({
-        getInputProps,
-        getMenuProps,
-        getRootProps,
-        removeItem,
-        handleSelection,
-        isOpen,
-        getItemProps,
-        highlightedIndex,
-        removeAll,
-        openMenu,
-        closeMenu,
-      }) => {
-        const handleFocusWrapper = evt => {
-          onFocus(evt);
-          calculateDropdownDimensions();
-          openMenu();
-        };
-
-        const hasSelection = selectedItems.length > 0;
-        const hasManySelected = selectedItems.length > 1;
-
-        const selection =
-          isFunction(renderSelection) &&
-          renderSelection({
-            removeItem,
-          });
-
-        const clearAllButton = isFunction(onClear) && hasManySelected && (
-          <IconButton
-            size={height - 4}
-            icon={CloseIcon}
-            title="Clear All"
-            onClick={removeAll}
-          />
-        );
-
-        const placeholder = !hasSelection ? hintText : '';
-
-        const handleKeyDown = event => {
-          const shouldRemoveLastChipWithBackspace =
-            event.key === 'Backspace' &&
-            event.target.value === '' &&
-            selectedItems.length > 0;
-          if (shouldRemoveLastChipWithBackspace) {
-            removeItem(selectedItems[selectedItems.length - 1]);
-          }
-
-          if (event.key === 'Enter') {
-            const { value } = event.target;
-            const canCreate =
-              value !== '' && highlightedIndex === null && isFunction(onCreate);
-            if (!canCreate) return;
-
-            const newItem = {
-              id: value,
-              value,
-            };
-            handleSelection(newItem.id, event);
-            this.clearInput();
-            const hasBeenCreated = Boolean(
-              selectedItems.find(id => id === value),
-            );
-            if (!hasBeenCreated) {
-              onCreate(newItem);
-            }
-          }
-        };
-
-        const inputProps = getInputProps({
-          innerRef: inputRef,
-          onKeyDown: handleKeyDown,
-          onFocus: handleFocusWrapper,
-          onBlur,
-        });
-
-        const menuContents =
-          isOpen &&
-          isFunction(renderOptions) &&
-          renderOptions({
-            getItemProps,
-            selectedItems,
-          });
-
-        const menuProps = getMenuProps({}, { suppressRefError: true });
-
-        const menu = (
-          <div
-            role={menuProps.role}
-            aria-labelledby={menuProps['aria-labelledby']}
-          >
-            {menuContents}
-          </div>
-        );
-
-        const input = (
-          <InputFieldContainer
-            innerRef={inputContainerRef}
-            height={height}
-            fullWidth={fullWidth}
-            stretch={stretch}
-            dirty={dirty}
-            disabled={disabled}
-            error={error}
-            success={success}
-            inlineEdit={inlineEdit}
-            focused={focused}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <SpacedGroup xs={2} center stretch>
-              {selection}
-              <InputField
-                {...inputProps}
-                height={height}
-                value={inputValue}
-                placeholder={placeholder}
-                dirty={dirty}
-                disabled={disabled}
-                fullWidth={fullWidth}
-                stretch={stretch}
-                tabIndex={tabIndex}
-              />
-            </SpacedGroup>
-            <InputStateIcon
-              inlineEdit={inlineEdit}
-              disabled={disabled}
-              success={success}
-              loading={loading}
-              error={error}
-              hovered={hovered}
-            />
-            {clearAllButton}
-            <Arrow
-              disabled={disabled}
-              open={isOpen}
-              height={height}
-              onClick={isOpen ? closeMenu : () => inputRef.current.focus()}
-            />
-          </InputFieldContainer>
-        );
-
-        const dropdownHeight = menuContents
-          ? this.props.dropdownHeight || dropdownMaxHeight
-          : 0;
-
-        const width = this.props.dropdownWidth || dropdownWidth;
-
-        return (
-          <ComboBox
-            {...getRootProps({ refKey: 'innerRef' })}
-            data-test={dataTest}
-            fullWidth={fullWidth}
-            stretch={stretch}
-          >
-            <Menu
-              placement="bottom-start"
-              open={isOpen}
-              anchor={input}
-              width={width}
-              height={dropdownHeight}
-              disableContainment={disableContainment}
-            >
-              {menu}
-            </Menu>
-          </ComboBox>
-        );
-      };
-
-      return (
-        <MultiDownshift
-          {...this.props}
-          onSelect={onSelect}
-          onRemove={onRemove}
-          onCreate={onCreate}
-          onInputValueChange={this.handleInputValueChange}
-          clearInput={this.clearInput}
-          focus={() => inputRef.current.focus()}
-        >
-          {renderChildrenWithSelection}
-        </MultiDownshift>
-      );
-    };
+      dirty,
+      disableContainment,
+      error,
+      focused,
+      fullWidth,
+      height,
+      hintText,
+      hovered,
+      inlineEdit,
+      loading,
+      onBlur,
+      onClear,
+      onCreate,
+      onFocus,
+      renderOptions,
+      renderSelection,
+      selectedItems,
+      stretch,
+      success,
+      tabIndex,
+    } = this.props;
 
     return (
       <WithFormFieldState
-        inlineEdit={this.props.inlineEdit}
-        focused={this.props.focused}
-        hovered={this.props.hovered}
-        dropdownMaxHeight={this.props.dropdownMaxHeight}
-        dropdownWidth={this.dropdownWidth}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
+        inlineEdit={inlineEdit}
+        focused={focused}
+        hovered={hovered}
+        dropdownMaxHeight={dropdownMaxHeight}
+        dropdownWidth={dropdownWidth}
+        onFocus={onFocus}
+        onBlur={onBlur}
       >
-        {renderChildrenWithFormState}
+        {({
+          dropdownMaxHeight: calculatedDropdownMaxHeight,
+          dropdownWidth: calculatedDropdownWidth,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          calculateDropdownDimensions,
+          focused: calculatedFocused,
+          onMouseEnter,
+          onMouseLeave,
+          hovered: calculatedHovered,
+          inputContainerRef,
+          inputRef,
+        }) => {
+          return (
+            <Downshift
+              disabled={disabled}
+              stateReducer={this.stateReducer}
+              selectedItem={selectedItems}
+              itemToString={item => (item ? item.label : '')}
+              initialInputValue=""
+            >
+              {downshift => {
+                return renderField({
+                  ...this.getStateAndHelpers(downshift),
+                  'data-test': dataTest,
+                  inlineEdit,
+                  fullWidth,
+                  stretch,
+                  error,
+                  loading,
+                  dirty,
+                  success,
+                  tabIndex,
+                  disabled,
+                  dropdownHeight,
+                  disableContainment,
+                  height,
+                  hintText,
+                  selectedItems,
+                  renderSelection,
+                  renderOptions,
+                  onClear,
+                  onCreate,
+
+                  dropdownMaxHeight: calculatedDropdownMaxHeight,
+                  dropdownWidth: calculatedDropdownWidth,
+                  onBlur: handleBlur,
+                  onFocus: handleFocus,
+                  calculateDropdownDimensions,
+                  focused: calculatedFocused,
+                  onMouseEnter,
+                  onMouseLeave,
+                  hovered: calculatedHovered,
+                  inputContainerRef,
+                  inputRef,
+                  getItems: this.getItems,
+                });
+              }}
+            </Downshift>
+          );
+        }}
       </WithFormFieldState>
     );
   }
 }
 
+const ItemValuePropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+]);
+const ItemPropType = PropTypes.shape({
+  label: PropTypes.string,
+  value: ItemValuePropType,
+});
+
 MultiSelect.propTypes = {
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
   /**
    * Array of item ids.
    */
-  selectedItems: PropTypes.array,
+  selectedItems: PropTypes.arrayOf(ItemValuePropType),
+  /**
+   * Set of items that can be selected
+   */
+  items: PropTypes.arrayOf(ItemPropType),
+  /**
+  * Filter predicate to apply when input changes occur
+  * inputValue => item =>
+  item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
+  */
+  filter: PropTypes.func,
   /**
    * Function called when item is unselected
    */
@@ -393,14 +312,13 @@ MultiSelect.propTypes = {
    */
   dropdownWidth: PropTypes.string,
   /**
+   * Height of the dropdown (includes units pxs, %, rems, etc)
+   */
+  dropdownHeight: PropTypes.string,
+  /**
    * Maxium height of the dropdown
    */
   dropdownMaxHeight: PropTypes.number,
-
-  /**********************
-  Common InputField Props
-  **********************/
-
   /**
    * Indicates the tab order within the document.
    */
@@ -413,6 +331,14 @@ MultiSelect.propTypes = {
    * Indicates if the field's value has changed
    */
   dirty: PropTypes.bool,
+  /**
+   * Indicates if the field's value is in the process of being persisted
+   */
+  loading: PropTypes.bool,
+  /**
+   * Indicates if the field's value has successfully been persisted
+   */
+  success: PropTypes.bool,
   /**
    * Indicates if the field has an error
    */
@@ -429,6 +355,10 @@ MultiSelect.propTypes = {
    * Indicates the page focus is this text field.
    */
   focused: PropTypes.bool,
+  /**
+   * Indicates the text field is hovered
+   */
+  hovered: PropTypes.bool,
   /**
    * Indicates the input to take the full width of its parent.
    * See stretch, (when strech is true this fullWidth is overriden)
@@ -458,6 +388,7 @@ MultiSelect.propTypes = {
 };
 
 MultiSelect.defaultProps = {
+  items: [],
   selectedItems: [],
   onRemove: noop,
   onClear: null,
@@ -468,6 +399,8 @@ MultiSelect.defaultProps = {
   disableContainment: false,
   dropdownWidth: null,
   dropdownMaxHeight: 600,
+  filter: (inputValue = '') => item =>
+    item.label.toLowerCase().startsWith(inputValue.toLowerCase()),
   /**********************
    Common InputField Props
    **********************/
