@@ -24,12 +24,12 @@ class Tabs extends React.Component {
     const context = {
       activeTab,
       focusedTab,
-      selectTabByIndex: index => () => {
+      selectTabByIndex: index => (event) => {
         this.setState({
           activeTab: index,
           focusedTab: index,
         });
-        handleSelection(index);
+        handleSelection(index, event);
       },
       focusTabByIndex: index => () => this.setState({ focusedTab: index }),
     };
