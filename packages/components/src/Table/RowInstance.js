@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
-import { noop } from 'underscore'
 import ColumnInstance from './ColumnInstance'
 
 const RowInstance = ({ children, ...otherProps }) => {
@@ -33,7 +32,11 @@ RowInstance.propTypes = {
   /**
    * Columns to display within Row.
    */
-  children: PropTypes.instanceOf(ColumnInstance),
+  children:  PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape({
+    type: ColumnInstance})),
+    PropTypes.instanceOf(ColumnInstance)
+  ]),
   /**
    * Row className
    */
@@ -41,7 +44,7 @@ RowInstance.propTypes = {
   /**
    * Function to be triggered onClick of row
    */
-  onRowClick: noop,
+  onRowClick: PropTypes.func,
 };
 
 RowInstance.defaultProps = {};

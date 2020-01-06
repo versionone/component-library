@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { noop } from 'underscore'
 
 const ColumnInstance = ({ children, ...otherProps }) => {
   const colWidth = otherProps.colWidth
     ? otherProps.colWidth
     : otherProps.calculatedWidth;
-  return React.Children.map(children, child => {
     return React.createElement(
       'span',
       {
@@ -14,9 +12,8 @@ const ColumnInstance = ({ children, ...otherProps }) => {
         className: otherProps.columnClass,
         onClick: otherProps.onColumnClick,
       },
-      child,
+      children,
     )
-  })
 }
 
 ColumnInstance.propTypes = {
@@ -35,7 +32,7 @@ ColumnInstance.propTypes = {
   /**
    * Function to be triggered onClick of column
    */
-  onColumnClick: noop,
+  onColumnClick: PropTypes.func,
 };
 
 ColumnInstance.defaultProps = {};

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { noop } from 'underscore'
 import { PipelineIcon } from '@versionone/icons'
 import { createComponent } from '../StyleProvider'
 import { Button } from '../Button'
@@ -18,7 +17,7 @@ const ColumnHeader = createComponent(
 );
 
 const ButtonWrapper = createComponent(
-  () => ({ margin: '0 auto', display: 'block', width: '110px' }),
+  () => ({ margin: '0 auto', display: 'block', width: '110px'}),
   'span',
 );
 
@@ -131,11 +130,24 @@ Table.propTypes = {
   /**
    * Column Headers attribute
    */
-  columns: PropTypes.arrayOf(PropTypes.object),
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    /**
+     * Column Label to be displayed
+     */
+    label: PropTypes.string,
+    /**
+     * Key to access the specified column
+     */
+    key: PropTypes.string,
+    /**
+     * Width of header column in %
+     */
+    width: PropTypes.string
+  })),
   /**
    * Strucure of rows to be displayed in table
    */
-  rowInstance: noop,
+  rowInstance: PropTypes.func,
   /**
    * Data to be displayed in table
    */
@@ -147,7 +159,20 @@ Table.propTypes = {
   /**
    * Pagination properties - count, more, fetchData function
    */
-  paginationProps: PropTypes.object,
+  paginationProps: PropTypes.shape({
+    /**
+     * Total record count
+     */
+    count: PropTypes.number,
+    /**
+     * Remaining record count
+     */
+    more: PropTypes.number,
+    /**
+     * Function to fetch next set of data
+     */
+    fetchData: PropTypes.func,
+  }),
   /**
    * Sort enabled or not
    */
