@@ -15,37 +15,37 @@ const getBackgroundColor = ({ buttonType, disabled, theme, variant }) => {
   return theme.Button[buttonType].background;
 };
 const getHoverColor = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.background; 
+  if (disabled) return theme.Button.disabled.background;
   if(variant === "text") return theme.Button.text.hover;
   return theme.Button[buttonType].hover;
 };
 const getFocusColor = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.background; 
+  if (disabled) return theme.Button.disabled.background;
   if(variant === "text") return theme.Button.text.focus;
   return theme.Button[buttonType].focus;
 };
 const getFocusBorderColor = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.background; 
+  if (disabled) return theme.Button.disabled.background;
   if(variant === "text") return theme.Button.text.focus;
   return theme.Button[buttonType].focusBorder;
 };
 const getBeforeColor = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.background; 
+  if (disabled) return theme.Button.disabled.background;
   if(variant === "text") return theme.Button.standard.before;
   return theme.Button[buttonType].before;
 };
 const getFocusBeforeColor = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return theme.Button.disabled.background; 
+  if (disabled) return theme.Button.disabled.background;
   if(variant === "text") return theme.Button.standard.focusBefore;
   return theme.Button[buttonType].focusBefore;
 };
 const getBoxShadow = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return 'none'; 
+  if (disabled) return 'none';
   if(variant === "text") return theme.Button.text.boxShadow;
   return theme.Button[buttonType].boxShadow;
 };
 const getFocusBoxShadow = ({ buttonType, disabled, theme, variant }) => {
-  if (disabled) return 'none'; 
+  if (disabled) return 'none';
   if(variant === "text") return theme.Button.text.boxShadow;
   return theme.Button[buttonType].focusBoxShadow;
 };
@@ -96,10 +96,6 @@ const ButtonImpl = createComponent(
       boxShadow: getBoxShadow({buttonType, disabled, theme, variant}),
       borderColor: getBorderColor({buttonType, disabled, hovered: true, theme, variant})
     },
-    ':hover:before': {
-      left: 0,
-      width: '100%'
-    },
     ':focus': {
       backgroundColor: getFocusColor({buttonType, disabled, theme, variant}),
       boxShadow: getFocusBoxShadow({buttonType, disabled, theme, variant}),
@@ -116,17 +112,6 @@ const ButtonImpl = createComponent(
     ':active:before': {
       backgroundColor: getFocusBeforeColor({buttonType, disabled, theme, variant}),
     },
-    ':before': {
-      backgroundColor: getBeforeColor({buttonType, disabled, theme, variant}),
-      content:'""',
-      width: '0%',
-      height: '100%',
-      top: 0,
-      left: '100%',
-      transition: '0.5s all ease-out',
-      position: 'absolute',
-      zIndex: -1,
-    }
   }),
   'button',
   [
