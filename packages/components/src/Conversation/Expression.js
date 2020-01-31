@@ -11,7 +11,7 @@ const Container = createComponent(
     flexDirection: 'row',
   }),
   'div',
-  ['data-component', 'data-test', 'role'],
+  ['data-component', 'data-test'],
 );
 
 const LeftColumn = createComponent(

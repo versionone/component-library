@@ -24,45 +24,29 @@ const IconContainer = createComponent(
 );
 
 export default props => {
-  const { inlineEdit, disabled, success, hovered, loading, error } = props;
+  const { inlineEdit, disabled, success, loading, error } = props;
 
-  const showIcon = !inlineEdit || hovered;
+  const inlineEditIcon = (() => {
+    if (disabled) return null;
+    if (loading) return <LoadingSpinIcon size={12} color={palette.gunmetal} />;
+    if (success) return <CheckIcon size={12} color={palette.shamrock} />;
+    if (error)
+      return (
+        <Tooltip anchor={<AlertIcon size={12} color={palette.sunset} />}>
+          <SpacedGroup xs={2}>
+            <span>{error}</span>
+          </SpacedGroup>
+        </Tooltip>
+      );
+    if (inlineEdit) return <EditIcon size={12} color={palette.cerulean} />;
+    return null;
+  })();
 
-  const inlineEditIcon = disabled ? null : success ? (
-    <CheckIcon
-      size={12}
-      color={showIcon ? palette.shamrock : palette.transparent}
-    />
-  ) : loading ? (
-    <LoadingSpinIcon
-      size={12}
-      color={showIcon ? palette.gunmetal : palette.transparent}
-    />
-  ) : error ? (
-    <Tooltip
-      anchor={
-        <AlertIcon
-          size={12}
-          color={showIcon ? palette.sunset : palette.transparent}
-        />
-      }
-    >
-      <SpacedGroup xs={2}>
-        <span>{error}</span>
-      </SpacedGroup>
-    </Tooltip>
-  ) : inlineEdit ? (
-    <EditIcon
-      size={12}
-      color={showIcon ? palette.cerulean : palette.transparent}
-    />
-  ) : null;
-
-  const container = inlineEditIcon && (
-    <IconContainer success={success} error={error}>
-      {inlineEditIcon}
-    </IconContainer>
+  return (
+    inlineEditIcon && (
+      <IconContainer success={success} error={error}>
+        {inlineEditIcon}
+      </IconContainer>
+    )
   );
-
-  return container;
 };

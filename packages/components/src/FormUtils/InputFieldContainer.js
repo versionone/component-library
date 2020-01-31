@@ -51,6 +51,16 @@ export default createComponent(
       theme.Form.inline.main,
     ),
     ...styleUtils.conditionalStyle(
+      inlineEdit && success,
+      'border-color',
+      theme.Form.success.main,
+    ),
+    ...styleUtils.conditionalStyle(
+      inlineEdit && error,
+      'border-color',
+      theme.Form.error.main,
+    ),
+    ...styleUtils.conditionalStyle(
       !(inlineEdit || disabled || focused || error),
       'border-color',
       theme.Form.borderColor,
@@ -72,16 +82,6 @@ export default createComponent(
         disabled,
         'border-color',
         theme.Form.disabled.main,
-      ),
-      ...styleUtils.conditionalStyle(
-        success,
-        'border-color',
-        theme.Form.success.main,
-      ),
-      ...styleUtils.conditionalStyle(
-        error,
-        'border-color',
-        theme.Form.error.main,
       ),
       ...styleUtils.conditionalStyle(
         !(disabled || success || error),
