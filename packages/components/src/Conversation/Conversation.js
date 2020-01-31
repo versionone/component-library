@@ -4,10 +4,10 @@ import { noop } from 'underscore';
 import { createComponent } from '../StyleProvider';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
-import { SpacedGroup } from '../SpacedGroup';
-import { TextField } from '../TextField';
 import { Expander } from '../Expander';
 import { OnClickOutside } from '../OnClickOutside';
+import { SpacedGroup } from '../SpacedGroup';
+import { TextField } from '../TextField';
 
 const Container = createComponent(() => ({}), 'div', [
   'data-component',
@@ -45,14 +45,14 @@ class Conversation extends PureComponent {
   render() {
     const {
       'data-test': dataTest,
-      expanded,
-      topic,
-      thread,
       collapsedCount,
+      expanded,
       onExpand,
+      onReplyChanged,
       onShare,
       replyMessage,
-      onReplyChanged,
+      thread,
+      topic,
     } = this.props;
 
     const { replying } = this.state;
@@ -107,36 +107,25 @@ class Conversation extends PureComponent {
 
 Conversation.propTypes = {
   /**
-   * data-test attribute
-   */
-  'data-test': PropTypes.string,
-  /**
-   * Original expression
-   */
-  topic: PropTypes.node,
-  /**
-   * collection of expresssion
-   */
-  thread: PropTypes.shape({
-    expressions: PropTypes.arrayOf(PropTypes.node),
-    count: PropTypes.number,
-  }),
-  /**s
    * Number of expression in the thread that are collapsed
    */
   collapsedCount: PropTypes.number,
+  /**
+   * data-test attribute
+   */
+  'data-test': PropTypes.string,
   /**
    * A reply to the conversation is intiated before user interaction
    */
   defaultReplying: PropTypes.bool,
   /**
-   * Contents of the reply
-   */
-  replyMessage: PropTypes.string,
-  /**
    * If true then collapsed thread is visible
    */
   expanded: PropTypes.bool,
+  /**
+   * Invoked when a reply is canceled
+   */
+  onCancelReply: PropTypes.func,
   /**
    * Invoked when collapsed thread is expanded
    */
@@ -146,32 +135,43 @@ Conversation.propTypes = {
    */
   onInitiateReply: PropTypes.func,
   /**
-   * Invoked when a reply is canceled
+   * Invoked when reply message changes
    */
-  onCancelReply: PropTypes.func,
+  onReplyChanged: PropTypes.func,
   /**
    * Invoked when an expression is shared
    */
   onShare: PropTypes.func,
   /**
-   * Invoked when reply message changes
+   * Contents of the reply
    */
-  onReplyChanged: PropTypes.func,
+  replyMessage: PropTypes.string,
+  /**
+   * collection of expresssion
+   */
+  thread: PropTypes.shape({
+    expressions: PropTypes.arrayOf(PropTypes.node),
+    count: PropTypes.number,
+  }),
+  /**
+   * Original expression
+   */
+  topic: PropTypes.node,
 };
 
 Conversation.defaultProps = {
+  collapsedCount: 0,
   expanded: false,
-  topic: null,
+  onCancelReply: noop,
+  onExpand: noop,
+  onInitiateReply: noop,
+  onReplyChanged: noop,
+  onShare: noop,
   thread: {
     expressions: [],
     count: 0,
   },
-  collapsedCount: 0,
-  onExpand: noop,
-  onInitiateReply: noop,
-  onCancelReply: noop,
-  onShare: noop,
-  onReplyChanged: noop,
+  topic: null,
 };
 
 export { Conversation };

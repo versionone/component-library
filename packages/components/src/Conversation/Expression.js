@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent, cloneElement } from 'react';
-import { createComponent } from '../StyleProvider';
 import { Avatar } from '../Avatar';
+import { createComponent } from '../StyleProvider';
 import { SpacedGroup } from '../SpacedGroup';
 import { Typography } from '../Typography';
 
@@ -34,10 +34,10 @@ class Expression extends PureComponent {
 
   render() {
     const {
-      'data-test': dataTest,
       authorAvatar,
-      authorName,
       authorDate,
+      authorName,
+      'data-test': dataTest,
       message,
       mentions,
     } = this.props;
@@ -72,21 +72,21 @@ class Expression extends PureComponent {
 
 Expression.propTypes = {
   /**
-   * data-test attribute
-   */
-  'data-test': PropTypes.string,
-  /**
    * Avatar of member who authored the expression
    */
   authorAvatar: PropTypes.node,
+  /**
+   * Date the expression was authored
+   */
+  authorDate: PropTypes.string.isRequired,
   /**
    * Name of the member who authored the expression
    */
   authorName: PropTypes.node.isRequired,
   /**
-   * Date the expression was authored
+   * data-test attribute
    */
-  authorDate: PropTypes.string.isRequired,
+  'data-test': PropTypes.string,
   /**
    * Contents of the expression
    */
