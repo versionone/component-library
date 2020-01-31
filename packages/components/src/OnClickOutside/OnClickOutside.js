@@ -6,6 +6,7 @@ import { DetectExternalEvents } from '../DetectExternalEvents';
 const OnClickOutside = ({ handleClickOutside, children }) => {
   return (
     <DetectExternalEvents
+      data-component="OnClickOutside"
       domEvents={['click']}
       reactEvents={['onClick']}
       onExternalEvent={handleClickOutside}

@@ -32,6 +32,7 @@ export class Collapsable extends React.Component {
       expanded: false,
       expressions: [
         <Expression
+          data-test="reply-to-topic"
           authorAvatar={<Avatar icon={<AvatarIcon />} />}
           authorName="Jim"
           authorDate="2 min ago"
@@ -42,6 +43,7 @@ export class Collapsable extends React.Component {
           ]}
         />,
         <Expression
+          data-test="reply-to-reply"
           authorAvatar={
             <Avatar src="https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg" />
           }
@@ -65,8 +67,10 @@ export class Collapsable extends React.Component {
     const { expanded, expressions } = this.state;
     return (
       <Conversation
+        data-test="collapsed-thread-conversation"
         topic={
           <Expression
+            data-test="topic-expression"
             authorAvatar={
               <Avatar src="https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg" />
             }
@@ -75,14 +79,12 @@ export class Collapsable extends React.Component {
             message="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
           />
         }
-        thread={{
-          expressions,
-          count: 2,
-        }}
         collapsedCount={3}
         expanded={expanded}
         onExpand={this.handleExpand}
-      />
+      >
+        {expressions}
+      </Conversation>
     );
   }
 }
