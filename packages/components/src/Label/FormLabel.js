@@ -30,30 +30,30 @@ const RequiredText = createComponent(
 
 const FormLabel = props => {
   const {
+    center,
     children,
-    disabled,
-    required,
     'data-test': dataTest,
+    disabled,
+    disableGutter,
     label,
     labelPlacement,
-    center,
+    required,
     stretch,
     xs,
     sm,
     md,
     lg,
     xl,
-    disableGutter,
   } = props;
   const spacedGroupProps = {
     center,
+    disableGutter,
     stretch,
     xs,
     sm,
     md,
     lg,
     xl,
-    disableGutter,
   };
   const labelText = required 
       ? <div>{label}<RequiredText> *</RequiredText></div>
