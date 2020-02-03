@@ -29,17 +29,42 @@ const RequiredText = createComponent(
 );
 
 const FormLabel = props => {
-  const { children, disabled, required, 'data-test': dataTest, label, labelPlacement } = props;
+  const {
+    children,
+    disabled,
+    required,
+    'data-test': dataTest,
+    label,
+    labelPlacement,
+    center,
+    stretch,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+    disableGutter,
+  } = props;
+  const spacedGroupProps = {
+    center,
+    stretch,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+    disableGutter,
+  };
   const labelText = required 
-      ? <label>{label}<RequiredText> *</RequiredText></label> 
-      : <label>{label}</label>;
+      ? <div>{label}<RequiredText> *</RequiredText></div>
+      : <div>{label}</div>;
   const content = labelPlacement === ABOVE || labelPlacement === LEFT 
       ? <React.Fragment>{labelText}{children}</React.Fragment> 
       : <React.Fragment>{children}{labelText}</React.Fragment>;
   const direction = (labelPlacement === ABOVE || labelPlacement === BELOW) ? "vertical" : "horizontal";
   return (
     <LabelWrapper data-component="Label" data-test={dataTest} disabled={disabled}>
-      <SpacedGroup {...props} direction={direction} is="label">
+      <SpacedGroup {...spacedGroupProps} direction={direction}>
         {content}
       </SpacedGroup>
     </LabelWrapper>
