@@ -55,13 +55,13 @@ const FormControlLabel = props => {
   const content =
     labelPlacement === ABOVE || labelPlacement === LEFT ? (
       <React.Fragment>
-        <LabelWrapper>{label}</LabelWrapper>
+        <LabelWrapper disabled={disabled}>{label}</LabelWrapper>
         {newControl}
       </React.Fragment>
     ) : (
       <React.Fragment>
         {newControl}
-        <LabelWrapper>{label}</LabelWrapper>
+        <LabelWrapper disabled={disabled}>{label}</LabelWrapper>
       </React.Fragment>
     );
   const direction =

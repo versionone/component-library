@@ -4,53 +4,32 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormLabel, FormControlLabel } from './';
+import { FormControlLabel } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from '../TextField';
 import { RadioGroup, Radio } from '../Radio'
-import { IconButton } from '../Button';
-import { AssetIcon, CloseIcon, BulbIcon, EditIcon, MailIcon  } from '@versionone/icons';
 
-A label used to identify a form field or a section of a form.
-
-## FormLabel
-
-<Playground>
-  <SpacedGroup direction="vertical">
-      <FormLabel labelPlacement="left" label="label to the left"><TextField /></FormLabel>
-      <FormLabel labelPlacement="right" label="label to the right"><TextField /></FormLabel>
-      <FormLabel labelPlacement="above" label="label above"><TextField /></FormLabel>
-      <FormLabel labelPlacement="below" label="label below"><TextField /></FormLabel>
-      <FormLabel disabled label="disabled label"><TextField /></FormLabel>
-      <FormLabel required label="required label"><TextField /></FormLabel>
-      <FormLabel label="Form label with multiple Icon Buttons" labelPlacement="above">
-        <SpacedGroup direction="horizontal">
-          <IconButton icon={AssetIcon} title="asset" />
-          <IconButton icon={CloseIcon} title="close" />
-          <IconButton icon={BulbIcon} title="bulb" />
-          <IconButton icon={EditIcon} title="edit" />
-          <IconButton icon={MailIcon} title="mail" />
-        </SpacedGroup>
-      </FormLabel>
-  </SpacedGroup>
-</Playground>
+A label used to identify a form field.
 
 ## FormControlLabel
 
 Used with a single control such as Radio or Checkbox
 
 <Playground>
-  <FormLabel label="Where would you like your label?" labelPlacement="above">
-    <RadioGroup name="GroupName" direction="column">
-      <FormControlLabel labelPlacement="left" label="label to the left" control={<Radio value="left"/>} />
-      <FormControlLabel labelPlacement="right" label="label to the right" control={<Radio value="right"/>} />
-      <FormControlLabel labelPlacement="above" label="label above" control={<Radio value="above"/>} />
-      <FormControlLabel labelPlacement="below" label="label below" control={<Radio value="below"/>} />
-    </RadioGroup>
-  </FormLabel>
+  <FormControlLabel labelPlacement="left" label="label to the left" control={<TextField />} />
+  <FormControlLabel labelPlacement="right" label="label to the right" control={<TextField />} />
+  <FormControlLabel labelPlacement="above" label="label above" control={<TextField />} />
+  <FormControlLabel labelPlacement="below" label="label below" control={<TextField />} />
+  <FormControlLabel disabled label="disabled label" control={<TextField />} />
+  <FormControlLabel required label="required label" control={<TextField />} />
+  <RadioGroup name="GroupName" direction="column" groupLabel="Where would you like your label?">
+    <FormControlLabel labelPlacement="left" label="label to the left" control={<Radio value="left"/>} />
+    <FormControlLabel labelPlacement="right" label="label to the right" control={<Radio value="right"/>} />
+    <FormControlLabel labelPlacement="above" label="label above" control={<Radio value="above"/>} />
+    <FormControlLabel labelPlacement="below" label="label below" control={<Radio value="below"/>} />
+  </RadioGroup>
 </Playground>
 
 ## API
 
-<PropsTable of={FormLabel} />
 <PropsTable of={FormControlLabel} />
