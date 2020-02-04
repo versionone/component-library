@@ -4,7 +4,7 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormLabel } from '../Label';
+import { FormControlLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from './';
 import { Lozenge } from '../Lozenge';
@@ -34,9 +34,10 @@ Used to provide free-form textual input.
     <TextField hintText="Dirty" multiline dirty />
     <TextField hintText="Error" multiline error="Error" />
     <TextField hintText="Prepend Icon" multiline prependIcon="item" />
-    <FormLabel label="with a label">
-      <TextField multiline stretch />
-    </FormLabel>
+    <FormControlLabel
+      label="with a label"
+      control={<TextField multiline stretch />}
+    />
   </SpacedGroup>
 </Playground>
 
@@ -45,9 +46,10 @@ Used to provide free-form textual input.
 <Playground>
   <SpacedGroup direction="vertical">
     <TextField prependIcon="item" />
-    <FormLabel label="with a label">
-      <TextField prependIcon="item" stretch />
-    </FormLabel>
+    <FormControlLabel
+      label="with a label"
+      control={<TextField prependIcon="item" stretch />}
+    />
     <TextField fullWidth prependIcon="item" />
     <TextField fullWidth prependIcon={<HomeIcon />} />
     <TextField fullWidth prependIcon="item" multiline />
@@ -70,15 +72,18 @@ Used to provide free-form textual input.
 
 <Playground>
   <SpacedGroup direction="vertical">
-    <FormLabel label="Label">
-      <TextField hintText="default" />
-    </FormLabel>
-    <FormLabel label="Label">
-      <TextField hintText="fullWidth" fullWidth />
-    </FormLabel>
-    <FormLabel label="Label">
-      <TextField hintText="stretch" stretch />
-    </FormLabel>
+    <FormControlLabel
+      label="Label"
+      control={<TextField hintText="default" />}
+    />
+    <FormControlLabel
+      label="Label"
+      control={<TextField hintText="fullWidth" fullWidth />}
+    />
+    <FormControlLabel
+      label="Label"
+      control={<TextField hintText="stretch" stretch />}
+    />
   </SpacedGroup>
 </Playground>
 

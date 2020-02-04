@@ -5,7 +5,7 @@ menu: Components
 
 import { CheckIcon, CloseIcon } from '@versionone/icons';
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormLabel } from '../Label';
+import { FormControlLabel } from '../Label';
 import { SpacedGroup } from '../SpacedGroup';
 import { IconSwitch } from './';
 import { palette } from './../palette';
@@ -20,26 +20,32 @@ This Switch is used to toggle between two mutually exclusive options and is visu
 <Playground>
   <SpacedGroup direction="vertical">
     <SpacedGroup xs={2} center>
-      <FormLabel>Not Checked</FormLabel>
-      <IconSwitch
-        checkedIcon={<CheckIcon color={palette.gunmetal} />}
-        uncheckedIcon={<CloseIcon />}
+      <FormControlLabel
+        label="Not Checked"
+        control={
+          <IconSwitch
+            checkedIcon={<CheckIcon color={palette.gunmetal} />}
+            uncheckedIcon={<CloseIcon />} />}
       />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
-      <FormLabel>Checked</FormLabel>
-      <IconSwitch
-        checkedIcon={<CheckIcon color={palette.gunmetal} />}
-        uncheckedIcon={<CloseIcon />}
-        checked
+      <FormControlLabel
+        label="Checked"
+        control={
+          <IconSwitch
+            checkedIcon={<CheckIcon color={palette.gunmetal} />}
+            uncheckedIcon={<CloseIcon />}
+            checked />}
       />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
-      <FormLabel>Disabled</FormLabel>
-      <IconSwitch
-        checkedIcon={<CheckIcon color={palette.gunmetal} />}
-        uncheckedIcon={<CloseIcon />}
-        disabled
+      <FormControlLabel
+        label="Disabled"
+        control={
+          <IconSwitch
+            checkedIcon={<CheckIcon color={palette.gunmetal} />}
+            uncheckedIcon={<CloseIcon />}
+            disabled />}
       />
     </SpacedGroup>
   </SpacedGroup>
