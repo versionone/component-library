@@ -47,26 +47,30 @@ SmartGroup.propTypes = {
 };
 
 const RadioGroup = props => {
-  const { selectedValue, defaultFocusedRadio, name, direction, children, onChange, 'data-test': dataTest, 'data-trackingid': dataTracking } = props;
+  const { selectedValue, defaultFocusedRadio, groupLabel, name, direction, children, onChange, 'data-test': dataTest, 'data-trackingid': dataTracking } = props;
+  const label = groupLabel ? <div>{groupLabel}</div> : null;
   return (
-    <div
-      data-component="RadioGroup"
-      data-test={dataTest}
-      data-trackingid={dataTracking}
-      role="radiogroup"
-      name={name}
-      style={{ 
-        flexDirection: direction,
-        display: "flex" }
-      }>
-      <SmartGroup 
-        onChange={onChange}
+    <React.Fragment>
+      {label}
+      <div
+        data-component="RadioGroup"
+        data-test={dataTest}
+        data-trackingid={dataTracking}
+        role="radiogroup"
         name={name}
-        selectedValue={selectedValue} 
-        defaultFocusedRadio={defaultFocusedRadio}>
-        {children}
-      </SmartGroup>
-    </div>
+        style={{
+          flexDirection: direction,
+          display: "flex" }
+        }>
+        <SmartGroup
+          onChange={onChange}
+          name={name}
+          selectedValue={selectedValue}
+          defaultFocusedRadio={defaultFocusedRadio}>
+          {children}
+        </SmartGroup>
+      </div>
+    </React.Fragment>
   );
 };
 
@@ -83,6 +87,10 @@ RadioGroup.propTypes = {
    * Index of the focused radio before user interaction
    */
   defaultFocusedRadio: PropTypes.number,
+  /**
+   * Text displayed as label of group
+   */
+  groupLabel: PropTypes.string,
   /**
    * Function called when a radio is clicked
    */
@@ -104,6 +112,7 @@ RadioGroup.propTypes = {
 RadioGroup.defaultProps = {
   defaultFocusedRadio: null,
   direction: ROW,
+  groupLabel: null,
   handleSelection: noop,
   onChange: noop,
 };
