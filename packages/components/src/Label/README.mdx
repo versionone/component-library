@@ -8,6 +8,8 @@ import { FormControlLabel } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from '../TextField';
 import { RadioGroup, Radio } from '../Radio'
+import { Typography } from '../Typography';
+
 
 A label used to identify a form field.
 
@@ -22,12 +24,6 @@ Used with a single control such as Radio or Checkbox
   <FormControlLabel labelPlacement="below" label="label below" control={<TextField />} />
   <FormControlLabel disabled label="disabled label" control={<TextField />} />
   <FormControlLabel required label="required label" control={<TextField />} />
-  <RadioGroup name="GroupName" direction="column" groupLabel="Where would you like your label?">
-    <FormControlLabel labelPlacement="left" label="label to the left" control={<Radio value="left"/>} />
-    <FormControlLabel labelPlacement="right" label="label to the right" control={<Radio value="right"/>} />
-    <FormControlLabel labelPlacement="above" label="label above" control={<Radio value="above"/>} />
-    <FormControlLabel labelPlacement="below" label="label below" control={<Radio value="below"/>} />
-  </RadioGroup>
 </Playground>
 
 ## API
