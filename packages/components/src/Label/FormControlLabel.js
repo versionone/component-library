@@ -23,45 +23,54 @@ const LabelWrapper = createComponent(
   ['data-component'],
 );
 
+const RequiredText = createComponent(
+  ({ theme }) => ({
+    color: theme.Label.required.main,
+  }),
+  'span',
+);
+
 const FormControlLabel = props => {
   const {
     control,
     disabled,
+    focused,
+    id,
+    index,
     label,
     labelPlacement,
-    onClick,
-    selectedValue,
-    onChange,
-    onFocus,
-    onBlur,
-    focused,
     name,
-    id,
-    index
+    onBlur,
+    onChange,
+    onClick,
+    onFocus,
+    required,
+    selectedValue,
   } = props;
   const controlProps = {
-    onClick,
     disabled,
-    selectedValue,
+    focused,
     name,
     id,
-    onChange,
-    onFocus,
-    onBlur,
-    focused,
     index,
+    onBlur,
+    onChange,
+    onClick,
+    onFocus,
+    selectedValue,
   };
   const newControl = React.cloneElement(control, controlProps);
+  const requiredText = required ? <RequiredText> *</RequiredText> : null;
   const content =
     labelPlacement === ABOVE || labelPlacement === LEFT ? (
       <React.Fragment>
-        <LabelWrapper>{label}</LabelWrapper>
+        <LabelWrapper data-component="Label" disabled={disabled}>{label}{requiredText}</LabelWrapper>
         {newControl}
       </React.Fragment>
     ) : (
       <React.Fragment>
         {newControl}
-        <LabelWrapper>{label}</LabelWrapper>
+        <LabelWrapper data-component="Label" disabled={disabled}>{label}{requiredText}</LabelWrapper>
       </React.Fragment>
     );
   const direction =
@@ -149,6 +158,10 @@ FormControlLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Indicates a required field
+   */
+  required: PropTypes.bool,
+  /**
    * Attribute used to track user interaction
    */
   'data-trackingid': PropTypes.string,
@@ -165,5 +178,6 @@ FormControlLabel.defaultProps = {
   xs: 4,
   disableGutter: false,
   disabled: false,
+  required: false,
 };
 export { FormControlLabel };

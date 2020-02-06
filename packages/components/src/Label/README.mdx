@@ -4,40 +4,28 @@ menu: Components
 ---
 
 import { Playground, PropsTable } from '@versionone/doc-components';
-import { FormLabel, FormControlLabel } from './';
+import { FormControlLabel } from './';
 import { SpacedGroup } from '../SpacedGroup';
 import { TextField } from '../TextField';
 import { RadioGroup, Radio } from '../Radio'
+import { Typography } from '../Typography';
+
 
 A label used to identify a form field.
-
-## FormLabel
-
-<Playground>
-  <SpacedGroup direction="vertical">
-      <FormLabel labelPlacement="left" label="label to the left"><TextField /></FormLabel>
-      <FormLabel labelPlacement="right" label="label to the right"><TextField /></FormLabel>
-      <FormLabel labelPlacement="above" label="label above"><TextField /></FormLabel>
-      <FormLabel labelPlacement="below" label="label below"><TextField /></FormLabel>
-      <FormLabel disabled label="disabled label"><TextField /></FormLabel>
-      <FormLabel required label="required label"><TextField /></FormLabel>
-  </SpacedGroup>
-</Playground>
 
 ## FormControlLabel
 
 Used with a single control such as Radio or Checkbox
 
 <Playground>
-  <RadioGroup name="GroupName" defaultActiveRadio={0} defaultFocusedRadio={0}>
-    <FormControlLabel labelPlacement="left" label="label to the left" control={<Radio />} />
-    <FormControlLabel labelPlacement="right" label="label to the right" control={<Radio />} />
-    <FormControlLabel labelPlacement="above" label="label above" control={<Radio />} />
-    <FormControlLabel labelPlacement="below" label="label below" control={<Radio />} />
-  </RadioGroup>
+  <FormControlLabel labelPlacement="left" label="label to the left" control={<TextField />} />
+  <FormControlLabel labelPlacement="right" label="label to the right" control={<TextField />} />
+  <FormControlLabel labelPlacement="above" label="label above" control={<TextField />} />
+  <FormControlLabel labelPlacement="below" label="label below" control={<TextField />} />
+  <FormControlLabel disabled label="disabled label" control={<TextField />} />
+  <FormControlLabel required label="required label" control={<TextField />} />
 </Playground>
 
 ## API
 
-<PropsTable of={FormLabel} />
 <PropsTable of={FormControlLabel} />

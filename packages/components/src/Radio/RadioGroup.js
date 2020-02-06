@@ -49,24 +49,24 @@ SmartGroup.propTypes = {
 const RadioGroup = props => {
   const { selectedValue, defaultFocusedRadio, name, direction, children, onChange, 'data-test': dataTest, 'data-trackingid': dataTracking } = props;
   return (
-    <div
-      data-component="RadioGroup"
-      data-test={dataTest}
-      data-trackingid={dataTracking}
-      role="radiogroup"
-      name={name}
-      style={{ 
-        flexDirection: direction,
-        display: "flex" }
-      }>
-      <SmartGroup 
-        onChange={onChange}
+      <div
+        data-component="RadioGroup"
+        data-test={dataTest}
+        data-trackingid={dataTracking}
+        role="radiogroup"
         name={name}
-        selectedValue={selectedValue} 
-        defaultFocusedRadio={defaultFocusedRadio}>
-        {children}
-      </SmartGroup>
-    </div>
+        style={{
+          flexDirection: direction,
+          display: "flex" }
+        }>
+        <SmartGroup
+          onChange={onChange}
+          name={name}
+          selectedValue={selectedValue}
+          defaultFocusedRadio={defaultFocusedRadio}>
+          {children}
+        </SmartGroup>
+      </div>
   );
 };
 
