@@ -1,0 +1,104 @@
+---
+name: Conversation
+menu: Components
+---
+
+import { Playground, PropsTable } from '@versionone/doc-components';
+import { Avatar } from '../Avatar';
+import { AvatarIcon, AssetIcon } from '@versionone/icons';
+import { Link } from '../Link';
+import { Chip } from '../Chip';
+import { Conversation, Expression, NewExpression } from './';
+import { Collapsable } from './examples/Collapsable';
+import { Reply } from './examples/Reply';
+import { NewConversation } from './examples/NewConversation';
+
+## New Conversation
+
+<Playground>
+  <NewConversation />
+</Playground>
+
+## Threadless Conversation
+
+<Playground>
+  <Conversation
+    topic={
+      <Expression
+        authorName="Walker"
+        authorDate="Today"
+        message="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
+      />
+    }
+  />
+</Playground>
+
+## Threaded Conversation
+
+<Playground>
+  <Conversation
+    topic={
+      <Expression
+        authorAvatar={
+          <Avatar
+            src={
+              'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+            }
+          />
+        }
+        authorName="Walker"
+        authorDate="5 min ago"
+        message="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
+      />
+    }
+  >
+    <Expression
+      authorAvatar={<Avatar icon={<AvatarIcon />} />}
+      authorName="Jim"
+      authorDate="2 min ago"
+      message="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
+      mentions={[
+        <Chip avatar={<Avatar icon={<AssetIcon />} />}>Some Asset</Chip>,
+        <Chip avatar={<Avatar icon={<AssetIcon />} />}>Another Asset</Chip>,
+      ]}
+    />
+    <Expression
+      authorAvatar={
+        <Avatar
+          src={
+            'https://i.pinimg.com/236x/c1/2e/ba/c12eba2c171e51501c00759b3363367c--dapper-suits-bloomberg-businessweek.jpg'
+          }
+        />
+      }
+      authorName="Walker"
+      authorDate="1 min ago"
+      message="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets"
+    />
+  </Conversation>
+</Playground>
+
+## Conversation with Collapsed Thread
+
+<Playground>
+  <Collapsable />
+</Playground>
+
+## Stateful Reply Conversation
+
+<Playground>
+  <Reply />
+</Playground>
+
+## API
+
+### Conversation
+
+<PropsTable of={Conversation} />
+
+### Expression
+
+<PropsTable of={Expression} />
+
+### NewExpression
+
+<PropsTable of={NewExpression} />

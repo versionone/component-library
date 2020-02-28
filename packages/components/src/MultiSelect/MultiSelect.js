@@ -176,77 +176,79 @@ class MultiSelect extends Component {
     } = this.props;
 
     return (
-      <WithFormFieldState
-        inlineEdit={inlineEdit}
-        focused={focused}
-        hovered={hovered}
-        dropdownMaxHeight={dropdownMaxHeight}
-        dropdownWidth={dropdownWidth}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      >
-        {({
-          dropdownMaxHeight: calculatedDropdownMaxHeight,
-          dropdownWidth: calculatedDropdownWidth,
-          onBlur: handleBlur,
-          onFocus: handleFocus,
-          calculateDropdownDimensions,
-          focused: calculatedFocused,
-          onMouseEnter,
-          onMouseLeave,
-          hovered: calculatedHovered,
-          inputContainerRef,
-          inputRef,
-        }) => {
-          return (
-            <Downshift
-              disabled={disabled}
-              stateReducer={this.stateReducer}
-              selectedItem={selectedItems}
-              itemToString={item => (item ? item.label : '')}
-              initialInputValue=""
-            >
-              {downshift => {
-                return renderField({
-                  ...this.getStateAndHelpers(downshift),
-                  'data-test': dataTest,
-                  inlineEdit,
-                  fullWidth,
-                  stretch,
-                  error,
-                  loading,
-                  dirty,
-                  success,
-                  tabIndex,
-                  disabled,
-                  dropdownHeight,
-                  disableContainment,
-                  height,
-                  hintText,
-                  selectedItems,
-                  renderSelection,
-                  renderOptions,
-                  onClear,
-                  onCreate,
+      <div data-component="MultiSelect">
+        <WithFormFieldState
+          inlineEdit={inlineEdit}
+          focused={focused}
+          hovered={hovered}
+          dropdownMaxHeight={dropdownMaxHeight}
+          dropdownWidth={dropdownWidth}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        >
+          {({
+            dropdownMaxHeight: calculatedDropdownMaxHeight,
+            dropdownWidth: calculatedDropdownWidth,
+            onBlur: handleBlur,
+            onFocus: handleFocus,
+            calculateDropdownDimensions,
+            focused: calculatedFocused,
+            onMouseEnter,
+            onMouseLeave,
+            hovered: calculatedHovered,
+            inputContainerRef,
+            inputRef,
+          }) => {
+            return (
+              <Downshift
+                disabled={disabled}
+                stateReducer={this.stateReducer}
+                selectedItem={selectedItems}
+                itemToString={item => (item ? item.label : '')}
+                initialInputValue=""
+              >
+                {downshift => {
+                  return renderField({
+                    ...this.getStateAndHelpers(downshift),
+                    'data-test': dataTest,
+                    inlineEdit,
+                    fullWidth,
+                    stretch,
+                    error,
+                    loading,
+                    dirty,
+                    success,
+                    tabIndex,
+                    disabled,
+                    dropdownHeight,
+                    disableContainment,
+                    height,
+                    hintText,
+                    selectedItems,
+                    renderSelection,
+                    renderOptions,
+                    onClear,
+                    onCreate,
 
-                  dropdownMaxHeight: calculatedDropdownMaxHeight,
-                  dropdownWidth: calculatedDropdownWidth,
-                  onBlur: handleBlur,
-                  onFocus: handleFocus,
-                  calculateDropdownDimensions,
-                  focused: calculatedFocused,
-                  onMouseEnter,
-                  onMouseLeave,
-                  hovered: calculatedHovered,
-                  inputContainerRef,
-                  inputRef,
-                  getItems: this.getItems,
-                });
-              }}
-            </Downshift>
-          );
-        }}
-      </WithFormFieldState>
+                    dropdownMaxHeight: calculatedDropdownMaxHeight,
+                    dropdownWidth: calculatedDropdownWidth,
+                    onBlur: handleBlur,
+                    onFocus: handleFocus,
+                    calculateDropdownDimensions,
+                    focused: calculatedFocused,
+                    onMouseEnter,
+                    onMouseLeave,
+                    hovered: calculatedHovered,
+                    inputContainerRef,
+                    inputRef,
+                    getItems: this.getItems,
+                  });
+                }}
+              </Downshift>
+            );
+          }}
+        </WithFormFieldState>
+      </div>
     );
   }
 }

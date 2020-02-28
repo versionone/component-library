@@ -6,12 +6,18 @@ class DetectExternalEvents extends PureComponent {
   _lastInterceptedEvent = null;
 
   render() {
-    const { children, component, reactEvents } = this.props;
+    const {
+      children,
+      component,
+      'data-component': dataComponent,
+      reactEvents,
+    } = this.props;
     const events = reactEvents.reduce((obj, eventName) => {
       obj[eventName] = this._handleWrapperEvent;
       return obj;
     }, {});
-    return React.createElement(component, events, children);
+    const props = { ...events, 'data-component': dataComponent };
+    return React.createElement(component, props, children);
   }
 
   componentDidMount() {

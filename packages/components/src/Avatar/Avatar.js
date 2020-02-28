@@ -16,6 +16,7 @@ const AvatarWithStatus = createComponent(
     position: 'relative',
     width: size - 2,
     height: size - 2,
+    display: 'inline-flex',
   }),
   'span',
 );
@@ -79,7 +80,8 @@ const Avatar = props => {
         onClick={onClick}
         backgroundColor={backgroundColor}
         color={color}
-        data-component="Avatar">
+        data-component="Avatar"
+      >
         {avatarType}
       </Container>
     );
@@ -147,11 +149,11 @@ Avatar.propTypes = {
    * Reserved for AvatarGroups. Apply border color
    */
   border: PropTypes.string,
-    /**
-   * Background Color 
+  /**
+   * Background Color
    */
   backgroundColor: PropTypes.string,
-    /**
+  /**
    * Color for IconAvatar
    */
   color: PropTypes.string,

@@ -41,6 +41,8 @@ class TextField extends Component {
 
   render() {
     const {
+      id,
+      isRichText,
       inlineEdit,
       success,
       loading,
@@ -102,6 +104,10 @@ class TextField extends Component {
 
       const Input = multiline ? TextareaField : InputField;
 
+      const richText = isRichText && (
+        <div id={id} dangerouslySetInnerHTML={{ __html: value }} />
+      );
+
       return (
         <Root
           data-component="TextField"
@@ -125,6 +131,7 @@ class TextField extends Component {
           >
             {prependIconContainer}
             <Input
+              id={id}
               dirty={dirty}
               defaultValue={defaultValue}
               disabled={disabled}
@@ -135,12 +142,13 @@ class TextField extends Component {
               onChange={this.handleChange}
               onFocus={onFocus}
               onKeyDown={onKeyDown}
-              placeholder={hintText}
+              placeholder={isRichText ? null : hintText}
               innerRef={inputRef}
               tabIndex={tabIndex}
               type={password && !showPassword ? 'password' : 'text'}
-              value={value}
+              value={isRichText ? null : value}
             />
+            {richText}
             <InputStateIcon
               inlineEdit={inlineEdit}
               disabled={disabled}

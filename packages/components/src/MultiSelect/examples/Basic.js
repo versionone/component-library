@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Avatar } from '../Avatar';
-import { Border } from '../Border';
-import { Chip } from '../Chip';
-import { Divider } from '../Divider';
-import { List, ListItem, ListItemText } from '../List';
-import { Paper } from '../Paper';
+import { Avatar } from '../../Avatar';
+import { Border } from '../../Border';
+import { Chip } from '../../Chip';
+import { Divider } from '../../Divider';
+import { List, ListItem, ListItemText } from '../../List';
+import { Paper } from '../../Paper';
 import { items as demoData } from './items';
-import { MultiSelect } from './MultiSelect';
+import { MultiSelect } from '../MultiSelect';
 
-export class Example extends Component {
+export class Basic extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {

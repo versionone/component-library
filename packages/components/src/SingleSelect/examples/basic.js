@@ -36,18 +36,6 @@ export class Basic extends React.Component {
           selectedItem={selectedItem}
           items={itemsInState}
         />
-
-        <SingleSelect
-          hintText="Select your team members"
-          onSelect={this.handleSelect}
-          onRemove={this.handleRemove}
-          renderOptions={renderOptions}
-          selectedItem={selectedItem}
-          dropdownWidth="500px"
-          dropdownMaxHeight={50}
-          items={itemsInState}
-          defaultValue={0}
-        />
       </SpacedGroup>
     );
   }
