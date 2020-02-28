@@ -21,6 +21,10 @@ export class Reply extends React.Component {
     });
   }
 
+  handleCancelWriting() {
+    this.setState({ message: '' });
+  }
+
   handleShare(event) {
     console.warn('share', event);
   }
@@ -65,6 +69,7 @@ export class Reply extends React.Component {
           message={message}
           onMessageChanged={this.handleReplayChange}
           onShare={this.handleShare}
+          onCancelWriting={this.handleCancelWriting}
         >
           <MentionLookup />
         </NewExpression>
