@@ -131,6 +131,7 @@ const internalTheme = {
     icon: {
       focusBorder: 'rgba(30,170,189,0.7)',
       focusBoxShadow: '0 0 7px 0 rgba(30,170,189,0.5)',
+      background: palette.chrome200,
     },
   },
   Drawer: {
@@ -549,6 +550,9 @@ const themeDark = {
     },
     disabled: {
       text: 'rgb(255, 255, 255, 0.5)',
+    },
+    icon: {
+      background: palette.chrome700,
     },
   },
   Drawer: {

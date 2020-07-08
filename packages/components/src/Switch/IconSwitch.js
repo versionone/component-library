@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { createComponent, WithTheme } from '../StyleProvider';
-import { palette } from '../palette';
 
 const Root = createComponent(
   ({ size }) => ({
@@ -21,8 +20,10 @@ const Root = createComponent(
 const IconSwitchImpl = createComponent(
   ({ disabled, size, fill, theme }) => ({
     alignItems: 'center',
-    borderColor: 'transparent',
-    backgroundColor: theme.Button.text.background,
+    borderColor: fill ? theme.Button.icon.background : 'transparent',
+    backgroundColor: fill
+      ? theme.Button.icon.background
+      : theme.Button.text.background,
     color: theme.Button.standard.text,
     height: size,
     width: size,
@@ -147,7 +148,7 @@ IconSwitch.propTypes = {
    */
   checkedIcon: PropTypes.node.isRequired,
   /**
-   * If true the background is solid gunmetal to indicate checked
+   * If true the background is filled to indicate checked/unchecked
    */
   fill: PropTypes.bool,
   /**
