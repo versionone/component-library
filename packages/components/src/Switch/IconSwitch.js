@@ -20,7 +20,7 @@ const Root = createComponent(
 const IconSwitchImpl = createComponent(
   ({ disabled, size, fill, theme }) => ({
     alignItems: 'center',
-    borderColor: fill ? theme.Button.icon.background : 'transparent',
+    borderColor: 'transparent',
     backgroundColor: fill
       ? theme.Button.icon.background
       : theme.Button.text.background,
@@ -45,27 +45,17 @@ const IconSwitchImpl = createComponent(
     transition: '0.5s all linear',
     whiteSpace: 'nowrap',
     ':hover': {
-      borderColor: !disabled ? 'rgba(67, 128, 152, 0.5)' : 'transparent',
-      boxShadow: !disabled ? '0 0 7px 0 rgba(67, 128, 152, 0.3)' : 'none',
-    },
-    ':hover:before': {
-      left: 0,
-      width: '100%',
+      borderColor: !disabled ? theme.Button.icon.hoverBorder : 'transparent',
+      boxShadow: !disabled ? theme.Button.icon.hoverBoxShadow : 'none',
+      backgroundColor: !disabled
+        ? fill
+          ? theme.Button.icon.hover
+          : theme.Button.text.hover
+        : 'transparent',
     },
     ':focus': {
-      borderColor: !disabled ? 'rgba(30,170,189,0.7)' : 'transparent',
-      boxShadow: !disabled ? '0 0 7px 0 rgba(30,170,189,0.5)' : 'none',
-    },
-    ':before': {
-      backgroundColor: !disabled ? theme.Button.text.hover : 'transparent',
-      content:'""',
-      width: '0%',
-      height: '100%',
-      top: 0,
-      left: '100%',
-      transition: '0.5s all ease-out',
-      position: 'absolute',
-      zIndex: 'auto',
+      borderColor: !disabled ? theme.Button.icon.focusBorder : 'transparent',
+      boxShadow: !disabled ? theme.Button.icon.focusBoxShadow : 'none',
     },
   }),
   'button',
