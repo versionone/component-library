@@ -19,7 +19,12 @@ IconAvatar.propTypes = {
   /**
    * Icon to render
    */
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.shape({
+    color: PropTypes.string,
+    size: PropTypes.number,
+    title: PropTypes.string,
+    rotate: PropTypes.number,
+  }).isRequired,
   /**
    * Size of the icon
    */
