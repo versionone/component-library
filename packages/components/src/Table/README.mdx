@@ -1,0 +1,204 @@
+---
+name: Table
+menu: Components
+---
+
+Data grid to display set of data in rows and columns.
+
+import { Playground, PropsTable } from '@versionone/doc-components'
+import { Table, RowInstance, ColumnInstance } from './'
+import { IconButton } from '../Button'
+import { RecycleIcon } from '@versionone/icons'
+
+## BASIC
+
+<Playground>
+  {() => {
+    const cols = [
+      { label: 'Color', key: 'color', width: '45%' },
+      { label: 'Value', key: 'value', width: '45%' },
+      { label: 'Actions', key: '', width: '10%' },
+    ]
+    const actionHandle = () => {
+      console.log('Row action triggered')
+    }
+    const rowAction = (
+      <IconButton title='Delete' icon={RecycleIcon} onClick={actionHandle} />
+    )
+    const rowInstance = row => {
+      return (
+        <RowInstance key={row.color} rowClass='row-instance'>
+          <ColumnInstance colWidth='45%' columnClass='cell'>
+            {row.color}
+          </ColumnInstance>
+          <ColumnInstance colWidth='45%' columnClass='cell'>
+            {row.value}
+          </ColumnInstance>
+          <ColumnInstance colWidth='10%' columnClass='cell'>
+            {rowAction}
+          </ColumnInstance>
+        </RowInstance>
+      )
+    }
+    let data = [
+      {
+        color: 'red',
+        value: '#f00',
+      },
+      {
+        color: 'green',
+        value: '#0f0',
+      },
+      {
+        color: 'blue',
+        value: '#00f',
+      },
+      {
+        color: 'cyan',
+        value: '#0ff',
+      },
+      {
+        color: 'magenta',
+        value: '#f0f',
+      },
+    ]
+    return (
+      <Table
+        data-test='table'
+        rowInstance={rowInstance}
+        columns={cols}
+        data={data}
+      />
+    )
+  }}
+</Playground>
+
+## With Pagination and Sorting
+
+<Playground>
+  {() => {
+    class StateManager extends React.Component {
+      constructor (props, context) {
+        super(props, context)
+        this.cols = [
+          { label: 'Brand', key: 'brand' },
+          { label: 'Model', key: 'model' },
+          { label: 'Doors', key: 'doors' },
+          { label: 'Transmission', key: 'transmission' },
+        ]
+        this.fetchData = this.fetchData.bind(this)
+        this.rowInstance = this.rowInstance.bind(this)
+        this.state = {
+          data: [],
+          paginationProps: {},
+          counter: 0,
+        }
+      }
+      rowInstance (row) {
+        return (
+          <RowInstance key={row.model}>
+            <ColumnInstance columnClass='cell'>{row.brand}</ColumnInstance>
+            <ColumnInstance columnClass='cell'>{row.model}</ColumnInstance>
+            <ColumnInstance columnClass='cell'>{row.doors}</ColumnInstance>
+            <ColumnInstance columnClass='cell'>
+              {row.transmission}
+            </ColumnInstance>
+          </RowInstance>
+        )
+      }
+      componentDidMount () {
+        this.fetchData(this.state.counter)
+      }
+      fetchData () {
+        const counter = this.state.counter
+        const itemsPerPage = 3
+        const dataAvailable = [
+          {
+            brand: 'Nissan',
+            model: 'Sentra',
+            doors: 4,
+            transmission: 'automatic',
+          },
+          {
+            brand: 'Nissan',
+            model: 'Maxima',
+            doors: 4,
+            transmission: 'manual',
+          },
+          {
+            brand: 'Nissan',
+            model: 'Skyline',
+            doors: 2,
+            transmission: 'automatic',
+          },
+          {
+            brand: 'Ford',
+            model: 'Taurus',
+            doors: 4,
+            transmission: 'automatic',
+          },
+          { brand: 'Ford', model: 'Escort', doors: 4, transmission: 'manual' },
+          { brand: 'Audi', model: 'r8', doors: 4, transmission: 'manual' },
+          { brand: 'Audi', model: 'q2', doors: 4, transmission: 'automatic' },
+          {
+            brand: 'Benz',
+            model: 'E class',
+            doors: 4,
+            transmission: 'automatic',
+          },
+        ]
+        const totalCount = dataAvailable.length
+        const dataSentCount =
+          counter +
+          (dataAvailable.length - counter < itemsPerPage
+            ? dataAvailable.length - counter
+            : itemsPerPage)
+        if (dataSentCount <= totalCount) {
+          let paginationProps = {
+            more: totalCount - dataSentCount,
+            count: totalCount,
+            fetchData: this.fetchData,
+            counter: dataSentCount,
+          }
+          this.setState(prevState => {
+            return {
+              counter: dataSentCount,
+              data: this.state.data.concat(
+                dataAvailable.splice(counter, itemsPerPage),
+              ),
+              paginationProps: paginationProps,
+            }
+          })
+        }
+      }
+      render () {
+        return (
+          <Table
+            data-test='paginated-table'
+            rowInstance={this.rowInstance}
+            sortEnabled={true}
+            columns={this.cols}
+            data={this.state.data}
+            paginationEnabled={true}
+            paginationProps={this.state.paginationProps}
+          />
+        )
+      }
+    }
+    return <StateManager />
+  }}
+</Playground>
+
+## API
+
+### Table
+
+<PropsTable of={Table} />
+
+### RowInstance
+
+<PropsTable of={RowInstance} />
+
+### ColumnInstance
+
+<PropsTable of={ColumnInstance} />
