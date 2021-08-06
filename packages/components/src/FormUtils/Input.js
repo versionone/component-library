@@ -2,7 +2,6 @@ import { createComponent, styleUtils } from '../StyleProvider';
 
 const buildInputStyles = ({ multiline, dirty, disabled, height, theme }) => ({
   'background-color': dirty ? theme.Form.dirty.main : theme.Form.background,
-  'color': dirty ? '#244552' : '#e6f0f4',
   alignItems: 'center',
   border: 'none',
   borderRadius: '6px',
@@ -15,6 +14,7 @@ const buildInputStyles = ({ multiline, dirty, disabled, height, theme }) => ({
     height - 4,
     height - 2,
   ),
+  ...styleUtils.conditionalStyle(dirty, 'color', theme.Scrim.main),
   ...styleUtils.conditionalStyle(multiline, 'resize', 'vertical'),
   ...styleUtils.conditionalStyle(!multiline, 'height', height - 2),
   ...styleUtils.padding(multiline ? 8 : 0, 0, 0, 4),
