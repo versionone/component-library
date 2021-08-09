@@ -14,6 +14,7 @@ const buildInputStyles = ({ multiline, dirty, disabled, height, theme }) => ({
     height - 4,
     height - 2,
   ),
+  ...styleUtils.conditionalStyle(dirty, 'color', theme.Scrim.main),
   ...styleUtils.conditionalStyle(multiline, 'resize', 'vertical'),
   ...styleUtils.conditionalStyle(!multiline, 'height', height - 2),
   ...styleUtils.padding(multiline ? 8 : 0, 0, 0, 4),
