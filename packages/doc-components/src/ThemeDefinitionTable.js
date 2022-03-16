@@ -1,7 +1,7 @@
 import capitalize from 'capitalize';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { withMDXComponents } from '@mdx-js/tag/dist/mdx-provider';
+import { withMDXComponents } from "@mdx-js/react";
 import humanize from './humanize';
 
 const getPropType = (prop, Tooltip) => {

@@ -41,7 +41,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
           default: path.join(
@@ -52,7 +52,9 @@ module.exports = {
             'MdxLayout.js',
           ),
         },
-        hastPlugins: [versiononePlaygroundPlugin()],
+        rehypePlugins: [
+          versiononePlaygroundPlugin()
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',

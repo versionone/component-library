@@ -1,4 +1,3 @@
-import EventListener from 'react-event-listener';
 import React, { Fragment } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import {
@@ -57,15 +56,21 @@ class SiteLayout extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   componentDidMount() {
     this.setState({
       mounted: true,
       width: typeof window !== 'undefined' ? window.innerWidth : 0,
     });
+
+    window.addEventListener('resize', this.handleResize);
   }
 
-  handleResize = evt => {
-    this.setState({ width: evt.target.innerWidth });
+  handleResize = () => {
+    this.setState({ width: window.innerWidth });
   };
 
   render() {
@@ -78,11 +83,6 @@ class SiteLayout extends React.Component {
     const isCentered = width > mainWidth + asideWidth * 2;
 
     return (
-      // <StyleProvider>
-        <EventListener
-          onResize={this.handleResize}
-          target={typeof window !== 'undefined' ? window : 'window'}
-        >
           <StaticQuery
             query={graphql`
               query SiteTitleQuery {
@@ -136,8 +136,6 @@ class SiteLayout extends React.Component {
               </Fragment>
             )}
           />
-        </EventListener>
-      // </StyleProvider>
     );
   }
 }
