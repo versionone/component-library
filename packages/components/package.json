@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "generate:main": "generate-main",
-    "prebuild//unix": "rm -rf dist && yarn generate:main",
-    "prebuild": "del dist && yarn generate:main",
+    "prebuild": "rm -rf dist && yarn generate:main",
+    "prebuild//win": "del dist && yarn generate:main",
     "build": "babel --root-mode upward src --out-dir ./dist"
   },
   "publishConfig": {
