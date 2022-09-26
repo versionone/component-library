@@ -2,7 +2,7 @@
   "private": false,
   "name": "@versionone/icons",
   "description": "Collection of icon components used in VersionOne and Continuum.",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "license": "MIT",
   "homepage": "https://versionone-components.netlify.com/",
   "repository": {
@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.6.2",
-    "react": "^17.0.0"
+    "react": "^16.6.1 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
