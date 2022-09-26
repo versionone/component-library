@@ -1,4 +1,3 @@
-import EventListener from 'react-event-listener';
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { debounce } from 'underscore';
@@ -26,9 +25,11 @@ class WithBreakpoint extends Component {
 
   componentDidMount() {
     this.setBreakpoint();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
     this.handleResize.cancel();
   }
 
@@ -45,7 +46,6 @@ class WithBreakpoint extends Component {
             return (
               <Fragment>
                 {children(breakpoint)}
-                <EventListener target="window" onResize={this.handleResize} />
               </Fragment>
             );
           }}

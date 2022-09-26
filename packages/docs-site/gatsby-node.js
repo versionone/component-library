@@ -19,6 +19,20 @@ module.exports.onCreateWebpackConfig = ({ actions, plugins, stage }) => {
     resolve: {
       mainFields: ['main:src', 'main'],
     },
+    //https://github.com/gatsbyjs/gatsby/issues/26785
+    module: {
+      rules: [
+          {
+              test: require.resolve(`@gatsbyjs/reach-router/index`),
+              type: `javascript/auto`,
+              use: [
+                  {
+                      loader: require.resolve(`./reach-router-add-basecontext-export-loader`),
+                  },
+              ],
+          },
+      ],
+    },
   });
 };
 
