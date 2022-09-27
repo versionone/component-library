@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { noop } from 'underscore';
 import { createComponent, WithTheme } from '../StyleProvider';
-import { palette } from '../palette';
 
 const Root = createComponent(
   ({ size }) => ({
@@ -22,7 +21,9 @@ const IconSwitchImpl = createComponent(
   ({ disabled, size, fill, theme }) => ({
     alignItems: 'center',
     borderColor: 'transparent',
-    backgroundColor: theme.Button.text.background,
+    backgroundColor: fill
+      ? theme.Button.icon.background
+      : theme.Button.text.background,
     color: theme.Button.standard.text,
     height: size,
     width: size,
@@ -44,27 +45,17 @@ const IconSwitchImpl = createComponent(
     transition: '0.5s all linear',
     whiteSpace: 'nowrap',
     ':hover': {
-      borderColor: !disabled ? 'rgba(67, 128, 152, 0.5)' : 'transparent',
-      boxShadow: !disabled ? '0 0 7px 0 rgba(67, 128, 152, 0.3)' : 'none',
-    },
-    ':hover:before': {
-      left: 0,
-      width: '100%',
+      borderColor: !disabled ? theme.Button.icon.hoverBorder : 'transparent',
+      boxShadow: !disabled ? theme.Button.icon.hoverBoxShadow : 'none',
+      backgroundColor: !disabled
+        ? fill
+          ? theme.Button.icon.hover
+          : theme.Button.text.hover
+        : 'transparent',
     },
     ':focus': {
-      borderColor: !disabled ? 'rgba(30,170,189,0.7)' : 'transparent',
-      boxShadow: !disabled ? '0 0 7px 0 rgba(30,170,189,0.5)' : 'none',
-    },
-    ':before': {
-      backgroundColor: !disabled ? theme.Button.text.hover : 'transparent',
-      content:'""',
-      width: '0%',
-      height: '100%',
-      top: 0,
-      left: '100%',
-      transition: '0.5s all ease-out',
-      position: 'absolute',
-      zIndex: 'auto',
+      borderColor: !disabled ? theme.Button.icon.focusBorder : 'transparent',
+      boxShadow: !disabled ? theme.Button.icon.focusBoxShadow : 'none',
     },
   }),
   'button',
@@ -147,7 +138,7 @@ IconSwitch.propTypes = {
    */
   checkedIcon: PropTypes.node.isRequired,
   /**
-   * If true the background is solid gunmetal to indicate checked
+   * If true the background is filled to indicate checked/unchecked
    */
   fill: PropTypes.bool,
   /**

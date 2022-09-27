@@ -25,7 +25,9 @@ This Switch is used to toggle between two mutually exclusive options and is visu
         control={
           <IconSwitch
             checkedIcon={<CheckIcon color={palette.gunmetal} />}
-            uncheckedIcon={<CloseIcon />} />}
+            uncheckedIcon={<CloseIcon />}
+          />
+        }
       />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
@@ -35,17 +37,35 @@ This Switch is used to toggle between two mutually exclusive options and is visu
           <IconSwitch
             checkedIcon={<CheckIcon color={palette.gunmetal} />}
             uncheckedIcon={<CloseIcon />}
-            checked />}
+            checked
+          />
+        }
+      />
+    </SpacedGroup>
+    <SpacedGroup xs={2} center>
+      <FormControlLabel
+        label="Fill"
+        control={
+          <IconSwitch
+            checkedIcon={<CheckIcon color={palette.gunmetal} />}
+            uncheckedIcon={<CloseIcon />}
+            checked
+            fill
+          />
+        }
       />
     </SpacedGroup>
     <SpacedGroup xs={2} center>
       <FormControlLabel
         label="Disabled"
+        disabled
         control={
           <IconSwitch
             checkedIcon={<CheckIcon color={palette.gunmetal} />}
             uncheckedIcon={<CloseIcon />}
-            disabled />}
+            disabled
+          />
+        }
       />
     </SpacedGroup>
   </SpacedGroup>
