@@ -23,6 +23,8 @@ There is 1 main branch `master` where changes should be published from.
 > - Have 2 people (a member each from Core and Continuum) review and approve the changes
 > - Use Github to merge Pull Request
 
+Note that upon merging to master, the docs site will be not be available until the build finishes.
+
 ## How to Publish
 
 The library publishes to [npmjs.com](https://www.npmjs.com/package/@versionone/components). Login is required, either with the VersionOne account or with an existing account that is linked to our org.
@@ -63,7 +65,9 @@ A deployment preview of the docs site gets published on every Pull Request as we
 
 > You can find a link to the build site in the Pull Request details (upon successfully passing all tests)
 
-However, to publish a new release of the site, instead of a preview deployment, you'll need to follow these steps:
+In addition, the docs site is updated automatically every time a Pull Request is merged to master. Note that the site will be unavailable while master is building.
+
+If you want to publish a new release of the site manually, instead of a preview deployment, you'll need to follow these steps:
 
 1. Log into [netlify](https://www.netlify.com/).
 2. Navigate to the `versionone-components` project
