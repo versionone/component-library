@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { WithTheme } from '../StyleProvider';
+import { WithTheme } from '@versionone/components';
 
 const languages = {
   js: 'javascript',

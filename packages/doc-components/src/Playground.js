@@ -1,6 +1,6 @@
 import React from 'react';
 import { isFunction } from 'util';
-import { Code } from '@versionone/components';
+import { Code } from './Code';
 
 const Playground = ({
   __code,
