@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDXProvider } from "@mdx-js/react";
-import { Code } from '@versionone/components';
+import { Code } from '@versionone/doc-components';
 import Seo from './Seo';
 import SiteLayout from './SiteLayout';
 
