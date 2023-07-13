@@ -2,7 +2,7 @@
   "private": false,
   "name": "@versionone/icons",
   "description": "Collection of icon components used in VersionOne and Continuum.",
-  "version": "9.0.2",
+  "version": "9.1.0",
   "license": "MIT",
   "homepage": "https://versionone-components.netlify.com/",
   "repository": {
@@ -25,7 +25,7 @@
     "postgenerate:main": "generate-main-icons",
     "prebuild": "yarn generate:main && rm -rf dist",
     "prebuild//win": "yarn generate:main ",
-    "none" : "&& del dist",
+    "none": "&& del dist",
     "build": "babel --root-mode upward src --out-dir ./dist"
   },
   "publishConfig": {
